@@ -18,3 +18,8 @@
 
     object-fit: cover;
 }
+
+.answer-chips {
+    background-color: lightgrey;
+    padding: 20px;
+}

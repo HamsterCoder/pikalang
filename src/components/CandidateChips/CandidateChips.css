@@ -1,0 +1,15 @@
+.CandidateChips__container {
+    display: flex;
+
+    background-color: rgb(211, 209, 209);
+    border: 2px solid gray;
+    border-radius: 4px;
+
+    min-height: 56px;
+
+    padding: 10px;
+}
+
+.CandidateChips__container > .CandidateChips__item {
+    margin-right: 10px;
+}
