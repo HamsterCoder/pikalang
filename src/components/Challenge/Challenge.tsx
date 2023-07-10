@@ -1,58 +1,30 @@
-import { Chip, Paper, Typography, Button } from "@mui/material";
+import { Paper, Typography, Button } from "@mui/material";
 import { FunctionComponent, useState } from "react";
 
 // TODO get rid of relative import for components
 import {CandidateChips} from "../CandidateChips/CandidateChips";
 
 import './Challenge.css';
+import { QuestionToChips } from "./QuestionToChips";
+
+export enum ChallengeType {
+    QUESTION_TO_CHIPS, // Given a question, answer it by choosing word chips
+    WORD_TO_PICTURE, // Given a word, choose the correct picture
+    PICTURE_TO_WORD, // Given a picture, choose the correct word
+}
 
 export interface ChallengeProps {
-    type: 
-            'word-to-picture' | // Given a word, choose picture
-            'picture-to-word' | // Given a picture, choose word
-            'question-to-baloons'; // Given a question, answer it by choosing word balloons
+    type: ChallengeType;
+    // TODO figure out how best to type this
     data: Record<string, any>;
 }
 
-
-
-export const Challenge: FunctionComponent<ChallengeProps> = (props) => {
-    const showPicture = true;
-
-    const [candidateChips, setCandidateChips] = useState<string[]>(['Ovo', 'jabuka', 'borovnica', 'je']);
-    const [answerChips, setAnswerChips] = useState<string[]>([]);
-
-    function onChipSelect(chip: string) {
-        console.log(chip);
-    
-        setCandidateChips(candidateChips.filter(currentChip => currentChip !== chip));
-        setAnswerChips(answerChips.concat([chip]));
-    }
-    
-    function onChipDeselect(chip: string) {
-        console.log(chip);
-    
-        setCandidateChips(candidateChips.concat([chip]));
-        setAnswerChips(answerChips.filter(currentChip => currentChip !== chip));
-    }
-
+export const Challenge: FunctionComponent<ChallengeProps> = ({ type, data }) => {
     return (
         <div className="container">
-            <Typography variant="h4" gutterBottom>
-                Answer the question
-            </Typography>
-            {showPicture && <Paper elevation={0} variant="outlined" className="picture">
-                <img className="picture-content" src="assets/apple.jpg"/>
-            </Paper>}
-            <Typography variant="h4">Šta je ovo?</Typography>
-
-            <CandidateChips chips={answerChips} onSelect={onChipDeselect}/>
-
-            <CandidateChips chips={candidateChips} onSelect={onChipSelect}/>
-
-            <div>
-                <Button color="success" variant="contained">Submit</Button>
-            </div>
+            {type === ChallengeType.QUESTION_TO_CHIPS && 
+                <QuestionToChips type={type} data={data}/>
+            }
         </div>
     );
 };

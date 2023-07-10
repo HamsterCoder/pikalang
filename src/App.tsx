@@ -5,14 +5,25 @@ import '@fontsource/roboto/700.css';
 
 import './App.css'
 
-import { Challenge } from './components/Challenge/Challenge';
+// TODO fix relative import
+import { Challenge, ChallengeType } from './components/Challenge/Challenge';
 import { CssBaseline } from '@mui/material';
+
+const testChallenge = {
+  type: ChallengeType.QUESTION_TO_CHIPS,
+  data: {
+    question: 'Šta je ovo?',
+    answer: 'Ovo je jabuka',
+    chips: ['Ovo', 'jabuka', 'borovnica', 'je'],
+    image: 'apple',
+  }
+};
 
 function App() {
   return (
     <>
       <CssBaseline />
-      <Challenge type="question-to-baloons" data={{}}/>
+      <Challenge {...testChallenge} />
     </>
   )
 }
