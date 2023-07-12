@@ -4,6 +4,7 @@ import { FunctionComponent } from "react";
 export interface CandidateChipsProps {
     className?: string
     chips: string[];
+    asAnswerField?: boolean;
     onSelect(chip: string): void;
 }
 
@@ -14,13 +15,13 @@ function cn(...cns: (string | undefined)[]) {
 }
 
 
-export const CandidateChips: FunctionComponent<CandidateChipsProps> = ({ className, chips, onSelect }) => {
+export const CandidateChips: FunctionComponent<CandidateChipsProps> = ({ className, chips, asAnswerField = false, onSelect }) => {
     function handleSelect(chip: string) {
         onSelect(chip);
     }
     
     return (
-        <div className={cn(className, "CandidateChips__container")}>
+        <div className={cn(className, "CandidateChips__container", asAnswerField ?"CandidateChips__container_answer" : undefined)}>
             {chips.map(
                 chip => <Chip key={chip} className="CandidateChips__item" variant="outlined" onClick={handleSelect.bind(null, chip)} color="primary" label={chip} />
             )}

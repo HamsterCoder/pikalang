@@ -63,9 +63,9 @@ export const QuestionToChips: FunctionComponent<QuestionToChipsProps> = ({ data 
                 <img className="picture-content" src={`assets/${data.image}.jpg`}/>
             </Paper>}
 
-            <Typography variant="h5">{data.question}</Typography>
+            <Typography mb={2} variant="h5">{data.question}</Typography>
 
-            <CandidateChips chips={answerChips} onSelect={onChipDeselect}/>
+            <CandidateChips asAnswerField chips={answerChips} onSelect={onChipDeselect}/>
 
             <CandidateChips chips={candidateChips} onSelect={onChipSelect}/>
 
