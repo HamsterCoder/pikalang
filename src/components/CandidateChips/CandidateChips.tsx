@@ -22,7 +22,7 @@ export const CandidateChips: FunctionComponent<CandidateChipsProps> = ({ classNa
     return (
         <div className={cn(className, "CandidateChips__container")}>
             {chips.map(
-                chip => <Chip key={chip} className="CandidateChips__item" onClick={handleSelect.bind(null, chip)} color="secondary" label={chip} />
+                chip => <Chip key={chip} className="CandidateChips__item" variant="outlined" onClick={handleSelect.bind(null, chip)} color="primary" label={chip} />
             )}
         </div>
     );

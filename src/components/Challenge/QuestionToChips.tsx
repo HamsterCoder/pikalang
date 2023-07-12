@@ -57,20 +57,20 @@ export const QuestionToChips: FunctionComponent<QuestionToChipsProps> = ({ data 
 
     return (
         <div>
-            <Typography variant="h4" gutterBottom>Answer the question</Typography>
+            <Typography variant="h5" color="primary" gutterBottom>Answer the question</Typography>
 
             {data.image && <Paper elevation={0} variant="outlined" className="picture">
                 <img className="picture-content" src={`assets/${data.image}.jpg`}/>
             </Paper>}
 
-            <Typography variant="h4">{data.question}</Typography>
+            <Typography variant="h5">{data.question}</Typography>
 
             <CandidateChips chips={answerChips} onSelect={onChipDeselect}/>
 
             <CandidateChips chips={candidateChips} onSelect={onChipSelect}/>
 
             <div>
-                {status === ChallengeStatus.PROGRESS && <Button color="success" variant="contained" onClick={onSubmit}>Check</Button>}
+                {status === ChallengeStatus.PROGRESS && <Button color="success" variant="contained" sx={{ borderRadius: '8px' }} onClick={onSubmit}>Check</Button>}
                 {status === ChallengeStatus.CORRECT && <Alert severity="success">The answer is correct</Alert>}
                 {status === ChallengeStatus.INCORRECT && <Alert severity="error">The answer is incorrect. Expexted answer: {data.answer}</Alert>}
             </div>

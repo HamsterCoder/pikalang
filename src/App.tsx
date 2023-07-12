@@ -7,7 +7,7 @@ import './App.css'
 
 // TODO fix relative import
 import { Challenge, ChallengeType } from './components/Challenge/Challenge';
-import { CssBaseline, Typography } from '@mui/material';
+import { CssBaseline, Typography, ThemeProvider, createTheme } from '@mui/material';
 import {useState} from 'react';
 
 const challenges = [
@@ -40,6 +40,23 @@ const challenges = [
   }
 ];
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#AA66CC'
+    },
+    secondary: {
+      main: '#33B5E5'
+    },
+    success: {
+      main: '#99CC00'
+    },
+    error: {
+      main: '#FF4444'
+    }
+  }
+});
+
 function App() {
   const lessonState = {
     no: 1,
@@ -52,12 +69,14 @@ function App() {
 
   return (
     <>
-      <CssBaseline />
-      <div className="Lesson__header">
-        <Typography variant="h4">Lesson {lessonState.no}</Typography>
-        <Typography className="Lesson__challenge" variant="h4">{lessonState.current}/{lessonState.total}</Typography>
-      </div>
-      <Challenge {...challenges[challenge]} />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <div className="Lesson__header">
+          <Typography variant="h4">Lesson {lessonState.no}</Typography>
+          <Typography className="Lesson__challenge" variant="h4">{lessonState.current}/{lessonState.total}</Typography>
+        </div>
+        <Challenge {...challenges[challenge]} />
+      </ThemeProvider>
     </>
   )
 }
