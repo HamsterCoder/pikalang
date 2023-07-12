@@ -1,2 +1,13 @@
 
+.Lesson__header {
+    background-color: var(--main-accent);
+    color: #ffffff;
+    margin-bottom: 20px;
+    padding: 20px 40px;
 
+    display: flex;
+}
+
+.Lesson__header > .Lesson__challenge {
+    margin-left: auto;
+}
