@@ -1,13 +1,9 @@
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-
 import './App.css'
 
 // TODO fix relative import
 import { Challenge, ChallengeType } from './components/Challenge/Challenge';
-import { CssBaseline, Typography, ThemeProvider, createTheme } from '@mui/material';
+import { Lesson } from './components/Lesson/Lesson';
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import {useState} from 'react';
 
 const challenges = [
@@ -42,6 +38,9 @@ const challenges = [
 
 const theme = createTheme({
   palette: {
+    text: {
+      primary: '#54196a'
+    },
     primary: {
       main: '#AA66CC'
     },
@@ -58,24 +57,11 @@ const theme = createTheme({
 });
 
 function App() {
-  const lessonState = {
-    no: 1,
-    current: 0,
-    total: 3,
-    challenges: challenges
-  };
-
-  const [challenge, setChallenge] = useState(0);
-
   return (
     <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <div className="Lesson__header">
-          <Typography variant="h4">Lesson {lessonState.no}</Typography>
-          <Typography className="Lesson__challenge" variant="h4">{lessonState.current}/{lessonState.total}</Typography>
-        </div>
-        <Challenge {...challenges[challenge]} />
+        <Lesson no={1} challenges={challenges}/>
       </ThemeProvider>
     </>
   )

@@ -21,9 +21,12 @@ export interface QuestionToChipsData {
 export interface QuestionToChipsProps {
     type: ChallengeType.QUESTION_TO_CHIPS;
     data: QuestionToChipsData;
+    onComplete({solved}: {solved: boolean}): void;
 }
 
-export const QuestionToChips: FunctionComponent<QuestionToChipsProps> = ({ data }) => {
+// TODO how do you reset status? Maybe by showing a loader or by interseption props change?
+
+export const QuestionToChips: FunctionComponent<QuestionToChipsProps> = ({ data, onComplete }) => {
     const [candidateChips, setCandidateChips] = useState<string[]>(data.chips);
     const [answerChips, setAnswerChips] = useState<string[]>([]);
     const [status, setStatus] = useState<ChallengeStatus>(ChallengeStatus.PROGRESS);
@@ -45,8 +48,11 @@ export const QuestionToChips: FunctionComponent<QuestionToChipsProps> = ({ data 
     function onSubmit() {
         if (answerChips.join(' ') === data.answer) {
             setStatus(ChallengeStatus.CORRECT);
+            onComplete({ solved: true });
+            
         } else {
             setStatus(ChallengeStatus.INCORRECT);
+            onComplete({ solved: false });
         }
 
         console.log(`Answer is ${answerChips.join(' ') === data.answer ? 'correct' : 'incorrect'}`);

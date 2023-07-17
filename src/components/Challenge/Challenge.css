@@ -1,8 +1,6 @@
 .container {
     display: flex;
     flex-direction: column;
-
-    padding: 20px 40px;
 }
 
 .picture {
@@ -17,9 +15,4 @@
     height: 100%;
 
     object-fit: cover;
-}
-
-.answer-chips {
-    background-color: lightgrey;
-    padding: 20px;
 }

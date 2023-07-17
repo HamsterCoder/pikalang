@@ -4,6 +4,9 @@
   --alert-error: #FF4444;
   --alert-success: #99CC00;
   --alert-warning: #FFBB33;
-  --main-accent: #AA66CC;
+  --primary-accent: #AA66CC;
   --secondary-accent: #33B5E5;
+
+  --primary-text: #54196a;
+  --secondary-text: #ffffff;
 }

@@ -8,7 +8,7 @@
 
 .CandidateChips__container_answer {
     min-height: 82px;
-    background: linear-gradient(var(--main-accent) 2px, transparent 2px);
+    background: linear-gradient(var(--primary-accent) 2px, transparent 2px);
     background-size: 100% 40px;
 }
 

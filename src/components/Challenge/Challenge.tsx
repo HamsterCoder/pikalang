@@ -3,7 +3,7 @@ import { FunctionComponent } from "react";
 // TODO get rid of relative import for components
 
 import './Challenge.css';
-import { QuestionToChips } from "./QuestionToChips";
+import { QuestionToChips, QuestionToChipsProps } from "./QuestionToChips";
 
 export enum ChallengeType {
     QUESTION_TO_CHIPS, // Given a question, answer it by choosing word chips
@@ -19,15 +19,16 @@ export enum ChallengeStatus {
 
 export interface ChallengeProps {
     type: ChallengeType;
-    // TODO figure out how best to type this
-    data: Record<string, any>;
+    // TODO import all challenge prop types
+    data: QuestionToChipsProps['data'];
+    onComplete({solved}: {solved: boolean}): void;
 }
 
-export const Challenge: FunctionComponent<ChallengeProps> = ({ type, data }) => {
+export const Challenge: FunctionComponent<ChallengeProps> = ({ type, data, onComplete }) => {
     return (
         <div className="container">
             {type === ChallengeType.QUESTION_TO_CHIPS && 
-                <QuestionToChips type={type} data={data}/>
+                <QuestionToChips type={type} data={data} onComplete={onComplete}/>
             }
         </div>
     );
