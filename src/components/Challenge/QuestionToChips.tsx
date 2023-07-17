@@ -14,7 +14,7 @@ import './QuestionToChips.css';
 export interface QuestionToChipsData {
     image?: string;
     question: string;
-    answer: string;
+    answer: string[];
     chips: string[];
 }
 
@@ -31,31 +31,26 @@ export const QuestionToChips: FunctionComponent<QuestionToChipsProps> = ({ data,
     const [answerChips, setAnswerChips] = useState<string[]>([]);
     const [status, setStatus] = useState<ChallengeStatus>(ChallengeStatus.PROGRESS);
 
-    function onChipSelect(chip: string) {
-        // console.log(chip);
-    
+    function onChipSelect(chip: string) {    
         setCandidateChips(candidateChips.filter(currentChip => currentChip !== chip));
         setAnswerChips(answerChips.concat([chip]));
     }
     
     function onChipDeselect(chip: string) {
-        // console.log(chip);
-    
         setCandidateChips(candidateChips.concat([chip]));
         setAnswerChips(answerChips.filter(currentChip => currentChip !== chip));
     }
 
     function onSubmit() {
-        if (answerChips.join(' ') === data.answer) {
+        if (data.answer.some(possibleAnswer => possibleAnswer === answerChips.join(' '))) {
             setStatus(ChallengeStatus.CORRECT);
             onComplete({ solved: true });
-            
         } else {
             setStatus(ChallengeStatus.INCORRECT);
             onComplete({ solved: false });
         }
 
-        console.log(`Answer is ${answerChips.join(' ') === data.answer ? 'correct' : 'incorrect'}`);
+        console.log(`Answer is ${data.answer.some(possibleAnswer => possibleAnswer === answerChips.join(' ')) ? 'correct' : 'incorrect'}`);
     }
 
     // TODO Move image to a separate component
@@ -78,7 +73,9 @@ export const QuestionToChips: FunctionComponent<QuestionToChipsProps> = ({ data,
             <div>
                 {status === ChallengeStatus.PROGRESS && <Button color="success" variant="contained" sx={{ borderRadius: '8px' }} onClick={onSubmit}>Check</Button>}
                 {status === ChallengeStatus.CORRECT && <Alert severity="success">The answer is correct</Alert>}
-                {status === ChallengeStatus.INCORRECT && <Alert severity="error">The answer is incorrect. Expexted answer: {data.answer}</Alert>}
+                {status === ChallengeStatus.INCORRECT && <Alert severity="error">
+                    <Typography variant="body1">Incorrect. Expected answer: {data.answer[0]}</Typography>
+                </Alert>}
             </div>
         </div>
     );
