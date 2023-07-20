@@ -1,67 +1,9 @@
 import './App.css'
 
 // TODO fix relative import
-import { Challenge, ChallengeType } from './components/Challenge/Challenge';
 import { Lesson } from './components/Lesson/Lesson';
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
-import {useState} from 'react';
-
-const challenges = [
-  {
-    type: ChallengeType.QUESTION_TO_CHIPS,
-    data: {
-      question: 'Šta je ovo?',
-      answer: ['Ovo je jabuka'],
-      chips: ['Ovo', 'jabuka', 'kaisija', 'je'],
-      image: 'apple',
-    }
-  },
-  {
-    type: ChallengeType.QUESTION_TO_CHIPS,
-    data: {
-      question: 'Šta je ovo?',
-      answer: ['Ovo je kaisija'],
-      chips: ['Ovo', 'šljiva', 'kaisija', 'je'],
-      image: 'apricot',
-    }
-  },
-  {
-    type: ChallengeType.QUESTION_TO_CHIPS,
-    data: {
-      question: 'Šta je ovo?',
-      answer: ['Ovo je breskva'],
-      chips: ['Ovo', 'breskva', 'jabuka', 'je'],
-      image: 'peach',
-    }
-  },
-  {
-    type: ChallengeType.QUESTION_TO_CHIPS,
-    data: {
-      question: 'Šta je ovo?',
-      answer: ['Ovo je jagoda'],
-      chips: ['jagoda', 'breskva', 'Ovo', 'je', 'su'],
-      image: 'strawberry',
-    },
-  },
-  {
-    type: ChallengeType.QUESTION_TO_CHIPS,
-    data: {
-      question: 'Šta je ovo?',
-      answer: ['Ovo su jabuka i kruška', 'Ovo su kruška i jabuka'],
-      chips: ['jabuka', 'Ovo', 'je', 'su', 'i', 'kruška'],
-      image: 'apple-pear',
-    }
-  },
-  {
-    type: ChallengeType.QUESTION_TO_CHIPS,
-    data: {
-      question: 'Šta je ovo?',
-      answer: ['Ovo je kruška'],
-      chips: ['jabuka', 'Ovo', 'je', 'su', 'kruška'],
-      image: 'pear',
-    }
-  }
-];
+import { challenges } from './lessons/lesson-1';
 
 const theme = createTheme({
   palette: {
