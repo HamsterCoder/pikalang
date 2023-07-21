@@ -3,22 +3,15 @@ import { styled } from "styled-components";
 
 // TODO get rid of relative import for components
 import { Challenge, ChallengeProps } from "../Challenge/Challenge";
+import { Header } from "../Header/Header";
 
 import { Button, Typography } from "@mui/material";
-import {useState} from 'react';
+import { useState } from 'react';
 
 export interface LessonProps {
     no: number;
     challenges: ChallengeProps[];
 }
-
-const LessonHeader = styled.div`
-    background-color: var(--primary-accent);
-    color: #ffffff;
-    margin-bottom: 20px;
-    padding: 20px 40px;
-    display: flex;
-`;
 
 const LessonBody = styled.div`
     padding: 0 40px;
@@ -125,10 +118,10 @@ export const Lesson: FunctionComponent<LessonProps> = ({ challenges, no }) => {
 
     return (
         <div>
-            <LessonHeader>
+            <Header>
                 <Typography variant="h4">Lesson {no}</Typography>
                 <Typography sx={{ marginLeft: 'auto' }} variant="h4">{state.challengeNumber + 1}/{challenges.length}</Typography>
-            </LessonHeader>
+            </Header>
             <LessonBody>
                 {state.complete && <div className="Lesson__complete">
                     <Typography variant="h4">Congratulations</Typography>

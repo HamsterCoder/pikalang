@@ -1,9 +1,19 @@
-import './App.css'
+import { useReducer } from 'react';
+
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 
 // TODO fix relative import
 import { Lesson } from './components/Lesson/Lesson';
-import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
-import { challenges } from './lessons/lesson-1';
+import { LessonList } from './components/LessonList/LessonList';
+
+import { challenges as challenges1 } from './lessons/lesson-1';
+import { challenges as challenges2 } from './lessons/lesson-1';
+
+// TODO fix any
+const lessonsMap: Record<string, any> = {
+  '1': challenges1,
+  '2': challenges2
+};
 
 const theme = createTheme({
   palette: {
@@ -43,12 +53,82 @@ function shuffle<T>(array: T[]) {
   return array;
 }
 
+const lessons = [
+  {
+    id: '1',
+    name: 'Fruit lv1',
+    url: 'lesson-1',
+    image: 'fruit',
+    description: 'Learn the names of fruit.'
+  },
+  {
+    id: '2',
+    name: 'Fruit lv2',
+    url: 'lesson-2',
+    image: 'fruit',
+    description: 'Learn the names of fruit.'
+  }
+];
+
+enum AppActionType {
+  START_LESSON,
+  FINISH_LESSON
+}
+
+interface AppAction {
+  type: AppActionType;
+  data: Record<string, any>
+}
+
+enum PageType {
+  LESSON_LIST,
+  LESSON
+}
+
+interface AppState {
+  page: PageType,
+  params: Record<string, any>
+}
+
+function appStateReducer(state: AppState, {type, data}: AppAction): AppState {
+  if (type === AppActionType.START_LESSON) {
+    return {
+        ...state,
+        page: PageType.LESSON,
+        params: {
+          ...state.params,
+          lessonId: data.id
+        }
+    };
+  } else if (type === AppActionType.FINISH_LESSON) {
+    return {
+      ...state,
+      page: PageType.LESSON_LIST
+  };
+  }
+
+return state;
+}
+
 function App() {
+  const [{page, params}, dispatch] = useReducer(appStateReducer, {
+    page: PageType.LESSON_LIST,
+    params: {}
+  });
+
+  function handleLessonSelect(id: string) {
+    console.log('handleLessonSelect', id);
+    dispatch({ type: AppActionType.START_LESSON, data: { id }});
+  }
+
+  console.log(page, params);
+
   return (
     <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Lesson no={1} challenges={shuffle(challenges.slice())}/>
+        {page === PageType.LESSON_LIST && <LessonList lessons={lessons} onLessonSelect={handleLessonSelect}/>}
+        {page === PageType.LESSON && <Lesson no={1} challenges={shuffle(lessonsMap[params.lessonId].slice())}/>}
       </ThemeProvider>
     </>
   )
