@@ -7,12 +7,14 @@ import { Lesson } from './components/Lesson/Lesson';
 import { LessonList } from './components/LessonList/LessonList';
 
 import { challenges as challenges1 } from './lessons/lesson-1';
-import { challenges as challenges2 } from './lessons/lesson-1';
+import { challenges as challenges2 } from './lessons/lesson-2';
+import { challenges as challenges3 } from './lessons/lesson-3';
 
 // TODO fix any
 const lessonsMap: Record<string, any> = {
   '1': challenges1,
-  '2': challenges2
+  '2': challenges2,
+  '3': challenges3,
 };
 
 const theme = createTheme({
@@ -67,6 +69,13 @@ const lessons = [
     url: 'lesson-2',
     image: 'fruit',
     description: 'Learn the names of fruit.'
+  },
+  {
+    id: '3',
+    name: 'Berries lv1',
+    url: 'lesson-3',
+    image: 'berries',
+    description: 'Learn the names of berries.'
   }
 ];
 

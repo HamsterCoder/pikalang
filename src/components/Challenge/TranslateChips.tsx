@@ -14,25 +14,18 @@ import { Picture } from "../Picture/Picture";
 import { styled } from "styled-components";
 
 export interface QuestionChipsData {
-    image?: string;
-    question: string;
+    sentence: string;
     answer: string[];
     chips: string[];
 }
 
-export interface QuestionChipsProps {
-    type: ChallengeType.QUESTION_CHIPS;
+export interface TranslateChipsProps {
+    type: ChallengeType.TRANSLATE_CHIPS;
     data: QuestionChipsData;
     onComplete({solved}: {solved: boolean}): void;
 }
 
-const PictureContainer = styled.div`
-    margin-bottom: 20px;
-`;
-
-// TODO how do you reset status? Maybe by showing a loader or by interseption props change?
-
-export const QuestionChips: FunctionComponent<QuestionChipsProps> = ({ data, onComplete }) => {
+export const TranslateChips: FunctionComponent<TranslateChipsProps> = ({ data, onComplete }) => {
     const [candidateChips, setCandidateChips] = useState<string[]>(data.chips);
     const [answerChips, setAnswerChips] = useState<string[]>([]);
     const [status, setStatus] = useState<ChallengeStatus>(ChallengeStatus.PROGRESS);
@@ -75,11 +68,9 @@ export const QuestionChips: FunctionComponent<QuestionChipsProps> = ({ data, onC
 
     return (
         <div>
-            <Typography variant="h5" color="primary" gutterBottom>Answer the question</Typography>
-            
-            {data.image && <PictureContainer><Picture image={data.image}/></PictureContainer>}
+            <Typography variant="h5" color="primary" gutterBottom>Translate this sentence</Typography>
 
-            <Typography variant="h5" mb={2}>{data.question}</Typography>
+            <Typography variant="h5" mb={2}>{data.sentence}</Typography>
 
             <Chips chips={answerChips} asAnswerField onSelect={onChipDeselect}/>
 
