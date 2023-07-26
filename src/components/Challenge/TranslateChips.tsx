@@ -1,17 +1,9 @@
-// Have render and check logic here
-// Make challenge a wrapper - submit should be rendered by challenge
-
-
 import { Typography, Button, Alert } from "@mui/material";
 import { FunctionComponent, useState } from "react";
 
 // TODO get rid of relative import for components
-import {Chips, moveChip} from "../Chips/Chips";
 import {ChallengeType, ChallengeStatus} from "./Challenge";
-
-import './QuestionChips.css';
-import { Picture } from "../Picture/Picture";
-import { styled } from "styled-components";
+import { ChipsAndLines } from "../Chips/ChipsAndLines";
 
 export interface QuestionChipsData {
     sentence: string;
@@ -26,31 +18,8 @@ export interface TranslateChipsProps {
 }
 
 export const TranslateChips: FunctionComponent<TranslateChipsProps> = ({ data, onComplete }) => {
-    const [candidateChips, setCandidateChips] = useState<string[]>(data.chips);
     const [answerChips, setAnswerChips] = useState<string[]>([]);
     const [status, setStatus] = useState<ChallengeStatus>(ChallengeStatus.PROGRESS);
-
-    function onChipSelect(chip: string, index: number) {
-        moveChip(
-            candidateChips,
-            setCandidateChips,
-            answerChips,
-            setAnswerChips,
-            chip,
-            index
-        );
-    }
-    
-    function onChipDeselect(chip: string, index: number) {
-        moveChip(
-            answerChips,
-            setAnswerChips,
-            candidateChips,
-            setCandidateChips,
-            chip,
-            index
-        );
-    }
 
     function onSubmit() {
         if (data.answer.some(possibleAnswer => possibleAnswer === answerChips.join(' '))) {
@@ -61,7 +30,7 @@ export const TranslateChips: FunctionComponent<TranslateChipsProps> = ({ data, o
             onComplete({ solved: false });
         }
 
-        console.log(`Answer is ${data.answer.some(possibleAnswer => possibleAnswer === answerChips.join(' ')) ? 'correct' : 'incorrect'}`);
+        console.log(`Answer chips: ${answerChips}`);
     }
 
     // TODO Move submit to a separage component
@@ -72,9 +41,7 @@ export const TranslateChips: FunctionComponent<TranslateChipsProps> = ({ data, o
 
             <Typography variant="h5" mb={2}>{data.sentence}</Typography>
 
-            <Chips chips={answerChips} asAnswerField onSelect={onChipDeselect}/>
-
-            <Chips chips={candidateChips} onSelect={onChipSelect}/>
+            <ChipsAndLines chips={data.chips} onChange={setAnswerChips}/>
 
             <div>
                 {status === ChallengeStatus.PROGRESS && <Button color="success" variant="contained" sx={{ borderRadius: '8px' }} onClick={onSubmit}>Check</Button>}

@@ -7,7 +7,7 @@ export const challenges = [
     data: {
       sentence: 'Ovo je malina',
       answer: ['This is a raspberry'],
-      chips: ['This', 'strawberry', 'is', 'an', 'blackberry']
+      chips: ['strawberry', 'is', 'a', 'raspberry', 'This']
     }
   },
   {
@@ -39,7 +39,7 @@ export const challenges = [
     type: ChallengeType.QUESTION_CHIPS,
     data: {
       question: 'Šta je ovo?',
-      answer: ['Ovo je maline'],
+      answer: ['Ovo je malina'],
       chips: ['Ovo', 'malina', 'jagoda', 'je'],
       image: 'raspberry',
     }

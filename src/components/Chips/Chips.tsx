@@ -2,23 +2,11 @@ import { Chip } from "@mui/material";
 import { FunctionComponent } from "react";
 import { styled } from "styled-components";
 
-export interface CandidateChipsProps {
-    className?: string
+export interface ChipsProps {
     chips: string[];
     asAnswerField?: boolean;
     onSelect(chip: string, index: number): void;
 }
-
-
-
-function cn(...cns: (string | undefined)[]) {
-    return cns.join(' ');
-}
-
-// .CandidateChips__container > .CandidateChips__item {
-//     margin-right: 4px;
-//     margin-top: 4px;
-// }
 
 // TODO pass in margin from parent
 const Container = styled.div`
@@ -40,23 +28,7 @@ const Item = styled.span`
     margin-top: 4px;
 `;
 
-export function moveChip(
-    from: string[],
-    setFrom: (items: string[]) => void,
-    to: string[],
-    setTo: (items: string[]) => void, 
-    chip: string,
-    index: number
-) {
-    setFrom([
-        ...from.slice(0, index),
-        ...from.slice(index + 1)
-    ]);
-    setTo([...to, chip]);
-}
-
-
-export const Chips: FunctionComponent<CandidateChipsProps> = ({ className, chips, asAnswerField = false, onSelect }) => {    
+export const Chips: FunctionComponent<ChipsProps> = ({ chips, asAnswerField = false, onSelect }) => {    
     return (
         <Container data-answer={asAnswerField}>
             {chips.map(
