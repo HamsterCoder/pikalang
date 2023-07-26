@@ -10,6 +10,7 @@ import { Header } from "../Header/Header";
 export interface LessonDescription {
     id: string;
     name: string;
+    topic: string;
     description: string;
     image: string;
     url: string;
@@ -53,7 +54,7 @@ export const LessonList: FunctionComponent<LessonListProps> = ({ lessons, onLess
                                 title={lesson.name}
                             />
                             <CardContent>
-                                <Typography variant="body1" gutterBottom>{lesson.name}</Typography>
+                                <Typography variant="body1" gutterBottom>{lesson.topic} &gt; {lesson.name}</Typography>
                                 <Typography variant="body2" color="text.secondary" gutterBottom>{lesson.description}</Typography>
                                 <LinearProgress variant="determinate" value={25}></LinearProgress>
                             </CardContent>

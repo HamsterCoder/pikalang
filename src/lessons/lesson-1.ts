@@ -6,6 +6,15 @@ export const challenges = [
     type: ChallengeType.QUESTION_CHIPS,
     data: {
       question: 'Šta je ovo?',
+      answer: ['Ovo je paradajz'],
+      chips: ['Ovo', 'krastavac', 'paradajz', 'je'],
+      image: 'tomato',
+    }
+  },
+  {
+    type: ChallengeType.QUESTION_CHIPS,
+    data: {
+      question: 'Šta je ovo?',
       answer: ['Ovo je jabuka'],
       chips: ['Ovo', 'jabuka', 'kaisija', 'je'],
       image: 'apple',

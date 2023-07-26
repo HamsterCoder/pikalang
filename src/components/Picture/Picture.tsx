@@ -1,5 +1,6 @@
 import { FunctionComponent } from "react";
 import { styled } from "styled-components";
+import { dictionary } from "../../dictionary/english-serbian";
 
 export interface PictureProps {
     image: string;
@@ -44,7 +45,7 @@ export const Picture: FunctionComponent<PictureProps> = ({ image, selected, onSe
 
     return (
         <Container data-selectable={typeof onSelect !== 'undefined'} data-selected={selected} onClick={onClick}>
-            <Image src={`assets/${image}.jpg`} />
+            <Image src={`assets/${image}.jpg`} alt={image} title={dictionary[image]} />
         </Container>
     );
 };

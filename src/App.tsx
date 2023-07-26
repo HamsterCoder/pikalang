@@ -58,21 +58,24 @@ function shuffle<T>(array: T[]) {
 const lessons = [
   {
     id: '1',
-    name: 'Fruit lv1',
+    name: 'Vegetables',
+    topic: 'Food',
     url: 'lesson-1',
-    image: 'fruit',
-    description: 'Learn the names of fruit.'
+    image: 'vegetables',
+    description: 'Learn the names of vegetables.'
   },
   {
     id: '2',
-    name: 'Fruit lv2',
+    name: 'Fruit',
+    topic: 'Food',
     url: 'lesson-2',
     image: 'fruit',
     description: 'Learn the names of fruit.'
   },
   {
     id: '3',
-    name: 'Berries lv1',
+    name: 'Berries',
+    topic: 'Food',
     url: 'lesson-3',
     image: 'berries',
     description: 'Learn the names of berries.'
