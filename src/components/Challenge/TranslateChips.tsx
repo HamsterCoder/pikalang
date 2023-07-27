@@ -1,12 +1,11 @@
 import { Typography } from "@mui/material";
 import { FunctionComponent, useState, useCallback } from "react";
 
-// TODO get rid of relative import for components
-import {ChallengeType} from "./Challenge";
+import { ChallengeType } from "./types";
 import { ChipsAndLines } from "../Chips/ChipsAndLines";
 import { CheckAnswerControl } from "../CheckAnswerControl/CheckAnswerControl";
 
-export interface QuestionChipsData {
+export interface TranslateChipsData {
     sentence: string;
     answer: string[];
     chips: string[];
@@ -14,7 +13,7 @@ export interface QuestionChipsData {
 
 export interface TranslateChipsProps {
     type: ChallengeType.TRANSLATE_CHIPS;
-    data: QuestionChipsData;
+    data: TranslateChipsData;
     onComplete({solved}: {solved: boolean}): void;
 }
 

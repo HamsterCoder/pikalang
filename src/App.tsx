@@ -11,7 +11,7 @@ import { challenges as challenges2 } from './lessons/lesson-2';
 import { challenges as challenges3 } from './lessons/lesson-3';
 
 // TODO fix any
-const lessonsMap: Record<string, any> = {
+const lessonsMap: Record<string, ChallengeDescription[]> = {
   '1': challenges1,
   '2': challenges2,
   '3': challenges3,

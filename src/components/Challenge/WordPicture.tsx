@@ -1,9 +1,9 @@
-import { Typography } from "@mui/material";
 import { FunctionComponent, useCallback, useState } from "react";
-
-// TODO get rid of relative import for components
-import {ChallengeType} from "./Challenge";
+import { Typography } from "@mui/material";
 import { styled } from "styled-components";
+
+
+import {ChallengeType} from "./types";
 import { Picture } from "../Picture/Picture";
 import { CheckAnswerControl } from "../CheckAnswerControl/CheckAnswerControl";
 

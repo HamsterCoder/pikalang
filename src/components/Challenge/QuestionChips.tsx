@@ -8,7 +8,7 @@ import { styled } from "styled-components";
 
 // TODO get rid of relative import for components
 import { ChipsAndLines } from "../Chips/ChipsAndLines";
-import { ChallengeType } from "./Challenge";
+import { ChallengeType } from "./types";
 import { Picture } from "../Picture/Picture";
 import { CheckAnswerControl } from "../CheckAnswerControl/CheckAnswerControl";
 

@@ -1,4 +1,4 @@
-import { ChallengeType } from "../components/Challenge/Challenge";
+import { ChallengeType } from "../components/Challenge/types";
 
 
 export const challenges = [

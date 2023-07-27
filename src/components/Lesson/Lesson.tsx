@@ -1,12 +1,10 @@
-import { FunctionComponent, useReducer } from "react";
+import { FunctionComponent, useReducer, useState } from "react";
 import { styled } from "styled-components";
-
-// TODO get rid of relative import for components
-import { Challenge, ChallengeProps } from "../Challenge/Challenge";
-import { Header } from "../Header/Header";
-
 import { Button, Typography } from "@mui/material";
-import { useState } from 'react';
+
+import { Challenge } from "../Challenge/Challenge";
+import { ChallengeDescription } from "../Challenge/types";
+import { Header } from "../Header/Header";
 
 export interface LessonDescription {
     id: string;
@@ -19,7 +17,7 @@ export interface LessonDescription {
 
 export interface LessonProps {
     description: LessonDescription;
-    challenges: ChallengeProps[];
+    challenges: ChallengeDescription[];
 }
 
 const LessonBody = styled.div`

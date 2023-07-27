@@ -6,20 +6,10 @@ import './Challenge.css';
 import { QuestionChips, QuestionChipsProps } from "./QuestionChips";
 import { WordPicture, WordPictureProps } from "./WordPicture";
 import { TranslateChips, TranslateChipsProps } from "./TranslateChips";
-
-export enum ChallengeType {
-    // IMPELMENTED
-    QUESTION_CHIPS, // Given a question, answer it by choosing word chips
-    WORD_PICTURE, // Given a word, choose the correct picture
-    TRANSLATE_CHIPS, // Given a sentece, translate it by choosing word chips
-    // TODO
-    PICTURE_WORD, // Given a picture, choose the correct word
-    INSERT_CHIPS, // Given a sentence with blanks, fill in by choosing word chips
-}
+import { ChallengeType } from "./types";
 
 export interface ChallengeProps {
     type: ChallengeType;
-    // TODO import all challenge prop types
     data: QuestionChipsProps['data'] | WordPictureProps['data'] | TranslateChipsProps['data'];
     onComplete({solved}: {solved: boolean}): void;
 }
