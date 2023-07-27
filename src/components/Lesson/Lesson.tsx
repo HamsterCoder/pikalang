@@ -8,8 +8,17 @@ import { Header } from "../Header/Header";
 import { Button, Typography } from "@mui/material";
 import { useState } from 'react';
 
+export interface LessonDescription {
+    id: string;
+    name: string;
+    topic: string;
+    description: string;
+    image: string;
+    url: string;
+}
+
 export interface LessonProps {
-    no: number;
+    description: LessonDescription;
     challenges: ChallengeProps[];
 }
 
@@ -79,7 +88,7 @@ function lessonStateReducer(state: LessonState, {type, data}: LessonAction): Les
     return state;
 }
 
-export const Lesson: FunctionComponent<LessonProps> = ({ challenges, no }) => {
+export const Lesson: FunctionComponent<LessonProps> = ({ challenges, description }) => {
     const [showChallenge, setShowChallenge] = useState(true);
 
     const [state, dispatch] = useReducer(lessonStateReducer, {
@@ -119,11 +128,11 @@ export const Lesson: FunctionComponent<LessonProps> = ({ challenges, no }) => {
     return (
         <div>
             <Header>
-                <Typography variant="h4">Lesson {no}</Typography>
+                <Typography variant="h4">{description.name}</Typography>
                 <Typography sx={{ marginLeft: 'auto' }} variant="h4">{state.challengeNumber + 1}/{challenges.length}</Typography>
             </Header>
             <LessonBody>
-                {state.complete && <div className="Lesson__complete">
+                {state.complete && <div>
                     <Typography variant="h4">Congratulations</Typography>
                     <Typography variant="h5">You have completed the lesson</Typography>
                     <Typography variant="body1">Correct challenges: {state.correct} / {challenges.length}</Typography>

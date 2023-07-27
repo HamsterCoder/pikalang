@@ -26,7 +26,6 @@ export const challenges = [
       images: ['pear', 'apricot', 'peach']
     }
   },
-  ,
   {
     type: ChallengeType.QUESTION_CHIPS,
     data: {

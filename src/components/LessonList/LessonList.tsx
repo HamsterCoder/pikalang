@@ -6,16 +6,7 @@ import { FunctionComponent } from "react";
 import { styled } from "styled-components";
 import { Button, Card, CardActions, CardContent, CardMedia, LinearProgress, Typography } from "@mui/material";
 import { Header } from "../Header/Header";
-
-export interface LessonDescription {
-    id: string;
-    name: string;
-    topic: string;
-    description: string;
-    image: string;
-    url: string;
-    solvedCount: number;
-}
+import { LessonDescription } from "../Lesson/Lesson";
 
 export interface LessonListProps {
     lessons: LessonDescription[];

@@ -1,9 +1,10 @@
-import { Typography, Button, Alert } from "@mui/material";
-import { FunctionComponent, useState } from "react";
+import { Typography } from "@mui/material";
+import { FunctionComponent, useState, useCallback } from "react";
 
 // TODO get rid of relative import for components
-import {ChallengeType, ChallengeStatus} from "./Challenge";
+import {ChallengeType} from "./Challenge";
 import { ChipsAndLines } from "../Chips/ChipsAndLines";
+import { CheckAnswerControl } from "../CheckAnswerControl/CheckAnswerControl";
 
 export interface QuestionChipsData {
     sentence: string;
@@ -19,21 +20,14 @@ export interface TranslateChipsProps {
 
 export const TranslateChips: FunctionComponent<TranslateChipsProps> = ({ data, onComplete }) => {
     const [answerChips, setAnswerChips] = useState<string[]>([]);
-    const [status, setStatus] = useState<ChallengeStatus>(ChallengeStatus.PROGRESS);
 
-    function onSubmit() {
-        if (data.answer.some(possibleAnswer => possibleAnswer === answerChips.join(' '))) {
-            setStatus(ChallengeStatus.CORRECT);
-            onComplete({ solved: true });
-        } else {
-            setStatus(ChallengeStatus.INCORRECT);
-            onComplete({ solved: false });
-        }
+    const checkAnswer = useCallback(() => {
+        console.log(`Answer chips: ${answerChips}`, answerChips);
 
-        console.log(`Answer chips: ${answerChips}`);
-    }
+        return data.answer.some(possibleAnswer => possibleAnswer === answerChips.join(' '));
+    }, [data, answerChips]);
 
-    // TODO Move submit to a separage component
+    const expectedAnswer = data.answer[0];
 
     return (
         <div>
@@ -43,13 +37,7 @@ export const TranslateChips: FunctionComponent<TranslateChipsProps> = ({ data, o
 
             <ChipsAndLines chips={data.chips} onChange={setAnswerChips}/>
 
-            <div>
-                {status === ChallengeStatus.PROGRESS && <Button color="success" variant="contained" sx={{ borderRadius: '8px' }} onClick={onSubmit}>Check</Button>}
-                {status === ChallengeStatus.CORRECT && <Alert severity="success">The answer is correct</Alert>}
-                {status === ChallengeStatus.INCORRECT && <Alert severity="error">
-                    <Typography variant="body1">Incorrect. Expected answer: {data.answer[0]}</Typography>
-                </Alert>}
-            </div>
+            <CheckAnswerControl onSubmit={onComplete} checkAnswer={checkAnswer} expectedAnswer={expectedAnswer} />
         </div>
     );
 };

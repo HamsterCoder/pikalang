@@ -3,7 +3,7 @@ import { useReducer } from 'react';
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 
 // TODO fix relative import
-import { Lesson } from './components/Lesson/Lesson';
+import { Lesson, LessonDescription } from './components/Lesson/Lesson';
 import { LessonList } from './components/LessonList/LessonList';
 
 import { challenges as challenges1 } from './lessons/lesson-1';
@@ -55,7 +55,7 @@ function shuffle<T>(array: T[]) {
   return array;
 }
 
-const lessons = [
+const lessons: LessonDescription[] = [
   {
     id: '1',
     name: 'Vegetables',
@@ -140,7 +140,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         {page === PageType.LESSON_LIST && <LessonList lessons={lessons} onLessonSelect={handleLessonSelect}/>}
-        {page === PageType.LESSON && <Lesson no={1} challenges={shuffle(lessonsMap[params.lessonId].slice())}/>}
+        {page === PageType.LESSON && <Lesson description={lessons[Number(params.lessonId) - 1]} challenges={shuffle(lessonsMap[params.lessonId].slice())}/>}
       </ThemeProvider>
     </>
   )

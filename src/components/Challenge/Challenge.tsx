@@ -14,13 +14,7 @@ export enum ChallengeType {
     TRANSLATE_CHIPS, // Given a sentece, translate it by choosing word chips
     // TODO
     PICTURE_WORD, // Given a picture, choose the correct word
-    FILL_IN_CHIPS, // Given a sentence with blanks, fill in by choosing word chips
-}
-
-export enum ChallengeStatus {
-    PROGRESS,
-    CORRECT,
-    INCORRECT
+    INSERT_CHIPS, // Given a sentence with blanks, fill in by choosing word chips
 }
 
 export interface ChallengeProps {
@@ -32,7 +26,7 @@ export interface ChallengeProps {
 
 export const Challenge: FunctionComponent<ChallengeProps> = ({ type, data, onComplete }) => {
     return (
-        <div className="container">
+        <>
             {type === ChallengeType.QUESTION_CHIPS && 
                 <QuestionChips type={type} data={data} onComplete={onComplete}/>
             }
@@ -42,6 +36,6 @@ export const Challenge: FunctionComponent<ChallengeProps> = ({ type, data, onCom
             {type === ChallengeType.TRANSLATE_CHIPS && 
                 <TranslateChips type={type} data={data} onComplete={onComplete}/>
             }
-        </div>
+        </>
     );
 };
