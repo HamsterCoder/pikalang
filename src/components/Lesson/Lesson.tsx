@@ -1,10 +1,11 @@
-import { FunctionComponent, useReducer, useState } from "react";
+import { FunctionComponent, useCallback, useReducer, useState } from "react";
 import { styled } from "styled-components";
 import { Button, Typography } from "@mui/material";
 
 import { Challenge } from "../Challenge/Challenge";
 import { ChallengeDescription } from "../Challenge/types";
 import { Header } from "../Header/Header";
+import { userDataApi } from "../../api/user-data";
 
 export interface LessonDescription {
     id: string;
@@ -18,6 +19,7 @@ export interface LessonDescription {
 export interface LessonProps {
     description: LessonDescription;
     challenges: ChallengeDescription[];
+    onComplete(id: string): void;
 }
 
 const LessonBody = styled.div`
@@ -31,6 +33,7 @@ const LessonFooter = styled.div`
 
 enum LessonChallengeStatus {
     PROGRESS,
+    SAVING,
     COMPLETE
 }
 
@@ -86,7 +89,7 @@ function lessonStateReducer(state: LessonState, {type, data}: LessonAction): Les
     return state;
 }
 
-export const Lesson: FunctionComponent<LessonProps> = ({ challenges, description }) => {
+export const Lesson: FunctionComponent<LessonProps> = ({ challenges, description, onComplete }) => {
     const [showChallenge, setShowChallenge] = useState(true);
 
     const [state, dispatch] = useReducer(lessonStateReducer, {
@@ -97,13 +100,34 @@ export const Lesson: FunctionComponent<LessonProps> = ({ challenges, description
         incorrect: 0
     });
 
+    const handleLessonComplete = useCallback(() => {
+        onComplete(description.id);
+    }, [description, onComplete]);
+
     function onChallengeComplete(data: LessonAction['data']) {
         // TODO pass in completion status
         dispatch({ type: LessonActionType.COMPLETE_CHALLENGE, data });
     }
 
-    function showNextChallenge() {
+    const saveProgress = useCallback(async () => {
+        let updatedUserData = userDataApi.getUserData('default');
+
+        updatedUserData.xp += 10;
+        updatedUserData.lessons[description.id] = updatedUserData.lessons[description.id] || {
+            completed: 1,
+            threshold: 4
+        };
+
+        await userDataApi.setUserdata('default', updatedUserData);
+    }, [description]);
+
+    async function showNextChallenge() {
         if (state.challengeNumber + 1 === challenges.length) {
+            // TODO Show a loader
+            // Write lesson completion and XP to local storage
+            // Show lesson end screen
+            
+            await saveProgress();
             dispatch({ type: LessonActionType.COMPLETE_LESSON });
         } else {
             setShowChallenge(false);
@@ -138,7 +162,8 @@ export const Lesson: FunctionComponent<LessonProps> = ({ challenges, description
                 {!state.complete && showChallenge && <Challenge {...challenges[state.challengeNumber]} onComplete={onChallengeComplete}/>}
             </LessonBody>
             <LessonFooter>
-                {!state.complete && state.challengeStatus === LessonChallengeStatus.COMPLETE && <Button color="success" variant="contained" sx={{ borderRadius: '8px' }} onClick={showNextChallenge}>Continue</Button>}
+                {state.complete && <Button color="success" variant="contained" onClick={handleLessonComplete}>See other lessons</Button>}
+                {!state.complete && state.challengeStatus === LessonChallengeStatus.COMPLETE && <Button color="success" variant="contained" onClick={showNextChallenge}>Continue</Button>}
             </LessonFooter>
         </div>
     );

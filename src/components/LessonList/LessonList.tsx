@@ -2,11 +2,13 @@
 // For each lesson show how many times it was attempted - store this information in local storage?
 // Each lesson should have a uniqueID
 
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { styled } from "styled-components";
-import { Button, Card, CardActions, CardContent, CardMedia, LinearProgress, Typography } from "@mui/material";
+import { Button, Card, CardActions, CardContent, CircularProgress, LinearProgress, Typography } from "@mui/material";
+
 import { Header } from "../Header/Header";
 import { LessonDescription } from "../Lesson/Lesson";
+import { UserData, userDataApi } from "../../api/user-data";
 
 export interface LessonListProps {
     lessons: LessonDescription[];
@@ -15,13 +17,29 @@ export interface LessonListProps {
 
 const Container = styled.div`
     display: flex;
+    flex-wrap: wrap;
 `;
 
 const Item = styled.div`
     margin-left: 20px;
+    margin-bottom: 20px;
 `;
 
 export const LessonList: FunctionComponent<LessonListProps> = ({ lessons, onLessonSelect }) => {
+    const [loadingState, setLoadingState] = useState<string>('loading');
+    const [userData, setUserData] = useState<UserData>();
+
+    useEffect(() => {
+        console.log('LOG::LessonList.effect run');
+
+        setUserData(userDataApi.getUserData('default'));
+        setLoadingState('complete');
+
+        return () => {
+            console.log('LOG::LessonList.effect clean');
+        };
+    }, [setLoadingState, setUserData]);
+
     function handleLessonSelect(evt: React.MouseEvent<HTMLButtonElement>) {
         const lessonId = evt.currentTarget.getAttribute('data-lesson-id');
 
@@ -34,22 +52,28 @@ export const LessonList: FunctionComponent<LessonListProps> = ({ lessons, onLess
 
     return (
         <div>
-            <Header></Header>
+            <Header>
+                <Typography variant="h4">Lessons</Typography>
+            </Header>
             <Container>
+                { loadingState === 'loading' && <CircularProgress sx={{marginLeft: 'auto',  marginRight: 'auto'}}/>}
                 {
-                    lessons.map(lesson => <Item key={lesson.id}>
-                        <Card sx={{ maxWidth: 200 }}>
-                            <CardMedia
-                                sx={{ height: 120 }}
+                    loadingState === 'complete' && lessons.map(lesson => <Item key={lesson.id}>
+                        <Card sx={{ width: 200, minHeight: 180, display: 'flex', flexDirection: 'column' }}>
+                            {/* <CardMedia
+                                sx={{ height: 140, flexShrink: 0 }}
                                 image={`assets/${lesson.image}.jpg`}
                                 title={lesson.name}
-                            />
-                            <CardContent>
-                                <Typography variant="body1" gutterBottom>{lesson.topic} &gt; {lesson.name}</Typography>
-                                <Typography variant="body2" color="text.secondary" gutterBottom>{lesson.description}</Typography>
-                                <LinearProgress variant="determinate" value={25}></LinearProgress>
+                            /> */}
+                            <CardContent sx={{ flexGrow: 1 }}>
+                                <Typography variant="body1" gutterBottom>{lesson.topic} &middot; {lesson.name}</Typography>
+                                <LinearProgress variant="determinate" sx={{ marginBottom: 2 }} value={
+                                    userData?.lessons[lesson.id] ?
+                                    userData?.lessons[lesson.id].completed / userData?.lessons[lesson.id].threshold * 100 : 0
+                                }></LinearProgress>
+                                <Typography variant="body2" color="text.secondary">{lesson.description}</Typography>
                             </CardContent>
-                            <CardActions>
+                            <CardActions sx={{ flexShrink: 0 }}>
                                 <Button size="small" data-lesson-id={lesson.id} onClick={handleLessonSelect}>Practice</Button>
                             </CardActions>
                         </Card>

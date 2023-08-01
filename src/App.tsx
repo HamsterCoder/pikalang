@@ -1,10 +1,11 @@
-import { useReducer } from 'react';
-
-import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import { useCallback, useReducer } from 'react';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 
 // TODO fix relative import
 import { Lesson, LessonDescription } from './components/Lesson/Lesson';
 import { LessonList } from './components/LessonList/LessonList';
+import { ChallengeDescription } from './components/Challenge/types';
+import { theme } from './themes/default';
 
 import { challenges as challenges1 } from './lessons/lesson-1';
 import { challenges as challenges2 } from './lessons/lesson-2';
@@ -16,26 +17,6 @@ const lessonsMap: Record<string, ChallengeDescription[]> = {
   '2': challenges2,
   '3': challenges3,
 };
-
-const theme = createTheme({
-  palette: {
-    text: {
-      primary: '#54196a'
-    },
-    primary: {
-      main: '#AA66CC'
-    },
-    secondary: {
-      main: '#33B5E5'
-    },
-    success: {
-      main: '#99CC00'
-    },
-    error: {
-      main: '#FF4444'
-    }
-  }
-});
 
 function shuffle<T>(array: T[]) {
   let currentIndex = array.length,  randomIndex;
@@ -84,7 +65,7 @@ const lessons: LessonDescription[] = [
 
 enum AppActionType {
   START_LESSON,
-  FINISH_LESSON
+  COMPLETE_LESSON
 }
 
 interface AppAction {
@@ -112,14 +93,14 @@ function appStateReducer(state: AppState, {type, data}: AppAction): AppState {
           lessonId: data.id
         }
     };
-  } else if (type === AppActionType.FINISH_LESSON) {
+  } else if (type === AppActionType.COMPLETE_LESSON) {
     return {
-      ...state,
-      page: PageType.LESSON_LIST
-  };
+        ...state,
+        page: PageType.LESSON_LIST
+    };
   }
 
-return state;
+  return state;
 }
 
 function App() {
@@ -128,10 +109,15 @@ function App() {
     params: {}
   });
 
-  function handleLessonSelect(id: string) {
+  const handleLessonSelect = useCallback((id: string) => {
     console.log('handleLessonSelect', id);
     dispatch({ type: AppActionType.START_LESSON, data: { id }});
-  }
+  }, [dispatch]);
+
+  const handleLessonComplete = useCallback((id: string) => {
+    console.log('handleLessonComplete', id);
+    dispatch({ type: AppActionType.COMPLETE_LESSON, data: { id }});
+  }, [dispatch]);
 
   console.log(page, params);
 
@@ -140,7 +126,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         {page === PageType.LESSON_LIST && <LessonList lessons={lessons} onLessonSelect={handleLessonSelect}/>}
-        {page === PageType.LESSON && <Lesson description={lessons[Number(params.lessonId) - 1]} challenges={shuffle(lessonsMap[params.lessonId].slice())}/>}
+        {page === PageType.LESSON && <Lesson description={lessons[Number(params.lessonId) - 1]} challenges={shuffle(lessonsMap[params.lessonId].slice())} onComplete={handleLessonComplete}/>}
       </ThemeProvider>
     </>
   )
