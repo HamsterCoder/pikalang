@@ -1,7 +1,6 @@
-import { ChallengeType } from "../components/Challenge/types";
+import { ChallengeDescription, ChallengeType } from "../components/Challenge/types";
 
-
-export const challenges = [
+export const challenges: ChallengeDescription[] = [
   {
     type: ChallengeType.TRANSLATE_CHIPS,
     data: {
@@ -9,6 +8,23 @@ export const challenges = [
       answer: ['This is a raspberry'],
       chips: ['strawberry', 'is', 'a', 'raspberry', 'This']
     }
+  },
+  {
+    type: ChallengeType.WORD_PICTURE,
+    data: {
+      word: 'jagoda',
+      answer: 'strawberry',
+      images: ['pear', 'apricot', 'strawberry']
+    },
+  },
+  {
+    type: ChallengeType.QUESTION_CHIPS,
+    data: {
+      question: 'Šta je ovo?',
+      answer: ['Ovo je jagoda'],
+      chips: ['jagoda', 'breskva', 'Ovo', 'je', 'su'],
+      image: 'strawberry',
+    },
   },
   {
     type: ChallengeType.TRANSLATE_CHIPS,

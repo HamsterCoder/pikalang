@@ -1,7 +1,9 @@
-import { ChallengeType } from "../components/Challenge/types";
+import { ChallengeDescription, ChallengeType } from "../components/Challenge/types";
 
+// NEW WORDS: tomato, cucumber, potato, pepper
+// NEW PHRASES: Šta je ovo?, Ovo je..., Ovo su...
 
-export const challenges = [
+const tomatoChallenges: ChallengeDescription[] = [
   {
     type: ChallengeType.QUESTION_CHIPS,
     data: {
@@ -12,46 +14,79 @@ export const challenges = [
     }
   },
   {
-    type: ChallengeType.QUESTION_CHIPS,
-    data: {
-      question: 'Šta je ovo?',
-      answer: ['Ovo je jabuka'],
-      chips: ['Ovo', 'jabuka', 'kaisija', 'je'],
-      image: 'apple',
-    }
-  },
-  {
-    type: ChallengeType.QUESTION_CHIPS,
-    data: {
-      question: 'Šta je ovo?',
-      answer: ['Ovo je kaisija'],
-      chips: ['Ovo', 'šljiva', 'kaisija', 'je'],
-      image: 'apricot',
-    }
-  },
-  {
-    type: ChallengeType.QUESTION_CHIPS,
-    data: {
-      question: 'Šta je ovo?',
-      answer: ['Ovo je breskva'],
-      chips: ['Ovo', 'breskva', 'jabuka', 'je'],
-      image: 'peach',
-    }
-  },
-  {
     type: ChallengeType.WORD_PICTURE,
     data: {
-      word: 'jagoda',
-      answer: 'strawberry',
-      images: ['pear', 'apricot', 'strawberry']
-    },
-  },
-  {
-    type: ChallengeType.WORD_PICTURE,
-    data: {
-      word: 'kruška',
-      answer: 'pear',
-      images: ['pear', 'apricot', 'strawberry']
+      word: 'paradajz',
+      answer: 'tomato',
+      images: ['tomato', 'courgette', 'potato']
     }
   }
+];
+
+const cucumberChallenges: ChallengeDescription[] = [
+  {
+    type: ChallengeType.QUESTION_CHIPS,
+    data: {
+      question: 'Šta je ovo?',
+      answer: ['Ovo je krastavac'],
+      chips: ['Ovo', 'krompir', 'krastavac', 'je'],
+      image: 'cucumber',
+    }
+  },
+  {
+    type: ChallengeType.WORD_PICTURE,
+    data: {
+      word: 'krastavac',
+      answer: 'cucumber',
+      images: ['tomato', 'cucumber', 'potato']
+    }
+  }
+];
+
+const pepperChalllenges: ChallengeDescription[] = [
+  {
+    type: ChallengeType.QUESTION_CHIPS,
+    data: {
+      question: 'Šta je ovo?',
+      answer: ['Ovo je krompir'],
+      chips: ['Ovo', 'krompir', 'paradajz', 'je'],
+      image: 'potato',
+    }
+  },
+  {
+    type: ChallengeType.WORD_PICTURE,
+    data: {
+      word: 'krompir',
+      answer: 'potato',
+      images: ['potato', 'cucumber', 'tomato']
+    }
+  }
+];
+
+const potatoChallenges: ChallengeDescription[] = [
+  {
+    type: ChallengeType.QUESTION_CHIPS,
+    data: {
+      question: 'Šta je ovo?',
+      answer: ['Ovo je paprika'],
+      chips: ['Ovo', 'paprika', 'krastavac', 'je'],
+      image: 'pepper',
+    }
+  },
+  {
+    type: ChallengeType.WORD_PICTURE,
+    data: {
+      word: 'paprika',
+      answer: 'pepper',
+      images: ['pepper', 'cucumber', 'courgette']
+    }
+  }
+];
+
+
+export const challenges: ChallengeDescription[] = [
+  ...tomatoChallenges,
+  ...cucumberChallenges,
+  ...pepperChalllenges,
+  ...potatoChallenges
 ];

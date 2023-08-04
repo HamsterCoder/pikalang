@@ -12,7 +12,13 @@ export enum ChallengeType {
     // INSERT_CHIPS, // Given a sentence with blanks, fill in by choosing word chips
 }
 
-export interface ChallengeDescription {
-  type: ChallengeType,
-  data: QuestionChipsData | TranslateChipsData | WordPictureData
+export type ChallengeDescription = {
+  type: ChallengeType.QUESTION_CHIPS,
+  data: QuestionChipsData
+} | {
+  type: ChallengeType.WORD_PICTURE,
+  data: WordPictureData
+} | {
+  type: ChallengeType.TRANSLATE_CHIPS,
+  data: TranslateChipsData
 }

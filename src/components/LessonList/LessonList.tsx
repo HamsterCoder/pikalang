@@ -25,6 +25,12 @@ const Item = styled.div`
     margin-bottom: 20px;
 `;
 
+function computeLessonProgress(userData: UserData | undefined, lessonId: string) {
+    const lessonStats = userData?.lessons[lessonId];
+
+    return lessonStats ? Math.min(lessonStats.completed / lessonStats.threshold * 100, 100): 0;
+}
+
 export const LessonList: FunctionComponent<LessonListProps> = ({ lessons, onLessonSelect }) => {
     const [loadingState, setLoadingState] = useState<string>('loading');
     const [userData, setUserData] = useState<UserData>();
@@ -67,10 +73,7 @@ export const LessonList: FunctionComponent<LessonListProps> = ({ lessons, onLess
                             /> */}
                             <CardContent sx={{ flexGrow: 1 }}>
                                 <Typography variant="body1" gutterBottom>{lesson.topic} &middot; {lesson.name}</Typography>
-                                <LinearProgress variant="determinate" sx={{ marginBottom: 2 }} value={
-                                    userData?.lessons[lesson.id] ?
-                                    userData?.lessons[lesson.id].completed / userData?.lessons[lesson.id].threshold * 100 : 0
-                                }></LinearProgress>
+                                <LinearProgress variant="determinate" sx={{ marginBottom: 2 }} value={computeLessonProgress(userData, lesson.id)}></LinearProgress>
                                 <Typography variant="body2" color="text.secondary">{lesson.description}</Typography>
                             </CardContent>
                             <CardActions sx={{ flexShrink: 0 }}>

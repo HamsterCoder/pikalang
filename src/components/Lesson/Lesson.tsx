@@ -105,29 +105,27 @@ export const Lesson: FunctionComponent<LessonProps> = ({ challenges, description
     }, [description, onComplete]);
 
     function onChallengeComplete(data: LessonAction['data']) {
-        // TODO pass in completion status
         dispatch({ type: LessonActionType.COMPLETE_CHALLENGE, data });
     }
 
     const saveProgress = useCallback(async () => {
         let updatedUserData = userDataApi.getUserData('default');
 
-        updatedUserData.xp += 10;
+        // Get one XP for each correct answer
+        updatedUserData.xp += state.correct;
         updatedUserData.lessons[description.id] = updatedUserData.lessons[description.id] || {
             completed: 1,
             threshold: 4
         };
+        updatedUserData.lessons[description.id].completed += 1;
 
         await userDataApi.setUserdata('default', updatedUserData);
-    }, [description]);
+    }, [state, description]);
 
     async function showNextChallenge() {
         if (state.challengeNumber + 1 === challenges.length) {
-            // TODO Show a loader
-            // Write lesson completion and XP to local storage
-            // Show lesson end screen
-            
             await saveProgress();
+            
             dispatch({ type: LessonActionType.COMPLETE_LESSON });
         } else {
             setShowChallenge(false);

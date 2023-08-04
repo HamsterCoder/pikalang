@@ -30,7 +30,7 @@ export const CheckAnswerControl: FunctionComponent<CheckAnswerControlProps> = ({
 
     return (
         <>
-            {status === ChallengeStatus.PROGRESS && <Button color="success" variant="contained" sx={{ borderRadius: '8px' }} onClick={handleSubmit}>Check</Button>}
+            {status === ChallengeStatus.PROGRESS && <Button color="success" variant="contained" onClick={handleSubmit}>Check</Button>}
             {status === ChallengeStatus.CORRECT && <Alert severity="success">The answer is correct</Alert>}
             {status === ChallengeStatus.INCORRECT && <Alert severity="error">
                 <Typography variant="body1">Incorrect. Expected answer: {expectedAnswer}</Typography>

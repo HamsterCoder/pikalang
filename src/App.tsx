@@ -11,7 +11,6 @@ import { challenges as challenges1 } from './lessons/lesson-1';
 import { challenges as challenges2 } from './lessons/lesson-2';
 import { challenges as challenges3 } from './lessons/lesson-3';
 
-// TODO fix any
 const lessonsMap: Record<string, ChallengeDescription[]> = {
   '1': challenges1,
   '2': challenges2,
@@ -39,27 +38,27 @@ function shuffle<T>(array: T[]) {
 const lessons: LessonDescription[] = [
   {
     id: '1',
-    name: 'Vegetables',
+    name: 'Vegetables 1',
     topic: 'Food',
     url: 'lesson-1',
     image: 'vegetables',
-    description: 'Learn the names of vegetables.'
+    description: 'Learn the names of some vegetables.'
   },
   {
     id: '2',
-    name: 'Fruit',
+    name: 'Fruit 1',
     topic: 'Food',
     url: 'lesson-2',
     image: 'fruit',
-    description: 'Learn the names of fruit.'
+    description: 'Learn the names of some fruit.'
   },
   {
     id: '3',
-    name: 'Berries',
+    name: 'Berries 1',
     topic: 'Food',
     url: 'lesson-3',
     image: 'berries',
-    description: 'Learn the names of berries.'
+    description: 'Learn the names of some berries.'
   }
 ];
 
@@ -126,7 +125,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         {page === PageType.LESSON_LIST && <LessonList lessons={lessons} onLessonSelect={handleLessonSelect}/>}
-        {page === PageType.LESSON && <Lesson description={lessons[Number(params.lessonId) - 1]} challenges={shuffle(lessonsMap[params.lessonId].slice())} onComplete={handleLessonComplete}/>}
+        {page === PageType.LESSON && <Lesson description={lessons[Number(params.lessonId) - 1]} challenges={shuffle(lessonsMap[params.lessonId].slice(0, 10))} onComplete={handleLessonComplete}/>}
       </ThemeProvider>
     </>
   )

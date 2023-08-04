@@ -1,8 +1,15 @@
 export const dictionary: Record<string, string> = {
+    // lesson-1
     tomato: 'paradajz',
+    cucumber: 'kratavac',
+    potato: 'krompir',
+    pepper: 'paprika',
+    // lesson-2
+    apple: 'jabuka',
+    pear: 'kruška',
     apricot: 'kajsija',
     peach: 'breskva',
-    apple: 'jabuka',
+    // lesson-3
 };
 
 export const reverseDictionary: Record<string, string> = Object.entries(dictionary)
@@ -11,3 +18,4 @@ export const reverseDictionary: Record<string, string> = Object.entries(dictiona
 
         return dict;
     }, {});
+    
