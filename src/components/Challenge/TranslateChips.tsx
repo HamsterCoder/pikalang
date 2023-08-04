@@ -23,7 +23,7 @@ export const TranslateChips: FunctionComponent<TranslateChipsProps> = ({ data, o
     const checkAnswer = useCallback(() => {
         console.log(`Answer chips: ${answerChips}`, answerChips);
 
-        return data.answer.some(possibleAnswer => possibleAnswer === answerChips.join(' '));
+        return data.answer.some(possibleAnswer => possibleAnswer.toLowerCase() === answerChips.join(' ').toLowerCase());
     }, [data, answerChips]);
 
     const expectedAnswer = data.answer[0];

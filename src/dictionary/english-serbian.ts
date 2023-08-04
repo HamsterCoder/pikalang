@@ -10,6 +10,10 @@ export const dictionary: Record<string, string> = {
     apricot: 'kajsija',
     peach: 'breskva',
     // lesson-3
+    blueberry: 'borovnica',
+    blackberry: 'kupina',
+    strawberry: 'jagoda',
+    raspberry: 'malina'
 };
 
 export const reverseDictionary: Record<string, string> = Object.entries(dictionary)
