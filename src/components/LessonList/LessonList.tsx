@@ -5,6 +5,7 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { Button, Card, CardActions, CardContent, CircularProgress, LinearProgress, Typography } from "@mui/material";
+import StarIcon from '@mui/icons-material/Star';
 
 import { Header } from "../Header/Header";
 import { LessonDescription } from "../Lesson/Lesson";
@@ -23,6 +24,10 @@ const Container = styled.div`
 const Item = styled.div`
     margin-left: 20px;
     margin-bottom: 20px;
+`;
+
+const XP = styled.div`
+    margin-left: auto;
 `;
 
 function computeLessonProgress(userData: UserData | undefined, lessonId: string) {
@@ -60,6 +65,9 @@ export const LessonList: FunctionComponent<LessonListProps> = ({ lessons, onLess
         <div>
             <Header>
                 <Typography variant="h4">Lessons</Typography>
+                <XP>
+                    <Typography variant="h4"> <StarIcon fontSize="inherit" sx={{ marginBottom: '-5px' }} /> {userData?.xp || 0} </Typography>
+                </XP>
             </Header>
             <Container>
                 { loadingState === 'loading' && <CircularProgress sx={{marginLeft: 'auto',  marginRight: 'auto'}}/>}
