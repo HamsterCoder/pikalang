@@ -21,6 +21,7 @@ export const challenges: ChallengeDescription[] = [
     type: ChallengeType.QUESTION_CHIPS,
     data: {
       question: 'Šta je ovo?',
+      questionHint: 'What is this?',
       answer: ['Ovo je jagoda'],
       chips: ['jagoda', 'breskva', 'Ovo', 'je', 'su'],
       image: 'strawberry',
@@ -46,6 +47,7 @@ export const challenges: ChallengeDescription[] = [
     type: ChallengeType.QUESTION_CHIPS,
     data: {
       question: 'Šta je ovo?',
+      questionHint: 'What is this?',
       answer: ['Ovo je kupina'],
       chips: ['Ovo', 'malina', 'kupina', 'je'],
       image: 'blackberry',
@@ -55,6 +57,7 @@ export const challenges: ChallengeDescription[] = [
     type: ChallengeType.QUESTION_CHIPS,
     data: {
       question: 'Šta je ovo?',
+      questionHint: 'What is this?',
       answer: ['Ovo je malina'],
       chips: ['Ovo', 'malina', 'jagoda', 'je'],
       image: 'raspberry',
@@ -64,6 +67,7 @@ export const challenges: ChallengeDescription[] = [
     type: ChallengeType.QUESTION_CHIPS,
     data: {
       question: 'Šta je ovo?',
+      questionHint: 'What is this?',
       answer: ['Ovo je borovnica'],
       chips: ['Ovo', 'borovnica', 'kupina', 'je'],
       image: 'blueberry',

@@ -16,6 +16,7 @@ const appleChallenges: ChallengeDescription[] = [
     type: ChallengeType.QUESTION_CHIPS,
     data: {
       question: 'Šta je ovo?',
+      questionHint: 'What is this?',
       answer: ['Ovo je jabuka'],
       chips: ['Ovo', 'jabuka', 'kaisija', 'je'],
       image: 'apple',
@@ -44,6 +45,7 @@ const pearChallenges: ChallengeDescription[] = [
     type: ChallengeType.QUESTION_CHIPS,
     data: {
       question: 'Šta je ovo?',
+      questionHint: 'What is this?',
       answer: ['Ovo je kruška'],
       chips: ['jabuka', 'Ovo', 'je', 'su', 'kruška'],
       image: 'pear',
@@ -72,6 +74,7 @@ const apricotChallenges: ChallengeDescription[] = [
     type: ChallengeType.QUESTION_CHIPS,
     data: {
       question: 'Šta je ovo?',
+      questionHint: 'What is this?',
       answer: ['Ovo je kaisija'],
       chips: ['Ovo', 'šljiva', 'kaisija', 'je'],
       image: 'apricot',
@@ -100,6 +103,7 @@ const peachChallenges: ChallengeDescription[] = [
     type: ChallengeType.QUESTION_CHIPS,
     data: {
       question: 'Šta je ovo?',
+      questionHint: 'What is this?',
       answer: ['Ovo je breskva'],
       chips: ['Ovo', 'breskva', 'jabuka', 'je'],
       image: 'peach',
@@ -129,6 +133,7 @@ const combinedChallenges: ChallengeDescription[] = [
     type: ChallengeType.QUESTION_CHIPS,
     data: {
       question: 'Šta je ovo?',
+      questionHint: 'What is this?',
       answer: ['Ovo su breskve i kajsije', 'Ovo su kajsije i breskve'],
       chips: ['breskve', 'breskva', 'Ovo', 'je', 'su', 'i', 'kajsije'],
       image: 'apricots-peaches',

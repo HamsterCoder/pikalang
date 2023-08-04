@@ -2,9 +2,10 @@
 // Make challenge a wrapper - submit should be rendered by challenge
 
 
-import { Typography } from "@mui/material";
+import { IconButton, Tooltip, Typography } from "@mui/material";
 import { FunctionComponent, useCallback, useState } from "react";
 import { styled } from "styled-components";
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 
 // TODO get rid of relative import for components
 import { ChipsAndLines } from "../Chips/ChipsAndLines";
@@ -15,6 +16,7 @@ import { CheckAnswerControl } from "../CheckAnswerControl/CheckAnswerControl";
 export interface QuestionChipsData {
     image?: string;
     question: string;
+    questionHint: string;
     answer: string[];
     chips: string[];
 }
@@ -46,7 +48,14 @@ export const QuestionChips: FunctionComponent<QuestionChipsProps> = ({ data, onC
             
             {data.image && <PictureContainer><Picture image={data.image}/></PictureContainer>}
 
-            <Typography variant="h5" mb={2}>{data.question}</Typography>
+            <Typography variant="h5" mb={2}>
+                {data.question}
+                <Tooltip title={data.questionHint} arrow>
+                    <IconButton aria-label="hint">
+                        <HelpOutlineIcon color="primary"/>
+                    </IconButton>
+                </Tooltip>
+            </Typography>
 
             <ChipsAndLines chips={data.chips} onChange={setAnswerChips}/>
 

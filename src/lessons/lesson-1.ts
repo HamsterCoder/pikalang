@@ -8,6 +8,7 @@ const tomatoChallenges: ChallengeDescription[] = [
     type: ChallengeType.QUESTION_CHIPS,
     data: {
       question: 'Šta je ovo?',
+      questionHint: 'What is this?',
       answer: ['Ovo je paradajz'],
       chips: ['Ovo', 'krastavac', 'paradajz', 'je'],
       image: 'tomato',
@@ -28,6 +29,7 @@ const cucumberChallenges: ChallengeDescription[] = [
     type: ChallengeType.QUESTION_CHIPS,
     data: {
       question: 'Šta je ovo?',
+      questionHint: 'What is this?',
       answer: ['Ovo je krastavac'],
       chips: ['Ovo', 'krompir', 'krastavac', 'je'],
       image: 'cucumber',
@@ -48,6 +50,7 @@ const pepperChalllenges: ChallengeDescription[] = [
     type: ChallengeType.QUESTION_CHIPS,
     data: {
       question: 'Šta je ovo?',
+      questionHint: 'What is this?',
       answer: ['Ovo je krompir'],
       chips: ['Ovo', 'krompir', 'paradajz', 'je'],
       image: 'potato',
@@ -68,6 +71,7 @@ const potatoChallenges: ChallengeDescription[] = [
     type: ChallengeType.QUESTION_CHIPS,
     data: {
       question: 'Šta je ovo?',
+      questionHint: 'What is this?',
       answer: ['Ovo je paprika'],
       chips: ['Ovo', 'paprika', 'krastavac', 'je'],
       image: 'pepper',
