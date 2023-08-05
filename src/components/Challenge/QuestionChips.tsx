@@ -12,6 +12,7 @@ import { ChipsAndLines } from "../Chips/ChipsAndLines";
 import { ChallengeType } from "./types";
 import { Picture } from "../Picture/Picture";
 import { CheckAnswerControl } from "../CheckAnswerControl/CheckAnswerControl";
+import { I18N, I18NLangs } from "../I18N/I18N";
 
 export interface QuestionChipsData {
     image?: string;
@@ -44,7 +45,9 @@ export const QuestionChips: FunctionComponent<QuestionChipsProps> = ({ data, onC
 
     return (
         <div>
-            <Typography variant="h5" color="primary" gutterBottom>Answer the question</Typography>
+            <Typography variant="h5" color="primary" gutterBottom>
+                <I18N textKey="question-chips-prompt" lang={I18NLangs.RU}/>
+            </Typography>
             
             {data.image && <PictureContainer><Picture image={data.image}/></PictureContainer>}
 

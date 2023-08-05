@@ -114,7 +114,7 @@ export const Lesson: FunctionComponent<LessonProps> = ({ challenges, description
         // Get one XP for each correct answer
         updatedUserData.xp += state.correct;
         updatedUserData.lessons[description.id] = updatedUserData.lessons[description.id] || {
-            completed: 1,
+            completed: 0,
             threshold: 4
         };
         updatedUserData.lessons[description.id].completed += 1;

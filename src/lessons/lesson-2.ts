@@ -124,6 +124,7 @@ const combinedChallenges: ChallengeDescription[] = [
     type: ChallengeType.QUESTION_CHIPS,
     data: {
       question: 'Šta je ovo?',
+      questionHint: 'What is this?',
       answer: ['Ovo su jabuka i kruška', 'Ovo su kruška i jabuka'],
       chips: ['jabuka', 'Ovo', 'je', 'su', 'i', 'kruška'],
       image: 'apple-pear',

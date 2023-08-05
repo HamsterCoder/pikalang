@@ -4,6 +4,7 @@ import { FunctionComponent, useState, useCallback } from "react";
 import { ChallengeType } from "./types";
 import { ChipsAndLines } from "../Chips/ChipsAndLines";
 import { CheckAnswerControl } from "../CheckAnswerControl/CheckAnswerControl";
+import { I18N, I18NLangs } from "../I18N/I18N";
 
 export interface TranslateChipsData {
     sentence: string;
@@ -30,7 +31,9 @@ export const TranslateChips: FunctionComponent<TranslateChipsProps> = ({ data, o
 
     return (
         <div>
-            <Typography variant="h5" color="primary" gutterBottom>Translate this sentence</Typography>
+            <Typography variant="h5" color="primary" gutterBottom>
+                <I18N textKey="translate-chips-prompt" lang={I18NLangs.RU}/>
+            </Typography>
 
             <Typography variant="h5" mb={2}>{data.sentence}</Typography>
 

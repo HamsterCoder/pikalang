@@ -6,6 +6,7 @@ import { styled } from "styled-components";
 import {ChallengeType} from "./types";
 import { Picture } from "../Picture/Picture";
 import { CheckAnswerControl } from "../CheckAnswerControl/CheckAnswerControl";
+import { I18N, I18NLangs } from "../I18N/I18N";
 
 export interface WordPictureData {
     images: string[];
@@ -38,7 +39,9 @@ export const WordPicture: FunctionComponent<WordPictureProps> = ({ data, onCompl
 
     return (
         <div>
-            <Typography variant="h5" color="primary" gutterBottom>Choose the correct image</Typography>
+            <Typography variant="h5" color="primary" gutterBottom>
+                <I18N textKey="word-picture-prompt" lang={I18NLangs.RU}/>
+            </Typography>
 
             <Typography mb={2} variant="h5">{data.word}</Typography>
 
