@@ -109,17 +109,7 @@ export const Lesson: FunctionComponent<LessonProps> = ({ challenges, description
     }
 
     const saveProgress = useCallback(async () => {
-        let updatedUserData = userDataApi.getUserData('default');
-
-        // Get one XP for each correct answer
-        updatedUserData.xp += state.correct;
-        updatedUserData.lessons[description.id] = updatedUserData.lessons[description.id] || {
-            completed: 0,
-            threshold: 4
-        };
-        updatedUserData.lessons[description.id].completed += 1;
-
-        await userDataApi.setUserdata('default', updatedUserData);
+        await userDataApi.saveLessonProgress('default', description.id, state.correct);
     }, [state, description]);
 
     async function showNextChallenge() {

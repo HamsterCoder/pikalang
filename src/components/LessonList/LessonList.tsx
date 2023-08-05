@@ -43,8 +43,14 @@ export const LessonList: FunctionComponent<LessonListProps> = ({ lessons, onLess
     useEffect(() => {
         console.log('LOG::LessonList.effect run');
 
-        setUserData(userDataApi.getUserData('default'));
-        setLoadingState('complete');
+        userDataApi.getUserData('default')
+            .then((userData) => {
+                setUserData(userData);
+                setLoadingState('complete');
+            })
+            .catch((error) => {
+                console.log('LOG::LessonList.effect failed to fetch', error);
+            });
 
         return () => {
             console.log('LOG::LessonList.effect clean');
