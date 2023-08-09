@@ -6,6 +6,7 @@ import { Challenge } from "../Challenge/Challenge";
 import { ChallengeDescription } from "../Challenge/types";
 import { Header } from "../Header/Header";
 import { userDataApi } from "../../api/user-data";
+import { I18N, I18NLangs } from "../I18N/I18N";
 
 export interface LessonDescription {
     id: string;
@@ -143,15 +144,26 @@ export const Lesson: FunctionComponent<LessonProps> = ({ challenges, description
             </Header>
             <LessonBody>
                 {state.complete && <div>
-                    <Typography variant="h4">Congratulations</Typography>
-                    <Typography variant="h5">You have completed the lesson</Typography>
-                    <Typography variant="body1">Correct challenges: {state.correct} / {challenges.length}</Typography>
+                    <Typography variant="h4" gutterBottom>
+                        <I18N textKey="lesson-complete-appraisal" lang={I18NLangs.RU}></I18N>
+                    </Typography>
+                    <Typography variant="body1">
+                        <I18N textKey="lesson-complete-stats" values={{
+                            correct: state.correct,
+                            total: challenges.length,
+                            xp: state.correct,
+                        }} lang={I18NLangs.RU}></I18N>
+                    </Typography>
                 </div>}
                 {!state.complete && showChallenge && <Challenge {...challenges[state.challengeNumber]} onComplete={onChallengeComplete}/>}
             </LessonBody>
             <LessonFooter>
-                {state.complete && <Button color="success" variant="contained" onClick={handleLessonComplete}>See other lessons</Button>}
-                {!state.complete && state.challengeStatus === LessonChallengeStatus.COMPLETE && <Button color="success" variant="contained" onClick={showNextChallenge}>Continue</Button>}
+                {state.complete && <Button color="success" variant="contained" onClick={handleLessonComplete}>
+                    <I18N textKey="lesson-complete-to-lesson-list" lang={I18NLangs.RU}></I18N>
+                </Button>}
+                {!state.complete && state.challengeStatus === LessonChallengeStatus.COMPLETE && <Button color="success" variant="contained" onClick={showNextChallenge}>
+                    <I18N textKey="lesson-next-button" lang={I18NLangs.RU}></I18N>
+                </Button>}
             </LessonFooter>
         </div>
     );

@@ -1,7 +1,3 @@
-// Show a grid of lessons - for alpha version keep it in a json
-// For each lesson show how many times it was attempted - store this information in local storage?
-// Each lesson should have a uniqueID
-
 import { FunctionComponent, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { Button, Card, CardActions, CardContent, CircularProgress, LinearProgress, Typography } from "@mui/material";
@@ -10,6 +6,7 @@ import StarIcon from '@mui/icons-material/Star';
 import { Header } from "../Header/Header";
 import { LessonDescription } from "../Lesson/Lesson";
 import { UserData, userDataApi } from "../../api/user-data";
+import { I18N, I18NLangs } from "../I18N/I18N";
 
 export interface LessonListProps {
     lessons: LessonDescription[];
@@ -70,7 +67,9 @@ export const LessonList: FunctionComponent<LessonListProps> = ({ lessons, onLess
     return (
         <div>
             <Header>
-                <Typography variant="h4">Lessons</Typography>
+                <Typography variant="h4">
+                    <I18N textKey="lesson-list-heading" lang={I18NLangs.RU}></I18N>
+                </Typography>
                 <XP>
                     <Typography variant="h4"> <StarIcon fontSize="inherit" sx={{ marginBottom: '-5px' }} /> {userData?.xp || 0} </Typography>
                 </XP>
@@ -80,18 +79,15 @@ export const LessonList: FunctionComponent<LessonListProps> = ({ lessons, onLess
                 {
                     loadingState === 'complete' && lessons.map(lesson => <Item key={lesson.id}>
                         <Card sx={{ width: 200, minHeight: 180, display: 'flex', flexDirection: 'column' }}>
-                            {/* <CardMedia
-                                sx={{ height: 140, flexShrink: 0 }}
-                                image={`assets/${lesson.image}.jpg`}
-                                title={lesson.name}
-                            /> */}
                             <CardContent sx={{ flexGrow: 1 }}>
                                 <Typography variant="body1" gutterBottom>{lesson.topic} &middot; {lesson.name}</Typography>
                                 <LinearProgress variant="determinate" sx={{ marginBottom: 2 }} value={computeLessonProgress(userData, lesson.id)}></LinearProgress>
                                 <Typography variant="body2" color="text.secondary">{lesson.description}</Typography>
                             </CardContent>
                             <CardActions sx={{ flexShrink: 0 }}>
-                                <Button size="small" data-lesson-id={lesson.id} onClick={handleLessonSelect}>Practice</Button>
+                                <Button size="small" data-lesson-id={lesson.id} onClick={handleLessonSelect}>
+                                    <I18N textKey="lesson-list-practice-button" lang={I18NLangs.RU}></I18N>
+                                </Button>
                             </CardActions>
                         </Card>
                     </Item>)

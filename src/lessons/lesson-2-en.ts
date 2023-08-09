@@ -16,7 +16,7 @@ const appleChallenges: ChallengeDescription[] = [
     type: ChallengeType.QUESTION_CHIPS,
     data: {
       question: 'Šta je ovo?',
-      questionHint: 'Что это?',
+      questionHint: 'What is this?',
       answer: ['Ovo je jabuka'],
       chips: ['Ovo', 'jabuka', 'kaisija', 'je'],
       image: 'apple',
@@ -25,7 +25,7 @@ const appleChallenges: ChallengeDescription[] = [
   {
     type: ChallengeType.TRANSLATE_CHIPS,
     data: {
-      sentence: 'Яблоко красное',
+      sentence: 'The apple is red',
       answer: ['Jabuka je crvena'],
       chips: ['zelena', 'Jabuka', 'crvena', 'je']
     }
@@ -45,7 +45,7 @@ const pearChallenges: ChallengeDescription[] = [
     type: ChallengeType.QUESTION_CHIPS,
     data: {
       question: 'Šta je ovo?',
-      questionHint: 'Что это?',
+      questionHint: 'What is this?',
       answer: ['Ovo je kruška'],
       chips: ['jabuka', 'Ovo', 'je', 'su', 'kruška'],
       image: 'pear',
@@ -54,7 +54,7 @@ const pearChallenges: ChallengeDescription[] = [
   {
     type: ChallengeType.TRANSLATE_CHIPS,
     data: {
-      sentence: 'Груша зеленая',
+      sentence: 'The pear is green',
       answer: ['kruška je zelena'],
       chips: ['zelena', 'kruška', 'crvena', 'je']
     }
@@ -74,7 +74,7 @@ const apricotChallenges: ChallengeDescription[] = [
     type: ChallengeType.QUESTION_CHIPS,
     data: {
       question: 'Šta je ovo?',
-      questionHint: 'Что это?',
+      questionHint: 'What is this?',
       answer: ['Ovo je kaisija'],
       chips: ['Ovo', 'šljiva', 'kaisija', 'je'],
       image: 'apricot',
@@ -83,7 +83,7 @@ const apricotChallenges: ChallengeDescription[] = [
   {
     type: ChallengeType.TRANSLATE_CHIPS,
     data: {
-      sentence: 'Абрикос маленький',
+      sentence: 'The apricot is small',
       answer: ['kajsija je mala'],
       chips: ['velika', 'je', 'mala', 'kajsija']
     }
@@ -103,7 +103,7 @@ const peachChallenges: ChallengeDescription[] = [
     type: ChallengeType.QUESTION_CHIPS,
     data: {
       question: 'Šta je ovo?',
-      questionHint: 'Что это?',
+      questionHint: 'What is this?',
       answer: ['Ovo je breskva'],
       chips: ['Ovo', 'breskva', 'jabuka', 'je'],
       image: 'peach',
@@ -112,7 +112,7 @@ const peachChallenges: ChallengeDescription[] = [
   {
     type: ChallengeType.TRANSLATE_CHIPS,
     data: {
-      sentence: 'Персик большой',
+      sentence: 'The peach is big',
       answer: ['breskva je velika'],
       chips: ['velika', 'je', 'mala', 'breskva']
     }
@@ -124,7 +124,7 @@ const combinedChallenges: ChallengeDescription[] = [
     type: ChallengeType.QUESTION_CHIPS,
     data: {
       question: 'Šta je ovo?',
-      questionHint: 'Что это?',
+      questionHint: 'What is this?',
       answer: ['Ovo su jabuka i kruška', 'Ovo su kruška i jabuka'],
       chips: ['jabuka', 'Ovo', 'je', 'su', 'i', 'kruška'],
       image: 'apple-pear',
@@ -134,7 +134,7 @@ const combinedChallenges: ChallengeDescription[] = [
     type: ChallengeType.QUESTION_CHIPS,
     data: {
       question: 'Šta je ovo?',
-      questionHint: 'Что это?',
+      questionHint: 'What is this?',
       answer: ['Ovo su breskve i kajsije', 'Ovo su kajsije i breskve'],
       chips: ['breskve', 'breskva', 'Ovo', 'je', 'su', 'i', 'kajsije'],
       image: 'apricots-peaches',

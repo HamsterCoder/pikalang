@@ -38,27 +38,27 @@ function shuffle<T>(array: T[]) {
 const lessons: LessonDescription[] = [
   {
     id: '1',
-    name: 'Vegetables 1',
-    topic: 'Food',
+    name: 'Овощи 1',
+    topic: 'Еда',
     url: 'lesson-1',
     image: 'vegetables',
-    description: 'Learn the names of some vegetables.'
+    description: 'Учим названия некоторых овощей'
   },
   {
     id: '2',
-    name: 'Fruit 1',
-    topic: 'Food',
+    name: 'Фрукты 1',
+    topic: 'Еда',
     url: 'lesson-2',
     image: 'fruit',
-    description: 'Learn the names of some fruit.'
+    description: 'Учим названия некоторых фруктов'
   },
   {
     id: '3',
-    name: 'Berries 1',
-    topic: 'Food',
+    name: 'Ягоды 1',
+    topic: 'Еда',
     url: 'lesson-3',
     image: 'berries',
-    description: 'Learn the names of some berries.'
+    description: 'Учим названия некоторых ягод'
   }
 ];
 
