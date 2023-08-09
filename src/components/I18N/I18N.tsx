@@ -29,6 +29,10 @@ const dictionary: Record<string, I18NTranslation | ((values: Record<string, numb
         en: 'Choose the correct image',
         ru: 'Выберите нужную картинку'
     },
+    'insert-chips-prompt': {
+        en: 'Insert the missing words',
+        ru: 'Вставьте пропущенные слова'
+    },
     'lesson-list-practice-button': {
         en: 'Practice',
         ru: 'Начать'
@@ -47,11 +51,19 @@ const dictionary: Record<string, I18NTranslation | ((values: Record<string, numb
     },
     'lesson-submit-correct-message': {
         en: 'The answer is correct',
-        ru: 'Все верно'
+        ru: 'Все верно.'
+    },
+    'lesson-submit-translation-message': {
+        en: 'Translation: ',
+        ru: 'Перевод: '
     },
     'lesson-submit-error-message': {
-        en: 'Incorrect. Expected answer: ',
-        ru: 'Неверно. Ожидаемый ответ: '
+        en: 'Incorrect.',
+        ru: 'Неверно.'
+    },
+    'lesson-submit-expected-message': {
+        en: 'Expected answer: ',
+        ru: 'Ожидаемый ответ: '
     },
     'lesson-complete-appraisal': {
         en: 'Well done!',

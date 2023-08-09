@@ -7,6 +7,7 @@ import { QuestionChips, QuestionChipsProps } from "./QuestionChips";
 import { WordPicture, WordPictureProps } from "./WordPicture";
 import { TranslateChips, TranslateChipsProps } from "./TranslateChips";
 import { ChallengeType } from "./types";
+import { InsertChips } from "./InsertChips";
 
 export interface ChallengeProps {
     type: ChallengeType;
@@ -25,6 +26,9 @@ export const Challenge: FunctionComponent<ChallengeProps> = ({ type, data, onCom
             }
             {type === ChallengeType.TRANSLATE_CHIPS && 
                 <TranslateChips type={type} data={data} onComplete={onComplete}/>
+            }
+            {type === ChallengeType.INSERT_CHIPS && 
+                <InsertChips type={type} data={data} onComplete={onComplete}/>
             }
         </>
     );

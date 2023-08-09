@@ -2,19 +2,24 @@ import { Chip } from "@mui/material";
 import { FunctionComponent } from "react";
 import { styled } from "styled-components";
 
+interface ExternalStyles {
+    marginBottom?: string;
+}
+
 export interface ChipsProps {
     chips: string[];
     asAnswerField?: boolean;
     onSelect(chip: string, index: number): void;
+    styles?: ExternalStyles 
 }
 
-// TODO pass in margin from parent
-const Container = styled.div`
+const Container = styled.div<ExternalStyles>`
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
+    min-height: 36px;
 
-    margin-bottom: 20px;
+    margin-bottom: ${props => (props.marginBottom ?? '20px')};
 
     &[data-answer=true] {
         min-height: 82px;
@@ -28,9 +33,9 @@ const Item = styled.span`
     margin-top: 4px;
 `;
 
-export const Chips: FunctionComponent<ChipsProps> = ({ chips, asAnswerField = false, onSelect }) => {    
+export const Chips: FunctionComponent<ChipsProps> = ({ chips, styles, asAnswerField = false, onSelect }) => {    
     return (
-        <Container data-answer={asAnswerField}>
+        <Container {...styles} data-answer={asAnswerField}>
             {chips.map(
                 (chip, index) => 
                 <Item key={chip + index}>

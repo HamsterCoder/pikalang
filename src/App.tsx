@@ -6,34 +6,19 @@ import { Lesson, LessonDescription } from './components/Lesson/Lesson';
 import { LessonList } from './components/LessonList/LessonList';
 import { ChallengeDescription } from './components/Challenge/types';
 import { theme } from './themes/default';
+import { shuffle } from './utils/shuffle';
 
 import { challenges as challenges1 } from './lessons/lesson-1';
 import { challenges as challenges2 } from './lessons/lesson-2';
 import { challenges as challenges3 } from './lessons/lesson-3';
+import { challenges as challenges4 } from './lessons/lesson-4';
 
 const lessonsMap: Record<string, ChallengeDescription[]> = {
   '1': challenges1,
   '2': challenges2,
   '3': challenges3,
+  '4': challenges4,
 };
-
-function shuffle<T>(array: T[]) {
-  let currentIndex = array.length,  randomIndex;
-
-  // While there remain elements to shuffle.
-  while (currentIndex != 0) {
-
-    // Pick a remaining element.
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex], array[currentIndex]];
-  }
-
-  return array;
-}
 
 const lessons: LessonDescription[] = [
   {
@@ -59,6 +44,14 @@ const lessons: LessonDescription[] = [
     url: 'lesson-3',
     image: 'berries',
     description: 'Учим названия некоторых ягод'
+  },
+  {
+    id: '4',
+    name: 'yesam',
+    topic: 'Грамматика',
+    url: 'lesson-4',
+    image: 'grammar',
+    description: 'Спрягаем вспомогательный глагол'
   }
 ];
 
