@@ -11,7 +11,6 @@ import { shuffle } from "../../utils/shuffle";
 // TODO simplify this format, get all data from sentence
 export interface InsertChipsData {
     sentence: string;
-    answer: string;
     translation: string;
     chips: string[];
 }
@@ -28,9 +27,35 @@ interface WordInsertProps {
 
 const WordInsert = styled.span<WordInsertProps>`
     display: inline-block;
-    min-width: ${props => props.len - 2}rem;
+    min-width: ${props => (props.len - 2) * 0.8125}rem;
     border-bottom: 2px solid var(--primary-accent);
 `;
+
+function isMissingWord(word: string) {
+    return word[0] === '{' && word[word.length - 1] === '}';
+}
+
+function countMissingWords(sentence: string) {
+    return sentence.split(' ').reduce((agr: number, word: string) => {
+        if (isMissingWord(word)) {
+            agr += 1;
+        }
+
+        return agr;
+    }, 0);
+}
+
+function computeAnswer(sentence: string) {
+    return sentence.split(' ')
+        .map((word: string) => {
+            if (isMissingWord(word)) {
+                return word.slice(1, -1);
+            }
+
+            return word;
+        })
+        .join(' ');
+}
 
 export const InsertChips: FunctionComponent<TranslateChipsProps> = ({ data, onComplete }) => {
     const [fromChips, setFromChips] = useState<string[]>(shuffle(data.chips.slice()));
@@ -39,9 +64,20 @@ export const InsertChips: FunctionComponent<TranslateChipsProps> = ({ data, onCo
     const checkAnswer = useCallback(() => {
         console.log(`Answer chips: ${answerChips} and chips: ${data.chips}`);
 
-        return data.chips.every((chip, index) => chip === answerChips[index]);
+        const missingWordsCount: number = countMissingWords(data.sentence);
+
+        for (let i = 0; i < missingWordsCount; i += 1) {
+            if (answerChips[i] !== data.chips[i]) {
+                return false;
+            }
+        }
+
+        return true;
     }, [data, answerChips]);
     
+    // TODO handle the case when there are more chips than slots
+    // Don't let select the chip
+
     function onChipSelect(chip: string, index: number) {
         // console.log(chip, index);
 
@@ -79,7 +115,7 @@ export const InsertChips: FunctionComponent<TranslateChipsProps> = ({ data, onCo
         let insertCounter = 0;
         
         return sentence.split(' ').map(word => {
-            if (word[0] === '{' && word[word.length - 1] === '}') {
+            if (isMissingWord(word)) {
                 const chip = answerChips[insertCounter] && <Chip sx={{ marginBottom: '5px'}} variant="outlined" onClick={onChipDeselect.bind(null, answerChips[insertCounter], insertCounter)} color="primary" label={answerChips[insertCounter]} />;
                 insertCounter += 1;
                 return (<><WordInsert len={word.length}>{chip}</WordInsert> </>);
@@ -88,7 +124,7 @@ export const InsertChips: FunctionComponent<TranslateChipsProps> = ({ data, onCo
         });
     }
 
-    const expectedAnswer = data.answer;
+    const expectedAnswer = computeAnswer(data.sentence);
 
     return (
         <div>

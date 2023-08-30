@@ -12,12 +12,14 @@ import { challenges as challenges1 } from './lessons/lesson-1';
 import { challenges as challenges2 } from './lessons/lesson-2';
 import { challenges as challenges3 } from './lessons/lesson-3';
 import { challenges as challenges4 } from './lessons/lesson-4';
+import { challenges as challenges5 } from './lessons/lesson-5';
 
 const lessonsMap: Record<string, ChallengeDescription[]> = {
   '1': challenges1,
   '2': challenges2,
   '3': challenges3,
   '4': challenges4,
+  '5': challenges5,
 };
 
 const lessons: LessonDescription[] = [
@@ -51,7 +53,15 @@ const lessons: LessonDescription[] = [
     topic: 'Грамматика',
     url: 'lesson-4',
     image: 'grammar',
-    description: 'Спрягаем вспомогательный глагол'
+    description: 'Спрягаем вспомогательный глагол yesam'
+  },
+  {
+    id: '5',
+    name: 'nisam',
+    topic: 'Грамматика',
+    url: 'lesson-5',
+    image: 'grammar',
+    description: 'Спрягаем вспомогательный глагол nisam'
   }
 ];
 
