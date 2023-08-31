@@ -1,21 +1,21 @@
-import { createTheme } from "@mui/material";
+import { createTheme } from '@mui/material';
 
 export const theme = createTheme({
   palette: {
     text: {
-      primary: "#54196a",
+      primary: '#54196a',
     },
     primary: {
-      main: "#AA66CC",
+      main: '#AA66CC',
     },
     secondary: {
-      main: "#33B5E5",
+      main: '#33B5E5',
     },
     success: {
-      main: "#99CC00",
+      main: '#99CC00',
     },
     error: {
-      main: "#FF4444",
+      main: '#FF4444',
     },
   },
 
@@ -23,7 +23,7 @@ export const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: "8px",
+          borderRadius: '8px',
         },
       },
     },

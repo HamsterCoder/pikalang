@@ -1,7 +1,7 @@
-import { QuestionChipsData } from "./QuestionChips";
-import { TranslateChipsData } from "./TranslateChips";
-import { WordPictureData } from "./WordPicture";
-import { InsertChipsData } from "./InsertChips";
+import { QuestionChipsData } from './QuestionChips';
+import { TranslateChipsData } from './TranslateChips';
+import { WordPictureData } from './WordPicture';
+import { InsertChipsData } from './InsertChips';
 
 export enum ChallengeType {
   // IMPELMENTED

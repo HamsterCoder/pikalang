@@ -1,12 +1,12 @@
-import { Chip, Typography } from "@mui/material";
-import { FunctionComponent, useState, useCallback, ReactNode } from "react";
+import { Chip, Typography } from '@mui/material';
+import { FunctionComponent, useState, useCallback, ReactNode } from 'react';
 
-import { ChallengeType } from "./types";
-import { CheckAnswerControl } from "../CheckAnswerControl/CheckAnswerControl";
-import { I18N, I18NLangs } from "../I18N/I18N";
-import { Chips } from "../Chips/Chips";
-import { styled } from "styled-components";
-import { shuffle } from "../../utils/shuffle";
+import { ChallengeType } from './types';
+import { CheckAnswerControl } from '../CheckAnswerControl/CheckAnswerControl';
+import { I18N, I18NLangs } from '../I18N/I18N';
+import { Chips } from '../Chips/Chips';
+import { styled } from 'styled-components';
+import { shuffle } from '../../utils/shuffle';
 
 // TODO simplify this format, get all data from sentence
 export interface InsertChipsData {
@@ -32,11 +32,11 @@ const WordInsert = styled.span<WordInsertProps>`
 `;
 
 function isMissingWord(word: string) {
-  return word[0] === "{" && word[word.length - 1] === "}";
+  return word[0] === '{' && word[word.length - 1] === '}';
 }
 
 function countMissingWords(sentence: string) {
-  return sentence.split(" ").reduce((agr: number, word: string) => {
+  return sentence.split(' ').reduce((agr: number, word: string) => {
     if (isMissingWord(word)) {
       agr += 1;
     }
@@ -47,7 +47,7 @@ function countMissingWords(sentence: string) {
 
 function computeAnswer(sentence: string) {
   return sentence
-    .split(" ")
+    .split(' ')
     .map((word: string) => {
       if (isMissingWord(word)) {
         return word.slice(1, -1);
@@ -55,7 +55,7 @@ function computeAnswer(sentence: string) {
 
       return word;
     })
-    .join(" ");
+    .join(' ');
 }
 
 export const InsertChips: FunctionComponent<TranslateChipsProps> = ({
@@ -86,7 +86,7 @@ export const InsertChips: FunctionComponent<TranslateChipsProps> = ({
     const missingWordsCount: number = countMissingWords(data.sentence);
 
     // Find the first empty slot
-    const insertIndex = answerChips.indexOf("");
+    const insertIndex = answerChips.indexOf('');
 
     // console.log({insertIndex, missingWordsCount, chip, index});
 
@@ -116,7 +116,7 @@ export const InsertChips: FunctionComponent<TranslateChipsProps> = ({
     // Leave an empty slot
     setAnswerChips([
       ...answerChips.slice(0, index),
-      "",
+      '',
       ...answerChips.slice(index + 1),
     ]);
   }
@@ -127,11 +127,11 @@ export const InsertChips: FunctionComponent<TranslateChipsProps> = ({
   ): ReactNode[] {
     let insertCounter = 0;
 
-    return sentence.split(" ").map((word) => {
+    return sentence.split(' ').map((word) => {
       if (isMissingWord(word)) {
         const chip = answerChips[insertCounter] && (
           <Chip
-            sx={{ marginBottom: "5px" }}
+            sx={{ marginBottom: '5px' }}
             variant="outlined"
             onClick={onChipDeselect.bind(
               null,
@@ -145,11 +145,11 @@ export const InsertChips: FunctionComponent<TranslateChipsProps> = ({
         insertCounter += 1;
         return (
           <>
-            <WordInsert len={word.length}>{chip}</WordInsert>{" "}
+            <WordInsert len={word.length}>{chip}</WordInsert>{' '}
           </>
         );
       }
-      return word + " ";
+      return word + ' ';
     });
   }
 

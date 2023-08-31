@@ -1,10 +1,10 @@
-import { Typography } from "@mui/material";
-import { FunctionComponent, useState, useCallback } from "react";
+import { Typography } from '@mui/material';
+import { FunctionComponent, useState, useCallback } from 'react';
 
-import { ChallengeType } from "./types";
-import { ChipsAndLines } from "../Chips/ChipsAndLines";
-import { CheckAnswerControl } from "../CheckAnswerControl/CheckAnswerControl";
-import { I18N, I18NLangs } from "../I18N/I18N";
+import { ChallengeType } from './types';
+import { ChipsAndLines } from '../Chips/ChipsAndLines';
+import { CheckAnswerControl } from '../CheckAnswerControl/CheckAnswerControl';
+import { I18N, I18NLangs } from '../I18N/I18N';
 
 export interface TranslateChipsData {
   sentence: string;
@@ -29,7 +29,7 @@ export const TranslateChips: FunctionComponent<TranslateChipsProps> = ({
 
     return data.answer.some(
       (possibleAnswer) =>
-        possibleAnswer.toLowerCase() === answerChips.join(" ").toLowerCase(),
+        possibleAnswer.toLowerCase() === answerChips.join(' ').toLowerCase(),
     );
   }, [data, answerChips]);
 

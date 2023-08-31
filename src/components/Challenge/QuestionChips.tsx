@@ -1,17 +1,17 @@
 // Have render and check logic here
 // Make challenge a wrapper - submit should be rendered by challenge
 
-import { IconButton, Tooltip, Typography } from "@mui/material";
-import { FunctionComponent, useCallback, useState } from "react";
-import { styled } from "styled-components";
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import { IconButton, Tooltip, Typography } from '@mui/material';
+import { FunctionComponent, useCallback, useState } from 'react';
+import { styled } from 'styled-components';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 
 // TODO get rid of relative import for components
-import { ChipsAndLines } from "../Chips/ChipsAndLines";
-import { ChallengeType } from "./types";
-import { Picture } from "../Picture/Picture";
-import { CheckAnswerControl } from "../CheckAnswerControl/CheckAnswerControl";
-import { I18N, I18NLangs } from "../I18N/I18N";
+import { ChipsAndLines } from '../Chips/ChipsAndLines';
+import { ChallengeType } from './types';
+import { Picture } from '../Picture/Picture';
+import { CheckAnswerControl } from '../CheckAnswerControl/CheckAnswerControl';
+import { I18N, I18NLangs } from '../I18N/I18N';
 
 export interface QuestionChipsData {
   image?: string;
@@ -41,7 +41,7 @@ export const QuestionChips: FunctionComponent<QuestionChipsProps> = ({
     console.log(`Answer chips: ${answerChips}`, answerChips);
 
     return data.answer.some(
-      (possibleAnswer) => possibleAnswer === answerChips.join(" "),
+      (possibleAnswer) => possibleAnswer === answerChips.join(' '),
     );
   }, [data, answerChips]);
 

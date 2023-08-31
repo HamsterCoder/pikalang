@@ -1,6 +1,6 @@
-import { FunctionComponent } from "react";
-import { styled } from "styled-components";
-import { dictionary } from "../../dictionary/english-serbian";
+import { FunctionComponent } from 'react';
+import { styled } from 'styled-components';
+import { dictionary } from '../../dictionary/english-serbian';
 
 export interface PictureProps {
   image: string;
@@ -18,15 +18,15 @@ const Container = styled.div`
 
   transition: background 0.2s ease-in;
 
-  &[data-selected="true"] {
+  &[data-selected='true'] {
     background-color: var(--primary-accent, #fff);
   }
 
-  &[data-selectable="true"] {
+  &[data-selectable='true'] {
     cursor: pointer;
   }
 
-  &[data-selectable="true"]&:hover {
+  &[data-selectable='true']&:hover {
     background-color: var(--primary-accent, #fff);
   }
 `;
@@ -49,7 +49,7 @@ export const Picture: FunctionComponent<PictureProps> = ({
 
   return (
     <Container
-      data-selectable={typeof onSelect !== "undefined"}
+      data-selectable={typeof onSelect !== 'undefined'}
       data-selected={selected}
       onClick={onClick}
     >

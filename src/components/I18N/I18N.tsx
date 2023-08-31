@@ -1,8 +1,8 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent } from 'react';
 
 export enum I18NLangs {
-  EN = "en",
-  RU = "ru",
+  EN = 'en',
+  RU = 'ru',
 }
 
 export interface I18NProps {
@@ -21,65 +21,65 @@ const dictionary: Record<
   | I18NTranslation
   | ((values: Record<string, number | string>) => I18NTranslation)
 > = {
-  "question-chips-prompt": {
-    en: "Answer the question",
-    ru: "Ответьте на вопрос",
+  'question-chips-prompt': {
+    en: 'Answer the question',
+    ru: 'Ответьте на вопрос',
   },
-  "translate-chips-prompt": {
-    en: "Translate this sentence",
-    ru: "Переведите предложение",
+  'translate-chips-prompt': {
+    en: 'Translate this sentence',
+    ru: 'Переведите предложение',
   },
-  "word-picture-prompt": {
-    en: "Choose the correct image",
-    ru: "Выберите нужную картинку",
+  'word-picture-prompt': {
+    en: 'Choose the correct image',
+    ru: 'Выберите нужную картинку',
   },
-  "insert-chips-prompt": {
-    en: "Insert the missing words",
-    ru: "Вставьте пропущенные слова",
+  'insert-chips-prompt': {
+    en: 'Insert the missing words',
+    ru: 'Вставьте пропущенные слова',
   },
-  "lesson-list-practice-button": {
-    en: "Practice",
-    ru: "Начать",
+  'lesson-list-practice-button': {
+    en: 'Practice',
+    ru: 'Начать',
   },
-  "lesson-list-heading": {
-    en: "Lessons",
-    ru: "Уроки",
+  'lesson-list-heading': {
+    en: 'Lessons',
+    ru: 'Уроки',
   },
-  "lesson-submit-button": {
-    en: "Check",
-    ru: "Проверить",
+  'lesson-submit-button': {
+    en: 'Check',
+    ru: 'Проверить',
   },
-  "lesson-next-button": {
-    en: "Continue",
-    ru: "Продолжить",
+  'lesson-next-button': {
+    en: 'Continue',
+    ru: 'Продолжить',
   },
-  "lesson-submit-correct-message": {
-    en: "The answer is correct",
-    ru: "Все верно.",
+  'lesson-submit-correct-message': {
+    en: 'The answer is correct',
+    ru: 'Все верно.',
   },
-  "lesson-submit-translation-message": {
-    en: "Translation: ",
-    ru: "Перевод: ",
+  'lesson-submit-translation-message': {
+    en: 'Translation: ',
+    ru: 'Перевод: ',
   },
-  "lesson-submit-error-message": {
-    en: "Incorrect.",
-    ru: "Неверно.",
+  'lesson-submit-error-message': {
+    en: 'Incorrect.',
+    ru: 'Неверно.',
   },
-  "lesson-submit-expected-message": {
-    en: "Expected answer: ",
-    ru: "Ожидаемый ответ: ",
+  'lesson-submit-expected-message': {
+    en: 'Expected answer: ',
+    ru: 'Ожидаемый ответ: ',
   },
-  "lesson-complete-appraisal": {
-    en: "Well done!",
-    ru: "Отличная работа!",
+  'lesson-complete-appraisal': {
+    en: 'Well done!',
+    ru: 'Отличная работа!',
   },
-  "lesson-complete-stats": ({ correct, total, xp }) => ({
+  'lesson-complete-stats': ({ correct, total, xp }) => ({
     en: `You have ${correct} out of ${total} challenges correct and you have earned ${xp} stars.`,
     ru: `Вы сделали ${correct} из ${total} упражнений верно и заработали ${xp} звездочек.`,
   }),
-  "lesson-complete-to-lesson-list": {
-    en: "See other lessons",
-    ru: "Посмотреть другие уроки",
+  'lesson-complete-to-lesson-list': {
+    en: 'See other lessons',
+    ru: 'Посмотреть другие уроки',
   },
 };
 
@@ -91,20 +91,20 @@ function translate(
   const translationMethod = dictionary[key];
 
   if (
-    typeof translationMethod === "function" &&
-    typeof values !== "undefined"
+    typeof translationMethod === 'function' &&
+    typeof values !== 'undefined'
   ) {
     return translationMethod(values)[lang];
   }
 
   if (
-    typeof translationMethod !== "function" &&
-    typeof translationMethod !== "undefined"
+    typeof translationMethod !== 'function' &&
+    typeof translationMethod !== 'undefined'
   ) {
     return translationMethod[lang];
   }
 
-  return "";
+  return '';
 }
 
 export const I18N: FunctionComponent<I18NProps> = ({

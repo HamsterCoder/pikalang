@@ -1,12 +1,12 @@
-import { FunctionComponent, useCallback, useReducer, useState } from "react";
-import { styled } from "styled-components";
-import { Button, Typography } from "@mui/material";
+import { FunctionComponent, useCallback, useReducer, useState } from 'react';
+import { styled } from 'styled-components';
+import { Button, Typography } from '@mui/material';
 
-import { Challenge } from "../Challenge/Challenge";
-import { ChallengeDescription } from "../Challenge/types";
-import { Header } from "../Header/Header";
-import { userDataApi } from "../../api/user-data";
-import { I18N, I18NLangs } from "../I18N/I18N";
+import { Challenge } from '../Challenge/Challenge';
+import { ChallengeDescription } from '../Challenge/types';
+import { Header } from '../Header/Header';
+import { userDataApi } from '../../api/user-data';
+import { I18N, I18NLangs } from '../I18N/I18N';
 
 export interface LessonDescription {
   id: string;
@@ -112,13 +112,13 @@ export const Lesson: FunctionComponent<LessonProps> = ({
     onComplete(description.id);
   }, [description, onComplete]);
 
-  function onChallengeComplete(data: LessonAction["data"]) {
+  function onChallengeComplete(data: LessonAction['data']) {
     dispatch({ type: LessonActionType.COMPLETE_CHALLENGE, data });
   }
 
   const saveProgress = useCallback(async () => {
     await userDataApi.saveLessonProgress(
-      "default",
+      'default',
       description.id,
       state.correct,
     );
@@ -151,7 +151,7 @@ export const Lesson: FunctionComponent<LessonProps> = ({
     <div>
       <Header>
         <Typography variant="h4">{description.name}</Typography>
-        <Typography sx={{ marginLeft: "auto" }} variant="h4">
+        <Typography sx={{ marginLeft: 'auto' }} variant="h4">
           {state.challengeNumber + 1}/{challenges.length}
         </Typography>
       </Header>

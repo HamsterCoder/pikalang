@@ -1,5 +1,5 @@
-import { FunctionComponent, useEffect, useState } from "react";
-import { styled } from "styled-components";
+import { FunctionComponent, useEffect, useState } from 'react';
+import { styled } from 'styled-components';
 import {
   Button,
   Card,
@@ -8,13 +8,13 @@ import {
   CircularProgress,
   LinearProgress,
   Typography,
-} from "@mui/material";
-import StarIcon from "@mui/icons-material/Star";
+} from '@mui/material';
+import StarIcon from '@mui/icons-material/Star';
 
-import { Header } from "../Header/Header";
-import { LessonDescription } from "../Lesson/Lesson";
-import { UserData, userDataApi } from "../../api/user-data";
-import { I18N, I18NLangs } from "../I18N/I18N";
+import { Header } from '../Header/Header';
+import { LessonDescription } from '../Lesson/Lesson';
+import { UserData, userDataApi } from '../../api/user-data';
+import { I18N, I18NLangs } from '../I18N/I18N';
 
 export interface LessonListProps {
   lessons: LessonDescription[];
@@ -50,31 +50,31 @@ export const LessonList: FunctionComponent<LessonListProps> = ({
   lessons,
   onLessonSelect,
 }) => {
-  const [loadingState, setLoadingState] = useState<string>("loading");
+  const [loadingState, setLoadingState] = useState<string>('loading');
   const [userData, setUserData] = useState<UserData>();
 
   useEffect(() => {
-    console.log("LOG::LessonList.effect run");
+    console.log('LOG::LessonList.effect run');
 
     userDataApi
-      .getUserData("default")
+      .getUserData('default')
       .then((userData) => {
         setUserData(userData);
-        setLoadingState("complete");
+        setLoadingState('complete');
       })
       .catch((error) => {
-        console.log("LOG::LessonList.effect failed to fetch", error);
+        console.log('LOG::LessonList.effect failed to fetch', error);
       });
 
     return () => {
-      console.log("LOG::LessonList.effect clean");
+      console.log('LOG::LessonList.effect clean');
     };
   }, [setLoadingState, setUserData]);
 
   function handleLessonSelect(evt: React.MouseEvent<HTMLButtonElement>) {
-    const lessonId = evt.currentTarget.getAttribute("data-lesson-id");
+    const lessonId = evt.currentTarget.getAttribute('data-lesson-id');
 
-    if (typeof lessonId === "string") {
+    if (typeof lessonId === 'string') {
       onLessonSelect(lessonId);
     } else {
       console.error('"data-lesson-id" attribute is missing');
@@ -89,25 +89,25 @@ export const LessonList: FunctionComponent<LessonListProps> = ({
         </Typography>
         <XP>
           <Typography variant="h4">
-            {" "}
-            <StarIcon fontSize="inherit" sx={{ marginBottom: "-5px" }} />{" "}
-            {userData?.xp || 0}{" "}
+            {' '}
+            <StarIcon fontSize="inherit" sx={{ marginBottom: '-5px' }} />{' '}
+            {userData?.xp || 0}{' '}
           </Typography>
         </XP>
       </Header>
       <Container>
-        {loadingState === "loading" && (
-          <CircularProgress sx={{ marginLeft: "auto", marginRight: "auto" }} />
+        {loadingState === 'loading' && (
+          <CircularProgress sx={{ marginLeft: 'auto', marginRight: 'auto' }} />
         )}
-        {loadingState === "complete" &&
+        {loadingState === 'complete' &&
           lessons.map((lesson) => (
             <Item key={lesson.id}>
               <Card
                 sx={{
                   width: 200,
                   minHeight: 180,
-                  display: "flex",
-                  flexDirection: "column",
+                  display: 'flex',
+                  flexDirection: 'column',
                 }}
               >
                 <CardContent sx={{ flexGrow: 1 }}>

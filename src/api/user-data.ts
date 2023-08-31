@@ -23,10 +23,10 @@ function getUserData(username: string): Promise<UserData> {
 
   try {
     userData =
-      JSON.parse(localStorage.getItem(username) ?? "null") ?? DEFAULT_USER_DATA;
+      JSON.parse(localStorage.getItem(username) ?? 'null') ?? DEFAULT_USER_DATA;
   } catch (error) {
     console.log(error);
-    return Promise.reject("api.getUserData request failed");
+    return Promise.reject('api.getUserData request failed');
   }
 
   return Promise.resolve(userData);
@@ -37,7 +37,7 @@ async function setUserdata(username: string, data: UserData): Promise<void> {
     localStorage.setItem(username, JSON.stringify(data));
   } catch (error) {
     console.log(error);
-    return Promise.reject("api.setUserdata request failed");
+    return Promise.reject('api.setUserdata request failed');
   }
 
   return Promise.resolve();
@@ -60,7 +60,7 @@ async function saveLessonProgress(
     await userDataApi.setUserdata(username, updatedUserData);
   } catch (error) {
     console.log(error);
-    return Promise.reject("api.setUserdata request failed");
+    return Promise.reject('api.setUserdata request failed');
   }
 
   return Promise.resolve();

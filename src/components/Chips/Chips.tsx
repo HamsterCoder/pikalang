@@ -1,6 +1,6 @@
-import { Chip } from "@mui/material";
-import { FunctionComponent } from "react";
-import { styled } from "styled-components";
+import { Chip } from '@mui/material';
+import { FunctionComponent } from 'react';
+import { styled } from 'styled-components';
 
 interface ExternalStyles {
   marginBottom?: string;
@@ -19,9 +19,9 @@ const Container = styled.div<ExternalStyles>`
   align-items: baseline;
   min-height: 36px;
 
-  margin-bottom: ${(props) => props.marginBottom ?? "20px"};
+  margin-bottom: ${(props) => props.marginBottom ?? '20px'};
 
-  &[data-answer="true"] {
+  &[data-answer='true'] {
     min-height: 82px;
     background: linear-gradient(var(--primary-accent) 2px, transparent 2px);
     background-size: 100% 40px;

@@ -1,6 +1,6 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useState } from 'react';
 
-import { Chips } from "./Chips";
+import { Chips } from './Chips';
 
 export interface CandidateChipsProps {
   chips: string[];

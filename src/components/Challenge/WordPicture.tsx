@@ -1,11 +1,11 @@
-import { FunctionComponent, useCallback, useState } from "react";
-import { Typography } from "@mui/material";
-import { styled } from "styled-components";
+import { FunctionComponent, useCallback, useState } from 'react';
+import { Typography } from '@mui/material';
+import { styled } from 'styled-components';
 
-import { ChallengeType } from "./types";
-import { Picture } from "../Picture/Picture";
-import { CheckAnswerControl } from "../CheckAnswerControl/CheckAnswerControl";
-import { I18N, I18NLangs } from "../I18N/I18N";
+import { ChallengeType } from './types';
+import { Picture } from '../Picture/Picture';
+import { CheckAnswerControl } from '../CheckAnswerControl/CheckAnswerControl';
+import { I18N, I18NLangs } from '../I18N/I18N';
 
 export interface WordPictureData {
   images: string[];

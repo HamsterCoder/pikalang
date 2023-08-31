@@ -1,20 +1,20 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent } from 'react';
 
 // TODO get rid of relative import for components
 
-import "./Challenge.css";
-import { QuestionChips, QuestionChipsProps } from "./QuestionChips";
-import { WordPicture, WordPictureProps } from "./WordPicture";
-import { TranslateChips, TranslateChipsProps } from "./TranslateChips";
-import { ChallengeType } from "./types";
-import { InsertChips } from "./InsertChips";
+import './Challenge.css';
+import { QuestionChips, QuestionChipsProps } from './QuestionChips';
+import { WordPicture, WordPictureProps } from './WordPicture';
+import { TranslateChips, TranslateChipsProps } from './TranslateChips';
+import { ChallengeType } from './types';
+import { InsertChips } from './InsertChips';
 
 export interface ChallengeProps {
   type: ChallengeType;
   data:
-    | QuestionChipsProps["data"]
-    | WordPictureProps["data"]
-    | TranslateChipsProps["data"];
+    | QuestionChipsProps['data']
+    | WordPictureProps['data']
+    | TranslateChipsProps['data'];
   onComplete({ solved }: { solved: boolean }): void;
 }
 
