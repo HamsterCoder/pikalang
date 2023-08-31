@@ -13,16 +13,20 @@ export enum ChallengeType {
     // PICTURE_WORD, // Given a picture, choose the correct word
 }
 
-export type ChallengeDescription = {
-  type: ChallengeType.QUESTION_CHIPS,
-  data: QuestionChipsData
-} | {
-  type: ChallengeType.WORD_PICTURE,
-  data: WordPictureData
-} | {
-  type: ChallengeType.TRANSLATE_CHIPS,
-  data: TranslateChipsData
-} | {
-  type: ChallengeType.INSERT_CHIPS,
-  data: InsertChipsData
-}
+export type ChallengeDescription =
+    | {
+          type: ChallengeType.QUESTION_CHIPS;
+          data: QuestionChipsData;
+      }
+    | {
+          type: ChallengeType.WORD_PICTURE;
+          data: WordPictureData;
+      }
+    | {
+          type: ChallengeType.TRANSLATE_CHIPS;
+          data: TranslateChipsData;
+      }
+    | {
+          type: ChallengeType.INSERT_CHIPS;
+          data: InsertChipsData;
+      };

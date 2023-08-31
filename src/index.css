@@ -1,12 +1,12 @@
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 
-  --alert-error: #FF4444;
-  --alert-success: #99CC00;
-  --alert-warning: #FFBB33;
-  --primary-accent: #AA66CC;
-  --secondary-accent: #33B5E5;
+    --alert-error: #ff4444;
+    --alert-success: #99cc00;
+    --alert-warning: #ffbb33;
+    --primary-accent: #aa66cc;
+    --secondary-accent: #33b5e5;
 
-  --primary-text: #54196a;
-  --secondary-text: #ffffff;
+    --primary-text: #54196a;
+    --secondary-text: #ffffff;
 }

@@ -1,12 +1,11 @@
-import { FunctionComponent, useCallback, useState } from "react";
-import { Typography } from "@mui/material";
-import { styled } from "styled-components";
+import { FunctionComponent, useCallback, useState } from 'react';
+import { Typography } from '@mui/material';
+import { styled } from 'styled-components';
 
-
-import {ChallengeType} from "./types";
-import { Picture } from "../Picture/Picture";
-import { CheckAnswerControl } from "../CheckAnswerControl/CheckAnswerControl";
-import { I18N, I18NLangs } from "../I18N/I18N";
+import { ChallengeType } from './types';
+import { Picture } from '../Picture/Picture';
+import { CheckAnswerControl } from '../CheckAnswerControl/CheckAnswerControl';
+import { I18N, I18NLangs } from '../I18N/I18N';
 
 export interface WordPictureData {
     images: string[];
@@ -17,7 +16,7 @@ export interface WordPictureData {
 export interface WordPictureProps {
     type: ChallengeType.WORD_PICTURE;
     data: WordPictureData;
-    onComplete({solved}: {solved: boolean}): void;
+    onComplete({ solved }: { solved: boolean }): void;
 }
 
 const ImageGrid = styled.div`
@@ -28,28 +27,47 @@ const ImageGrid = styled.div`
     margin-bottom: 20px;
 `;
 
-export const WordPicture: FunctionComponent<WordPictureProps> = ({ data, onComplete }) => {
+export const WordPicture: FunctionComponent<WordPictureProps> = ({
+    data,
+    onComplete,
+}) => {
     const [answerImage, setAnswerImage] = useState<string | null>(null);
 
-    const checkAnswer = useCallback(function () {
-        return data.answer === answerImage;
-    }, [data, answerImage]);
+    const checkAnswer = useCallback(
+        function () {
+            return data.answer === answerImage;
+        },
+        [data, answerImage],
+    );
 
     const expectedAnswer = data.answer;
 
     return (
         <div>
             <Typography variant="h5" color="primary" gutterBottom>
-                <I18N textKey="word-picture-prompt" lang={I18NLangs.RU}/>
+                <I18N textKey="word-picture-prompt" lang={I18NLangs.RU} />
             </Typography>
 
-            <Typography mb={2} variant="h5">{data.word}</Typography>
+            <Typography mb={2} variant="h5">
+                {data.word}
+            </Typography>
 
             <ImageGrid>
-                {data.images.map(image => <Picture key={image} selected={answerImage === image} image={image} onSelect={setAnswerImage} />)}
+                {data.images.map((image) => (
+                    <Picture
+                        key={image}
+                        selected={answerImage === image}
+                        image={image}
+                        onSelect={setAnswerImage}
+                    />
+                ))}
             </ImageGrid>
 
-            <CheckAnswerControl onSubmit={onComplete} checkAnswer={checkAnswer} expectedAnswer={expectedAnswer} />
+            <CheckAnswerControl
+                onSubmit={onComplete}
+                checkAnswer={checkAnswer}
+                expectedAnswer={expectedAnswer}
+            />
         </div>
     );
 };

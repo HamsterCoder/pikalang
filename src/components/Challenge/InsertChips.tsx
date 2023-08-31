@@ -1,12 +1,12 @@
-import { Chip, Typography } from "@mui/material";
-import { FunctionComponent, useState, useCallback, ReactNode } from "react";
+import { Chip, Typography } from '@mui/material';
+import { FunctionComponent, useState, useCallback, ReactNode } from 'react';
 
-import { ChallengeType } from "./types";
-import { CheckAnswerControl } from "../CheckAnswerControl/CheckAnswerControl";
-import { I18N, I18NLangs } from "../I18N/I18N";
-import { Chips } from "../Chips/Chips";
-import { styled } from "styled-components";
-import { shuffle } from "../../utils/shuffle";
+import { ChallengeType } from './types';
+import { CheckAnswerControl } from '../CheckAnswerControl/CheckAnswerControl';
+import { I18N, I18NLangs } from '../I18N/I18N';
+import { Chips } from '../Chips/Chips';
+import { styled } from 'styled-components';
+import { shuffle } from '../../utils/shuffle';
 
 // TODO simplify this format, get all data from sentence
 export interface InsertChipsData {
@@ -18,7 +18,7 @@ export interface InsertChipsData {
 export interface TranslateChipsProps {
     type: ChallengeType.INSERT_CHIPS;
     data: InsertChipsData;
-    onComplete({solved}: {solved: boolean}): void;
+    onComplete({ solved }: { solved: boolean }): void;
 }
 
 interface WordInsertProps {
@@ -27,7 +27,7 @@ interface WordInsertProps {
 
 const WordInsert = styled.span<WordInsertProps>`
     display: inline-block;
-    min-width: ${props => (props.len - 2) * 0.8125}rem;
+    min-width: ${(props) => (props.len - 2) * 0.8125}rem;
     border-bottom: 2px solid var(--primary-accent);
 `;
 
@@ -46,7 +46,8 @@ function countMissingWords(sentence: string) {
 }
 
 function computeAnswer(sentence: string) {
-    return sentence.split(' ')
+    return sentence
+        .split(' ')
         .map((word: string) => {
             if (isMissingWord(word)) {
                 return word.slice(1, -1);
@@ -57,8 +58,13 @@ function computeAnswer(sentence: string) {
         .join(' ');
 }
 
-export const InsertChips: FunctionComponent<TranslateChipsProps> = ({ data, onComplete }) => {
-    const [fromChips, setFromChips] = useState<string[]>(shuffle(data.chips.slice()));
+export const InsertChips: FunctionComponent<TranslateChipsProps> = ({
+    data,
+    onComplete,
+}) => {
+    const [fromChips, setFromChips] = useState<string[]>(
+        shuffle(data.chips.slice()),
+    );
     const [answerChips, setAnswerChips] = useState<string[]>([]);
 
     const checkAnswer = useCallback(() => {
@@ -78,7 +84,7 @@ export const InsertChips: FunctionComponent<TranslateChipsProps> = ({ data, onCo
     function onChipSelect(chip: string, index: number) {
         // Count the number of missing words
         const missingWordsCount: number = countMissingWords(data.sentence);
-        
+
         // Find the first empty slot
         const insertIndex = answerChips.indexOf('');
 
@@ -89,17 +95,19 @@ export const InsertChips: FunctionComponent<TranslateChipsProps> = ({ data, onCo
             return;
         }
 
-        setAnswerChips(insertIndex !== -1 ?  
-            [
-                ...answerChips.slice(0, insertIndex),
-                chip,
-                ...answerChips.slice(insertIndex + 1)
-            ]
-            : [...answerChips, chip]);
+        setAnswerChips(
+            insertIndex !== -1
+                ? [
+                      ...answerChips.slice(0, insertIndex),
+                      chip,
+                      ...answerChips.slice(insertIndex + 1),
+                  ]
+                : [...answerChips, chip],
+        );
 
         setFromChips([
             ...fromChips.slice(0, index),
-            ...fromChips.slice(index + 1)
+            ...fromChips.slice(index + 1),
         ]);
     }
 
@@ -112,18 +120,37 @@ export const InsertChips: FunctionComponent<TranslateChipsProps> = ({ data, onCo
         setAnswerChips([
             ...answerChips.slice(0, index),
             '',
-            ...answerChips.slice(index + 1)
+            ...answerChips.slice(index + 1),
         ]);
     }
 
-    function prepareSentence(sentence: string, answerChips: string[]): ReactNode[] {
+    function prepareSentence(
+        sentence: string,
+        answerChips: string[],
+    ): ReactNode[] {
         let insertCounter = 0;
-        
-        return sentence.split(' ').map(word => {
+
+        return sentence.split(' ').map((word) => {
             if (isMissingWord(word)) {
-                const chip = answerChips[insertCounter] && <Chip sx={{ marginBottom: '5px'}} variant="outlined" onClick={onChipDeselect.bind(null, answerChips[insertCounter], insertCounter)} color="primary" label={answerChips[insertCounter]} />;
+                const chip = answerChips[insertCounter] && (
+                    <Chip
+                        sx={{ marginBottom: '5px' }}
+                        variant="outlined"
+                        onClick={onChipDeselect.bind(
+                            null,
+                            answerChips[insertCounter],
+                            insertCounter,
+                        )}
+                        color="primary"
+                        label={answerChips[insertCounter]}
+                    />
+                );
                 insertCounter += 1;
-                return (<><WordInsert len={word.length}>{chip}</WordInsert> </>);
+                return (
+                    <>
+                        <WordInsert len={word.length}>{chip}</WordInsert>{' '}
+                    </>
+                );
             }
             return word + ' ';
         });
@@ -134,14 +161,21 @@ export const InsertChips: FunctionComponent<TranslateChipsProps> = ({ data, onCo
     return (
         <div>
             <Typography variant="h5" color="primary" gutterBottom>
-                <I18N textKey="insert-chips-prompt" lang={I18NLangs.RU}/>
+                <I18N textKey="insert-chips-prompt" lang={I18NLangs.RU} />
             </Typography>
 
-            <Typography variant="h5" mb={2}>{prepareSentence(data.sentence, answerChips)}</Typography>
+            <Typography variant="h5" mb={2}>
+                {prepareSentence(data.sentence, answerChips)}
+            </Typography>
 
-            <Chips chips={fromChips} onSelect={onChipSelect}/>
+            <Chips chips={fromChips} onSelect={onChipSelect} />
 
-            <CheckAnswerControl onSubmit={onComplete} checkAnswer={checkAnswer} expectedAnswer={expectedAnswer} translation={data.translation} />
+            <CheckAnswerControl
+                onSubmit={onComplete}
+                checkAnswer={checkAnswer}
+                expectedAnswer={expectedAnswer}
+                translation={data.translation}
+            />
         </div>
     );
 };

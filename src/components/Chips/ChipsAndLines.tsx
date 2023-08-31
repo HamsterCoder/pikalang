@@ -1,6 +1,6 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useState } from 'react';
 
-import { Chips } from "./Chips";
+import { Chips } from './Chips';
 
 export interface CandidateChipsProps {
     chips: string[];
@@ -8,18 +8,17 @@ export interface CandidateChipsProps {
 }
 
 function removeChip(chips: string[], chip: string, index: number) {
-    return [
-        ...chips.slice(0, index),
-        ...chips.slice(index + 1)
-    ];
+    return [...chips.slice(0, index), ...chips.slice(index + 1)];
 }
 
 function addChip(chips: string[], chip: string) {
     return [...chips, chip];
 }
 
-
-export const ChipsAndLines: FunctionComponent<CandidateChipsProps> = ({ chips, onChange }) => {
+export const ChipsAndLines: FunctionComponent<CandidateChipsProps> = ({
+    chips,
+    onChange,
+}) => {
     const [fromChips, setFromChips] = useState<string[]>(chips);
     const [toChips, setToChips] = useState<string[]>([]);
 
@@ -30,7 +29,7 @@ export const ChipsAndLines: FunctionComponent<CandidateChipsProps> = ({ chips, o
         setToChips(updatedToChips);
         onChange(updatedToChips);
     }
-    
+
     function onChipDeselect(chip: string, index: number) {
         setFromChips(addChip(fromChips, chip));
 
@@ -41,9 +40,9 @@ export const ChipsAndLines: FunctionComponent<CandidateChipsProps> = ({ chips, o
 
     return (
         <>
-            <Chips chips={toChips} asAnswerField onSelect={onChipDeselect}/>
+            <Chips chips={toChips} asAnswerField onSelect={onChipDeselect} />
 
-            <Chips chips={fromChips} onSelect={onChipSelect}/>
+            <Chips chips={fromChips} onSelect={onChipSelect} />
         </>
     );
 };

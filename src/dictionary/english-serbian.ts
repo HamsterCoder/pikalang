@@ -13,13 +13,13 @@ export const dictionary: Record<string, string> = {
     blueberry: 'borovnica',
     blackberry: 'kupina',
     strawberry: 'jagoda',
-    raspberry: 'malina'
+    raspberry: 'malina',
 };
 
-export const reverseDictionary: Record<string, string> = Object.entries(dictionary)
-    .reduce((dict: Record<string, string>, [key, value]: [string, string]) => {
-        dict[value] = key;
+export const reverseDictionary: Record<string, string> = Object.entries(
+    dictionary,
+).reduce((dict: Record<string, string>, [key, value]: [string, string]) => {
+    dict[value] = key;
 
-        return dict;
-    }, {});
-    
+    return dict;
+}, {});

@@ -1,12 +1,12 @@
-import { FunctionComponent, useCallback, useReducer, useState } from "react";
-import { styled } from "styled-components";
-import { Button, Typography } from "@mui/material";
+import { FunctionComponent, useCallback, useReducer, useState } from 'react';
+import { styled } from 'styled-components';
+import { Button, Typography } from '@mui/material';
 
-import { Challenge } from "../Challenge/Challenge";
-import { ChallengeDescription } from "../Challenge/types";
-import { Header } from "../Header/Header";
-import { userDataApi } from "../../api/user-data";
-import { I18N, I18NLangs } from "../I18N/I18N";
+import { Challenge } from '../Challenge/Challenge';
+import { ChallengeDescription } from '../Challenge/types';
+import { Header } from '../Header/Header';
+import { userDataApi } from '../../api/user-data';
+import { I18N, I18NLangs } from '../I18N/I18N';
 
 export interface LessonDescription {
     id: string;
@@ -35,12 +35,12 @@ const LessonFooter = styled.div`
 enum LessonChallengeStatus {
     PROGRESS,
     SAVING,
-    COMPLETE
+    COMPLETE,
 }
 
 interface LessonState {
     challengeNumber: number;
-    challengeStatus: LessonChallengeStatus,
+    challengeStatus: LessonChallengeStatus;
     complete: boolean;
     correct: number;
     incorrect: number;
@@ -49,21 +49,24 @@ interface LessonState {
 enum LessonActionType {
     COMPLETE_LESSON,
     COMPLETE_CHALLENGE,
-    SHOW_NEXT_CHALLENGE
+    SHOW_NEXT_CHALLENGE,
 }
 
 interface LessonAction {
-    type: LessonActionType,
+    type: LessonActionType;
     data?: {
-        solved: boolean,
-    }
+        solved: boolean;
+    };
 }
 
-function lessonStateReducer(state: LessonState, {type, data}: LessonAction): LessonState {
+function lessonStateReducer(
+    state: LessonState,
+    { type, data }: LessonAction,
+): LessonState {
     if (type === LessonActionType.COMPLETE_LESSON) {
         return {
             ...state,
-            complete: true
+            complete: true,
         };
     } else if (type === LessonActionType.COMPLETE_CHALLENGE) {
         const updatedState: Partial<LessonState> = {};
@@ -77,28 +80,32 @@ function lessonStateReducer(state: LessonState, {type, data}: LessonAction): Les
         return {
             ...state,
             ...updatedState,
-            challengeStatus: LessonChallengeStatus.COMPLETE
+            challengeStatus: LessonChallengeStatus.COMPLETE,
         };
     } else if (type === LessonActionType.SHOW_NEXT_CHALLENGE) {
         return {
             ...state,
             challengeNumber: state.challengeNumber + 1,
-            challengeStatus: LessonChallengeStatus.PROGRESS
+            challengeStatus: LessonChallengeStatus.PROGRESS,
         };
     }
 
     return state;
 }
 
-export const Lesson: FunctionComponent<LessonProps> = ({ challenges, description, onComplete }) => {
+export const Lesson: FunctionComponent<LessonProps> = ({
+    challenges,
+    description,
+    onComplete,
+}) => {
     const [showChallenge, setShowChallenge] = useState(true);
 
     const [state, dispatch] = useReducer(lessonStateReducer, {
         challengeNumber: 0,
         challengeStatus: LessonChallengeStatus.PROGRESS,
-        complete: false,   
+        complete: false,
         correct: 0,
-        incorrect: 0
+        incorrect: 0,
     });
 
     const handleLessonComplete = useCallback(() => {
@@ -110,13 +117,17 @@ export const Lesson: FunctionComponent<LessonProps> = ({ challenges, description
     }
 
     const saveProgress = useCallback(async () => {
-        await userDataApi.saveLessonProgress('default', description.id, state.correct);
+        await userDataApi.saveLessonProgress(
+            'default',
+            description.id,
+            state.correct,
+        );
     }, [state, description]);
 
     async function showNextChallenge() {
         if (state.challengeNumber + 1 === challenges.length) {
             await saveProgress();
-            
+
             dispatch({ type: LessonActionType.COMPLETE_LESSON });
         } else {
             setShowChallenge(false);
@@ -140,30 +151,66 @@ export const Lesson: FunctionComponent<LessonProps> = ({ challenges, description
         <div>
             <Header>
                 <Typography variant="h4">{description.name}</Typography>
-                <Typography sx={{ marginLeft: 'auto' }} variant="h4">{state.challengeNumber + 1}/{challenges.length}</Typography>
+                <Typography sx={{ marginLeft: 'auto' }} variant="h4">
+                    {state.challengeNumber + 1}/{challenges.length}
+                </Typography>
             </Header>
             <LessonBody>
-                {state.complete && <div>
-                    <Typography variant="h4" gutterBottom>
-                        <I18N textKey="lesson-complete-appraisal" lang={I18NLangs.RU}></I18N>
-                    </Typography>
-                    <Typography variant="body1">
-                        <I18N textKey="lesson-complete-stats" values={{
-                            correct: state.correct,
-                            total: challenges.length,
-                            xp: state.correct,
-                        }} lang={I18NLangs.RU}></I18N>
-                    </Typography>
-                </div>}
-                {!state.complete && showChallenge && <Challenge {...challenges[state.challengeNumber]} onComplete={onChallengeComplete}/>}
+                {state.complete && (
+                    <div>
+                        <Typography variant="h4" gutterBottom>
+                            <I18N
+                                textKey="lesson-complete-appraisal"
+                                lang={I18NLangs.RU}
+                            ></I18N>
+                        </Typography>
+                        <Typography variant="body1">
+                            <I18N
+                                textKey="lesson-complete-stats"
+                                values={{
+                                    correct: state.correct,
+                                    total: challenges.length,
+                                    xp: state.correct,
+                                }}
+                                lang={I18NLangs.RU}
+                            ></I18N>
+                        </Typography>
+                    </div>
+                )}
+                {!state.complete && showChallenge && (
+                    <Challenge
+                        {...challenges[state.challengeNumber]}
+                        onComplete={onChallengeComplete}
+                    />
+                )}
             </LessonBody>
             <LessonFooter>
-                {state.complete && <Button color="success" variant="contained" onClick={handleLessonComplete}>
-                    <I18N textKey="lesson-complete-to-lesson-list" lang={I18NLangs.RU}></I18N>
-                </Button>}
-                {!state.complete && state.challengeStatus === LessonChallengeStatus.COMPLETE && <Button color="success" variant="contained" onClick={showNextChallenge}>
-                    <I18N textKey="lesson-next-button" lang={I18NLangs.RU}></I18N>
-                </Button>}
+                {state.complete && (
+                    <Button
+                        color="success"
+                        variant="contained"
+                        onClick={handleLessonComplete}
+                    >
+                        <I18N
+                            textKey="lesson-complete-to-lesson-list"
+                            lang={I18NLangs.RU}
+                        ></I18N>
+                    </Button>
+                )}
+                {!state.complete &&
+                    state.challengeStatus ===
+                        LessonChallengeStatus.COMPLETE && (
+                        <Button
+                            color="success"
+                            variant="contained"
+                            onClick={showNextChallenge}
+                        >
+                            <I18N
+                                textKey="lesson-next-button"
+                                lang={I18NLangs.RU}
+                            ></I18N>
+                        </Button>
+                    )}
             </LessonFooter>
         </div>
     );
