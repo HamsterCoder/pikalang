@@ -74,15 +74,20 @@ export const InsertChips: FunctionComponent<TranslateChipsProps> = ({ data, onCo
 
         return true;
     }, [data, answerChips]);
-    
-    // TODO handle the case when there are more chips than slots
-    // Don't let select the chip
 
     function onChipSelect(chip: string, index: number) {
-        // console.log(chip, index);
-
+        // Count the number of missing words
+        const missingWordsCount: number = countMissingWords(data.sentence);
+        
         // Find the first empty slot
-        let insertIndex = answerChips.indexOf('');
+        const insertIndex = answerChips.indexOf('');
+
+        // console.log({insertIndex, missingWordsCount, chip, index});
+
+        // Check that not all words have been inserted
+        if (insertIndex === -1 && answerChips.length === missingWordsCount) {
+            return;
+        }
 
         setAnswerChips(insertIndex !== -1 ?  
             [

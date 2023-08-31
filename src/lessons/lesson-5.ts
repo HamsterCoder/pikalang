@@ -7,11 +7,11 @@ import { ChallengeDescription, ChallengeType } from "../components/Challenge/typ
 // kod kuće, napolju, ovde
 // grad,
 
-// Ja ✅ Mi
-// Ti ✅ Vi
-// On ✅ Oni
-// Ona ✅ One
-// Ono ✅ Ona
+// Ja ✅ Mi ✅
+// Ti ✅ Vi ✅
+// On ✅ Oni ✅
+// Ona ✅ One ✅
+// Ono ✅ Ona ✅
 
 const combinedChallenges: ChallengeDescription[] = [
   // Singular
