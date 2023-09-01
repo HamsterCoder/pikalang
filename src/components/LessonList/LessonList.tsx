@@ -11,10 +11,10 @@ import {
 } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 
-import { Header } from '../Header/Header';
-import { LessonDescription } from '../Lesson/Lesson';
+import { Header } from '@components/Header/Header';
+import { LessonDescription } from '@components/Lesson/Lesson';
+import { I18N, I18NLangs } from '@components/I18N/I18N';
 import { UserData, userDataApi } from '../../api/user-data';
-import { I18N, I18NLangs } from '../I18N/I18N';
 
 export interface LessonListProps {
     lessons: LessonDescription[];

@@ -1,7 +1,7 @@
 import {
     ChallengeDescription,
     ChallengeType,
-} from '../components/Challenge/types';
+} from '@components/Challenge/types';
 
 // TARGET WORDS: apple, pear, apricot, peach
 // SECONDARY WORDS: crvena, zelena, mala, velika

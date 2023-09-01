@@ -2,11 +2,12 @@ import { FunctionComponent, useCallback, useReducer, useState } from 'react';
 import { styled } from 'styled-components';
 import { Button, Typography } from '@mui/material';
 
-import { Challenge } from '../Challenge/Challenge';
-import { ChallengeDescription } from '../Challenge/types';
-import { Header } from '../Header/Header';
+import { Challenge } from '@components/Challenge/Challenge';
+import { ChallengeDescription } from '@components/Challenge/types';
+import { Header } from '@components/Header/Header';
+import { I18N, I18NLangs } from '@components/I18N/I18N';
+
 import { userDataApi } from '../../api/user-data';
-import { I18N, I18NLangs } from '../I18N/I18N';
 
 export interface LessonDescription {
     id: string;

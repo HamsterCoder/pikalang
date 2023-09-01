@@ -1,7 +1,7 @@
 import {
     ChallengeDescription,
     ChallengeType,
-} from '../components/Challenge/types';
+} from '@components/Challenge/types';
 
 // TARGET WORDS: ja sam, ti si, on/ona/one je, mi smo, vi ste, oni/one/ona su
 // SECONDARY WORDS:

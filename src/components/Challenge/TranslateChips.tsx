@@ -2,9 +2,9 @@ import { Typography } from '@mui/material';
 import { FunctionComponent, useState, useCallback } from 'react';
 
 import { ChallengeType } from './types';
-import { ChipsAndLines } from '../Chips/ChipsAndLines';
-import { CheckAnswerControl } from '../CheckAnswerControl/CheckAnswerControl';
-import { I18N, I18NLangs } from '../I18N/I18N';
+import { ChipsAndLines } from '@components/Chips/ChipsAndLines';
+import { CheckAnswerControl } from '@components/CheckAnswerControl/CheckAnswerControl';
+import { I18N, I18NLangs } from '@components/I18N/I18N';
 
 export interface TranslateChipsData {
     sentence: string;

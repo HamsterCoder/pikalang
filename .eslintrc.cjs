@@ -12,5 +12,16 @@ module.exports = {
     rules: {
         'react-refresh/only-export-components': 'warn',
         'react-hooks/exhaustive-deps': 'warn',
+        'no-restricted-imports': [
+            'warn',
+            {
+                patterns: [
+                    {
+                        group: ['../'],
+                        message: 'Relative imports are not allowed.',
+                    },
+                ],
+            },
+        ],
     },
 };

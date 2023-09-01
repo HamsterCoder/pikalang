@@ -1,7 +1,7 @@
 import {
     ChallengeDescription,
     ChallengeType,
-} from '../components/Challenge/types';
+} from '@components/Challenge/types';
 
 // NEW WORDS: tomato, cucumber, potato, pepper
 // NEW PHRASES: Šta je ovo?, Ovo je..., Ovo su...

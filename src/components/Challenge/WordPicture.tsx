@@ -3,9 +3,9 @@ import { Typography } from '@mui/material';
 import { styled } from 'styled-components';
 
 import { ChallengeType } from './types';
-import { Picture } from '../Picture/Picture';
-import { CheckAnswerControl } from '../CheckAnswerControl/CheckAnswerControl';
-import { I18N, I18NLangs } from '../I18N/I18N';
+import { Picture } from '@components/Picture/Picture';
+import { CheckAnswerControl } from '@components/CheckAnswerControl/CheckAnswerControl';
+import { I18N, I18NLangs } from '@components/I18N/I18N';
 
 export interface WordPictureData {
     images: string[];

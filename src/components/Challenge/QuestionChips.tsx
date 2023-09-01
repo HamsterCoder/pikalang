@@ -6,12 +6,11 @@ import { FunctionComponent, useCallback, useState } from 'react';
 import { styled } from 'styled-components';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 
-// TODO get rid of relative import for components
-import { ChipsAndLines } from '../Chips/ChipsAndLines';
 import { ChallengeType } from './types';
-import { Picture } from '../Picture/Picture';
-import { CheckAnswerControl } from '../CheckAnswerControl/CheckAnswerControl';
-import { I18N, I18NLangs } from '../I18N/I18N';
+import { ChipsAndLines } from '@components/Chips/ChipsAndLines';
+import { Picture } from '@components/Picture/Picture';
+import { CheckAnswerControl } from '@components/CheckAnswerControl/CheckAnswerControl';
+import { I18N, I18NLangs } from '@components/I18N/I18N';
 
 export interface QuestionChipsData {
     image?: string;

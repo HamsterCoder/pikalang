@@ -1,7 +1,7 @@
 import { Button, Alert, AlertTitle } from '@mui/material';
 import { FunctionComponent, useCallback, useState } from 'react';
 
-import { I18N, I18NLangs } from '../I18N/I18N';
+import { I18N, I18NLangs } from '@components/I18N/I18N';
 
 export enum ChallengeStatus {
     PROGRESS,

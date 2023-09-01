@@ -1,11 +1,11 @@
 import { Chip, Typography } from '@mui/material';
 import { FunctionComponent, useState, useCallback, ReactNode } from 'react';
+import { styled } from 'styled-components';
 
 import { ChallengeType } from './types';
-import { CheckAnswerControl } from '../CheckAnswerControl/CheckAnswerControl';
-import { I18N, I18NLangs } from '../I18N/I18N';
-import { Chips } from '../Chips/Chips';
-import { styled } from 'styled-components';
+import { CheckAnswerControl } from '@components/CheckAnswerControl/CheckAnswerControl';
+import { I18N, I18NLangs } from '@components/I18N/I18N';
+import { Chips } from '@components/Chips/Chips';
 import { shuffle } from '../../utils/shuffle';
 
 export interface InsertChipsData {
