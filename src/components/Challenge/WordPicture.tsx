@@ -13,9 +13,13 @@ export interface WordPictureData {
     answer: string;
 }
 
-export interface WordPictureProps {
+export interface WordPictureChallenge {
     type: ChallengeType.WORD_PICTURE;
     data: WordPictureData;
+}
+
+export interface WordPictureProps {
+    challenge: WordPictureChallenge;
     onComplete({ solved }: { solved: boolean }): void;
 }
 
@@ -28,7 +32,7 @@ const ImageGrid = styled.div`
 `;
 
 export const WordPicture: FunctionComponent<WordPictureProps> = ({
-    data,
+    challenge: { data },
     onComplete,
 }) => {
     const [answerImage, setAnswerImage] = useState<string | null>(null);

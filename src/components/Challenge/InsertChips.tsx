@@ -8,16 +8,19 @@ import { Chips } from '../Chips/Chips';
 import { styled } from 'styled-components';
 import { shuffle } from '../../utils/shuffle';
 
-// TODO simplify this format, get all data from sentence
 export interface InsertChipsData {
     sentence: string;
     translation: string;
     chips: string[];
 }
 
-export interface TranslateChipsProps {
+export interface InsertChipsChallenge {
     type: ChallengeType.INSERT_CHIPS;
     data: InsertChipsData;
+}
+
+export interface TranslateChipsProps {
+    challenge: InsertChipsChallenge;
     onComplete({ solved }: { solved: boolean }): void;
 }
 
@@ -59,7 +62,7 @@ function computeAnswer(sentence: string) {
 }
 
 export const InsertChips: FunctionComponent<TranslateChipsProps> = ({
-    data,
+    challenge: { data },
     onComplete,
 }) => {
     const [fromChips, setFromChips] = useState<string[]>(

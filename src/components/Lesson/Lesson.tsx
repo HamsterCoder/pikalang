@@ -138,15 +138,6 @@ export const Lesson: FunctionComponent<LessonProps> = ({
         }
     }
 
-    // TODO Lesson complete screen (simple)
-    // - Congratulations, you've completed the lesson
-    // - Accuracy 100%, 95% etc
-    // - Go to lesson list button
-
-    // TODO Disable check button if input is empty
-
-    // IMP Duolingo has a nice slide, fade in animation for changing the challenges
-
     return (
         <div>
             <Header>
@@ -179,7 +170,7 @@ export const Lesson: FunctionComponent<LessonProps> = ({
                 )}
                 {!state.complete && showChallenge && (
                     <Challenge
-                        {...challenges[state.challengeNumber]}
+                        challenge={challenges[state.challengeNumber]}
                         onComplete={onChallengeComplete}
                     />
                 )}

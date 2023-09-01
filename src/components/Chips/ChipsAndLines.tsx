@@ -7,6 +7,7 @@ export interface CandidateChipsProps {
     onChange(chips: string[]): void;
 }
 
+//@ts-ignore
 function removeChip(chips: string[], chip: string, index: number) {
     return [...chips.slice(0, index), ...chips.slice(index + 1)];
 }

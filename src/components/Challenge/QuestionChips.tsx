@@ -21,9 +21,16 @@ export interface QuestionChipsData {
     chips: string[];
 }
 
-export interface QuestionChipsProps {
+export interface QuestionChipsChallenge {
     type: ChallengeType.QUESTION_CHIPS;
     data: QuestionChipsData;
+}
+
+export interface QuestionChipsProps {
+    challenge: {
+        type: ChallengeType.QUESTION_CHIPS;
+        data: QuestionChipsData;
+    };
     onComplete({ solved }: { solved: boolean }): void;
 }
 
@@ -32,7 +39,7 @@ const PictureContainer = styled.div`
 `;
 
 export const QuestionChips: FunctionComponent<QuestionChipsProps> = ({
-    data,
+    challenge: { data },
     onComplete,
 }) => {
     const [answerChips, setAnswerChips] = useState<string[]>([]);

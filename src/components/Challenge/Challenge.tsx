@@ -1,49 +1,57 @@
 import { FunctionComponent } from 'react';
 
-// TODO get rid of relative import for components
-
 import './Challenge.css';
-import { QuestionChips, QuestionChipsProps } from './QuestionChips';
-import { WordPicture, WordPictureProps } from './WordPicture';
-import { TranslateChips, TranslateChipsProps } from './TranslateChips';
-import { ChallengeType } from './types';
-import { InsertChips } from './InsertChips';
+import { ChallengeDescription, ChallengeType } from './types';
+import { QuestionChips, QuestionChipsChallenge } from './QuestionChips';
+import { WordPicture, WordPictureChallenge } from './WordPicture';
+import { TranslateChips, TranslateChipsChallenge } from './TranslateChips';
+import { InsertChips, InsertChipsChallenge } from './InsertChips';
+
 
 export interface ChallengeProps {
-    type: ChallengeType;
-    data:
-        | QuestionChipsProps['data']
-        | WordPictureProps['data']
-        | TranslateChipsProps['data'];
+    challenge: ChallengeDescription;
     onComplete({ solved }: { solved: boolean }): void;
 }
 
+function isQuestionChips(challenge: ChallengeDescription): challenge is QuestionChipsChallenge {
+    return challenge.type === ChallengeType.QUESTION_CHIPS;
+}
+
+function isWordPicture(challenge: ChallengeDescription): challenge is WordPictureChallenge {
+    return challenge.type === ChallengeType.WORD_PICTURE;
+}
+
+function isTranslateChips(challenge: ChallengeDescription): challenge is TranslateChipsChallenge {
+    return challenge.type === ChallengeType.TRANSLATE_CHIPS;
+}
+
+function isInsertChips(challenge: ChallengeDescription): challenge is InsertChipsChallenge {
+    return challenge.type === ChallengeType.INSERT_CHIPS;
+}
+
 export const Challenge: FunctionComponent<ChallengeProps> = ({
-    type,
-    data,
+    challenge,
     onComplete,
 }) => {
     return (
         <>
-            {type === ChallengeType.QUESTION_CHIPS && (
+            {isQuestionChips(challenge) && (
                 <QuestionChips
-                    type={type}
-                    data={data}
+                    challenge={challenge}
                     onComplete={onComplete}
                 />
             )}
-            {type === ChallengeType.WORD_PICTURE && (
-                <WordPicture type={type} data={data} onComplete={onComplete} />
+            {isWordPicture(challenge) && (
+                <WordPicture challenge={challenge} onComplete={onComplete} />
             )}
-            {type === ChallengeType.TRANSLATE_CHIPS && (
+            {isTranslateChips(challenge) && (
                 <TranslateChips
-                    type={type}
-                    data={data}
+                    challenge={challenge}
                     onComplete={onComplete}
                 />
             )}
-            {type === ChallengeType.INSERT_CHIPS && (
-                <InsertChips type={type} data={data} onComplete={onComplete} />
+            {isInsertChips(challenge) && (
+                <InsertChips challenge={challenge} onComplete={onComplete} />
             )}
         </>
     );

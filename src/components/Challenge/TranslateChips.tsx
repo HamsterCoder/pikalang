@@ -12,14 +12,18 @@ export interface TranslateChipsData {
     chips: string[];
 }
 
-export interface TranslateChipsProps {
+export interface TranslateChipsChallenge {
     type: ChallengeType.TRANSLATE_CHIPS;
     data: TranslateChipsData;
+}
+
+export interface TranslateChipsProps {
+    challenge: TranslateChipsChallenge;
     onComplete({ solved }: { solved: boolean }): void;
 }
 
 export const TranslateChips: FunctionComponent<TranslateChipsProps> = ({
-    data,
+    challenge: { data },
     onComplete,
 }) => {
     const [answerChips, setAnswerChips] = useState<string[]>([]);
