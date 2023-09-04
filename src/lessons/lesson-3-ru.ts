@@ -2,8 +2,19 @@ import {
     ChallengeDescription,
     ChallengeType,
 } from '@components/Challenge/types';
+import { LessonDescription } from '@components/Lesson/Lesson';
 
 // NEW WORDS: blueberry, raspberry, strawberry, blackberry
+
+export const description: LessonDescription = {
+    id: 'food/berries-1',
+    name: 'berries-1',
+    displayName: 'Ягоды 1',
+    topic: 'food',
+    displayTopic: 'Еда',
+    image: 'berries',
+    description: 'Учим названия некоторых ягод',
+};
 
 const blueberryChallenges: ChallengeDescription[] = [
     {

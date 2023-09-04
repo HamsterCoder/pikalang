@@ -120,7 +120,7 @@ export const LessonList: FunctionComponent<LessonListProps> = ({
                             >
                                 <CardContent sx={{ flexGrow: 1 }}>
                                     <Typography variant="body1" gutterBottom>
-                                        {lesson.topic} &middot; {lesson.name}
+                                        {lesson.displayTopic} &middot; {lesson.displayName}
                                     </Typography>
                                     <LinearProgress
                                         variant="determinate"

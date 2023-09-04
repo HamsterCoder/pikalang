@@ -12,10 +12,11 @@ import { userDataApi } from '../../api/user-data';
 export interface LessonDescription {
     id: string;
     name: string;
+    displayName: string;
     topic: string;
+    displayTopic: string;
     description: string;
     image: string;
-    url: string;
 }
 
 export interface LessonProps {
@@ -142,7 +143,7 @@ export const Lesson: FunctionComponent<LessonProps> = ({
     return (
         <div>
             <Header>
-                <Typography variant="h4">{description.name}</Typography>
+                <Typography variant="h4">{description.displayName}</Typography>
                 <Typography sx={{ marginLeft: 'auto' }} variant="h4">
                     {state.challengeNumber + 1}/{challenges.length}
                 </Typography>
