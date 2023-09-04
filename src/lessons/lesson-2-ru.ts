@@ -2,9 +2,20 @@ import {
     ChallengeDescription,
     ChallengeType,
 } from '@components/Challenge/types';
+import { LessonDescription } from '@components/Lesson/Lesson';
 
 // TARGET WORDS: apple, pear, apricot, peach
 // SECONDARY WORDS: crvena, zelena, mala, velika
+
+export const description: LessonDescription = {
+    id: 'food/fruit-1',
+    name: 'fruit-1',
+    displayName: 'Фрукты 1',
+    topic: 'food',
+    displayTopic: 'Еда',
+    image: 'fruit',
+    description: 'Учим названия некоторых фруктов',
+};
 
 const appleChallenges: ChallengeDescription[] = [
     {

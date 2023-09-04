@@ -2,6 +2,7 @@ import {
     ChallengeDescription,
     ChallengeType,
 } from '@components/Challenge/types';
+import { LessonDescription } from '@components/Lesson/Lesson';
 
 // TARGET WORDS: ja sam, ti si, on/ona/one je, mi smo, vi ste, oni/one/ona su
 // SECONDARY WORDS:
@@ -13,6 +14,16 @@ import {
 // On ✅ | Oni ✅ ✅
 // Ona ✅| One ✅ ✅
 // Ono ✅ | Ona ✅
+
+export const description: LessonDescription = {
+    id: 'grammar/yesam',
+    name: 'yesam',
+    displayName: 'yesam', // i18n
+    topic: 'grammar',
+    displayTopic: 'Грамматика', // i18n
+    image: 'grammar',
+    description: 'Спрягаем вспомогательный глагол yesam', // i18n
+};
 
 const combinedChallenges: ChallengeDescription[] = [
     // Singular

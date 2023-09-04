@@ -1,18 +1,17 @@
 import { useCallback, useReducer } from 'react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 
-// TODO fix relative import
-import { Lesson, LessonDescription } from './components/Lesson/Lesson';
-import { LessonList } from './components/LessonList/LessonList';
-import { ChallengeDescription } from './components/Challenge/types';
+import { Lesson, LessonDescription } from '@components/Lesson/Lesson';
+import { LessonList } from '@components/LessonList/LessonList';
+import { ChallengeDescription } from '@components/Challenge/types';
 import { theme } from './themes/default';
 import { shuffle } from './utils/shuffle';
 
-import { challenges as challenges1 } from './lessons/lesson-1';
-import { challenges as challenges2 } from './lessons/lesson-2';
-import { challenges as challenges3 } from './lessons/lesson-3';
-import { challenges as challenges4 } from './lessons/lesson-4';
-import { challenges as challenges5 } from './lessons/lesson-5';
+import { challenges as challenges1, description as description1 } from './lessons/lesson-1-ru';
+import { challenges as challenges2, description as description2 } from './lessons/lesson-2-ru';
+import { challenges as challenges3, description as description3 } from './lessons/lesson-3-ru';
+import { challenges as challenges4, description as description4 } from './lessons/lesson-4-ru';
+import { challenges as challenges5, description as description5 } from './lessons/lesson-5-ru';
 
 const lessonsMap: Record<string, ChallengeDescription[]> = {
     '1': challenges1,
@@ -23,46 +22,11 @@ const lessonsMap: Record<string, ChallengeDescription[]> = {
 };
 
 const lessons: LessonDescription[] = [
-    {
-        id: '1',
-        name: 'Овощи 1',
-        topic: 'Еда',
-        url: 'lesson-1',
-        image: 'vegetables',
-        description: 'Учим названия некоторых овощей',
-    },
-    {
-        id: '2',
-        name: 'Фрукты 1',
-        topic: 'Еда',
-        url: 'lesson-2',
-        image: 'fruit',
-        description: 'Учим названия некоторых фруктов',
-    },
-    {
-        id: '3',
-        name: 'Ягоды 1',
-        topic: 'Еда',
-        url: 'lesson-3',
-        image: 'berries',
-        description: 'Учим названия некоторых ягод',
-    },
-    {
-        id: '4',
-        name: 'yesam',
-        topic: 'Грамматика',
-        url: 'lesson-4',
-        image: 'grammar',
-        description: 'Спрягаем вспомогательный глагол yesam',
-    },
-    {
-        id: '5',
-        name: 'nisam',
-        topic: 'Грамматика',
-        url: 'lesson-5',
-        image: 'grammar',
-        description: 'Спрягаем вспомогательный глагол nisam',
-    },
+    description1,
+    description2,
+    description3,
+    description4,
+    description5,
 ];
 
 enum AppActionType {

@@ -2,6 +2,7 @@ import {
     ChallengeDescription,
     ChallengeType,
 } from '@components/Challenge/types';
+import { LessonDescription } from '@components/Lesson/Lesson';
 
 // TARGET WORDS
 // nisam, nisi, nije, nismo, niste, nisu
@@ -15,6 +16,16 @@ import {
 // On ✅ Oni ✅
 // Ona ✅ One ✅
 // Ono ✅ Ona ✅
+
+export const description: LessonDescription = {
+    id: 'grammar/nisam',
+    name: 'nisam',
+    displayName: 'nisam',
+    topic: 'grammar',
+    displayTopic: 'Грамматика',
+    image: 'grammar',
+    description: 'Спрягаем вспомогательный глагол nisam',
+};
 
 const combinedChallenges: ChallengeDescription[] = [
     // Singular

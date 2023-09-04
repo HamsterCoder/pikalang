@@ -2,9 +2,20 @@ import {
     ChallengeDescription,
     ChallengeType,
 } from '@components/Challenge/types';
+import { LessonDescription } from '@components/Lesson/Lesson';
 
 // NEW WORDS: tomato, cucumber, potato, pepper
 // NEW PHRASES: Šta je ovo?, Ovo je..., Ovo su...
+
+export const description: LessonDescription = {
+    id: 'food/vegetables-1',
+    name: 'vegetables-1',
+    displayName: 'Овощи 1',
+    topic: 'food',
+    displayTopic: 'Еда',
+    image: 'vegetables',
+    description: 'Учим названия некоторых овощей',
+};
 
 const tomatoChallenges: ChallengeDescription[] = [
     {
