@@ -7,18 +7,47 @@ import { ChallengeDescription } from '@components/Challenge/types';
 import { theme } from './themes/default';
 import { shuffle } from './utils/shuffle';
 
-import { challenges as challenges1, description as description1 } from './lessons/lesson-1-ru';
-import { challenges as challenges2, description as description2 } from './lessons/lesson-2-ru';
-import { challenges as challenges3, description as description3 } from './lessons/lesson-3-ru';
-import { challenges as challenges4, description as description4 } from './lessons/lesson-4-ru';
-import { challenges as challenges5, description as description5 } from './lessons/lesson-5-ru';
+import {
+    challenges as challenges1,
+    description as description1,
+} from './lessons/lesson-1-ru';
+import {
+    challenges as challenges2,
+    description as description2,
+} from './lessons/lesson-2-ru';
+import {
+    challenges as challenges3,
+    description as description3,
+} from './lessons/lesson-3-ru';
+import {
+    challenges as challenges4,
+    description as description4,
+} from './lessons/lesson-4-ru';
+import {
+    challenges as challenges5,
+    description as description5,
+} from './lessons/lesson-5-ru';
+import {
+    challenges as challenges6,
+    description as description6,
+} from './lessons/lesson-6-ru';
 
 const lessonsMap: Record<string, ChallengeDescription[]> = {
-    '1': challenges1,
-    '2': challenges2,
-    '3': challenges3,
-    '4': challenges4,
-    '5': challenges5,
+    [description1.id]: challenges1,
+    [description2.id]: challenges2,
+    [description3.id]: challenges3,
+    [description4.id]: challenges4,
+    [description5.id]: challenges5,
+    [description6.id]: challenges6,
+};
+
+const descriptionMap: Record<string, LessonDescription> = {
+    [description1.id]: description1,
+    [description2.id]: description2,
+    [description3.id]: description3,
+    [description4.id]: description4,
+    [description5.id]: description5,
+    [description6.id]: description6,
 };
 
 const lessons: LessonDescription[] = [
@@ -27,6 +56,7 @@ const lessons: LessonDescription[] = [
     description3,
     description4,
     description5,
+    description6,
 ];
 
 enum AppActionType {
@@ -92,6 +122,7 @@ function App() {
     );
 
     console.log(page, params);
+    console.log(lessonsMap);
 
     return (
         <>
@@ -105,7 +136,7 @@ function App() {
                 )}
                 {page === PageType.LESSON && (
                     <Lesson
-                        description={lessons[Number(params.lessonId) - 1]}
+                        description={descriptionMap[params.lessonId]}
                         challenges={shuffle(
                             lessonsMap[params.lessonId].slice(0, 10),
                         )}
