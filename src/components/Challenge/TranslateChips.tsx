@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import { FunctionComponent, useState, useCallback } from 'react';
+import { FunctionComponent, useState, useCallback, useMemo } from 'react';
 
 import { ChallengeType } from './types';
 import { ChipsAndLines } from '@components/Chips/ChipsAndLines';
@@ -39,6 +39,23 @@ export const TranslateChips: FunctionComponent<TranslateChipsProps> = ({
     }, [data, answerChips]);
 
     const expectedAnswer = data.answer[0];
+    const anotherAnswer = useMemo(() => {
+        const answerIndex = data.answer.findIndex((possibleAnswer) => possibleAnswer === answerChips.join(' '));
+
+        if (answerIndex !== -1) {
+            if (data.answer.length === 1) {
+                data.answer[0];
+            }
+
+            if (answerIndex !== data.answer.length - 1) {
+                return data.answer[answerIndex + 1];
+            } else {
+                return data.answer[0];
+            }
+        }
+
+        return data.answer[0];
+    }, [data, answerChips]);
 
     return (
         <div>
@@ -56,6 +73,7 @@ export const TranslateChips: FunctionComponent<TranslateChipsProps> = ({
                 onSubmit={onComplete}
                 checkAnswer={checkAnswer}
                 expectedAnswer={expectedAnswer}
+                anotherAnswer={anotherAnswer}
             />
         </div>
     );

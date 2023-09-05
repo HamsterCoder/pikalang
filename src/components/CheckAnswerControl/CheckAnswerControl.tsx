@@ -13,6 +13,7 @@ export interface CheckAnswerControlProps {
     checkAnswer(): boolean;
     expectedAnswer: string;
     translation?: string;
+    anotherAnswer?: string;
     onSubmit({ solved }: { solved: boolean }): void;
 }
 
@@ -20,6 +21,7 @@ export const CheckAnswerControl: FunctionComponent<CheckAnswerControlProps> = ({
     onSubmit,
     checkAnswer,
     expectedAnswer,
+    anotherAnswer,
     translation,
 }) => {
     const [status, setStatus] = useState<ChallengeStatus>(
@@ -71,6 +73,16 @@ export const CheckAnswerControl: FunctionComponent<CheckAnswerControlProps> = ({
                                 lang={I18NLangs.RU}
                             ></I18N>
                             {translation}
+                        </>
+                    )}
+
+                    {anotherAnswer && (
+                        <>
+                            <I18N
+                                textKey="lesson-submit-another-message"
+                                lang={I18NLangs.RU}
+                            ></I18N>
+                            {anotherAnswer}
                         </>
                     )}
                 </Alert>

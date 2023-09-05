@@ -2,7 +2,7 @@
 // Make challenge a wrapper - submit should be rendered by challenge
 
 import { IconButton, Tooltip, Typography } from '@mui/material';
-import { FunctionComponent, useCallback, useState } from 'react';
+import { FunctionComponent, useCallback, useMemo, useState } from 'react';
 import { styled } from 'styled-components';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 
@@ -52,6 +52,23 @@ export const QuestionChips: FunctionComponent<QuestionChipsProps> = ({
     }, [data, answerChips]);
 
     const expectedAnswer = data.answer[0];
+    const anotherAnswer = useMemo(() => {
+        const answerIndex = data.answer.findIndex((possibleAnswer) => possibleAnswer === answerChips.join(' '));
+
+        if (answerIndex !== -1) {
+            if (data.answer.length === 1) {
+                data.answer[0];
+            }
+
+            if (answerIndex !== data.answer.length - 1) {
+                return data.answer[answerIndex + 1];
+            } else {
+                return data.answer[0];
+            }
+        }
+
+        return data.answer[0];
+    }, [data, answerChips]);
 
     return (
         <div>
@@ -80,6 +97,7 @@ export const QuestionChips: FunctionComponent<QuestionChipsProps> = ({
                 onSubmit={onComplete}
                 checkAnswer={checkAnswer}
                 expectedAnswer={expectedAnswer}
+                anotherAnswer={anotherAnswer}
             />
         </div>
     );

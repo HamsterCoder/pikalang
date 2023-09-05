@@ -22,8 +22,8 @@ const dictionary: Record<
     | ((values: Record<string, number | string>) => I18NTranslation)
 > = {
     'question-chips-prompt': {
-        en: 'Answer the question',
-        ru: 'Ответьте на вопрос',
+        en: 'Provide the correct response',
+        ru: 'Выберите правильный ответ',
     },
     'translate-chips-prompt': {
         en: 'Translate this sentence',
@@ -60,6 +60,10 @@ const dictionary: Record<
     'lesson-submit-translation-message': {
         en: 'Translation: ',
         ru: 'Перевод: ',
+    },
+    'lesson-submit-another-message': {
+        en: 'Another correct response: ',
+        ru: 'Другой вариант ответа: ',
     },
     'lesson-submit-error-message': {
         en: 'Incorrect.',
