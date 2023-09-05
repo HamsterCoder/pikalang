@@ -9,6 +9,7 @@ export const dictionary: Record<string, string> = {
     pear: 'kruška',
     apricot: 'kajsija',
     peach: 'breskva',
+    lemon: 'limun',
     // lesson-3
     blueberry: 'borovnica',
     blackberry: 'kupina',
