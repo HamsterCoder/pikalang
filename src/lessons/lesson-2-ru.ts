@@ -5,7 +5,7 @@ import {
 import { LessonDescription } from '@components/Lesson/Lesson';
 
 // TARGET WORDS: apple, pear, apricot, peach
-// SECONDARY WORDS: crvena, zelena, mala, velika
+// SECONDARY WORDS: crvena, zelena, mala, velika, limun,
 
 export const description: LessonDescription = {
     id: 'food/fruit-1',
@@ -81,7 +81,7 @@ const apricotChallenges: ChallengeDescription[] = [
         data: {
             word: 'kaisija',
             answer: 'apricot',
-            images: ['apple', 'apricot', 'strawberry'],
+            images: ['apple', 'apricot', 'strawberry'], // TODO swap out for a fruit
         },
     },
     {
