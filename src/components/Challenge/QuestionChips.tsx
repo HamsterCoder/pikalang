@@ -57,7 +57,7 @@ export const QuestionChips: FunctionComponent<QuestionChipsProps> = ({
 
         if (answerIndex !== -1) {
             if (data.answer.length === 1) {
-                data.answer[0];
+                return;
             }
 
             if (answerIndex !== data.answer.length - 1) {
@@ -67,7 +67,7 @@ export const QuestionChips: FunctionComponent<QuestionChipsProps> = ({
             }
         }
 
-        return data.answer[0];
+        return;
     }, [data, answerChips]);
 
     return (
