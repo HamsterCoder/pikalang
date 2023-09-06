@@ -35,6 +35,12 @@ const XP = styled.div`
     margin-left: auto;
 `;
 
+const EllipsisTypography = styled(Typography)`
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+`;
+
 function computeLessonProgress(
     userData: UserData | undefined,
     lessonId: string,
@@ -112,17 +118,20 @@ export const LessonList: FunctionComponent<LessonListProps> = ({
                         <Item key={lesson.id}>
                             <Card
                                 sx={{
-                                    width: 200,
+                                    width: 230,
                                     minHeight: 180,
                                     display: 'flex',
                                     flexDirection: 'column',
                                 }}
                             >
                                 <CardContent sx={{ flexGrow: 1 }}>
-                                    <Typography variant="body1" gutterBottom>
+                                    <EllipsisTypography
+                                        variant="body1"
+                                        gutterBottom
+                                    >
                                         {lesson.displayTopic} &middot;{' '}
                                         {lesson.displayName}
-                                    </Typography>
+                                    </EllipsisTypography>
                                     <LinearProgress
                                         variant="determinate"
                                         sx={{ marginBottom: 2 }}

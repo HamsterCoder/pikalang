@@ -40,7 +40,7 @@ export const challenges: ChallengeDescription[] = [
         data: {
             sentence: 'Добрый день',
             answer: ['Dobar dan'],
-            chips: ['Dobar', 'jutro', 'dan', 'Dobro',],
+            chips: ['Dobar', 'jutro', 'dan', 'Dobro'],
         },
     },
     {
@@ -91,7 +91,7 @@ export const challenges: ChallengeDescription[] = [
             questionHint: 'Добрый день',
             answer: ['Dobar dan!', 'Zdravo!'],
             chips: ['Zdravo!', 'Dobar', 'dan!'],
-        }
+        },
     },
     {
         type: ChallengeType.QUESTION_CHIPS,
@@ -100,7 +100,7 @@ export const challenges: ChallengeDescription[] = [
             questionHint: 'Доброе утро',
             answer: ['Dobro jutro!', 'Zdravo!'],
             chips: ['Zdravo!', 'Dobro', 'jutro!'],
-        }
+        },
     },
     {
         type: ChallengeType.QUESTION_CHIPS,
@@ -109,7 +109,7 @@ export const challenges: ChallengeDescription[] = [
             questionHint: 'Добрый вечер',
             answer: ['Dobro veće!', 'Zdravo!'],
             chips: ['Zdravo!', 'Dobro', 'veće!'],
-        }
+        },
     },
     {
         type: ChallengeType.QUESTION_CHIPS,
@@ -118,6 +118,6 @@ export const challenges: ChallengeDescription[] = [
             questionHint: 'До свидания',
             answer: ['Prijatno!', 'Doviđenja!'],
             chips: ['Prijatno!', 'Doviđenja!'],
-        }
+        },
     },
 ];

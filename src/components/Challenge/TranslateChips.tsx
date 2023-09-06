@@ -40,7 +40,9 @@ export const TranslateChips: FunctionComponent<TranslateChipsProps> = ({
 
     const expectedAnswer = data.answer[0];
     const anotherAnswer = useMemo(() => {
-        const answerIndex = data.answer.findIndex((possibleAnswer) => possibleAnswer === answerChips.join(' '));
+        const answerIndex = data.answer.findIndex(
+            (possibleAnswer) => possibleAnswer === answerChips.join(' '),
+        );
 
         if (answerIndex !== -1) {
             if (data.answer.length === 1) {
