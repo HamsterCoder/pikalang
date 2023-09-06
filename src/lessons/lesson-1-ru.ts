@@ -59,7 +59,7 @@ const cucumberChallenges: ChallengeDescription[] = [
     },
 ];
 
-const pepperChalllenges: ChallengeDescription[] = [
+const potatoChallenges: ChallengeDescription[] = [
     {
         type: ChallengeType.QUESTION_CHIPS,
         data: {
@@ -80,7 +80,7 @@ const pepperChalllenges: ChallengeDescription[] = [
     },
 ];
 
-const potatoChallenges: ChallengeDescription[] = [
+const pepperChallenges: ChallengeDescription[] = [
     {
         type: ChallengeType.QUESTION_CHIPS,
         data: {
@@ -88,15 +88,15 @@ const potatoChallenges: ChallengeDescription[] = [
             questionHint: 'Что это?',
             answer: ['Ovo je paprika'],
             chips: ['Ovo', 'paprika', 'krastavac', 'je'],
-            image: 'pepper',
+            image: 'sweet-pepper',
         },
     },
     {
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'paprika',
-            answer: 'pepper',
-            images: ['pepper', 'cucumber', 'courgette'],
+            answer: 'sweet-pepper',
+            images: ['sweet-pepper', 'cucumber', 'courgette'],
         },
     },
 ];
@@ -104,6 +104,6 @@ const potatoChallenges: ChallengeDescription[] = [
 export const challenges: ChallengeDescription[] = [
     ...tomatoChallenges,
     ...cucumberChallenges,
-    ...pepperChalllenges,
+    ...pepperChallenges,
     ...potatoChallenges,
 ];
