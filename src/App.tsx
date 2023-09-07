@@ -32,6 +32,11 @@ import {
     description as description6,
 } from './lessons/lesson-6-ru';
 
+import {
+    challenges as challenges7,
+    description as description7,
+} from './lessons/lesson-7-ru';
+
 const lessonsMap: Record<string, ChallengeDescription[]> = {
     [description1.id]: challenges1,
     [description2.id]: challenges2,
@@ -39,6 +44,7 @@ const lessonsMap: Record<string, ChallengeDescription[]> = {
     [description4.id]: challenges4,
     [description5.id]: challenges5,
     [description6.id]: challenges6,
+    [description7.id]: challenges7,
 };
 
 const descriptionMap: Record<string, LessonDescription> = {
@@ -48,6 +54,7 @@ const descriptionMap: Record<string, LessonDescription> = {
     [description4.id]: description4,
     [description5.id]: description5,
     [description6.id]: description6,
+    [description7.id]: description7,
 };
 
 const lessons: LessonDescription[] = [
@@ -57,6 +64,7 @@ const lessons: LessonDescription[] = [
     description4,
     description5,
     description6,
+    description7,
 ];
 
 enum AppActionType {

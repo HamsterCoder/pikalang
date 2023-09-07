@@ -11,6 +11,7 @@ import { ChipsAndLines } from '@components/Chips/ChipsAndLines';
 import { Picture } from '@components/Picture/Picture';
 import { CheckAnswerControl } from '@components/CheckAnswerControl/CheckAnswerControl';
 import { I18N, I18NLangs } from '@components/I18N/I18N';
+import { isCorrectAnswer, prepareAnotherAnswer } from './utils';
 
 export interface QuestionChipsData {
     image?: string;
@@ -46,30 +47,12 @@ export const QuestionChips: FunctionComponent<QuestionChipsProps> = ({
     const checkAnswer = useCallback(() => {
         console.log(`Answer chips: ${answerChips}`, answerChips);
 
-        return data.answer.some(
-            (possibleAnswer) => possibleAnswer === answerChips.join(' '),
-        );
+        return isCorrectAnswer(data.answer, answerChips);
     }, [data, answerChips]);
 
     const expectedAnswer = data.answer[0];
     const anotherAnswer = useMemo(() => {
-        const answerIndex = data.answer.findIndex(
-            (possibleAnswer) => possibleAnswer === answerChips.join(' '),
-        );
-
-        if (answerIndex !== -1) {
-            if (data.answer.length === 1) {
-                return;
-            }
-
-            if (answerIndex !== data.answer.length - 1) {
-                return data.answer[answerIndex + 1];
-            } else {
-                return data.answer[0];
-            }
-        }
-
-        return;
+        return prepareAnotherAnswer(data.answer, answerChips);
     }, [data, answerChips]);
 
     return (

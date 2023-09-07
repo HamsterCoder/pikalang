@@ -78,7 +78,7 @@ export const challenges: ChallengeDescription[] = [
     {
         type: ChallengeType.TRANSLATE_CHIPS,
         data: {
-            sentence: 'Удачи',
+            sentence: 'Приятного дня',
             answer: ['Prijatno'],
             chips: ['Prijatno', 'Doviđenja'],
         },

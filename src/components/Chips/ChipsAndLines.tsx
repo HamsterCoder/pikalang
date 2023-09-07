@@ -1,6 +1,7 @@
 import { FunctionComponent, useState } from 'react';
 
 import { Chips } from './Chips';
+import { shuffle } from '../../utils/shuffle';
 
 export interface CandidateChipsProps {
     chips: string[];
@@ -20,7 +21,7 @@ export const ChipsAndLines: FunctionComponent<CandidateChipsProps> = ({
     chips,
     onChange,
 }) => {
-    const [fromChips, setFromChips] = useState<string[]>(chips);
+    const [fromChips, setFromChips] = useState<string[]>(shuffle(chips.slice()));
     const [toChips, setToChips] = useState<string[]>([]);
 
     function onChipSelect(chip: string, index: number) {
