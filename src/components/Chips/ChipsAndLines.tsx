@@ -1,15 +1,14 @@
 import { FunctionComponent, useState } from 'react';
 
 import { Chips } from './Chips';
-import { shuffle } from '../../utils/shuffle';
+import { shuffle } from '@utils/shuffle';
 
 export interface CandidateChipsProps {
     chips: string[];
     onChange(chips: string[]): void;
 }
 
-//@ts-ignore
-function removeChip(chips: string[], chip: string, index: number) {
+function removeChip(chips: string[], _chip: string, index: number) {
     return [...chips.slice(0, index), ...chips.slice(index + 1)];
 }
 
@@ -21,7 +20,9 @@ export const ChipsAndLines: FunctionComponent<CandidateChipsProps> = ({
     chips,
     onChange,
 }) => {
-    const [fromChips, setFromChips] = useState<string[]>(shuffle(chips.slice()));
+    const [fromChips, setFromChips] = useState<string[]>(
+        shuffle(chips.slice()),
+    );
     const [toChips, setToChips] = useState<string[]>([]);
 
     function onChipSelect(chip: string, index: number) {

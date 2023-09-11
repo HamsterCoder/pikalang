@@ -14,7 +14,7 @@ import StarIcon from '@mui/icons-material/Star';
 import { Header } from '@components/Header/Header';
 import { LessonDescription } from '@components/Lesson/Lesson';
 import { I18N, I18NLangs } from '@components/I18N/I18N';
-import { UserData, userDataApi } from '../../api/user-data';
+import { UserData, userDataApi } from '@api/user-data';
 
 export interface LessonListProps {
     lessons: LessonDescription[];
