@@ -50,7 +50,7 @@ async function saveLessonProgress(
     xp: number,
 ): Promise<void> {
     try {
-        let updatedUserData = await userDataApi.getUserData(username);
+        const updatedUserData = await userDataApi.getUserData(username);
 
         // Get one XP for each correct answer
         updatedUserData.xp += xp;

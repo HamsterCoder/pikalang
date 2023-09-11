@@ -7,7 +7,7 @@ import { ChallengeDescription } from '@components/Challenge/types';
 import { Header } from '@components/Header/Header';
 import { I18N, I18NLangs } from '@components/I18N/I18N';
 
-import { userDataApi } from '../../api/user-data';
+import { userDataApi } from '@api/user-data';
 
 export interface LessonDescription {
     id: string;
