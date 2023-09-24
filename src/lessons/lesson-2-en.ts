@@ -70,7 +70,7 @@ const apricotChallenges: ChallengeDescription[] = [
         data: {
             word: 'kaisija',
             answer: 'apricot',
-            images: ['apple', 'apricot', 'strawberry'],
+            images: ['apple', 'apricot', 'banana'],
         },
     },
     {

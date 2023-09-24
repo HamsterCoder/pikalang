@@ -10,6 +10,7 @@ export const dictionary: Record<string, string> = {
     apricot: 'kajsija',
     peach: 'breskva',
     lemon: 'limun',
+    banana: 'banana',
     // lesson-3
     blueberry: 'borovnica',
     blackberry: 'kupina',
