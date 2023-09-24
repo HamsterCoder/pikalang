@@ -27,9 +27,11 @@ const Container = styled.div`
     flex-wrap: wrap;
 `;
 
-const Item = styled.div`
+const Item = styled.a`
     margin-left: 20px;
     margin-bottom: 20px;
+
+    cursor: pointer;
 `;
 
 const XP = styled.div`
@@ -78,7 +80,9 @@ export const LessonList: FunctionComponent<LessonListProps> = ({
         };
     }, [setLoadingState, setUserData]);
 
-    function handleLessonSelect(evt: React.MouseEvent<HTMLButtonElement>) {
+    function handleLessonSelect(evt: React.MouseEvent<HTMLElement>) {
+        evt.stopPropagation();
+
         const lessonId = evt.currentTarget.getAttribute('data-lesson-id');
 
         if (typeof lessonId === 'string') {
@@ -116,7 +120,11 @@ export const LessonList: FunctionComponent<LessonListProps> = ({
                 )}
                 {loadingState === 'complete' &&
                     lessons.map((lesson) => (
-                        <Item key={lesson.id}>
+                        <Item
+                            key={lesson.id}
+                            data-lesson-id={lesson.id}
+                            onClick={handleLessonSelect}
+                        >
                             <Card
                                 sx={{
                                     width: 230,
