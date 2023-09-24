@@ -98,7 +98,7 @@ export const challenges: ChallengeDescription[] = [
         type: ChallengeType.TRANSLATE_CHIPS,
         data: {
             sentence: 'Ućim srpski, ali govorim loše',
-            answer: ['Я учу сербский, но говорю плохо'],
+            answer: ['Я учу сербский, но говорю плохо', 'Я учу сербский, но плохо говорю'],
             chips: ['Я', 'учу', 'сербский,', 'но', 'говорю', 'плохо', 'хорошо'],
         },
     },
