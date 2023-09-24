@@ -145,8 +145,9 @@ function App() {
                 {page === PageType.LESSON && (
                     <Lesson
                         description={descriptionMap[params.lessonId]}
-                        challenges={shuffle(
-                            lessonsMap[params.lessonId].slice(0, 10),
+                        challenges={shuffle(lessonsMap[params.lessonId]).slice(
+                            0,
+                            10,
                         )}
                         onComplete={handleLessonComplete}
                     />
