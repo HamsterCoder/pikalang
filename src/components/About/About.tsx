@@ -16,7 +16,7 @@ const Container = styled.div`
 `;
 
 const Popover = styled.div`
-    width: 300px;
+    width: 280px;
 `;
 
 export const About: FunctionComponent = () => {
