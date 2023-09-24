@@ -6,7 +6,6 @@ import {
     CardActions,
     CardContent,
     CircularProgress,
-    Fab,
     LinearProgress,
     Typography,
 } from '@mui/material';
@@ -16,7 +15,6 @@ import { Header } from '@components/Header/Header';
 import { LessonDescription } from '@components/Lesson/Lesson';
 import { I18N, I18NLangs } from '@components/I18N/I18N';
 import { UserData, userDataApi } from '@api/user-data';
-import { QuestionMark } from '@mui/icons-material';
 import { About } from '@components/About/About';
 
 export interface LessonListProps {
