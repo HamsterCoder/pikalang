@@ -12,26 +12,22 @@ import {
 import StarIcon from '@mui/icons-material/Star';
 
 import { Header } from '@components/Header/Header';
-import { LessonDescription } from '@components/Lesson/Lesson';
 import { I18N, I18NLangs } from '@components/I18N/I18N';
 import { UserData, userDataApi } from '@api/user-data';
 import { About } from '@components/About/About';
-
-export interface LessonListProps {
-    lessons: LessonDescription[];
-    onLessonSelect(id: string): void;
-}
+import { getLessonsDescriptions } from '@api/lessons';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
     display: flex;
     flex-wrap: wrap;
 `;
 
-const Item = styled.a`
+const Item = styled(Link)`
     margin-left: 20px;
     margin-bottom: 20px;
 
-    cursor: pointer;
+    text-decoration: none;
 `;
 
 const XP = styled.div`
@@ -55,10 +51,9 @@ function computeLessonProgress(
         : 0;
 }
 
-export const LessonList: FunctionComponent<LessonListProps> = ({
-    lessons,
-    onLessonSelect,
-}) => {
+const lessons = getLessonsDescriptions();
+
+export const LessonList: FunctionComponent = () => {
     const [loadingState, setLoadingState] = useState<string>('loading');
     const [userData, setUserData] = useState<UserData>();
 
@@ -79,18 +74,6 @@ export const LessonList: FunctionComponent<LessonListProps> = ({
             console.log('LOG::LessonList.effect clean');
         };
     }, [setLoadingState, setUserData]);
-
-    function handleLessonSelect(evt: React.MouseEvent<HTMLElement>) {
-        evt.stopPropagation();
-
-        const lessonId = evt.currentTarget.getAttribute('data-lesson-id');
-
-        if (typeof lessonId === 'string') {
-            onLessonSelect(lessonId);
-        } else {
-            console.error('"data-lesson-id" attribute is missing');
-        }
-    }
 
     return (
         <div>
@@ -122,8 +105,7 @@ export const LessonList: FunctionComponent<LessonListProps> = ({
                     lessons.map((lesson) => (
                         <Item
                             key={lesson.id}
-                            data-lesson-id={lesson.id}
-                            onClick={handleLessonSelect}
+                            to={`/pikalang/lessons/${lesson.id}`}
                         >
                             <Card
                                 sx={{
@@ -160,7 +142,6 @@ export const LessonList: FunctionComponent<LessonListProps> = ({
                                     <Button
                                         size="small"
                                         data-lesson-id={lesson.id}
-                                        onClick={handleLessonSelect}
                                     >
                                         <I18N
                                             textKey="lesson-list-practice-button"
