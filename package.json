@@ -16,10 +16,15 @@
         "@fontsource/roboto": "^5.0.3",
         "@mui/icons-material": "^5.14.3",
         "@mui/material": "^5.14.3",
+        "@types/react-router-dom": "^5.3.3",
         "imagemin": "^8.0.1",
         "imagemin-mozjpeg": "^10.0.0",
+        "localforage": "^1.10.0",
+        "match-sorter": "^6.3.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-router-dom": "^6.16.0",
+        "sort-by": "^1.2.0",
         "styled-components": "^6.0.4"
     },
     "devDependencies": {
@@ -40,6 +45,8 @@
     },
     "lint-staged": {
         "*.{ts,tsx,js,css,md}": "prettier --write",
-        "*.{ts,tsx}": "eslint --cache --fix"
+        "*.{ts,tsx}": [
+            "eslint --cache --fix"
+        ]
     }
 }

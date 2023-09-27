@@ -1,13 +1,24 @@
-import { FunctionComponent, useCallback, useReducer, useState } from 'react';
+import {
+    FunctionComponent,
+    useCallback,
+    useMemo,
+    useReducer,
+    useState,
+} from 'react';
 import { styled } from 'styled-components';
+import { Link, useParams } from 'react-router-dom';
 import { Button, Typography } from '@mui/material';
 
 import { Challenge } from '@components/Challenge/Challenge';
-import { ChallengeDescription } from '@components/Challenge/types';
 import { Header } from '@components/Header/Header';
 import { I18N, I18NLangs } from '@components/I18N/I18N';
-
 import { userDataApi } from '@api/user-data';
+import {
+    getLessonById,
+    getLessonDescriptionById,
+    isLessonIdValid,
+} from '@api/lessons';
+import { shuffle } from '@utils/shuffle';
 
 export interface LessonDescription {
     id: string;
@@ -17,12 +28,6 @@ export interface LessonDescription {
     displayTopic: string;
     description: string;
     image: string;
-}
-
-export interface LessonProps {
-    description: LessonDescription;
-    challenges: ChallengeDescription[];
-    onComplete(id: string): void;
 }
 
 const LessonBody = styled.div`
@@ -95,12 +100,27 @@ function lessonStateReducer(
     return state;
 }
 
-export const Lesson: FunctionComponent<LessonProps> = ({
-    challenges,
-    description,
-    onComplete,
-}) => {
+export const Lesson: FunctionComponent = () => {
     const [showChallenge, setShowChallenge] = useState(true);
+    const { lessonTopic, lessonId } = useParams();
+
+    if (
+        typeof lessonTopic === 'undefined' ||
+        typeof lessonId === 'undefined' ||
+        !isLessonIdValid(lessonTopic, lessonId)
+    ) {
+        throw new Error(
+            `Lesson ${lessonTopic}/${lessonId} could not be found.`,
+        );
+    }
+
+    const challenges = useMemo(() => {
+        return shuffle(getLessonById(lessonTopic, lessonId)).slice(0, 3);
+    }, [lessonTopic, lessonId]);
+
+    const description = useMemo(() => {
+        return getLessonDescriptionById(lessonTopic, lessonId);
+    }, [lessonTopic, lessonId]);
 
     const [state, dispatch] = useReducer(lessonStateReducer, {
         challengeNumber: 0,
@@ -109,10 +129,6 @@ export const Lesson: FunctionComponent<LessonProps> = ({
         correct: 0,
         incorrect: 0,
     });
-
-    const handleLessonComplete = useCallback(() => {
-        onComplete(description.id);
-    }, [description, onComplete]);
 
     function onChallengeComplete(data: LessonAction['data']) {
         dispatch({ type: LessonActionType.COMPLETE_CHALLENGE, data });
@@ -179,16 +195,14 @@ export const Lesson: FunctionComponent<LessonProps> = ({
             </LessonBody>
             <LessonFooter>
                 {state.complete && (
-                    <Button
-                        color="success"
-                        variant="contained"
-                        onClick={handleLessonComplete}
-                    >
-                        <I18N
-                            textKey="lesson-complete-to-lesson-list"
-                            lang={I18NLangs.RU}
-                        ></I18N>
-                    </Button>
+                    <Link to="/pikalang/">
+                        <Button color="success" variant="contained">
+                            <I18N
+                                textKey="lesson-complete-to-lesson-list"
+                                lang={I18NLangs.RU}
+                            ></I18N>
+                        </Button>
+                    </Link>
                 )}
                 {!state.complete &&
                     state.challengeStatus ===
