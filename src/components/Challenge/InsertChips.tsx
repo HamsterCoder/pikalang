@@ -61,17 +61,32 @@ function computeAnswer(sentence: string) {
         .join(' ');
 }
 
+function plausibleAnswerSelected(
+    answerChips: string[],
+    missingWordsCount: number,
+): boolean {
+    return (
+        answerChips.filter((chip) => chip !== '').length === missingWordsCount
+    );
+}
+
 export const InsertChips: FunctionComponent<TranslateChipsProps> = ({
     challenge: { data },
     onComplete,
 }) => {
+    const [complete, setComplete] = useState(false);
     const [fromChips, setFromChips] = useState<string[]>(
         shuffle(data.chips.slice()),
     );
     const [answerChips, setAnswerChips] = useState<string[]>([]);
 
+    // Count the number of missing words
+    const missingWordsCount: number = countMissingWords(data.sentence);
+
     const checkAnswer = useCallback(() => {
-        console.log(`Answer chips: ${answerChips} and chips: ${data.chips}`);
+        console.log(
+            `LOG::Answer chips: ${answerChips} and chips: ${data.chips}`,
+        );
 
         const missingWordsCount: number = countMissingWords(data.sentence);
 
@@ -84,14 +99,18 @@ export const InsertChips: FunctionComponent<TranslateChipsProps> = ({
         return true;
     }, [data, answerChips]);
 
+    function handleChallengeComplete({ solved }: { solved: boolean }): void {
+        setComplete(true);
+        onComplete({ solved });
+    }
+
     function onChipSelect(chip: string, index: number) {
-        // Count the number of missing words
-        const missingWordsCount: number = countMissingWords(data.sentence);
+        if (complete) {
+            return;
+        }
 
         // Find the first empty slot
         const insertIndex = answerChips.indexOf('');
-
-        // console.log({insertIndex, missingWordsCount, chip, index});
 
         // Check that not all words have been inserted
         if (insertIndex === -1 && answerChips.length === missingWordsCount) {
@@ -115,7 +134,9 @@ export const InsertChips: FunctionComponent<TranslateChipsProps> = ({
     }
 
     function onChipDeselect(chip: string, index: number) {
-        // console.log(chip, index);
+        if (complete) {
+            return;
+        }
 
         setFromChips([...fromChips, chip]);
 
@@ -174,7 +195,10 @@ export const InsertChips: FunctionComponent<TranslateChipsProps> = ({
             <Chips chips={fromChips} onSelect={onChipSelect} />
 
             <CheckAnswerControl
-                onSubmit={onComplete}
+                disabled={
+                    !plausibleAnswerSelected(answerChips, missingWordsCount)
+                }
+                onSubmit={handleChallengeComplete}
                 checkAnswer={checkAnswer}
                 expectedAnswer={expectedAnswer}
                 translation={data.translation}
