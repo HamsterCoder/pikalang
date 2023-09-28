@@ -11,6 +11,7 @@ export enum ChallengeStatus {
 
 export interface CheckAnswerControlProps {
     checkAnswer(): boolean;
+    disabled: boolean;
     expectedAnswer: string;
     translation?: string;
     anotherAnswer?: string;
@@ -18,6 +19,7 @@ export interface CheckAnswerControlProps {
 }
 
 export const CheckAnswerControl: FunctionComponent<CheckAnswerControlProps> = ({
+    disabled,
     onSubmit,
     checkAnswer,
     expectedAnswer,
@@ -50,6 +52,7 @@ export const CheckAnswerControl: FunctionComponent<CheckAnswerControlProps> = ({
                     color="success"
                     variant="contained"
                     onClick={handleSubmit}
+                    disabled={disabled}
                 >
                     <I18N
                         textKey="lesson-submit-button"
