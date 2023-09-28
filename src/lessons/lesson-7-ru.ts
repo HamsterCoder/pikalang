@@ -7,7 +7,6 @@ import { LessonDescription } from '@components/Lesson/Lesson';
 // TARGET WORDS: Da li govorite, engleski, ruski, srpski, govorim,
 // SECONDARY WORDS: izvenite, loše, dobro, sporije,
 
-
 export const description: LessonDescription = {
     id: 'conversation/languages',
     name: 'languages',
@@ -74,7 +73,7 @@ export const challenges: ChallengeDescription[] = [
         data: {
             sentence: 'Я говорю только по русски',
             answer: ['Govorim samo ruski', 'Ja govorim samo ruski'],
-            chips: ['Govorim', 'srpski', 'engleski', 'samo', 'Ja', 'dobro'],
+            chips: ['Govorim', 'srpski', 'ruski', 'samo', 'Ja', 'dobro'],
         },
     },
     // Harder phrases
@@ -98,7 +97,10 @@ export const challenges: ChallengeDescription[] = [
         type: ChallengeType.TRANSLATE_CHIPS,
         data: {
             sentence: 'Ućim srpski, ali govorim loše',
-            answer: ['Я учу сербский, но говорю плохо', 'Я учу сербский, но плохо говорю'],
+            answer: [
+                'Я учу сербский, но говорю плохо',
+                'Я учу сербский, но плохо говорю',
+            ],
             chips: ['Я', 'учу', 'сербский,', 'но', 'говорю', 'плохо', 'хорошо'],
         },
     },
