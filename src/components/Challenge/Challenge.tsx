@@ -1,6 +1,5 @@
 import { FunctionComponent } from 'react';
 
-import './Challenge.css';
 import { ChallengeDescription, ChallengeType } from './types';
 import { QuestionChips, QuestionChipsChallenge } from './QuestionChips';
 import { WordPicture, WordPictureChallenge } from './WordPicture';
