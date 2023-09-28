@@ -100,8 +100,17 @@ function lessonStateReducer(
     return state;
 }
 
+const MAX_CHALLENGES = 10;
+
 export const Lesson: FunctionComponent = () => {
     const [showChallenge, setShowChallenge] = useState(true);
+    const [state, dispatch] = useReducer(lessonStateReducer, {
+        challengeNumber: 0,
+        challengeStatus: LessonChallengeStatus.PROGRESS,
+        complete: false,
+        correct: 0,
+        incorrect: 0,
+    });
     const { lessonTopic, lessonId } = useParams();
 
     if (
@@ -115,20 +124,15 @@ export const Lesson: FunctionComponent = () => {
     }
 
     const challenges = useMemo(() => {
-        return shuffle(getLessonById(lessonTopic, lessonId)).slice(0, 3);
+        return shuffle(getLessonById(lessonTopic, lessonId)).slice(
+            0,
+            MAX_CHALLENGES,
+        );
     }, [lessonTopic, lessonId]);
 
     const description = useMemo(() => {
         return getLessonDescriptionById(lessonTopic, lessonId);
     }, [lessonTopic, lessonId]);
-
-    const [state, dispatch] = useReducer(lessonStateReducer, {
-        challengeNumber: 0,
-        challengeStatus: LessonChallengeStatus.PROGRESS,
-        complete: false,
-        correct: 0,
-        incorrect: 0,
-    });
 
     function onChallengeComplete(data: LessonAction['data']) {
         dispatch({ type: LessonActionType.COMPLETE_CHALLENGE, data });
@@ -195,7 +199,7 @@ export const Lesson: FunctionComponent = () => {
             </LessonBody>
             <LessonFooter>
                 {state.complete && (
-                    <Link to="/pikalang/">
+                    <Link to="/lessons/">
                         <Button color="success" variant="contained">
                             <I18N
                                 textKey="lesson-complete-to-lesson-list"

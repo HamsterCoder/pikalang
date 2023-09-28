@@ -54,7 +54,7 @@ export const Picture: FunctionComponent<PictureProps> = ({
             onClick={onClick}
         >
             <Image
-                src={`/assets/${image}.jpg`}
+                src={`assets/${image}.jpg`}
                 alt={image}
                 title={dictionary[image]}
             />

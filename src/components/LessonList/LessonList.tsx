@@ -103,10 +103,7 @@ export const LessonList: FunctionComponent = () => {
                 )}
                 {loadingState === 'complete' &&
                     lessons.map((lesson) => (
-                        <Item
-                            key={lesson.id}
-                            to={`/pikalang/lessons/${lesson.id}`}
-                        >
+                        <Item key={lesson.id} to={`/lessons/${lesson.id}`}>
                             <Card
                                 sx={{
                                     width: 230,

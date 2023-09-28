@@ -8,29 +8,25 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import './index.css';
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { LessonList } from '@components/LessonList/LessonList.tsx';
 import { Lesson } from '@components/Lesson/Lesson.tsx';
 import { ErrorPage } from '@components/ErrorPage/ErrorPage';
 
-const router = createBrowserRouter([
+const router = createHashRouter([
     {
         path: '/',
-        errorElement: <ErrorPage />,
-    },
-    {
-        path: '/pikalang/',
         element: <LessonList />,
         errorElement: <ErrorPage />,
     },
     {
-        path: '/pikalang/lessons/',
+        path: '/lessons/',
         element: <LessonList />,
         errorElement: <ErrorPage />,
     },
     {
-        path: '/pikalang/lessons/:lessonTopic/:lessonId/',
+        path: '/lessons/:lessonTopic/:lessonId/',
         element: <Lesson />,
         errorElement: <ErrorPage />,
     },
