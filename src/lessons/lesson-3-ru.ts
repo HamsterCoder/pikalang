@@ -106,7 +106,7 @@ const combinedChallenges: ChallengeDescription[] = [
         data: {
             sentence: 'Ovo su jagoda i malina',
             answer: ['Это клубника и малина'],
-            chips: ['Голубика', 'это', 'малина', 'и', 'клублника'],
+            chips: ['Голубика', 'это', 'малина', 'и', 'клубника'],
         },
     },
     {

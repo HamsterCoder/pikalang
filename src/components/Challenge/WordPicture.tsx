@@ -35,6 +35,7 @@ export const WordPicture: FunctionComponent<WordPictureProps> = ({
     challenge: { data },
     onComplete,
 }) => {
+    const [complete, setComplete] = useState(false);
     const [answerImage, setAnswerImage] = useState<string | null>(null);
 
     const checkAnswer = useCallback(
@@ -43,6 +44,19 @@ export const WordPicture: FunctionComponent<WordPictureProps> = ({
         },
         [data, answerImage],
     );
+
+    function handleChallengeComplete({ solved }: { solved: boolean }): void {
+        setComplete(true);
+        onComplete({ solved });
+    }
+
+    function handleImageSelect(image: string): void {
+        if (complete) {
+            return;
+        }
+
+        setAnswerImage(image);
+    }
 
     const expectedAnswer = data.answer;
 
@@ -62,13 +76,14 @@ export const WordPicture: FunctionComponent<WordPictureProps> = ({
                         key={image}
                         selected={answerImage === image}
                         image={image}
-                        onSelect={setAnswerImage}
+                        onSelect={handleImageSelect}
                     />
                 ))}
             </ImageGrid>
 
             <CheckAnswerControl
-                onSubmit={onComplete}
+                disabled={answerImage === null}
+                onSubmit={handleChallengeComplete}
                 checkAnswer={checkAnswer}
                 expectedAnswer={expectedAnswer}
             />
