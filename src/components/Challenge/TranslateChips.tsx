@@ -27,6 +27,7 @@ export const TranslateChips: FunctionComponent<TranslateChipsProps> = ({
     challenge: { data },
     onComplete,
 }) => {
+    const [complete, setComplete] = useState(false);
     const [answerChips, setAnswerChips] = useState<string[]>([]);
 
     const checkAnswer = useCallback(() => {
@@ -34,6 +35,11 @@ export const TranslateChips: FunctionComponent<TranslateChipsProps> = ({
 
         return isCorrectAnswer(data.answer, answerChips);
     }, [data, answerChips]);
+
+    function handleChallengeComplete({ solved }: { solved: boolean }): void {
+        setComplete(true);
+        onComplete({ solved });
+    }
 
     const expectedAnswer = data.answer[0];
     const anotherAnswer = useMemo(() => {
@@ -50,10 +56,15 @@ export const TranslateChips: FunctionComponent<TranslateChipsProps> = ({
                 {data.sentence}
             </Typography>
 
-            <ChipsAndLines chips={data.chips} onChange={setAnswerChips} />
+            <ChipsAndLines
+                nonInteractive={complete}
+                chips={data.chips}
+                onChange={setAnswerChips}
+            />
 
             <CheckAnswerControl
-                onSubmit={onComplete}
+                disabled={answerChips.length === 0}
+                onSubmit={handleChallengeComplete}
                 checkAnswer={checkAnswer}
                 expectedAnswer={expectedAnswer}
                 anotherAnswer={anotherAnswer}

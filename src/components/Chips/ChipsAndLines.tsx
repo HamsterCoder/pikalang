@@ -5,6 +5,7 @@ import { shuffle } from '@utils/shuffle';
 
 export interface CandidateChipsProps {
     chips: string[];
+    nonInteractive?: boolean;
     onChange(chips: string[]): void;
 }
 
@@ -18,6 +19,7 @@ function addChip(chips: string[], chip: string) {
 
 export const ChipsAndLines: FunctionComponent<CandidateChipsProps> = ({
     chips,
+    nonInteractive = false,
     onChange,
 }) => {
     const [fromChips, setFromChips] = useState<string[]>(
@@ -26,6 +28,10 @@ export const ChipsAndLines: FunctionComponent<CandidateChipsProps> = ({
     const [toChips, setToChips] = useState<string[]>([]);
 
     function onChipSelect(chip: string, index: number) {
+        if (nonInteractive) {
+            return;
+        }
+
         setFromChips(removeChip(fromChips, chip, index));
 
         const updatedToChips = addChip(toChips, chip);
@@ -34,6 +40,10 @@ export const ChipsAndLines: FunctionComponent<CandidateChipsProps> = ({
     }
 
     function onChipDeselect(chip: string, index: number) {
+        if (nonInteractive) {
+            return;
+        }
+
         setFromChips(addChip(fromChips, chip));
 
         const updatedToChips = removeChip(toChips, chip, index);
