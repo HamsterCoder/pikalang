@@ -8,8 +8,8 @@ More lessons will be gradually added.
 
 ## Contibuting
 
-* If you have a lesson idea or feedback on current lessons, please open an issue
-* If you like to contribute full lessons or any other code improvements, please open a pull request
+-   If you have a lesson idea or feedback on current lessons, please open an issue or you can join our [telegram](https://t.me/+dnIZ_udnkhtiZjEy).
+-   If you like to contribute full lessons or any other code improvements, please open a pull request
 
 ## Development
 
@@ -24,5 +24,5 @@ npm run dev
 
 Further more, there are plans to grow this into a generic intrument for making language courses through writing lessons in json-style configs. However, the following issues must be adressed to achieve this:
 
-* Switching base language for courses [currently RU]
-* Creating courses for different target languages, [currently SRB]
+-   Switching base language for courses [currently RU]
+-   Creating courses for different target languages, [currently SRB]
