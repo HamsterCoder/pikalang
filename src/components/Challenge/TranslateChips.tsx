@@ -76,7 +76,7 @@ export const TranslateChips: FunctionComponent<TranslateChipsProps> = ({
     const [answerChips, setAnswerChips] = useState<string[]>([]);
 
     const chips = useMemo(() => {
-        if (data.wrongChips) {
+        if ('wrongChips' in data) {
             let chips: string[] = [];
 
             data.answer.forEach((possibleAnswer) => {
@@ -86,9 +86,9 @@ export const TranslateChips: FunctionComponent<TranslateChipsProps> = ({
             chips = [...chips, ...data.wrongChips];
 
             return shuffle(chips);
+        } else {
+            return data.chips;
         }
-
-        return data.chips;
     }, [data]);
 
     const checkAnswer = useCallback(() => {
