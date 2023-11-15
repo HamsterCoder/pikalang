@@ -18,12 +18,12 @@ import { LessonDescription } from '@components/Lesson/Lesson';
 // Ono ✅ Ona ✅
 
 export const description: LessonDescription = {
-    id: 'grammar/nisam',
+    id: 'verb/nisam',
     name: 'nisam',
     displayName: 'nisam',
-    topic: 'grammar',
-    displayTopic: 'Грамматика',
-    image: 'grammar',
+    topic: 'verb',
+    displayTopic: 'Глагол',
+    image: 'verb',
     description: 'Спрягаем вспомогательный глагол nisam',
 };
 
