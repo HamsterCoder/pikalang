@@ -6,12 +6,19 @@ import { ChipsAndLines } from '@components/Chips/ChipsAndLines';
 import { CheckAnswerControl } from '@components/CheckAnswerControl/CheckAnswerControl';
 import { I18N, I18NLangs } from '@components/I18N/I18N';
 import { isCorrectAnswer, prepareAnotherAnswer } from './utils';
+import { shuffle } from '@utils/shuffle';
 
-export interface TranslateChipsData {
-    sentence: string;
-    answer: string[];
-    chips: string[];
-}
+export type TranslateChipsData =
+    | {
+          sentence: string;
+          answer: string[];
+          wrongChips: string[];
+      }
+    | {
+          sentence: string;
+          answer: string[];
+          chips: string[];
+      };
 
 export interface TranslateChipsChallenge {
     type: ChallengeType.TRANSLATE_CHIPS;
@@ -23,12 +30,66 @@ export interface TranslateChipsProps {
     onComplete({ solved }: { solved: boolean }): void;
 }
 
+function arrayCount(array: string[]): Record<string, number> {
+    const count: Record<string, number> = {};
+
+    for (const word of array) {
+        count[word] = count[word] || 0;
+        count[word] += 1;
+    }
+
+    return count;
+}
+
+function arrayUnion(first: string[], second: string[]): string[] {
+    const firstCount = arrayCount(first);
+    const secondCount = arrayCount(second);
+
+    const count: Record<string, number> = {};
+
+    for (const word of Object.keys(firstCount)) {
+        count[word] = Math.max(firstCount[word], secondCount[word] ?? 0);
+        delete firstCount[word];
+        delete secondCount[word];
+    }
+
+    for (const word of Object.keys(secondCount)) {
+        count[word] = secondCount[word];
+    }
+
+    let words: string[] = [];
+
+    for (const word of Object.keys(count)) {
+        const wordArray = new Array(count[word]);
+        wordArray.fill(word);
+        words = words.concat(wordArray);
+    }
+
+    return words;
+}
+
 export const TranslateChips: FunctionComponent<TranslateChipsProps> = ({
     challenge: { data },
     onComplete,
 }) => {
     const [complete, setComplete] = useState(false);
     const [answerChips, setAnswerChips] = useState<string[]>([]);
+
+    const chips = useMemo(() => {
+        if (data.wrongChips) {
+            let chips: string[] = [];
+
+            data.answer.forEach((possibleAnswer) => {
+                chips = arrayUnion(chips, possibleAnswer.split(' '));
+            });
+
+            chips = [...chips, ...data.wrongChips];
+
+            return shuffle(chips);
+        }
+
+        return data.chips;
+    }, [data]);
 
     const checkAnswer = useCallback(() => {
         console.log(`Answer chips: ${answerChips}`, answerChips);
@@ -58,7 +119,7 @@ export const TranslateChips: FunctionComponent<TranslateChipsProps> = ({
 
             <ChipsAndLines
                 nonInteractive={complete}
-                chips={data.chips}
+                chips={chips}
                 onChange={setAnswerChips}
             />
 

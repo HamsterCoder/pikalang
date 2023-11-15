@@ -29,6 +29,10 @@ import {
     challenges as challenges7,
     description as description7,
 } from '../lessons/lesson-7-ru';
+import {
+    challenges as challenges8,
+    description as description8,
+} from '../lessons/lesson-8-ru';
 
 const lessonsMap: Record<string, ChallengeDescription[]> = {
     [description1.id]: challenges1,
@@ -38,6 +42,7 @@ const lessonsMap: Record<string, ChallengeDescription[]> = {
     [description5.id]: challenges5,
     [description6.id]: challenges6,
     [description7.id]: challenges7,
+    [description8.id]: challenges8,
 };
 
 const descriptionMap: Record<string, LessonDescription> = {
@@ -48,6 +53,7 @@ const descriptionMap: Record<string, LessonDescription> = {
     [description5.id]: description5,
     [description6.id]: description6,
     [description7.id]: description7,
+    [description8.id]: description8,
 };
 
 const lessons: LessonDescription[] = [
@@ -58,6 +64,7 @@ const lessons: LessonDescription[] = [
     description5,
     description6,
     description7,
+    description8,
 ];
 
 export function getLessonDescriptionById(
