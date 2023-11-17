@@ -16,22 +16,20 @@
         "@fontsource/roboto": "^5.0.3",
         "@mui/icons-material": "^5.14.3",
         "@mui/material": "^5.14.3",
-        "@types/react-router-dom": "^5.3.3",
-        "imagemin": "^8.0.1",
-        "imagemin-mozjpeg": "^10.0.0",
         "localforage": "^1.10.0",
         "match-sorter": "^6.3.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-router-dom": "^6.16.0",
         "sort-by": "^1.2.0",
-        "styled-components": "^6.0.4"
+        "styled-components": "^6.1.1"
     },
     "devDependencies": {
         "@types/react": "^18.0.37",
         "@types/react-dom": "^18.0.11",
         "@typescript-eslint/eslint-plugin": "^5.59.0",
         "@typescript-eslint/parser": "^5.59.0",
+        "@types/react-router-dom": "^5.3.3",
         "@vitejs/plugin-react": "^4.0.0",
         "eslint": "^8.38.0",
         "eslint-config-prettier": "^9.0.0",
@@ -42,7 +40,9 @@
         "prettier": "3.0.3",
         "typescript": "^5.0.2",
         "vite": "^4.3.9",
-        "vite-plugin-ejs": "^1.6.4"
+        "vite-plugin-ejs": "^1.6.4",
+        "imagemin": "^8.0.1",
+        "imagemin-mozjpeg": "^10.0.0"
     },
     "lint-staged": {
         "*.{ts,tsx,js,css,md}": "prettier --write",
