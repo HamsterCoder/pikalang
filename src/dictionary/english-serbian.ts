@@ -16,6 +16,11 @@ export const dictionary: Record<string, string> = {
     blackberry: 'kupina',
     strawberry: 'jagoda',
     raspberry: 'malina',
+    // lesson-8
+    cabbage: 'kupus',
+    courgette: 'tikvica',
+    pumpkin: 'bundeva',
+    carrot: 'šargarepa',
 };
 
 export const reverseDictionary: Record<string, string> = Object.entries(
