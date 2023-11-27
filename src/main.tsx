@@ -10,24 +10,48 @@ import './index.css';
 
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 import { CssBaseline, ThemeProvider } from '@mui/material';
-import { LessonList } from '@components/LessonList/LessonList.tsx';
 import { Lesson } from '@components/Lesson/Lesson.tsx';
 import { ErrorPage } from '@components/ErrorPage/ErrorPage';
+
+// TODO add an alias for routes
+import { App, appLoader } from './routes/App.tsx';
+import { LessonList } from './routes/LessonList.tsx';
+import {
+    DialogList,
+    loader as dialogListLoader,
+} from './routes/DialogList.tsx';
+import { Dialog } from './routes/Dialog.tsx';
 
 const router = createHashRouter([
     {
         path: '/',
-        element: <LessonList />,
+        element: <App />,
         errorElement: <ErrorPage />,
-    },
-    {
-        path: '/lessons/',
-        element: <LessonList />,
-        errorElement: <ErrorPage />,
+        loader: appLoader,
+        children: [
+            {
+                index: true,
+                element: <LessonList />,
+            },
+            {
+                path: '/lessons/',
+                element: <LessonList />,
+            },
+            {
+                path: '/dialogs/',
+                element: <DialogList />,
+                loader: dialogListLoader,
+            },
+        ],
     },
     {
         path: '/lessons/:lessonTopic/:lessonId/',
         element: <Lesson />,
+        errorElement: <ErrorPage />,
+    },
+    {
+        path: '/dialogs/:dialogId/',
+        element: <Dialog />,
         errorElement: <ErrorPage />,
     },
 ]);

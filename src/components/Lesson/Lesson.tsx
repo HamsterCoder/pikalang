@@ -10,7 +10,7 @@ import { Link, useParams } from 'react-router-dom';
 import { Button, Typography } from '@mui/material';
 
 import { Challenge } from '@components/Challenge/Challenge';
-import { Header } from '@components/Header/Header';
+import { HeaderContainer } from '@components/Header/Header';
 import { I18N, I18NLangs } from '@components/I18N/I18N';
 import { userDataApi } from '@api/user-data';
 import {
@@ -162,12 +162,12 @@ export const Lesson: FunctionComponent = () => {
 
     return (
         <div>
-            <Header>
+            <HeaderContainer>
                 <Typography variant="h4">{description.displayName}</Typography>
                 <Typography sx={{ marginLeft: 'auto' }} variant="h4">
                     {state.challengeNumber + 1}/{challenges.length}
                 </Typography>
-            </Header>
+            </HeaderContainer>
             <LessonBody>
                 {state.complete && (
                     <div>

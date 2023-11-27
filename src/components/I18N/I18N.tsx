@@ -108,7 +108,7 @@ function translate(
         return translationMethod[lang];
     }
 
-    return '';
+    return key;
 }
 
 export const I18N: FunctionComponent<I18NProps> = ({
