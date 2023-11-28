@@ -1,5 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+
+import { Lesson } from '@components/Lesson/Lesson.tsx';
+import { ErrorPage } from '@components/ErrorPage/ErrorPage';
+import { App, appLoader } from '@routes/App.tsx';
+import { LessonList } from '@routes/LessonList.tsx';
+import { DialogList, loader as dialogListLoader } from '@routes/DialogList.tsx';
+import { Dialog } from '@routes/Dialog.tsx';
+
 import { theme } from './themes/default';
 
 import '@fontsource/roboto/300.css';
@@ -7,20 +17,6 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import './index.css';
-
-import { createHashRouter, RouterProvider } from 'react-router-dom';
-import { CssBaseline, ThemeProvider } from '@mui/material';
-import { Lesson } from '@components/Lesson/Lesson.tsx';
-import { ErrorPage } from '@components/ErrorPage/ErrorPage';
-
-// TODO add an alias for routes
-import { App, appLoader } from './routes/App.tsx';
-import { LessonList } from './routes/LessonList.tsx';
-import {
-    DialogList,
-    loader as dialogListLoader,
-} from './routes/DialogList.tsx';
-import { Dialog } from './routes/Dialog.tsx';
 
 const router = createHashRouter([
     {
