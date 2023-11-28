@@ -1,25 +1,28 @@
 import { FunctionComponent } from 'react';
 import { styled } from 'styled-components';
+import { Outlet, useLoaderData } from 'react-router-dom';
 
 import { Header } from '@components/Header/Header';
 import { UserData, userDataApi } from '@api/user-data';
 import { About } from '@components/About/About';
-import { Outlet, useLoaderData, useLocation } from 'react-router-dom';
 
 const Container = styled.div`
     display: flex;
     flex-wrap: wrap;
 `;
 
-// TODO need to type userData correctly
+interface AppLoaderData {
+    userData: UserData;
+}
 
-export const appLoader = async () => {
+export const loader = async (): Promise<AppLoaderData> => {
+    // TODO handle error case, btw how?
     const userData = await userDataApi.getUserData('default');
     return { userData };
 };
 
 export const App: FunctionComponent = () => {
-    const { userData } = useLoaderData();
+    const { userData } = useLoaderData() as AppLoaderData;
 
     return (
         <div>

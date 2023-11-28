@@ -5,7 +5,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 
 import { Lesson } from '@components/Lesson/Lesson.tsx';
 import { ErrorPage } from '@components/ErrorPage/ErrorPage';
-import { App, appLoader } from '@routes/App.tsx';
+import { App, loader as appLoader } from '@routes/App.tsx';
 import { LessonList } from '@routes/LessonList.tsx';
 import { DialogList, loader as dialogListLoader } from '@routes/DialogList.tsx';
 import { Dialog } from '@routes/Dialog.tsx';

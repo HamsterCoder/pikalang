@@ -10,14 +10,19 @@ import {
 } from '@mui/material';
 
 import { I18N, I18NLangs } from '@components/I18N/I18N';
-import { api } from '@api/dialogs';
+import { DialogDescription, api } from '@api/dialogs';
 
-// TODO google how to type useLoaderData corretly
 // TODO create dialogs layout (lesson cards are no good)
 // TODO show if dialog is completed or not
 // TODO * add logic that dialogs can only be completed in order
 // TODO investigate what is fast refresh warning
-export const loader = async () => {
+
+interface DialogListLoaderData {
+    dialogsList: DialogDescription[];
+}
+
+export const loader = async (): Promise<DialogListLoaderData> => {
+    // TODO handle error
     const dialogsList = await api.getDialogs('default');
     return { dialogsList };
 };
@@ -36,7 +41,7 @@ const EllipsisTypography = styled(Typography)`
 `;
 
 export const DialogList: FunctionComponent = () => {
-    const { dialogsList } = useLoaderData();
+    const { dialogsList } = useLoaderData() as DialogListLoaderData;
 
     return (
         <>
