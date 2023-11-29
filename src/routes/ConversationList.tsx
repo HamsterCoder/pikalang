@@ -10,21 +10,22 @@ import {
 } from '@mui/material';
 
 import { I18N, I18NLangs } from '@components/I18N/I18N';
-import { DialogDescription, api } from '@api/dialogs';
+import { ConversationDescription, api } from '@api/conversations';
 
-// TODO create dialogs layout (lesson cards are no good)
-// TODO show if dialog is completed or not
-// TODO * add logic that dialogs can only be completed in order
-// TODO investigate what is fast refresh warning
+// TODO create conversations layout (lesson cards are no good)
+// TODO show if conversation is completed or not
+// TODO * add logic that conversations can only be completed in order
+// FIX investigate what is fast refresh warning
 
-interface DialogListLoaderData {
-    dialogsList: DialogDescription[];
+interface ConversationListLoaderData {
+    conversationsList: ConversationDescription[];
 }
 
-export const loader = async (): Promise<DialogListLoaderData> => {
+export const loader = async (): Promise<ConversationListLoaderData> => {
     // TODO handle error
-    const dialogsList = await api.getDialogs('default');
-    return { dialogsList };
+    const conversationsList = await api.listConversations('default');
+
+    return { conversationsList };
 };
 
 const Item = styled(Link)`
@@ -40,13 +41,16 @@ const EllipsisTypography = styled(Typography)`
     text-overflow: ellipsis;
 `;
 
-export const DialogList: FunctionComponent = () => {
-    const { dialogsList } = useLoaderData() as DialogListLoaderData;
+export const ConversationList: FunctionComponent = () => {
+    const { conversationsList } = useLoaderData() as ConversationListLoaderData;
 
     return (
         <>
-            {dialogsList.map((dialog) => (
-                <Item key={dialog.id} to={`/dialogs/${dialog.id}`}>
+            {conversationsList.map((conversation) => (
+                <Item
+                    key={conversation.id}
+                    to={`/conversations/${conversation.id}`}
+                >
                     <Card
                         sx={{
                             width: 230,
@@ -57,11 +61,14 @@ export const DialogList: FunctionComponent = () => {
                     >
                         <CardContent sx={{ flexGrow: 1 }}>
                             <EllipsisTypography variant="body1" gutterBottom>
-                                {dialog.displayName}
+                                {conversation.displayName}
                             </EllipsisTypography>
                         </CardContent>
                         <CardActions sx={{ flexShrink: 0 }}>
-                            <Button size="small" data-lesson-id={dialog.id}>
+                            <Button
+                                size="small"
+                                data-lesson-id={conversation.id}
+                            >
                                 <I18N
                                     textKey="lesson-list-practice-button"
                                     lang={I18NLangs.RU}

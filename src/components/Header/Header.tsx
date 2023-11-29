@@ -29,8 +29,8 @@ export const Header = ({ xp = 0 }: HeaderProps) => {
             labelKey: 'lesson-list-heading',
         },
         {
-            to: '/dialogs/',
-            labelKey: 'Диалоги',
+            to: '/conversations/',
+            labelKey: 'conversation-list-heading',
         },
         {
             to: '/words/',

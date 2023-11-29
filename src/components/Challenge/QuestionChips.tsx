@@ -1,10 +1,9 @@
-// Have render and check logic here
-// Make challenge a wrapper - submit should be rendered by challenge
+// TODO Have render and check logic here
+// TODO Make challenge a wrapper - submit should be rendered by challenge
 
-import { IconButton, Tooltip, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { FunctionComponent, useCallback, useMemo, useState } from 'react';
 import { styled } from 'styled-components';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 
 import { ChallengeType } from './types';
 import { ChipsAndLines } from '@components/Chips/ChipsAndLines';
@@ -12,6 +11,7 @@ import { Picture } from '@components/Picture/Picture';
 import { CheckAnswerControl } from '@components/CheckAnswerControl/CheckAnswerControl';
 import { I18N, I18NLangs } from '@components/I18N/I18N';
 import { isCorrectAnswer, prepareAnotherAnswer } from './utils';
+import { HintTooltip } from '@components/HintTooltip';
 
 export interface QuestionChipsData {
     image?: string;
@@ -75,11 +75,7 @@ export const QuestionChips: FunctionComponent<QuestionChipsProps> = ({
 
             <Typography variant="h5" mb={2}>
                 {data.question}
-                <Tooltip title={data.questionHint} arrow>
-                    <IconButton aria-label="hint">
-                        <HelpOutlineIcon color="primary" />
-                    </IconButton>
-                </Tooltip>
+                <HintTooltip text={data.questionHint} />
             </Typography>
 
             <ChipsAndLines

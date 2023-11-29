@@ -7,8 +7,14 @@ import { Lesson } from '@components/Lesson/Lesson.tsx';
 import { ErrorPage } from '@components/ErrorPage/ErrorPage';
 import { App, loader as appLoader } from '@routes/App.tsx';
 import { LessonList } from '@routes/LessonList.tsx';
-import { DialogList, loader as dialogListLoader } from '@routes/DialogList.tsx';
-import { Dialog } from '@routes/Dialog.tsx';
+import {
+    ConversationList,
+    loader as conversationListLoader,
+} from '@routes/ConversationList.tsx';
+import {
+    Conversation,
+    loader as conversationLoader,
+} from '@routes/Conversation.tsx';
 
 import { theme } from './themes/default';
 
@@ -34,9 +40,9 @@ const router = createHashRouter([
                 element: <LessonList />,
             },
             {
-                path: '/dialogs/',
-                element: <DialogList />,
-                loader: dialogListLoader,
+                path: '/conversations/',
+                element: <ConversationList />,
+                loader: conversationListLoader,
             },
         ],
     },
@@ -46,8 +52,9 @@ const router = createHashRouter([
         errorElement: <ErrorPage />,
     },
     {
-        path: '/dialogs/:dialogId/',
-        element: <Dialog />,
+        path: '/conversations/:conversationId/',
+        loader: conversationLoader,
+        element: <Conversation />,
         errorElement: <ErrorPage />,
     },
 ]);

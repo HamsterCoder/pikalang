@@ -15,8 +15,6 @@ import { UserData, userDataApi } from '@api/user-data';
 import { getLessonsDescriptions } from '@api/lessons';
 import { Link } from 'react-router-dom';
 
-// TODO since this is a route - move it to routes?
-
 const Item = styled(Link)`
     margin-left: 20px;
     margin-bottom: 20px;
