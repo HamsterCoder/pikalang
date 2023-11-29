@@ -16,13 +16,13 @@ import { LessonDescription } from '@components/Lesson/Lesson';
 // Ono ✅ | Ona ✅
 
 export const description: LessonDescription = {
-    id: 'verb/yesam',
-    name: 'yesam',
-    displayName: 'yesam', // i18n
+    id: 'verb/jesam',
+    name: 'jesam',
+    displayName: 'jesam', // i18n
     topic: 'verb',
     displayTopic: 'Глагол', // i18n
     image: 'verb',
-    description: 'Спрягаем вспомогательный глагол yesam', // i18n
+    description: 'Спрягаем вспомогательный глагол jesam', // i18n
 };
 
 const combinedChallenges: ChallengeDescription[] = [
@@ -32,7 +32,7 @@ const combinedChallenges: ChallengeDescription[] = [
         data: {
             sentence: 'Ja {sam} umoran.',
             translation: 'Я устал(а).',
-            chips: ['sam', 'si'],
+            chips: ['sam', 'si', 'smo'],
         },
     },
     {
@@ -40,7 +40,7 @@ const combinedChallenges: ChallengeDescription[] = [
         data: {
             sentence: 'Ti {si} srećan.',
             translation: 'Ты счастлив(а).',
-            chips: ['si', 'ste'],
+            chips: ['si', 'ste', 'je'],
         },
     },
     {
@@ -48,7 +48,7 @@ const combinedChallenges: ChallengeDescription[] = [
         data: {
             sentence: 'On {je} spreman.',
             translation: 'Он готов.',
-            chips: ['je', 'sam'],
+            chips: ['je', 'sam', 'su'],
         },
     },
     {
@@ -56,7 +56,7 @@ const combinedChallenges: ChallengeDescription[] = [
         data: {
             sentence: 'Ona {je} moja drugarica.',
             translation: 'Она моя приятельница.',
-            chips: ['je', 'su'],
+            chips: ['je', 'su', 'si'],
         },
     },
     {
@@ -64,7 +64,7 @@ const combinedChallenges: ChallengeDescription[] = [
         data: {
             sentence: 'Ono {je} lepo.',
             translation: 'Оно красивое.',
-            chips: ['je', 'si'],
+            chips: ['je', 'si', 'su'],
         },
     },
     // Plural
@@ -73,7 +73,7 @@ const combinedChallenges: ChallengeDescription[] = [
         data: {
             sentence: 'Mi {smo} porodica.',
             translation: 'Мы семья.',
-            chips: ['smo', 'su'],
+            chips: ['smo', 'su', 'sam'],
         },
     },
     {
@@ -81,7 +81,7 @@ const combinedChallenges: ChallengeDescription[] = [
         data: {
             sentence: 'Vi {ste} porodica.',
             translation: 'Вы ceмья.',
-            chips: ['ste', 'su'],
+            chips: ['ste', 'su', 'si'],
         },
     },
     {
@@ -89,7 +89,7 @@ const combinedChallenges: ChallengeDescription[] = [
         data: {
             sentence: 'Oni {su} drugovi.',
             translation: 'Они приятели.',
-            chips: ['su', 'ste'],
+            chips: ['su', 'ste', 'je'],
         },
     },
     {
@@ -97,7 +97,7 @@ const combinedChallenges: ChallengeDescription[] = [
         data: {
             sentence: 'One {su} prijateljnice.',
             translation: 'Они подруги.',
-            chips: ['su', 'ste'],
+            chips: ['su', 'ste', 'je'],
         },
     },
     {
@@ -105,7 +105,7 @@ const combinedChallenges: ChallengeDescription[] = [
         data: {
             sentence: 'Ona {su} deca.',
             translation: 'Они дети.',
-            chips: ['su', 'ste'],
+            chips: ['su', 'ste', 'je'],
         },
     },
     {

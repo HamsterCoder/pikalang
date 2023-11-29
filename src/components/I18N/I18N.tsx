@@ -85,6 +85,14 @@ const dictionary: Record<
         en: 'See other lessons',
         ru: 'Посмотреть другие уроки',
     },
+    'conversation-list-heading': {
+        en: 'Conversations',
+        ru: 'Разговоры',
+    },
+    'conversation-prompt': {
+        en: 'Read the dialog. Hover the phrases to see translations.',
+        ru: 'Прочтите диалог. Наведите на фразу, чтобы увидеть перевод.',
+    },
 };
 
 function translate(
@@ -108,7 +116,7 @@ function translate(
         return translationMethod[lang];
     }
 
-    return '';
+    return key;
 }
 
 export const I18N: FunctionComponent<I18NProps> = ({
