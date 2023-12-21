@@ -4,8 +4,6 @@ import { Typography } from '@mui/material';
 
 import { I18N, I18NLangs } from '@components/I18N/I18N';
 
-// PROBLEM NavLink is not active when routers renders index route (redirect?!)
-
 interface NavItemProps extends NavLinkProps {
     labelKey: string;
     disabled?: boolean;

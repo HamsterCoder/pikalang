@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createHashRouter, RouterProvider } from 'react-router-dom';
+import { createHashRouter, RouterProvider, redirect } from 'react-router-dom';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 
 import { Lesson } from '@components/Lesson/Lesson.tsx';
@@ -33,7 +33,9 @@ const router = createHashRouter([
         children: [
             {
                 index: true,
-                element: <LessonList />,
+                loader: async () => {
+                    return redirect('/lessons/');
+                },
             },
             {
                 path: '/lessons/',
