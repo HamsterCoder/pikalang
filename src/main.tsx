@@ -23,6 +23,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import './index.css';
+import { StyleGuide } from '@routes/StyleGuide';
 
 const router = createHashRouter([
     {
@@ -47,6 +48,10 @@ const router = createHashRouter([
                 loader: conversationListLoader,
             },
         ],
+    },
+    {
+        path: '/styleguide/',
+        element: <StyleGuide />,
     },
     {
         path: '/lessons/:lessonTopic/:lessonId/',

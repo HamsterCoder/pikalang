@@ -4,7 +4,6 @@ import { Typography } from '@mui/material';
 
 import { ConversationData, ConversationEntry, api } from '@api/conversations';
 import { HeaderContainer } from '@components/Header/Header';
-import { HintTooltip } from '@components/HintTooltip';
 import { I18N, I18NLangs } from '@components/I18N/I18N';
 
 // TODO mobile layout
@@ -16,7 +15,7 @@ interface ConversationLoaderParams {
 interface ConversationLoaderResponse {
     conversationData: ConversationData;
 }
-// FIX inverstigate fast refresh problem
+// FIX investigate fast refresh problem
 export const loader = async ({
     params: { conversationId },
 }: ConversationLoaderParams): Promise<ConversationLoaderResponse> => {
@@ -39,29 +38,33 @@ interface ConversationItemProps {
 }
 
 const BodyContainer = styled.div`
-    padding: 0 40px;
-    margin-bottom: 20px;
+    padding: 0 2rem;
+    margin-bottom: 1rem;
 `;
 
 const ConversationContainer = styled.div`
-    max-width: 800px;
+    max-width: 840px;
 `;
 
 const ConversationItem = styled(
     ({ className, align, phrase }: ConversationItemProps) => (
         <div className={className} data-align={align}>
             <div data-child="original">
-                <Typography variant="body1">{phrase.text}</Typography>
+                <Typography variant="dialog" color="currentcolor">
+                    {phrase.text}
+                </Typography>
 
-                <Typography variant="body2">{phrase.actorName}</Typography>
+                <Typography variant="text_primary" color="currentcolor">
+                    {phrase.actorName}
+                </Typography>
             </div>
 
             <div data-child="translation">
-                <Typography variant="body1">
+                <Typography variant="dialog" color="currentcolor">
                     {phrase.textTranslation}
                 </Typography>
 
-                <Typography variant="body2">
+                <Typography variant="text_primary" color="currentcolor">
                     {phrase.actorNameTranslation}
                 </Typography>
             </div>
@@ -73,28 +76,39 @@ const ConversationItem = styled(
     margin-bottom: 20px;
 
     & > [data-child='translation'] {
-        transition: opacity 0.1s ease-in;
+        transition:
+            opacity,
+            transform 0.2s ease-in;
+
         opacity: 0;
+        visibility: hidden;
     }
 
-    &:hover > [data-child='translation'] {
+    &[data-align='left'] > [data-child='translation'] {
+        transform: translateX(-1rem);
+    }
+
+    &[data-align='right'] > [data-child='translation'] {
+        transform: translateX(1rem);
+    }
+
+    & > [data-child='original']:hover + [data-child='translation'] {
         opacity: 1;
+        visibility: visible;
+        transform: translateX(0);
     }
 
     & > [data-child] {
-        padding: 4px 8px;
-        margin-right: 10px;
+        padding: 0.25rem 0.5rem;
+        margin-right: 1rem;
         width: fit-content;
         border: 2px solid transparent;
-        border-radius: 10px;
-    }
-
-    &[data-align='left'] {
+        border-radius: 1rem;
     }
 
     &[data-align='left'] > [data-child='original'] {
         background-color: var(--primary-accent);
-        color: var(--secondary-text);
+        color: var(--inverted-text-color);
     }
 
     &[data-align='right'] {
@@ -103,12 +117,12 @@ const ConversationItem = styled(
 
     &[data-align='right'] > [data-child='original'] {
         border-color: var(--primary-accent);
-        color: var(--primary-text);
+        color: var(--text-color);
     }
 
     & > [data-child='translation'] {
         background-color: var(--hint-color);
-        color: var(--secondary-text);
+        color: var(--inverted-text-color);
     }
 `;
 
@@ -118,15 +132,13 @@ export const Conversation = () => {
     return (
         <div>
             <HeaderContainer>
-                <Typography variant="h4">
-                    {conversationData.displayName}
-                    <HintTooltip
-                        text={conversationData.displayNameTranslation}
-                    />
+                <Typography variant="heading_l" color="currentcolor">
+                    {conversationData.displayName} /{' '}
+                    {conversationData.displayNameTranslation}
                 </Typography>
             </HeaderContainer>
             <BodyContainer>
-                <Typography variant="h5" gutterBottom>
+                <Typography variant="heading_m" gutterBottom>
                     <I18N
                         textKey="conversation-prompt"
                         lang={I18NLangs.RU}

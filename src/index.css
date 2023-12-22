@@ -7,8 +7,14 @@
     --primary-accent: #aa66cc;
     --secondary-accent: #33b5e5;
 
-    --hint-color: #aaaaaa;
+    --hint-color: #525252;
 
-    --primary-text: #54196a;
-    --secondary-text: #ffffff;
+    --heading-color: #54196a;
+    --text-color: #353535;
+    --inverted-text-color: #ffffff;
+}
+
+body {
+    font-size: 16px;
+    font-family: 'Comfortaa', Arial, Helvetica, sans-serif;
 }

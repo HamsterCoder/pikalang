@@ -35,7 +35,7 @@ export interface QuestionChipsProps {
 }
 
 const PictureContainer = styled.div`
-    margin-bottom: 20px;
+    margin-bottom: 1rem;
 `;
 
 export const QuestionChips: FunctionComponent<QuestionChipsProps> = ({
@@ -63,7 +63,7 @@ export const QuestionChips: FunctionComponent<QuestionChipsProps> = ({
 
     return (
         <div>
-            <Typography variant="h5" color="primary" gutterBottom>
+            <Typography variant="heading_m" color="primary" gutterBottom>
                 <I18N textKey="question-chips-prompt" lang={I18NLangs.RU} />
             </Typography>
 
@@ -73,7 +73,7 @@ export const QuestionChips: FunctionComponent<QuestionChipsProps> = ({
                 </PictureContainer>
             )}
 
-            <Typography variant="h5" mb={2}>
+            <Typography variant="heading_m" mb={2}>
                 {data.question}
                 <HintTooltip text={data.questionHint} />
             </Typography>

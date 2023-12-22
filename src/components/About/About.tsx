@@ -46,13 +46,21 @@ export const About: FunctionComponent = () => {
                         placement="top-end"
                         title={
                             <Popover>
-                                <Typography variant="body1" gutterBottom>
+                                <Typography
+                                    variant="text_primary"
+                                    color="currentColor"
+                                    gutterBottom
+                                >
                                     Это pikalang - приложение для изучения
                                     языков. Сейчас доступен курс по сербскому
                                     языку, новые уроки будут появлятся
                                     регулярно.
                                 </Typography>
-                                <Typography variant="body1" gutterBottom>
+                                <Typography
+                                    variant="text_primary"
+                                    color="currentColor"
+                                    gutterBottom
+                                >
                                     Более поднобную инфу можно найти на{' '}
                                     <Link
                                         href="https://github.com/HamsterCoder/pikalang"

@@ -184,11 +184,11 @@ export const InsertChips: FunctionComponent<TranslateChipsProps> = ({
 
     return (
         <div>
-            <Typography variant="h5" color="primary" gutterBottom>
+            <Typography variant="heading_m" color="primary" gutterBottom>
                 <I18N textKey="insert-chips-prompt" lang={I18NLangs.RU} />
             </Typography>
 
-            <Typography variant="h5" mb={2}>
+            <Typography variant="heading_m" mb={2}>
                 {prepareSentence(data.sentence, answerChips)}
             </Typography>
 

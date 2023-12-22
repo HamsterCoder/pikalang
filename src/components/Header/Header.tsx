@@ -12,9 +12,9 @@ const XP = styled.div`
 
 export const HeaderContainer = styled.div`
     background-color: var(--primary-accent);
-    color: #ffffff;
-    margin-bottom: 20px;
-    padding: 20px 40px;
+    color: var(--inverted-text-color);
+    margin-bottom: 1rem;
+    padding: 1rem 2rem;
     display: flex;
 `;
 
@@ -43,7 +43,7 @@ export const Header = ({ xp = 0 }: HeaderProps) => {
         <HeaderContainer>
             <Navigation links={pages} />
             <XP>
-                <Typography variant="h4">
+                <Typography variant="heading_l" color="currentcolor">
                     {' '}
                     <StarIcon
                         fontSize="inherit"

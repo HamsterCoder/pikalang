@@ -1,16 +1,12 @@
 import { FunctionComponent } from 'react';
 import { styled } from 'styled-components';
 import { Link, useLoaderData } from 'react-router-dom';
-import {
-    Button,
-    Card,
-    CardActions,
-    CardContent,
-    Typography,
-} from '@mui/material';
+import { Button, Card, CardActions, CardContent } from '@mui/material';
 
 import { I18N, I18NLangs } from '@components/I18N/I18N';
 import { ConversationDescription, api } from '@api/conversations';
+import { EllipsisTypography } from '@components/EllispsisTypography';
+import { CardList, CardListItem } from '@components/CardList';
 
 // TODO create conversations layout (lesson cards are no good)
 // TODO show if conversation is completed or not
@@ -29,55 +25,48 @@ export const loader = async (): Promise<ConversationListLoaderData> => {
 };
 
 const Item = styled(Link)`
-    margin-left: 20px;
-    margin-bottom: 20px;
-
     text-decoration: none;
-`;
-
-const EllipsisTypography = styled(Typography)`
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 `;
 
 export const ConversationList: FunctionComponent = () => {
     const { conversationsList } = useLoaderData() as ConversationListLoaderData;
 
     return (
-        <>
+        <CardList>
             {conversationsList.map((conversation) => (
-                <Item
-                    key={conversation.id}
-                    to={`/conversations/${conversation.id}`}
-                >
-                    <Card
-                        sx={{
-                            width: 230,
-                            minHeight: 180,
-                            display: 'flex',
-                            flexDirection: 'column',
-                        }}
-                    >
-                        <CardContent sx={{ flexGrow: 1 }}>
-                            <EllipsisTypography variant="body1" gutterBottom>
-                                {conversation.displayName}
-                            </EllipsisTypography>
-                        </CardContent>
-                        <CardActions sx={{ flexShrink: 0 }}>
-                            <Button
-                                size="small"
-                                data-lesson-id={conversation.id}
-                            >
-                                <I18N
-                                    textKey="lesson-list-practice-button"
-                                    lang={I18NLangs.RU}
-                                ></I18N>
-                            </Button>
-                        </CardActions>
-                    </Card>
-                </Item>
+                <CardListItem key={conversation.id}>
+                    <Item to={`/conversations/${conversation.id}`}>
+                        <Card
+                            sx={{
+                                width: '100%',
+                                minHeight: '100%',
+                                display: 'flex',
+                                flexDirection: 'column',
+                            }}
+                        >
+                            <CardContent sx={{ flexGrow: 1 }}>
+                                <EllipsisTypography
+                                    variant="heading_s"
+                                    gutterBottom
+                                >
+                                    {conversation.displayName}
+                                </EllipsisTypography>
+                            </CardContent>
+                            <CardActions sx={{ flexShrink: 0 }}>
+                                <Button
+                                    size="small"
+                                    data-lesson-id={conversation.id}
+                                >
+                                    <I18N
+                                        textKey="lesson-list-practice-button"
+                                        lang={I18NLangs.RU}
+                                    ></I18N>
+                                </Button>
+                            </CardActions>
+                        </Card>
+                    </Item>
+                </CardListItem>
             ))}
-        </>
+        </CardList>
     );
 };

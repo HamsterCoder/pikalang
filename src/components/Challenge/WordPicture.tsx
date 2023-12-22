@@ -62,11 +62,11 @@ export const WordPicture: FunctionComponent<WordPictureProps> = ({
 
     return (
         <div>
-            <Typography variant="h5" color="primary" gutterBottom>
+            <Typography variant="heading_m" color="primary" gutterBottom>
                 <I18N textKey="word-picture-prompt" lang={I18NLangs.RU} />
             </Typography>
 
-            <Typography mb={2} variant="h5">
+            <Typography mb={2} variant="heading_m">
                 {data.word}
             </Typography>
 
