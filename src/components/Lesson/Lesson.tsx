@@ -31,8 +31,8 @@ export interface LessonDescription {
 }
 
 const LessonBody = styled.div`
-    padding: 0 40px;
-    margin-bottom: 20px;
+    padding: 0 2rem;
+    margin-bottom: 1rem;
 `;
 
 const LessonFooter = styled.div`
@@ -163,21 +163,23 @@ export const Lesson: FunctionComponent = () => {
     return (
         <div>
             <HeaderContainer>
-                <Typography variant="h4">{description.displayName}</Typography>
-                <Typography sx={{ marginLeft: 'auto' }} variant="h4">
+                <Typography variant="heading_l">
+                    {description.displayName}
+                </Typography>
+                <Typography sx={{ marginLeft: 'auto' }} variant="heading_l">
                     {state.challengeNumber + 1}/{challenges.length}
                 </Typography>
             </HeaderContainer>
             <LessonBody>
                 {state.complete && (
                     <div>
-                        <Typography variant="h4" gutterBottom>
+                        <Typography variant="heading_m" gutterBottom>
                             <I18N
                                 textKey="lesson-complete-appraisal"
                                 lang={I18NLangs.RU}
                             ></I18N>
                         </Typography>
-                        <Typography variant="body1">
+                        <Typography variant="text_primary">
                             <I18N
                                 textKey="lesson-complete-stats"
                                 values={{

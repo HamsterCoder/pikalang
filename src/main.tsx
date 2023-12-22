@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createHashRouter, RouterProvider } from 'react-router-dom';
+import { createHashRouter, RouterProvider, redirect } from 'react-router-dom';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 
 import { Lesson } from '@components/Lesson/Lesson.tsx';
@@ -23,6 +23,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import './index.css';
+import { StyleGuide } from '@routes/StyleGuide';
 
 const router = createHashRouter([
     {
@@ -33,7 +34,9 @@ const router = createHashRouter([
         children: [
             {
                 index: true,
-                element: <LessonList />,
+                loader: async () => {
+                    return redirect('/lessons/');
+                },
             },
             {
                 path: '/lessons/',
@@ -45,6 +48,10 @@ const router = createHashRouter([
                 loader: conversationListLoader,
             },
         ],
+    },
+    {
+        path: '/styleguide/',
+        element: <StyleGuide />,
     },
     {
         path: '/lessons/:lessonTopic/:lessonId/',

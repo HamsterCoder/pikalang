@@ -1,5 +1,6 @@
 import { FunctionComponent, useEffect, useState } from 'react';
 import { styled } from 'styled-components';
+import { Link } from 'react-router-dom';
 import {
     Button,
     Card,
@@ -10,22 +11,16 @@ import {
     Typography,
 } from '@mui/material';
 
-import { I18N, I18NLangs } from '@components/I18N/I18N';
 import { UserData, userDataApi } from '@api/user-data';
 import { getLessonsDescriptions } from '@api/lessons';
-import { Link } from 'react-router-dom';
+import { CardListItem, CardList } from '@components/CardList';
+import { I18N, I18NLangs } from '@components/I18N/I18N';
+import { EllipsisTypography } from '@components/EllispsisTypography';
 
 const Item = styled(Link)`
-    margin-left: 20px;
-    margin-bottom: 20px;
-
+    display: block;
+    height: 100%;
     text-decoration: none;
-`;
-
-const EllipsisTypography = styled(Typography)`
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 `;
 
 function computeLessonProgress(
@@ -64,7 +59,7 @@ export const LessonList: FunctionComponent = () => {
     }, [setLoadingState, setUserData]);
 
     return (
-        <>
+        <CardList>
             {loadingState === 'loading' && (
                 <CircularProgress
                     sx={{ marginLeft: 'auto', marginRight: 'auto' }}
@@ -72,49 +67,51 @@ export const LessonList: FunctionComponent = () => {
             )}
             {loadingState === 'complete' &&
                 lessons.map((lesson) => (
-                    <Item key={lesson.id} to={`/lessons/${lesson.id}`}>
-                        <Card
-                            sx={{
-                                width: 230,
-                                minHeight: 180,
-                                display: 'flex',
-                                flexDirection: 'column',
-                            }}
-                        >
-                            <CardContent sx={{ flexGrow: 1 }}>
-                                <EllipsisTypography
-                                    variant="body1"
-                                    gutterBottom
-                                >
-                                    {lesson.displayTopic} &middot;{' '}
-                                    {lesson.displayName}
-                                </EllipsisTypography>
-                                <LinearProgress
-                                    variant="determinate"
-                                    sx={{ marginBottom: 2 }}
-                                    value={computeLessonProgress(
-                                        userData,
-                                        lesson.id,
-                                    )}
-                                ></LinearProgress>
-                                <Typography
-                                    variant="body2"
-                                    color="text.secondary"
-                                >
-                                    {lesson.description}
-                                </Typography>
-                            </CardContent>
-                            <CardActions sx={{ flexShrink: 0 }}>
-                                <Button size="small" data-lesson-id={lesson.id}>
-                                    <I18N
-                                        textKey="lesson-list-practice-button"
-                                        lang={I18NLangs.RU}
-                                    ></I18N>
-                                </Button>
-                            </CardActions>
-                        </Card>
-                    </Item>
+                    <CardListItem>
+                        <Item key={lesson.id} to={`/lessons/${lesson.id}`}>
+                            <Card
+                                sx={{
+                                    width: '100%',
+                                    height: '100%',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                }}
+                            >
+                                <CardContent sx={{ flexGrow: 1 }}>
+                                    <EllipsisTypography
+                                        variant="heading_s"
+                                        gutterBottom
+                                    >
+                                        {lesson.displayTopic} &middot;{' '}
+                                        {lesson.displayName}
+                                    </EllipsisTypography>
+                                    <LinearProgress
+                                        variant="determinate"
+                                        sx={{ marginBottom: 2 }}
+                                        value={computeLessonProgress(
+                                            userData,
+                                            lesson.id,
+                                        )}
+                                    ></LinearProgress>
+                                    <Typography variant="text_primary">
+                                        {lesson.description}
+                                    </Typography>
+                                </CardContent>
+                                <CardActions sx={{ flexShrink: 0 }}>
+                                    <Button
+                                        size="small"
+                                        data-lesson-id={lesson.id}
+                                    >
+                                        <I18N
+                                            textKey="lesson-list-practice-button"
+                                            lang={I18NLangs.RU}
+                                        ></I18N>
+                                    </Button>
+                                </CardActions>
+                            </Card>
+                        </Item>
+                    </CardListItem>
                 ))}
-        </>
+        </CardList>
     );
 };

@@ -4,8 +4,6 @@ import { Typography } from '@mui/material';
 
 import { I18N, I18NLangs } from '@components/I18N/I18N';
 
-// PROBLEM NavLink is not active when routers renders index route (redirect?!)
-
 interface NavItemProps extends NavLinkProps {
     labelKey: string;
     disabled?: boolean;
@@ -23,7 +21,7 @@ const ItemLayout = ({
                 to={to}
                 className={[className, disabled ? 'disabled' : ''].join(' ')}
             >
-                <Typography variant="h4">
+                <Typography variant="heading_l" color="currentColor">
                     <I18N textKey={labelKey} lang={I18NLangs.RU}></I18N>
                 </Typography>
             </NavLink>
@@ -40,7 +38,7 @@ const List = styled.ul`
     list-style-type: none;
 
     & > li {
-        margin-right: 20px;
+        margin-right: 1rem;
     }
 `;
 
@@ -48,13 +46,26 @@ const Item = styled(ItemLayout)`
     display: block;
 
     color: currentColor;
-    border-bottom: 3px solid transparent;
     text-decoration: none;
+    background-color: rgba(255, 255, 255, 0);
+    padding: 0 0.5rem;
+    border-radius: 0.5rem;
 
-    transition: border-color 0.2s ease-out;
+    transition:
+        border-color 0.2s ease-in,
+        background-color 0.2s ease-in;
+
+    &:hover&.active {
+        background-color: rgba(255, 255, 255, 1);
+    }
 
     &.active {
-        border-color: currentColor;
+        background-color: rgba(255, 255, 255, 1);
+        color: var(--primary-accent);
+    }
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.3);
     }
 
     &.disabled {

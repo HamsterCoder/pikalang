@@ -109,11 +109,11 @@ export const TranslateChips: FunctionComponent<TranslateChipsProps> = ({
 
     return (
         <div>
-            <Typography variant="h5" color="primary" gutterBottom>
+            <Typography variant="heading_m" color="primary" gutterBottom>
                 <I18N textKey="translate-chips-prompt" lang={I18NLangs.RU} />
             </Typography>
 
-            <Typography variant="h5" mb={2}>
+            <Typography variant="heading_m" mb={2}>
                 {data.sentence}
             </Typography>
 
