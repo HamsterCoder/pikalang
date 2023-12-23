@@ -4,35 +4,35 @@ import { LessonDescription } from '@components/Lesson/Lesson';
 import {
     challenges as challenges1,
     description as description1,
-} from '../lessons/lesson-1-ru';
+} from '../lessons/srb-ru/lesson-1-ru';
 import {
     challenges as challenges2,
     description as description2,
-} from '../lessons/lesson-2-ru';
+} from '../lessons/srb-ru/lesson-2-ru';
 import {
     challenges as challenges3,
     description as description3,
-} from '../lessons/lesson-3-ru';
+} from '../lessons/srb-ru/lesson-3-ru';
 import {
     challenges as challenges4,
     description as description4,
-} from '../lessons/lesson-4-ru';
+} from '../lessons/srb-ru/lesson-4-ru';
 import {
     challenges as challenges5,
     description as description5,
-} from '../lessons/lesson-5-ru';
+} from '../lessons/srb-ru/lesson-5-ru';
 import {
     challenges as challenges6,
     description as description6,
-} from '../lessons/lesson-6-ru';
+} from '../lessons/srb-ru/lesson-6-ru';
 import {
     challenges as challenges7,
     description as description7,
-} from '../lessons/lesson-7-ru';
+} from '../lessons/srb-ru/lesson-7-ru';
 import {
     challenges as challenges8,
     description as description8,
-} from '../lessons/lesson-8-ru';
+} from '../lessons/srb-ru/lesson-8-ru';
 
 const lessonsMap: Record<string, ChallengeDescription[]> = {
     [description1.id]: challenges1,
