@@ -36,7 +36,7 @@ const LessonBody = styled.div`
 `;
 
 const LessonFooter = styled.div`
-    padding: 0 40px;
+    padding: 0 2rem;
 `;
 
 enum LessonChallengeStatus {
@@ -163,10 +163,14 @@ export const Lesson: FunctionComponent = () => {
     return (
         <div>
             <HeaderContainer>
-                <Typography variant="heading_l">
+                <Typography variant="heading_l" color="currentColor">
                     {description.displayName}
                 </Typography>
-                <Typography sx={{ marginLeft: 'auto' }} variant="heading_l">
+                <Typography
+                    sx={{ marginLeft: 'auto' }}
+                    variant="heading_l"
+                    color="currentColor"
+                >
                     {state.challengeNumber + 1}/{challenges.length}
                 </Typography>
             </HeaderContainer>
