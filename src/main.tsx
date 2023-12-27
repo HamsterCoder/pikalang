@@ -19,6 +19,7 @@ import { StyleGuide } from '@routes/StyleGuide';
 
 import { theme } from './themes/default';
 import './index.css';
+import { LoadingError } from '@components/LoadingError';
 
 const router = createHashRouter([
     {
@@ -47,6 +48,7 @@ const router = createHashRouter([
     {
         path: '/styleguide/',
         element: <StyleGuide />,
+        errorElement: <ErrorPage />,
     },
     {
         path: '/lessons/:lessonTopic/:lessonId/',
@@ -57,7 +59,13 @@ const router = createHashRouter([
         path: '/conversations/:conversationId/',
         loader: conversationLoader,
         element: <Conversation />,
-        errorElement: <ErrorPage />,
+        errorElement: (
+            <LoadingError
+                name={'Conversation'}
+                recoveryTo="/conversations/"
+                recoveryMessage="View available conversations"
+            />
+        ),
     },
 ]);
 
