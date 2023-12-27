@@ -19,6 +19,7 @@ import { StyleGuide } from '@routes/StyleGuide';
 
 import { theme } from './themes/default';
 import './index.css';
+
 import { LoadingError } from '@components/LoadingError';
 
 const router = createHashRouter([

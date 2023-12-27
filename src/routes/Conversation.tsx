@@ -91,7 +91,7 @@ const ConversationItem = styled(
     &[data-align='right'] > [data-child='translation'] {
         transform: translateX(1rem);
     }
-
+    
     & > [data-child='original']:hover + [data-child='translation'] {
         opacity: 1;
         visibility: visible;
