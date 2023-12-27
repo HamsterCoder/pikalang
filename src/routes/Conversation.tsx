@@ -7,7 +7,6 @@ import { HeaderContainer } from '@components/Header/Header';
 import { I18N, I18NLangs } from '@components/I18N/I18N';
 
 // TODO mobile layout
-
 interface ConversationLoaderParams {
     params: Params<string>;
 }
@@ -15,6 +14,7 @@ interface ConversationLoaderParams {
 interface ConversationLoaderResponse {
     conversationData: ConversationData;
 }
+
 // FIX investigate fast refresh problem
 export const loader = async ({
     params: { conversationId },
@@ -91,7 +91,7 @@ const ConversationItem = styled(
     &[data-align='right'] > [data-child='translation'] {
         transform: translateX(1rem);
     }
-
+    
     & > [data-child='original']:hover + [data-child='translation'] {
         opacity: 1;
         visibility: visible;

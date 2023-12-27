@@ -15,15 +15,12 @@ import {
     Conversation,
     loader as conversationLoader,
 } from '@routes/Conversation.tsx';
+import { StyleGuide } from '@routes/StyleGuide';
 
 import { theme } from './themes/default';
-
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
 import './index.css';
-import { StyleGuide } from '@routes/StyleGuide';
+
+import { LoadingError } from '@components/LoadingError';
 
 const router = createHashRouter([
     {
@@ -52,6 +49,7 @@ const router = createHashRouter([
     {
         path: '/styleguide/',
         element: <StyleGuide />,
+        errorElement: <ErrorPage />,
     },
     {
         path: '/lessons/:lessonTopic/:lessonId/',
@@ -62,7 +60,13 @@ const router = createHashRouter([
         path: '/conversations/:conversationId/',
         loader: conversationLoader,
         element: <Conversation />,
-        errorElement: <ErrorPage />,
+        errorElement: (
+            <LoadingError
+                name={'Conversation'}
+                recoveryTo="/conversations/"
+                recoveryMessage="View available conversations"
+            />
+        ),
     },
 ]);
 

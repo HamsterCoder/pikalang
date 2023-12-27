@@ -1,7 +1,9 @@
+import { sleep } from '@utils/sleep';
 import {
     data as data1,
     description as description1,
 } from '../conversations-data/conversation-1-ru';
+import { emulateLatency } from '@utils/emulateLatency';
 
 // TODO add code that would emulate a 50ms - 300ms wait time for methods
 export interface ConversationProgress {
@@ -43,9 +45,13 @@ function getLocalStoragePath(username: string) {
     return `${username}/conversations_progress`;
 }
 
-function listConversations(
+async function listConversations(
     username: string,
 ): Promise<ConversationDescription[]> {
+    if (import.meta.env.DEV) {
+        await emulateLatency();
+    }
+
     let conversations: ConversationDescription[];
     let progressData: Record<string, ConversationProgress> | null;
 
@@ -68,19 +74,54 @@ function listConversations(
     return Promise.resolve(conversations);
 }
 
-function getConversation(
+export interface ApiError {
+    status: number;
+    message: string;
+    data?: unknown;
+}
+
+export function isApiError(error: any): error is ApiError {
+    if (
+        typeof error?.message !== 'undefined' &&
+        typeof error?.status !== 'undefined' &&
+        typeof error.status === 'number'
+    ) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+async function getConversation(
     username: string,
     id: string,
 ): Promise<ConversationData> {
+    if (import.meta.env.DEV) {
+        await emulateLatency();
+    }
+
     let conversation: ConversationData;
     let progressData: Record<string, ConversationProgress> | null;
+
+    if (typeof id === 'undefined') {
+        return Promise.reject({
+            status: 400,
+            message: `api.Conversation: Provide id to load conversation.`,
+        } as ApiError);
+    }
 
     try {
         progressData = JSON.parse(
             localStorage.getItem(getLocalStoragePath(username)) ?? 'null',
         );
 
-        // TODO handle missing id
+        if (typeof conversationDescriptionsMap[id] === 'undefined') {
+            return Promise.reject({
+                status: 404,
+                message: `api.Conversation: Conversation with id ${id} could not be found.`,
+            } as ApiError);
+        }
+
         conversation = {
             ...conversationDescriptionsMap[id],
             data: conversationDataMap[id],
@@ -88,7 +129,11 @@ function getConversation(
         };
     } catch (error) {
         console.log(error);
-        return Promise.reject('api.getConversation request failed');
+        return Promise.reject({
+            status: 500,
+            message: `api.Conversation: Unexpected error occured.`,
+            data: error,
+        } as ApiError);
     }
 
     return Promise.resolve(conversation);
