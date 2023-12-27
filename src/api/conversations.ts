@@ -1,4 +1,3 @@
-import { sleep } from '@utils/sleep';
 import {
     data as data1,
     description as description1,
