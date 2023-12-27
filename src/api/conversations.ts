@@ -1,7 +1,9 @@
+import { sleep } from '@utils/sleep';
 import {
     data as data1,
     description as description1,
 } from '../conversations-data/conversation-1-ru';
+import { emulateLatency } from '@utils/emulateLatency';
 
 // TODO add code that would emulate a 50ms - 300ms wait time for methods
 export interface ConversationProgress {
@@ -43,9 +45,13 @@ function getLocalStoragePath(username: string) {
     return `${username}/conversations_progress`;
 }
 
-function listConversations(
+async function listConversations(
     username: string,
 ): Promise<ConversationDescription[]> {
+    if (import.meta.env.DEV) {
+        await emulateLatency();
+    }
+
     let conversations: ConversationDescription[];
     let progressData: Record<string, ConversationProgress> | null;
 

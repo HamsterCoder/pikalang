@@ -15,15 +15,10 @@ import {
     Conversation,
     loader as conversationLoader,
 } from '@routes/Conversation.tsx';
+import { StyleGuide } from '@routes/StyleGuide';
 
 import { theme } from './themes/default';
-
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
 import './index.css';
-import { StyleGuide } from '@routes/StyleGuide';
 
 const router = createHashRouter([
     {

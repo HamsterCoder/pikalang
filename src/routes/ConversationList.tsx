@@ -18,8 +18,12 @@ interface ConversationListLoaderData {
 }
 
 export const loader = async (): Promise<ConversationListLoaderData> => {
-    // TODO handle error
+    // If an error happens inside the loader, we will go to ErrorPage
+    // While the route is loading, the previous route is showing
+    // TODO how to show loader??
     const conversationsList = await api.listConversations('default');
+
+    // throw new Error('Could not load conversations');
 
     return { conversationsList };
 };
