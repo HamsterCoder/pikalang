@@ -1,38 +1,12 @@
 import styled from 'styled-components';
-import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
 import { Button, Typography } from '@mui/material';
-
-import { isApiError } from '@api/conversations';
 import { Link } from 'react-router-dom';
+
+import { useParsedError } from '../hooks/useParsedError';
 
 const Container = styled.div`
     padding: 0 2rem;
 `;
-
-function prepareErrorData(error: unknown) {
-    // It is important to check for ApiError first so it not confused with RouterErrorResponse
-    if (isApiError(error)) {
-        return {
-            status: error.status,
-            message: error.message,
-            data: error.data ? String(error.data) : '',
-        };
-    } else if (isRouteErrorResponse(error)) {
-        return {
-            status: `${error.status} ${error.statusText}`,
-            data: JSON.stringify(error.data),
-        };
-    } else if (error instanceof Error) {
-        return {
-            message: error.message,
-            data: String(error.stack),
-        };
-    } else {
-        return {
-            data: String(error),
-        };
-    }
-}
 
 export interface LoadingErrorProps {
     name: string;
@@ -46,7 +20,7 @@ export const LoadingError = ({
     recoveryTo,
     recoveryMessage,
 }: LoadingErrorProps) => {
-    const error = prepareErrorData(useRouteError());
+    const error = useParsedError();
 
     console.log('Loading error:', error);
 
