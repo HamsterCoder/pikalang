@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Button, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-import { useParsedError } from '../hooks/useParsedError';
+import { useParsedError } from '@hooks/useParsedError';
 
 const Container = styled.div`
     padding: 0 2rem;
@@ -14,15 +14,12 @@ export interface LoadingErrorProps {
     recoveryMessage: string;
 }
 
-// TODO create a hook based of off useRouterError - useParsedError
 export const LoadingError = ({
     name,
     recoveryTo,
     recoveryMessage,
 }: LoadingErrorProps) => {
     const error = useParsedError();
-
-    console.log('Loading error:', error);
 
     return (
         <Container>
