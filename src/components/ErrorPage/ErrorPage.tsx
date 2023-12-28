@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { useParsedError } from '../../hooks/useParsedError';
+import { useParsedError } from '@hooks/useParsedError';
 
 const Container = styled.div`
     padding: 0 2rem;
