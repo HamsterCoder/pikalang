@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Typography } from '@mui/material';
 
 import { ConversationData, ConversationEntry, api } from '@api/conversations';
-import { HeaderContainer } from '@components/Header/Header';
+import { BaseHeader, HeaderContainer } from '@components/Header/Header';
 import { I18N, I18NLangs } from '@components/I18N/I18N';
 
 // TODO mobile layout
@@ -91,7 +91,7 @@ const ConversationItem = styled(
     &[data-align='right'] > [data-child='translation'] {
         transform: translateX(1rem);
     }
-    
+
     & > [data-child='original']:hover + [data-child='translation'] {
         opacity: 1;
         visibility: visible;
@@ -132,10 +132,12 @@ export const Conversation = () => {
     return (
         <div>
             <HeaderContainer>
-                <Typography variant="heading_l" color="currentcolor">
-                    {conversationData.displayName} /{' '}
-                    {conversationData.displayNameTranslation}
-                </Typography>
+                <BaseHeader>
+                    <Typography variant="heading_l" color="currentcolor">
+                        {conversationData.displayName} /{' '}
+                        {conversationData.displayNameTranslation}
+                    </Typography>
+                </BaseHeader>
             </HeaderContainer>
             <BodyContainer>
                 <Typography variant="heading_m" gutterBottom>

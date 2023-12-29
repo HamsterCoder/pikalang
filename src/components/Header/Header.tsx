@@ -1,21 +1,49 @@
 import { styled } from 'styled-components';
-import { Typography } from '@mui/material';
-import StarIcon from '@mui/icons-material/Star';
 
-import { Navigation } from '@components/Navigation';
+import { DesktopNavigation } from '@components/Navigation/DesktopNavigation';
+import { MobileNavigation } from '@components/Navigation/MobileNavigation';
+import { Xp } from '@components/Xp';
 
-// TODO need mobile layout for header
+export const BaseHeader = styled.div`
+    display: flex;
+    align-items: center;
 
-const XP = styled.div`
-    margin-left: auto;
+    background-color: var(--primary-accent);
+    color: var(--inverted-text-color);
+
+    padding: 1rem 2rem;
 `;
 
 export const HeaderContainer = styled.div`
-    background-color: var(--primary-accent);
-    color: var(--inverted-text-color);
+    position: relative;
+    z-index: 5;
+    container-name: header;
+    container-type: inline-size;
     margin-bottom: 1rem;
-    padding: 1rem 2rem;
+`;
+
+const DesktopLayout = styled(BaseHeader)`
     display: flex;
+
+    @container header (max-width: 840px) {
+        display: none;
+    }
+
+    & > .xp {
+        margin-left: auto;
+    }
+`;
+
+const MobileLayout = styled(BaseHeader)`
+    display: none;
+
+    @container header (max-width: 840px) {
+        display: flex;
+    }
+
+    & > .xp {
+        margin-left: auto;
+    }
 `;
 
 export interface HeaderProps {
@@ -39,19 +67,21 @@ export const Header = ({ xp = 0 }: HeaderProps) => {
         },
     ];
 
+    // XXX with this approach both layouts are rendered simultaneously
+    // Hard to inspect, and twice the amount of work for the browser
+
+    // TODO add an underlay for clickout close handling
+
     return (
         <HeaderContainer>
-            <Navigation links={pages} />
-            <XP>
-                <Typography variant="heading_l" color="currentcolor">
-                    {' '}
-                    <StarIcon
-                        fontSize="inherit"
-                        sx={{ marginBottom: '-5px' }}
-                    />{' '}
-                    {xp}{' '}
-                </Typography>
-            </XP>
+            <DesktopLayout>
+                <DesktopNavigation links={pages} />
+                <Xp className="xp" xp={xp} />
+            </DesktopLayout>
+            <MobileLayout>
+                <MobileNavigation links={pages}></MobileNavigation>
+                <Xp className="xp" xp={xp} mobile />
+            </MobileLayout>
         </HeaderContainer>
     );
 };

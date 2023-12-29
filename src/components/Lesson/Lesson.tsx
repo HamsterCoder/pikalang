@@ -10,7 +10,7 @@ import { Link, useParams } from 'react-router-dom';
 import { Button, Typography } from '@mui/material';
 
 import { Challenge } from '@components/Challenge/Challenge';
-import { HeaderContainer } from '@components/Header/Header';
+import { BaseHeader, HeaderContainer } from '@components/Header/Header';
 import { I18N, I18NLangs } from '@components/I18N/I18N';
 import { userDataApi } from '@api/user-data';
 import {
@@ -163,16 +163,18 @@ export const Lesson: FunctionComponent = () => {
     return (
         <div>
             <HeaderContainer>
-                <Typography variant="heading_l" color="currentColor">
-                    {description.displayName}
-                </Typography>
-                <Typography
-                    sx={{ marginLeft: 'auto' }}
-                    variant="heading_l"
-                    color="currentColor"
-                >
-                    {state.challengeNumber + 1}/{challenges.length}
-                </Typography>
+                <BaseHeader>
+                    <Typography variant="heading_l" color="currentColor">
+                        {description.displayName}
+                    </Typography>
+                    <Typography
+                        sx={{ marginLeft: 'auto' }}
+                        variant="heading_l"
+                        color="currentColor"
+                    >
+                        {state.challengeNumber + 1}/{challenges.length}
+                    </Typography>
+                </BaseHeader>
             </HeaderContainer>
             <LessonBody>
                 {state.complete && (
