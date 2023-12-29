@@ -4,12 +4,12 @@
     --alert-error: #ff4444;
     --alert-success: #99cc00;
     --alert-warning: #ffbb33;
-    --primary-accent: #aa66cc;
-    --secondary-accent: #33b5e5;
+    --primary-accent: #9b2d7f;
+    --primary-accent-faded: #c953ab;
 
     --hint-color: #525252;
 
-    --heading-color: #54196a;
+    --heading-color: #7d0a60;
     --text-color: #353535;
     --inverted-text-color: #ffffff;
 }

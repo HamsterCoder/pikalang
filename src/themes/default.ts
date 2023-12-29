@@ -42,12 +42,10 @@ declare module '@mui/material/Typography' {
 }
 
 export const theme = createTheme({
+    // The pallete does not support vars =(
     palette: {
         primary: {
-            main: '#AA66CC',
-        },
-        secondary: {
-            main: '#33B5E5',
+            main: '#9b2d7f',
         },
         success: {
             main: '#99CC00',
