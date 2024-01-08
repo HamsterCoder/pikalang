@@ -67,8 +67,8 @@ export const LessonList: FunctionComponent = () => {
             )}
             {loadingState === 'complete' &&
                 lessons.map((lesson) => (
-                    <CardListItem>
-                        <Item key={lesson.id} to={`/lessons/${lesson.id}`}>
+                    <CardListItem key={lesson.id}>
+                        <Item to={`/lessons/${lesson.id}`}>
                             <Card
                                 sx={{
                                     width: '100%',
