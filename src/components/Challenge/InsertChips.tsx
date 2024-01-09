@@ -7,6 +7,7 @@ import { CheckAnswerControl } from '@components/CheckAnswerControl/CheckAnswerCo
 import { I18N, I18NLangs } from '@components/I18N/I18N';
 import { Chips } from '@components/Chips/Chips';
 import { shuffle } from '@utils/shuffle';
+import { Heading } from '@components/Heading';
 
 export interface InsertChipsData {
     sentence: string;
@@ -184,13 +185,13 @@ export const InsertChips: FunctionComponent<TranslateChipsProps> = ({
 
     return (
         <div>
-            <Typography variant="heading_m" color="primary" gutterBottom>
+            <Heading size="m" color="default" sx={{ marginBottom: '1rem' }}>
                 <I18N textKey="insert-chips-prompt" lang={I18NLangs.RU} />
-            </Typography>
+            </Heading>
 
-            <Typography variant="heading_m" mb={2}>
+            <Heading size="s" color="default" sx={{ marginBottom: '1rem' }}>
                 {prepareSentence(data.sentence, answerChips)}
-            </Typography>
+            </Heading>
 
             <Chips chips={fromChips} onSelect={onChipSelect} />
 

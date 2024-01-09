@@ -26,7 +26,12 @@ export const DesktopNavigation = ({ links }: DesktopNavigationProps) => {
         <nav>
             <List>
                 {links.map((link) => (
-                    <NavigationItem key={link.to} {...link}></NavigationItem>
+                    <li>
+                        <NavigationItem
+                            key={link.to}
+                            {...link}
+                        ></NavigationItem>
+                    </li>
                 ))}
             </List>
         </nav>
