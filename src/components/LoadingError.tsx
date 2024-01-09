@@ -3,6 +3,7 @@ import { Button, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import { useParsedError } from '@hooks/useParsedError';
+import { Heading } from '@components/Heading';
 
 const Container = styled.div`
     padding: 0 2rem;
@@ -23,9 +24,9 @@ export const LoadingError = ({
 
     return (
         <Container>
-            <Typography variant="heading_l">
+            <Heading size="l">
                 {name} could not be loaded due to an error:
-            </Typography>
+            </Heading>
             <div>
                 <p>Code: {error.status ?? ''}</p>
                 <p>Message: {error.message ?? ''}</p>

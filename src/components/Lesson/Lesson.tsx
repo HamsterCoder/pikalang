@@ -1,6 +1,7 @@
 import {
     FunctionComponent,
     useCallback,
+    useContext,
     useMemo,
     useReducer,
     useState,
@@ -11,6 +12,7 @@ import { Button, Typography } from '@mui/material';
 
 import { Challenge } from '@components/Challenge/Challenge';
 import { BaseHeader, HeaderContainer } from '@components/Header/Header';
+import { Heading } from '@components/Heading';
 import { I18N, I18NLangs } from '@components/I18N/I18N';
 import { userDataApi } from '@api/user-data';
 import {
@@ -19,6 +21,7 @@ import {
     isLessonIdValid,
 } from '@api/lessons';
 import { shuffle } from '@utils/shuffle';
+import { EnvContext } from '@routes/App';
 
 export interface LessonDescription {
     id: string;
@@ -160,20 +163,23 @@ export const Lesson: FunctionComponent = () => {
         }
     }
 
+    const { mobile } = useContext(EnvContext);
+
     return (
         <div>
             <HeaderContainer>
                 <BaseHeader>
-                    <Typography variant="heading_l" color="currentColor">
+                    <Heading size="l" color="inverted" mobile={mobile}>
                         {description.displayName}
-                    </Typography>
-                    <Typography
+                    </Heading>
+                    <Heading
+                        size="l"
+                        color="inverted"
+                        mobile={mobile}
                         sx={{ marginLeft: 'auto' }}
-                        variant="heading_l"
-                        color="currentColor"
                     >
                         {state.challengeNumber + 1}/{challenges.length}
-                    </Typography>
+                    </Heading>
                 </BaseHeader>
             </HeaderContainer>
             <LessonBody>

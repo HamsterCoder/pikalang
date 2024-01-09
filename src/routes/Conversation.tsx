@@ -5,6 +5,9 @@ import { Typography } from '@mui/material';
 import { ConversationData, ConversationEntry, api } from '@api/conversations';
 import { BaseHeader, HeaderContainer } from '@components/Header/Header';
 import { I18N, I18NLangs } from '@components/I18N/I18N';
+import { Heading } from '@components/Heading';
+import { EnvContext } from './App';
+import { useContext } from 'react';
 
 // TODO mobile layout
 interface ConversationLoaderParams {
@@ -129,14 +132,16 @@ const ConversationItem = styled(
 export const Conversation = () => {
     const { conversationData } = useLoaderData() as ConversationLoaderResponse;
 
+    const { mobile } = useContext(EnvContext);
+
     return (
         <div>
             <HeaderContainer>
                 <BaseHeader>
-                    <Typography variant="heading_l" color="currentcolor">
+                    <Heading size="l" mobile={mobile}>
                         {conversationData.displayName} /{' '}
                         {conversationData.displayNameTranslation}
-                    </Typography>
+                    </Heading>
                 </BaseHeader>
             </HeaderContainer>
             <BodyContainer>

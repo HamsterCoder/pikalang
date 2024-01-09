@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { IconButton, Typography } from '@mui/material';
+import { IconButton } from '@mui/material';
 
 import { I18N, I18NLangs } from '@components/I18N/I18N';
 import { Menu } from '@mui/icons-material';
@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { NavigationItem } from './NavigationItem';
 import { UnstyledList } from './UnstyledList';
 import { useMatches } from 'react-router-dom';
+import { Heading } from '@components/Heading';
 
 export interface NavigationLink {
     to: string;
@@ -67,12 +68,12 @@ export const MobileNavigation = ({ links }: NavigationProps) => {
                 <Menu />
             </IconButton>
             {currentLink && (
-                <Typography variant="heading_m" color="currentcolor">
+                <Heading size="l" color="currentColor" mobile>
                     <I18N
                         textKey={currentLink.labelKey}
                         lang={I18NLangs.RU}
                     ></I18N>
-                </Typography>
+                </Heading>
             )}
             <DropdownMenu data-open={open}>
                 <nav>
