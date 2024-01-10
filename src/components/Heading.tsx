@@ -54,7 +54,6 @@ export const Heading = function ({
         ? sizeMapByPlatform.mobile
         : sizeMapByPlatform.desktop;
 
-    // TODO add xs size to variants
     return (
         <Typography
             variant={sizeMap[size]}

@@ -1,0 +1,7 @@
+.side-by-side {
+    padding: 1rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: rgb(219, 219, 219);
+    align-items: baseline;
+}
