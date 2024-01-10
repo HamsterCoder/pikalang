@@ -1,0 +1,25 @@
+import { Story, Meta, Unstyled } from '@storybook/blocks';
+
+import * as HeadingStories from './Heading.stories';
+
+import './Heading.mdx.css';
+
+<Meta of={HeadingStories} />
+
+# Heading
+
+## Sizes: Desktop vs Mobile
+
+<Unstyled>
+    <div class="side-by-side">
+        <div>Desktop</div>
+        <div>Mobile</div>
+        <Story of={HeadingStories.Large} />
+        <Story of={HeadingStories.LargeMobile} />
+        <Story of={HeadingStories.Medium} />
+        <Story of={HeadingStories.MediumMobile} />
+        <Story of={HeadingStories.Small} />
+        <Story of={HeadingStories.SmallMobile} />
+    </div>
+</Unstyled>
+

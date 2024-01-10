@@ -1,10 +1,11 @@
-import { createTheme } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
 
 declare module '@mui/material/styles' {
     interface TypographyVariants {
         heading_l: React.CSSProperties;
         heading_m: React.CSSProperties;
         heading_s: React.CSSProperties;
+        heading_xs: React.CSSProperties;
         text_primary: React.CSSProperties;
         text_secondary: React.CSSProperties;
         dialog: React.CSSProperties;
@@ -15,6 +16,7 @@ declare module '@mui/material/styles' {
         heading_l?: React.CSSProperties;
         heading_m?: React.CSSProperties;
         heading_s?: React.CSSProperties;
+        heading_xs?: React.CSSProperties;
         text_primary?: React.CSSProperties;
         text_secondary?: React.CSSProperties;
         dialog?: React.CSSProperties;
@@ -27,6 +29,7 @@ declare module '@mui/material/Typography' {
         heading_l: true;
         heading_m: true;
         heading_s: true;
+        heading_xs: true;
         text_primary: true;
         text_secondary: true;
         dialog: true;
@@ -69,6 +72,11 @@ export const theme = createTheme({
         },
         heading_s: {
             fontSize: '1.2rem',
+            fontWeight: '500',
+            color: 'var(--heading-color)',
+        },
+        heading_xs: {
+            fontSize: '1rem',
             fontWeight: '500',
             color: 'var(--heading-color)',
         },
