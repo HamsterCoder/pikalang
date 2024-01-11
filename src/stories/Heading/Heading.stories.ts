@@ -2,25 +2,17 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { Heading } from '@components/Heading';
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
     title: 'Typography/Heading',
     component: Heading,
     parameters: {
-        // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
         layout: 'centered',
-    },
-    // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
-    // More on argTypes: https://storybook.js.org/docs/api/argtypes
-    argTypes: {
-        // color: { control: 'color' },
     },
 } satisfies Meta<typeof Heading>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Large: Story = {
     args: {
         size: 'l',
@@ -44,24 +36,53 @@ export const Small: Story = {
 
 export const LargeMobile: Story = {
     args: {
-        size: 'l',
+        ...Large.args,
         mobile: true,
-        children: 'Big Heading',
     },
 };
 
 export const MediumMobile: Story = {
     args: {
-        size: 'm',
+        ...Medium.args,
         mobile: true,
-        children: 'Medium Heading',
     },
 };
 
 export const SmallMobile: Story = {
     args: {
-        size: 's',
+        ...Small.args,
         mobile: true,
-        children: 'Small Heading',
+    },
+};
+
+const accentBackground = { backgrounds: { default: 'accent' } };
+
+export const LargeInverted: Story = {
+    args: {
+        ...Large.args,
+        color: 'inverted',
+    },
+    parameters: {
+        ...accentBackground,
+    },
+};
+
+export const MediumInverted: Story = {
+    args: {
+        ...Medium.args,
+        color: 'inverted',
+    },
+    parameters: {
+        ...accentBackground,
+    },
+};
+
+export const SmallInverted: Story = {
+    args: {
+        ...Small.args,
+        color: 'inverted',
+    },
+    parameters: {
+        ...accentBackground,
     },
 };

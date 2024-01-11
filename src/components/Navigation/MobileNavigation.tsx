@@ -52,10 +52,10 @@ export const MobileNavigation = ({ links }: NavigationProps) => {
     const match = useMatches();
 
     const currentLink = links.find((link) => {
-        return link.to === match[1].pathname;
+        return link.to === match[1]?.pathname;
     });
     const otherLinks = links.filter((link) => {
-        return link.to !== match[1].pathname;
+        return link.to !== match[1]?.pathname;
     });
 
     return (
