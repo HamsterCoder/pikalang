@@ -11,7 +11,7 @@ import {
     Conversation,
     loader as conversationLoader,
 } from '@routes/Conversation.tsx';
-import { StyleGuide } from '@routes/StyleGuide';
+
 import {
     AppModesLayout,
     loader as appModesLayoutLoader,
@@ -50,11 +50,6 @@ const router = createHashRouter([
     {
         path: '/lessons/:lessonTopic/:lessonId/',
         element: <Lesson />,
-        errorElement: <ErrorPage />,
-    },
-    {
-        path: '/styleguide/',
-        element: <StyleGuide />,
         errorElement: <ErrorPage />,
     },
     {

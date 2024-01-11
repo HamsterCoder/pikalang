@@ -1,4 +1,4 @@
-import type { Preview } from '@storybook/react';
+import type { Decorator, Preview } from '@storybook/react';
 
 // Providing Css Context and MUI Theme
 // https://storybook.js.org/recipes/@mui/material
@@ -6,6 +6,23 @@ import { ThemeProvider, CssBaseline } from '@mui/material';
 import { withThemeFromJSXProvider } from '@storybook/addon-themes';
 import { theme } from '../src/themes/default';
 import '../src/index.css';
+
+import { createMemoryRouter, RouterProvider } from 'react-router-dom';
+
+const reactRouterDecorator: Decorator = (Story) => {
+    const router = createMemoryRouter(
+        [
+            {
+                path: '/*',
+                element: <Story />,
+            },
+        ],
+        {
+            initialEntries: ['/lessons/'],
+        },
+    );
+    return <RouterProvider router={router} />;
+};
 
 const preview: Preview = {
     parameters: {
@@ -16,11 +33,24 @@ const preview: Preview = {
                 date: /Date$/i,
             },
         },
+        backgrounds: {
+            default: 'white',
+            values: [
+                {
+                    name: 'white',
+                    value: '#ffffff',
+                },
+                {
+                    name: 'accent',
+                    value: 'var(--primary-accent)',
+                },
+            ],
+        },
     },
 
-    // TODO
-    // @ts-ignore
     decorators: [
+        // TODO
+        // @ts-ignore
         withThemeFromJSXProvider({
             GlobalStyles: CssBaseline,
             Provider: ThemeProvider,
@@ -30,6 +60,7 @@ const preview: Preview = {
             },
             defaultTheme: 'light',
         }),
+        reactRouterDecorator,
     ],
 };
 
