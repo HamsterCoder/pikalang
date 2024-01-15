@@ -1,4 +1,4 @@
-import { Chip, Typography } from '@mui/material';
+import { Chip } from '@mui/material';
 import { FunctionComponent, useState, useCallback, ReactNode } from 'react';
 import { styled } from 'styled-components';
 
