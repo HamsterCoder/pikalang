@@ -1,11 +1,11 @@
 import { FunctionComponent, useCallback, useState } from 'react';
-import { Typography } from '@mui/material';
 import { styled } from 'styled-components';
 
-import { ChallengeType } from './types';
 import { Picture } from '@components/Picture/Picture';
 import { CheckAnswerControl } from '@components/CheckAnswerControl/CheckAnswerControl';
-import { I18N, I18NLangs } from '@components/I18N/I18N';
+import { Heading } from '@components/Heading';
+import { ChallengeType } from './types';
+import Prompt from './Prompt';
 
 export interface WordPictureData {
     images: string[];
@@ -62,13 +62,11 @@ export const WordPicture: FunctionComponent<WordPictureProps> = ({
 
     return (
         <div>
-            <Typography variant="heading_m" color="primary" gutterBottom>
-                <I18N textKey="word-picture-prompt" lang={I18NLangs.RU} />
-            </Typography>
+            <Prompt textKey="word-picture-prompt" />
 
-            <Typography mb={2} variant="heading_m">
+            <Heading size="m" color="default" sx={{ marginBottom: '1rem' }}>
                 {data.word}
-            </Typography>
+            </Heading>
 
             <ImageGrid>
                 {data.images.map((image) => (

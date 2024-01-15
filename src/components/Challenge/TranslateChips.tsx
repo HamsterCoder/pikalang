@@ -1,12 +1,12 @@
-import { Typography } from '@mui/material';
-import { FunctionComponent, useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 
-import { ChallengeType } from './types';
 import { ChipsAndLines } from '@components/Chips/ChipsAndLines';
 import { CheckAnswerControl } from '@components/CheckAnswerControl/CheckAnswerControl';
-import { I18N, I18NLangs } from '@components/I18N/I18N';
-import { isCorrectAnswer, prepareAnotherAnswer } from './utils';
+import { Heading } from '@components/Heading';
 import { shuffle } from '@utils/shuffle';
+import { isCorrectAnswer, prepareAnotherAnswer } from './utils';
+import { ChallengeType } from './types';
+import Prompt from './Prompt';
 
 export type TranslateChipsData =
     | {
@@ -68,10 +68,10 @@ function arrayUnion(first: string[], second: string[]): string[] {
     return words;
 }
 
-export const TranslateChips: FunctionComponent<TranslateChipsProps> = ({
+export const TranslateChips = ({
     challenge: { data },
     onComplete,
-}) => {
+}: TranslateChipsProps) => {
     const [complete, setComplete] = useState(false);
     const [answerChips, setAnswerChips] = useState<string[]>([]);
 
@@ -109,13 +109,11 @@ export const TranslateChips: FunctionComponent<TranslateChipsProps> = ({
 
     return (
         <div>
-            <Typography variant="heading_m" color="primary" gutterBottom>
-                <I18N textKey="translate-chips-prompt" lang={I18NLangs.RU} />
-            </Typography>
+            <Prompt textKey="translate-chips-prompt" />
 
-            <Typography variant="heading_m" mb={2}>
+            <Heading size="m" color="default" sx={{ marginBottom: '1rem' }}>
                 {data.sentence}
-            </Typography>
+            </Heading>
 
             <ChipsAndLines
                 nonInteractive={complete}

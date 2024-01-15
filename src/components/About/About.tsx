@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 import { QuestionMark } from '@mui/icons-material';
 import { ClickAwayListener, Fab, Link, Tooltip } from '@mui/material';
 
-import Text from '@components/Text/Text';
+import { Text } from '@components/Text/Text';
 
 const Container = styled.div`
     position: fixed;
@@ -42,18 +42,16 @@ export const About = () => {
                         placement="top-end"
                         title={
                             <Popover>
-                                <Text
-                                    sx={{ marginBottom: '1rem' }}
-                                    color="currentColor"
-                                >
+                                <Text type="primary" color="currentColor">
                                     Это pikalang - приложение для изучения
                                     языков. Сейчас доступен курс по сербскому
                                     языку, новые уроки будут появлятся
                                     регулярно.
                                 </Text>
                                 <Text
-                                    sx={{ marginBottom: '1rem' }}
+                                    type="primary"
                                     color="currentColor"
+                                    withMargin={false}
                                 >
                                     Более поднобную инфу можно найти на{' '}
                                     <Link

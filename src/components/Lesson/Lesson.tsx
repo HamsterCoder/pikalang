@@ -1,14 +1,7 @@
-import {
-    FunctionComponent,
-    useCallback,
-    useContext,
-    useMemo,
-    useReducer,
-    useState,
-} from 'react';
+import { useCallback, useContext, useMemo, useReducer, useState } from 'react';
 import { styled } from 'styled-components';
 import { Link, useParams } from 'react-router-dom';
-import { Button, Typography } from '@mui/material';
+import { Button } from '@mui/material';
 
 import { Challenge } from '@components/Challenge/Challenge';
 import { BaseHeader, HeaderContainer } from '@components/Header/Header';
@@ -22,6 +15,7 @@ import {
 } from '@api/lessons';
 import { shuffle } from '@utils/shuffle';
 import { EnvContext } from '@routes/App';
+import { Text } from '@components/Text/Text';
 
 export interface LessonDescription {
     id: string;
@@ -105,7 +99,7 @@ function lessonStateReducer(
 
 const MAX_CHALLENGES = 10;
 
-export const Lesson: FunctionComponent = () => {
+export const Lesson = () => {
     const [showChallenge, setShowChallenge] = useState(true);
     const [state, dispatch] = useReducer(lessonStateReducer, {
         challengeNumber: 0,
@@ -185,13 +179,17 @@ export const Lesson: FunctionComponent = () => {
             <LessonBody>
                 {state.complete && (
                     <div>
-                        <Typography variant="heading_m" gutterBottom>
+                        <Heading
+                            size="m"
+                            color="default"
+                            sx={{ marginBottom: '1rem' }}
+                        >
                             <I18N
                                 textKey="lesson-complete-appraisal"
                                 lang={I18NLangs.RU}
                             ></I18N>
-                        </Typography>
-                        <Typography variant="text_primary">
+                        </Heading>
+                        <Text type="primary" color="default">
                             <I18N
                                 textKey="lesson-complete-stats"
                                 values={{
@@ -201,7 +199,7 @@ export const Lesson: FunctionComponent = () => {
                                 }}
                                 lang={I18NLangs.RU}
                             ></I18N>
-                        </Typography>
+                        </Text>
                     </div>
                 )}
                 {!state.complete && showChallenge && (

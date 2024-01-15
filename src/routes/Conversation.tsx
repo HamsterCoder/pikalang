@@ -1,11 +1,11 @@
 import { Params, useLoaderData } from 'react-router-dom';
 import styled from 'styled-components';
-import { Typography } from '@mui/material';
 
 import { ConversationData, ConversationEntry, api } from '@api/conversations';
 import { BaseHeader, HeaderContainer } from '@components/Header/Header';
 import { I18N, I18NLangs } from '@components/I18N/I18N';
 import { Heading } from '@components/Heading';
+import { Text } from '@components/Text/Text';
 import { EnvContext } from './App';
 import { useContext } from 'react';
 
@@ -53,23 +53,23 @@ const ConversationItem = styled(
     ({ className, align, phrase }: ConversationItemProps) => (
         <div className={className} data-align={align}>
             <div data-child="original">
-                <Typography variant="dialog" color="currentcolor">
+                <Text type="dialog" color="currentColor">
                     {phrase.text}
-                </Typography>
+                </Text>
 
-                <Typography variant="text_primary" color="currentcolor">
+                <Text type="primary" color="currentColor" withMargin={false}>
                     {phrase.actorName}
-                </Typography>
+                </Text>
             </div>
 
             <div data-child="translation">
-                <Typography variant="dialog" color="currentcolor">
+                <Text type="dialog" color="currentColor">
                     {phrase.textTranslation}
-                </Typography>
+                </Text>
 
-                <Typography variant="text_primary" color="currentcolor">
+                <Text type="primary" color="currentColor" withMargin={false}>
                     {phrase.actorNameTranslation}
-                </Typography>
+                </Text>
             </div>
         </div>
     ),
@@ -138,19 +138,20 @@ export const Conversation = () => {
         <div>
             <HeaderContainer>
                 <BaseHeader>
-                    <Heading size="l" mobile={mobile}>
+                    <Heading size="l" color="inverted" mobile={mobile}>
                         {conversationData.displayName} /{' '}
                         {conversationData.displayNameTranslation}
                     </Heading>
                 </BaseHeader>
             </HeaderContainer>
             <BodyContainer>
-                <Typography variant="heading_m" gutterBottom>
+                {/* // TODO use Prompt component from Challenge? */}
+                <Heading size="m" color="default" sx={{ marginBottom: '1rem' }}>
                     <I18N
                         textKey="conversation-prompt"
                         lang={I18NLangs.RU}
                     ></I18N>
-                </Typography>
+                </Heading>
                 <ConversationContainer>
                     {conversationData.data.map((phrase, index) => {
                         return (
