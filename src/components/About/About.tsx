@@ -1,13 +1,7 @@
 import { useState } from 'react';
 import { styled } from 'styled-components';
 import { QuestionMark } from '@mui/icons-material';
-import {
-    ClickAwayListener,
-    Fab,
-    Link,
-    Tooltip,
-    Typography,
-} from '@mui/material';
+import { ClickAwayListener, Fab, Link, Tooltip } from '@mui/material';
 
 import Text from '@components/Text/Text';
 
