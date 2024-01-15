@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { styled } from 'styled-components';
 import { QuestionMark } from '@mui/icons-material';
 import {
     ClickAwayListener,
@@ -6,8 +8,8 @@ import {
     Tooltip,
     Typography,
 } from '@mui/material';
-import { FunctionComponent, useState } from 'react';
-import { styled } from 'styled-components';
+
+import Text from '@components/Text/Text';
 
 const Container = styled.div`
     position: fixed;
@@ -19,7 +21,7 @@ const Popover = styled.div`
     width: 280px;
 `;
 
-export const About: FunctionComponent = () => {
+export const About = () => {
     const [open, setOpen] = useState(false);
 
     const closeTooltip = () => {
@@ -46,20 +48,18 @@ export const About: FunctionComponent = () => {
                         placement="top-end"
                         title={
                             <Popover>
-                                <Typography
-                                    variant="text_primary"
+                                <Text
+                                    sx={{ marginBottom: '1rem' }}
                                     color="currentColor"
-                                    gutterBottom
                                 >
                                     Это pikalang - приложение для изучения
                                     языков. Сейчас доступен курс по сербскому
                                     языку, новые уроки будут появлятся
                                     регулярно.
-                                </Typography>
-                                <Typography
-                                    variant="text_primary"
+                                </Text>
+                                <Text
+                                    sx={{ marginBottom: '1rem' }}
                                     color="currentColor"
-                                    gutterBottom
                                 >
                                     Более поднобную инфу можно найти на{' '}
                                     <Link
@@ -70,7 +70,7 @@ export const About: FunctionComponent = () => {
                                         гитхабе
                                     </Link>
                                     .
-                                </Typography>
+                                </Text>
                             </Popover>
                         }
                     >

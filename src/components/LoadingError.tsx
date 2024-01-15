@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button, Typography } from '@mui/material';
+import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import { useParsedError } from '@hooks/useParsedError';

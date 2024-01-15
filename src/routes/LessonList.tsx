@@ -16,6 +16,7 @@ import { getLessonsDescriptions } from '@api/lessons';
 import { CardListItem, CardList } from '@components/CardList';
 import { I18N, I18NLangs } from '@components/I18N/I18N';
 import { EllipsisTypography } from '@components/EllispsisTypography';
+import Text from '@components/Text/Text';
 
 const Item = styled(Link)`
     display: block;
@@ -93,9 +94,7 @@ export const LessonList: FunctionComponent = () => {
                                             lesson.id,
                                         )}
                                     ></LinearProgress>
-                                    <Typography variant="text_primary">
-                                        {lesson.description}
-                                    </Typography>
+                                    <Text>{lesson.description}</Text>
                                 </CardContent>
                                 <CardActions sx={{ flexShrink: 0 }}>
                                     <Button
