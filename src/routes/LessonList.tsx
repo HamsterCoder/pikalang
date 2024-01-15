@@ -8,7 +8,6 @@ import {
     CardContent,
     CircularProgress,
     LinearProgress,
-    Typography,
 } from '@mui/material';
 
 import { UserData, userDataApi } from '@api/user-data';
@@ -16,7 +15,7 @@ import { getLessonsDescriptions } from '@api/lessons';
 import { CardListItem, CardList } from '@components/CardList';
 import { I18N, I18NLangs } from '@components/I18N/I18N';
 import { EllipsisTypography } from '@components/EllispsisTypography';
-import Text from '@components/Text/Text';
+import { Text } from '@components/Text/Text';
 
 const Item = styled(Link)`
     display: block;
@@ -94,7 +93,13 @@ export const LessonList: FunctionComponent = () => {
                                             lesson.id,
                                         )}
                                     ></LinearProgress>
-                                    <Text>{lesson.description}</Text>
+                                    <Text
+                                        type="primary"
+                                        color="default"
+                                        withMargin={false}
+                                    >
+                                        {lesson.description}
+                                    </Text>
                                 </CardContent>
                                 <CardActions sx={{ flexShrink: 0 }}>
                                     <Button

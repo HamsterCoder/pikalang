@@ -1,7 +1,3 @@
-// TODO Have render and check logic here
-// TODO Make challenge a wrapper - submit should be rendered by challenge
-
-import { Typography } from '@mui/material';
 import { FunctionComponent, useCallback, useMemo, useState } from 'react';
 import { styled } from 'styled-components';
 
@@ -9,9 +5,10 @@ import { ChallengeType } from './types';
 import { ChipsAndLines } from '@components/Chips/ChipsAndLines';
 import { Picture } from '@components/Picture/Picture';
 import { CheckAnswerControl } from '@components/CheckAnswerControl/CheckAnswerControl';
-import { I18N, I18NLangs } from '@components/I18N/I18N';
 import { isCorrectAnswer, prepareAnotherAnswer } from './utils';
 import { HintTooltip } from '@components/HintTooltip';
+import { Heading } from '@components/Heading';
+import Prompt from './Prompt';
 
 export interface QuestionChipsData {
     image?: string;
@@ -63,9 +60,7 @@ export const QuestionChips: FunctionComponent<QuestionChipsProps> = ({
 
     return (
         <div>
-            <Typography variant="heading_m" color="primary" gutterBottom>
-                <I18N textKey="question-chips-prompt" lang={I18NLangs.RU} />
-            </Typography>
+            <Prompt textKey="question-chips-prompt" />
 
             {data.image && (
                 <PictureContainer>
@@ -73,10 +68,10 @@ export const QuestionChips: FunctionComponent<QuestionChipsProps> = ({
                 </PictureContainer>
             )}
 
-            <Typography variant="heading_m" mb={2}>
+            <Heading size="m" color="default" sx={{ marginBottom: '1rem' }}>
                 {data.question}
                 <HintTooltip text={data.questionHint} />
-            </Typography>
+            </Heading>
 
             <ChipsAndLines
                 nonInteractive={complete}
