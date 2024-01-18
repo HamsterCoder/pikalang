@@ -11,8 +11,16 @@ const Container = styled.div`
     right: 16px;
 `;
 
-const Popover = styled.div`
+const TooltipLink = styled(Link)``;
+
+const TooltipContent = styled.div`
     width: 280px;
+
+    ${TooltipLink} {
+        color: var(--inverted-text-color);
+        font-weight: 500;
+        text-decoration: none;
+    }
 `;
 
 export const About = () => {
@@ -41,7 +49,7 @@ export const About = () => {
                         disableTouchListener
                         placement="top-end"
                         title={
-                            <Popover>
+                            <TooltipContent>
                                 <Text type="primary" color="currentColor">
                                     Это pikalang - приложение для изучения
                                     языков. Сейчас доступен курс по сербскому
@@ -54,16 +62,15 @@ export const About = () => {
                                     withMargin={false}
                                 >
                                     Более поднобную инфу можно найти на{' '}
-                                    <Link
+                                    <TooltipLink
                                         href="https://github.com/HamsterCoder/pikalang"
                                         target="_blank"
-                                        color="inherit"
                                     >
                                         гитхабе
-                                    </Link>
+                                    </TooltipLink>
                                     .
                                 </Text>
-                            </Popover>
+                            </TooltipContent>
                         }
                     >
                         <Fab
