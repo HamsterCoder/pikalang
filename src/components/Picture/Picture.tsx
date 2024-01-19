@@ -53,11 +53,14 @@ export const Picture: FunctionComponent<PictureProps> = ({
             data-selected={selected}
             onClick={onClick}
         >
-            <Image
-                src={`assets/${image}.jpg`}
-                alt={image}
-                title={dictionary[image]}
-            />
+            <picture>
+                <source srcSet={`assets/${image}.webp`} type="image/webp" />
+                <Image
+                    src={`assets/${image}.jpg`}
+                    alt={image}
+                    title={dictionary[image]}
+                />
+            </picture>
         </Container>
     );
 };
