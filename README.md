@@ -16,8 +16,42 @@ More lessons will be gradually added.
 Starting a vite dev server:
 
 ```
-npm install
+npm ci
 npm run dev
+```
+
+Starting storybook:
+
+```
+npm run storybook
+```
+
+Checking bundle size:
+
+```
+npx vite-bundle-visualizer
+```
+
+### Images
+
+This project uses images from unsplash as well as original images.
+
+-   Original images must be high quality 1000x1000 pixels JPEGS.
+-   Original images are stored in `public/assets-raw-orig/`
+-   They are then compressed for production with mozjpeg and sharp, to create jpg and webp assets.
+
+Whenever new images are added run:
+
+```
+node compress-images.js
+node convert-images.js
+```
+
+-   Unsplash images are currently manually resized to 1000x1000, and the compressed.
+-   Unsplash images are stored in `public/assets-raw/`
+
+```
+node compress-images.js
 ```
 
 ## Future plans
