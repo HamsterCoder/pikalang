@@ -7,7 +7,13 @@ export interface HintTooltipProps {
 
 export const HintTooltip = function ({ text }: HintTooltipProps) {
     return (
-        <Tooltip title={text} arrow>
+        <Tooltip
+            title={text}
+            enterTouchDelay={0}
+            enterDelay={100}
+            leaveDelay={100}
+            arrow
+        >
             <IconButton aria-label="hint" color="inherit">
                 <HelpOutlineIcon color="inherit" />
             </IconButton>
