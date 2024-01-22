@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { styled } from 'styled-components';
-import { dictionary } from '../../dictionary/english-serbian';
+import { englishSerbianDictionary } from '../../dictionary/serbian-course';
 
 export interface PictureProps {
     image: string;
@@ -59,7 +59,7 @@ export const Picture: FunctionComponent<PictureProps> = ({
                 <Image
                     src={`assets/${image}.jpg`}
                     alt={image}
-                    title={dictionary[image]}
+                    title={englishSerbianDictionary[image.replace(/-/g, ' ')]}
                 />
             </picture>
         </Container>

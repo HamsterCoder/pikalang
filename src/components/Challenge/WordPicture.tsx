@@ -7,10 +7,11 @@ import { Heading } from '@components/Heading';
 import { ChallengeType } from './types';
 import Prompt from './Prompt';
 
+import { DictionaryKeys, dictionary } from '../../dictionary/serbian-course';
+
 export interface WordPictureData {
     images: string[];
-    word: string;
-    answer: string;
+    word: DictionaryKeys;
 }
 
 export interface WordPictureChallenge {
@@ -40,7 +41,9 @@ export const WordPicture: FunctionComponent<WordPictureProps> = ({
 
     const checkAnswer = useCallback(
         function () {
-            return data.answer === answerImage;
+            return (
+                dictionary[data.word]['en'].replace(/[ ]/g, '-') === answerImage
+            );
         },
         [data, answerImage],
     );
@@ -58,7 +61,7 @@ export const WordPicture: FunctionComponent<WordPictureProps> = ({
         setAnswerImage(image);
     }
 
-    const expectedAnswer = data.answer;
+    const expectedAnswer = dictionary[data.word]['ru'];
 
     return (
         <div>
