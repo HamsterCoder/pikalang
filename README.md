@@ -38,20 +38,14 @@ This project uses images from unsplash as well as original images.
 
 -   Original images must be high quality 1000x1000 pixels JPEGS.
 -   Original images are stored in `public/assets-raw-orig/`
--   They are then compressed for production with mozjpeg and sharp, to create jpg and webp assets.
+-   Original images are then compressed for production with mozjpeg and sharp, to create jpg and webp assets.
+-   Unsplash images are resized and cropped to 1000x1000, and the compressed with mozjpeg and sharp.
+-   Unsplash images are stored in `public/assets-raw/`
 
 Whenever new images are added run:
 
 ```
-node compress-images.js
 node convert-images.js
-```
-
--   Unsplash images are currently manually resized to 1000x1000, and the compressed.
--   Unsplash images are stored in `public/assets-raw/`
-
-```
-node compress-images.js
 ```
 
 ## Future plans
