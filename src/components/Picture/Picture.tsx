@@ -55,6 +55,7 @@ export const Picture: FunctionComponent<PictureProps> = ({
         >
             <picture>
                 <source srcSet={`assets/${image}.webp`} type="image/webp" />
+                <source srcSet={`assets/${image}.jpg`} type="image/jpg" />
                 <Image
                     src={`assets/${image}.jpg`}
                     alt={image}
