@@ -21,7 +21,6 @@ const tomatoChallenges: ChallengeDescription[] = [
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'paradajz',
-            answer: 'tomato',
             images: ['tomato', 'courgette', 'potato'],
         },
     },
@@ -42,7 +41,6 @@ const cucumberChallenges: ChallengeDescription[] = [
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'krastavac',
-            answer: 'cucumber',
             images: ['tomato', 'cucumber', 'potato'],
         },
     },
@@ -63,7 +61,6 @@ const pepperChalllenges: ChallengeDescription[] = [
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'krompir',
-            answer: 'potato',
             images: ['potato', 'cucumber', 'tomato'],
         },
     },
@@ -84,7 +81,6 @@ const potatoChallenges: ChallengeDescription[] = [
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'paprika',
-            answer: 'pepper',
             images: ['pepper', 'cucumber', 'courgette'],
         },
     },
