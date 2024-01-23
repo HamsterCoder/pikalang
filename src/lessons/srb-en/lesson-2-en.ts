@@ -11,7 +11,6 @@ const appleChallenges: ChallengeDescription[] = [
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'jabuka',
-            answer: 'apple',
             images: ['apple', 'apricot', 'peach'],
         },
     },
