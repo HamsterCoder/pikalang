@@ -21,7 +21,15 @@ export type DictionaryKeys =
     | 'kupus'
     | 'tikvica'
     | 'bundeva'
-    | 'šargarepa';
+    | 'šargarepa'
+    | 'viljuška'
+    | 'kašika'
+    | 'nož'
+    | 'kašičica'
+    | 'tanjir'
+    | 'čaša'
+    | 'šolja'
+    | 'flaša';
 
 export const dictionary: Record<DictionaryKeys, Translation> = {
     paradajz: {
@@ -95,6 +103,38 @@ export const dictionary: Record<DictionaryKeys, Translation> = {
     šargarepa: {
         en: 'carrot',
         ru: 'морковь',
+    },
+    viljuška: {
+        en: 'fork',
+        ru: 'вилка',
+    },
+    kašika: {
+        en: 'spoon',
+        ru: 'ложка',
+    },
+    nož: {
+        en: 'knife',
+        ru: 'нож',
+    },
+    kašičica: {
+        en: 'teaspoon',
+        ru: 'чайная ложка',
+    },
+    tanjir: {
+        en: 'plate',
+        ru: 'тарелка',
+    },
+    čaša: {
+        en: 'glass',
+        ru: 'стакан',
+    },
+    šolja: {
+        en: 'cup',
+        ru: 'чашка',
+    },
+    flaša: {
+        en: 'bottle',
+        ru: 'бутылка',
     },
 };
 
