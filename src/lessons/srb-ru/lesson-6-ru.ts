@@ -14,7 +14,7 @@ export const description: LessonDescription = {
     topic: 'conversation',
     displayTopic: 'Разговор',
     image: 'greetings',
-    description: 'Учим приветсвия',
+    description: 'Учим приветствия',
 };
 
 export const challenges: ChallengeDescription[] = [
