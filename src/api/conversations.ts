@@ -4,7 +4,6 @@ import {
 } from '../conversations-data/conversation-1-ru';
 import { emulateLatency } from '@utils/emulateLatency';
 
-// TODO add code that would emulate a 50ms - 300ms wait time for methods
 export interface ConversationProgress {
     completed: boolean;
 }

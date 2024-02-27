@@ -1,5 +1,6 @@
 import { ChallengeDescription } from '@components/Challenge/types';
 import { LessonDescription } from '@components/Lesson/Lesson';
+import { emulateLatency } from '@utils/emulateLatency';
 
 import {
     challenges as challenges1,
@@ -80,6 +81,7 @@ const lessons: LessonDescription[] = [
     description9,
     description10,
 ];
+const lessonDescriptions = lessons;
 
 export function getLessonDescriptionById(
     lessonTopic: string,
@@ -101,4 +103,68 @@ export function getLessonById(lessonTopic: string, lessonId: string) {
 
 export function getLessonsDescriptions(): LessonDescription[] {
     return lessons;
+}
+
+function getLocalStoragePath(username: string) {
+    return `${username}/lessons_progress`;
+}
+
+// TODO update setting progress at the end of the lesson
+// TODO write a migration script to update user data
+interface SavedLessonProgress {
+    recommendedTries: number; // TODO Comes from the lesson description
+    currentTries: number;
+}
+
+interface DisplayedLessonProgress {
+    progress: number;
+}
+
+interface LessonListItem extends LessonDescription, DisplayedLessonProgress {}
+
+export type LessonsBySection = {
+    section: string;
+    lessons: LessonListItem[];
+}[];
+
+function computeLessonProgress(
+    progressData: Record<string, SavedLessonProgress> | null,
+    lessonId: string,
+) {
+    const lessonProgress = progressData?.[lessonId];
+
+    return lessonProgress
+        ? Math.min(
+              (lessonProgress.currentTries / lessonProgress.recommendedTries) *
+                  100,
+              100,
+          )
+        : 0;
+}
+
+export async function listLessons(username: string): Promise<LessonListItem[]> {
+    if (import.meta.env.DEV) {
+        await emulateLatency();
+    }
+
+    let lessons: LessonListItem[];
+    let progressData: Record<string, SavedLessonProgress> | null;
+
+    try {
+        progressData = JSON.parse(
+            localStorage.getItem(getLocalStoragePath(username)) ?? 'null',
+        );
+
+        lessons = lessonDescriptions.map((lesson) => {
+            return {
+                ...lesson,
+                progress: computeLessonProgress(progressData, lesson.id),
+            };
+        });
+    } catch (error) {
+        console.log(error);
+        return Promise.reject('api.listLessons request failed');
+    }
+
+    return Promise.resolve(lessons);
 }

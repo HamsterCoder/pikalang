@@ -23,6 +23,10 @@ import { LoadingError } from '@components/LoadingError';
 
 import { theme } from '../themes/default';
 
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
+
 const router = createHashRouter([
     {
         path: '/',
@@ -68,6 +72,7 @@ const router = createHashRouter([
 
 export const EnvContext = createContext({ mobile: false });
 
+// TODO App itself is not a route, move it to a different folder
 export const App = () => {
     const [envContext, setEnvContext] = useState({ mobile: false });
 
@@ -101,11 +106,13 @@ export const App = () => {
     }, []);
 
     return (
-        <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <EnvContext.Provider value={envContext}>
-                <RouterProvider router={router} />
-            </EnvContext.Provider>
-        </ThemeProvider>
+        <QueryClientProvider client={queryClient}>
+            <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <EnvContext.Provider value={envContext}>
+                    <RouterProvider router={router} />
+                </EnvContext.Provider>
+            </ThemeProvider>
+        </QueryClientProvider>
     );
 };

@@ -1,4 +1,3 @@
-import { FunctionComponent, useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import { Link } from 'react-router-dom';
 import {
@@ -9,9 +8,9 @@ import {
     CircularProgress,
     LinearProgress,
 } from '@mui/material';
+import { useQuery } from '@tanstack/react-query';
 
-import { UserData, userDataApi } from '@api/user-data';
-import { getLessonsDescriptions } from '@api/lessons';
+import { listLessons } from '@api/lessons';
 import { CardListItem, CardList } from '@components/CardList';
 import { I18N, I18NLangs } from '@components/I18N/I18N';
 import { EllipsisTypography } from '@components/EllispsisTypography';
@@ -23,49 +22,37 @@ const Item = styled(Link)`
     text-decoration: none;
 `;
 
-function computeLessonProgress(
-    userData: UserData | undefined,
-    lessonId: string,
-) {
-    const lessonStats = userData?.lessons[lessonId];
+// TODO: use React Query to fetch data
+// https://tanstack.com/query/latest/docs/framework/react/overviews
+// TODO: create an asynchrnous api to fetch lesson data, much like fetching conversations
+// TODO: create a config to match lessons with sections
+// TODO: create layout for sections in lesson list
+// TODO: scroll to current active lesson on mobile and current active section on desktop
 
-    return lessonStats
-        ? Math.min((lessonStats.completed / lessonStats.threshold) * 100, 100)
-        : 0;
-}
+export const LessonList = () => {
+    // TODO Load lesson data from the server
+    // Including sections, lesson descriptions, and user progress
+    const {
+        isPending,
+        error,
+        data: lessons,
+    } = useQuery({
+        queryKey: ['listLessons', 'default'],
+        queryFn: () => listLessons('default'),
+    });
 
-const lessons = getLessonsDescriptions();
-
-export const LessonList: FunctionComponent = () => {
-    const [loadingState, setLoadingState] = useState<string>('loading');
-    const [userData, setUserData] = useState<UserData>();
-
-    useEffect(() => {
-        console.log('LOG::LessonList.effect run');
-
-        userDataApi
-            .getUserData('default')
-            .then((userData) => {
-                setUserData(userData);
-                setLoadingState('complete');
-            })
-            .catch((error) => {
-                console.log('LOG::LessonList.effect failed to fetch', error);
-            });
-
-        return () => {
-            console.log('LOG::LessonList.effect clean');
-        };
-    }, [setLoadingState, setUserData]);
+    if (error) {
+        return 'An error has occurred: ' + error.message;
+    }
 
     return (
         <CardList>
-            {loadingState === 'loading' && (
+            {isPending && (
                 <CircularProgress
                     sx={{ marginLeft: 'auto', marginRight: 'auto' }}
                 />
             )}
-            {loadingState === 'complete' &&
+            {!isPending &&
                 lessons.map((lesson) => (
                     <CardListItem key={lesson.id}>
                         <Item to={`/lessons/${lesson.id}`}>
@@ -88,10 +75,7 @@ export const LessonList: FunctionComponent = () => {
                                     <LinearProgress
                                         variant="determinate"
                                         sx={{ marginBottom: 2 }}
-                                        value={computeLessonProgress(
-                                            userData,
-                                            lesson.id,
-                                        )}
+                                        value={lesson.progress}
                                     ></LinearProgress>
                                     <Text
                                         type="primary"
