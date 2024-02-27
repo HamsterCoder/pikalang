@@ -12,6 +12,7 @@ import {
     getLessonById,
     getLessonDescriptionById,
     isLessonIdValid,
+    saveLessonProgress,
 } from '@api/lessons';
 import { shuffle } from '@utils/shuffle';
 import { EnvContext } from '@routes/App';
@@ -135,12 +136,10 @@ export const Lesson = () => {
         dispatch({ type: LessonActionType.COMPLETE_CHALLENGE, data });
     }
 
+    // IDEA: Count progress for each lesson aswell as for the whole section
     const saveProgress = useCallback(async () => {
-        await userDataApi.saveLessonProgress(
-            'default',
-            description.id,
-            state.correct,
-        );
+        await userDataApi.saveXPProgress('default', state.correct);
+        await saveLessonProgress('default', description.id);
     }, [state, description]);
 
     async function showNextChallenge() {
