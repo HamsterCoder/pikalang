@@ -101,10 +101,6 @@ export function getLessonById(lessonTopic: string, lessonId: string) {
     return lessonsMap[`${lessonTopic}/${lessonId}`];
 }
 
-export function getLessonsDescriptions(): LessonDescription[] {
-    return lessons;
-}
-
 function getLocalStoragePath(username: string) {
     return `${username}/lessons_progress`;
 }
@@ -167,4 +163,41 @@ export async function listLessons(username: string): Promise<LessonListItem[]> {
     }
 
     return Promise.resolve(lessons);
+}
+
+/**
+ * This function is called when the user completes a lesson and updates the number of tries
+ * @param username - current username (for future use in a real API)
+ * @param id - lesson id to save progress for
+ * @returns
+ */
+export async function saveLessonProgress(
+    username: string,
+    id: string,
+): Promise<void> {
+    let progressData: Record<string, SavedLessonProgress> | null;
+
+    try {
+        progressData = JSON.parse(
+            localStorage.getItem(getLocalStoragePath(username)) ?? 'null',
+        );
+
+        const updatedProgressData = progressData ?? {};
+
+        updatedProgressData[id] = updatedProgressData[id] ?? {
+            recommendedTries: 4,
+            currentTries: 0,
+        };
+        updatedProgressData[id].currentTries += 1;
+
+        localStorage.setItem(
+            getLocalStoragePath(username),
+            JSON.stringify(updatedProgressData),
+        );
+    } catch (error) {
+        console.log(error);
+        return Promise.reject('api.saveLessonProgress request failed');
+    }
+
+    return Promise.resolve();
 }

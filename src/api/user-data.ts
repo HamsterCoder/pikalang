@@ -13,11 +13,6 @@ const DEFAULT_USER_DATA = {
     xp: 0,
 };
 
-const DEFAULT_LESSON_DATA = {
-    completed: 0,
-    threshold: 4,
-};
-
 function getUserData(username: string): Promise<UserData> {
     let userData;
 
@@ -44,19 +39,12 @@ async function setUserdata(username: string, data: UserData): Promise<void> {
     return Promise.resolve();
 }
 
-async function saveLessonProgress(
-    username: string,
-    id: string,
-    xp: number,
-): Promise<void> {
+async function saveXPProgress(username: string, xp: number): Promise<void> {
     try {
         const updatedUserData = await userDataApi.getUserData(username);
 
         // Get one XP for each correct answer
         updatedUserData.xp += xp;
-        updatedUserData.lessons[id] =
-            updatedUserData.lessons[id] || DEFAULT_LESSON_DATA;
-        updatedUserData.lessons[id].completed += 1;
 
         await userDataApi.setUserdata(username, updatedUserData);
     } catch (error) {
@@ -70,5 +58,5 @@ async function saveLessonProgress(
 export const userDataApi = {
     getUserData,
     setUserdata,
-    saveLessonProgress,
+    saveXPProgress,
 };
