@@ -125,32 +125,32 @@ export const challenges: ChallengeDescription[] = [
         type: ChallengeType.TRANSLATE_CHIPS,
         data: {
             sentence: 'Da li mogu da dobijem nož.',
-            answer: ['Можно мне нож.'],
-            wrongChips: ['вилку.', 'ложку.', 'чашку.'],
+            answer: ['Можно мне нож?', 'Можно нож?'],
+            wrongChips: ['вилку?', 'ложку?', 'чашку?'],
         },
     },
     {
         type: ChallengeType.TRANSLATE_CHIPS,
         data: {
             sentence: 'Da li mogu da dobijem kašiku?',
-            answer: ['Можно мне ложку.'],
-            wrongChips: ['вилку.', 'нож.', 'чашку.'],
+            answer: ['Можно мне ложку?', 'Можно ложку?'],
+            wrongChips: ['вилку?', 'нож?', 'чашку?'],
         },
     },
     {
         type: ChallengeType.TRANSLATE_CHIPS,
         data: {
             sentence: 'Da li mogu da dobijem viljušku?',
-            answer: ['Можно мне вилку.'],
-            wrongChips: ['ложку.', 'тарелку.', 'стакан.'],
+            answer: ['Можно мне вилку?', 'Можно вилку?'],
+            wrongChips: ['ложку?', 'тарелку?', 'стакан?'],
         },
     },
     {
         type: ChallengeType.TRANSLATE_CHIPS,
         data: {
             sentence: 'Da li mogu da dobijem kašičicu?',
-            answer: ['Можно мне чайную ложку.'],
-            wrongChips: ['ложку.', 'нож.', 'тарелку.'],
+            answer: ['Можно мне чайную ложку?', 'Можно чайную ложку?'],
+            wrongChips: ['ложку?', 'нож?', 'тарелку?'],
         },
     },
 ];

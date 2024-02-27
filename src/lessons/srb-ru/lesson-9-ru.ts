@@ -94,6 +94,8 @@ export const challenges: ChallengeDescription[] = [
             answer: [
                 'Breskve su narandžaste i crvene',
                 'Breskve su crvene i narandžaste',
+                'Breskve su crvene i žute',
+                'Breskve su žute i crvene',
                 'Breskve su narandžaste',
                 'Breskve su crvene',
             ],
