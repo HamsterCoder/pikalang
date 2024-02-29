@@ -136,7 +136,6 @@ export const Lesson = () => {
         dispatch({ type: LessonActionType.COMPLETE_CHALLENGE, data });
     }
 
-    // IDEA: Count progress for each lesson aswell as for the whole section
     const saveProgress = useCallback(async () => {
         await userDataApi.saveXPProgress('default', state.correct);
         await saveLessonProgress('default', description.id);

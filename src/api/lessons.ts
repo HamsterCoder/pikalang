@@ -107,10 +107,8 @@ function getLocalStoragePath(username: string) {
     return `${username}/lessons_progress`;
 }
 
-// TODO update setting progress at the end of the lesson
-// TODO write a migration script to update user data
 interface SavedLessonProgress {
-    recommendedTries: number; // TODO Comes from the lesson description
+    recommendedTries: number;
     currentTries: number;
 }
 
