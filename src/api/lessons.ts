@@ -43,6 +43,8 @@ import {
     description as description10,
 } from '../lessons/srb-ru/lesson-10-ru';
 
+import { sections } from '../lessons/srb-ru/sections';
+
 const lessonsMap: Record<string, ChallengeDescription[]> = {
     [description1.id]: challenges1,
     [description2.id]: challenges2,
@@ -116,12 +118,15 @@ interface DisplayedLessonProgress {
     progress: number;
 }
 
-interface LessonListItem extends LessonDescription, DisplayedLessonProgress {}
+export interface LessonListItem
+    extends LessonDescription,
+        DisplayedLessonProgress {}
 
-export type LessonsBySection = {
-    section: string;
+export interface SectionDescription {
+    name: string;
+    displayName: string;
     lessons: LessonListItem[];
-}[];
+}
 
 function computeLessonProgress(
     progressData: Record<string, SavedLessonProgress> | null,
@@ -138,13 +143,16 @@ function computeLessonProgress(
         : 0;
 }
 
-export async function listLessons(username: string): Promise<LessonListItem[]> {
+export async function listLessons(
+    username: string,
+): Promise<SectionDescription[]> {
     if (import.meta.env.DEV) {
         await emulateLatency();
     }
 
     let lessons: LessonListItem[];
     let progressData: Record<string, SavedLessonProgress> | null;
+    let preparedSections: SectionDescription[];
 
     try {
         progressData = JSON.parse(
@@ -157,12 +165,30 @@ export async function listLessons(username: string): Promise<LessonListItem[]> {
                 progress: computeLessonProgress(progressData, lesson.id),
             };
         });
+
+        const lessonListItemMap: Record<string, LessonListItem> = {};
+
+        lessons.forEach((lessonDescription) => {
+            lessonListItemMap[lessonDescription.id] = lessonDescription;
+        });
+
+        preparedSections = sections.map(({ name, displayName, lessonIds }) => {
+            const sectionLessons = lessonIds.map(
+                (lessonId) => lessonListItemMap[lessonId],
+            );
+
+            return {
+                name,
+                displayName,
+                lessons: sectionLessons,
+            };
+        });
     } catch (error) {
         console.log(error);
         return Promise.reject('api.listLessons request failed');
     }
 
-    return Promise.resolve(lessons);
+    return Promise.resolve(preparedSections);
 }
 
 /**
