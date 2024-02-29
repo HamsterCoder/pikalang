@@ -64,7 +64,7 @@ function renderLessonList(lessons: LessonListItem[]) {
     ));
 }
 
-const LessonListHeading = styled(Heading)`
+const SectionHeading = styled(Heading)`
     && {
         margin-bottom: 1rem;
         padding: 0 2rem;
@@ -98,10 +98,8 @@ export const LessonList = () => {
     }
 
     return sections.map((section) => (
-        <SectionContainer>
-            <LessonListHeading size="m">
-                {section.displayName}
-            </LessonListHeading>
+        <SectionContainer key={section.name}>
+            <SectionHeading size="m">{section.displayName}</SectionHeading>
             <CardList>{renderLessonList(section.lessons)}</CardList>
         </SectionContainer>
     ));
