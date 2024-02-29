@@ -6,6 +6,7 @@ type Variant = 'heading_xs' | 'heading_s' | 'heading_m' | 'heading_l';
 type Color = 'default' | 'inverted' | 'currentColor';
 
 export interface HeadingProps {
+    className?: string;
     size: Size;
     children: ReactNode;
     color?: Color;
@@ -49,6 +50,7 @@ export const Heading = function ({
     size,
     mobile = false,
     color = 'default',
+    className,
 }: HeadingProps) {
     const sizeMap = mobile
         ? sizeMapByPlatform.mobile
@@ -56,6 +58,7 @@ export const Heading = function ({
 
     return (
         <Typography
+            className={className}
             variant={sizeMap[size]}
             component={elementMap[size]}
             color={colorMap[color]}
