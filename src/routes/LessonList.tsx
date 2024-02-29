@@ -1,65 +1,71 @@
 import { styled } from 'styled-components';
 import { Link } from 'react-router-dom';
-import {
-    Button,
-    Card,
-    CardActions,
-    CardContent,
-    CircularProgress,
-    LinearProgress,
-} from '@mui/material';
+import { CircularProgress, LinearProgress } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 
 import { listLessons, LessonListItem } from '@api/lessons';
 import { CardListItem, CardList } from '@components/CardList';
-import { I18N, I18NLangs } from '@components/I18N/I18N';
 import { EllipsisTypography } from '@components/EllispsisTypography';
 import { Text } from '@components/Text/Text';
 import { Heading } from '@components/Heading';
 
-const Item = styled(Link)`
+// TODO: scroll to current active lesson on mobile and current active section on desktop
+
+const LessonProgress = styled(LinearProgress)`
+    && {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        height: 0.5rem;
+    }
+`;
+
+const CardLink = styled(Link)`
     display: block;
     height: 100%;
     text-decoration: none;
 `;
 
-// TODO: scroll to current active lesson on mobile and current active section on desktop
+const CustomCard = styled.div`
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    padding-bottom: 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+
+    box-shadow:
+        0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+        0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+        0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    border-radius: 0.25rem;
+    background-color: rgba(217, 175, 207, 0.2);
+
+    overflow: hidden;
+`;
 
 function renderLessonList(lessons: LessonListItem[]) {
     return lessons.map((lesson) => (
         <CardListItem key={lesson.id}>
-            <Item to={`/lessons/${lesson.id}`}>
-                <Card
-                    sx={{
-                        width: '100%',
-                        height: '100%',
-                        display: 'flex',
-                        flexDirection: 'column',
-                    }}
-                >
-                    <CardContent sx={{ flexGrow: 1 }}>
-                        <EllipsisTypography variant="heading_s" gutterBottom>
-                            {lesson.displayTopic} &middot; {lesson.displayName}
-                        </EllipsisTypography>
-                        <LinearProgress
-                            variant="determinate"
-                            sx={{ marginBottom: 2 }}
-                            value={lesson.progress}
-                        ></LinearProgress>
-                        <Text type="primary" color="default" withMargin={false}>
-                            {lesson.description}
-                        </Text>
-                    </CardContent>
-                    <CardActions sx={{ flexShrink: 0 }}>
-                        <Button size="small" data-lesson-id={lesson.id}>
-                            <I18N
-                                textKey="lesson-list-practice-button"
-                                lang={I18NLangs.RU}
-                            ></I18N>
-                        </Button>
-                    </CardActions>
-                </Card>
-            </Item>
+            <CardLink to={`/lessons/${lesson.id}`}>
+                <CustomCard>
+                    <EllipsisTypography variant="heading_s" gutterBottom>
+                        {lesson.displayTopic} &middot; {lesson.displayName}
+                    </EllipsisTypography>
+                    <Text type="primary" color="default" withMargin={false}>
+                        {lesson.description}
+                    </Text>
+                    <LessonProgress
+                        variant="determinate"
+                        value={lesson.progress}
+                    ></LessonProgress>
+                </CustomCard>
+            </CardLink>
         </CardListItem>
     ));
 }
