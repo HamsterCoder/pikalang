@@ -72,13 +72,13 @@ function renderLessonList(lessons: LessonListItem[]) {
 
 const SectionHeading = styled(Heading)`
     && {
-        margin-bottom: 1rem;
         padding: 0 2rem;
+        margin-bottom: 1rem;
     }
 `;
 
 const SectionContainer = styled.div`
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 `;
 
 export const LessonList = () => {
