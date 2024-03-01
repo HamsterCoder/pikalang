@@ -114,6 +114,7 @@ interface SavedLessonProgress {
 
 interface DisplayedLessonProgress {
     progress: number;
+    locked: boolean;
 }
 
 export interface LessonListItem
@@ -161,6 +162,7 @@ export async function listLessons(
             return {
                 ...lesson,
                 progress: computeLessonProgress(progressData, lesson.id),
+                locked: false, // Temporary, will be updated below
             };
         });
 
@@ -178,7 +180,24 @@ export async function listLessons(
             return {
                 name,
                 displayName,
-                lessons: sectionLessons,
+                lessons: sectionLessons.map((lesson, index) => {
+                    let locked;
+
+                    if (index === 0) {
+                        // First lesson is always unlocked
+                        locked = false;
+                    } else {
+                        // Previous lesson isn't completed
+                        locked =
+                            computeLessonProgress(
+                                progressData,
+                                sectionLessons[index - 1].id,
+                            ) < 100;
+                    }
+
+                    lesson.locked = locked;
+                    return lesson;
+                }),
             };
         });
     } catch (error) {
