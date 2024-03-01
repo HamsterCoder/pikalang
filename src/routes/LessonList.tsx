@@ -1,34 +1,35 @@
 import { styled } from 'styled-components';
 import { Link } from 'react-router-dom';
-import { CircularProgress, LinearProgress } from '@mui/material';
+import {
+    CircularProgress,
+    LinearProgress,
+    linearProgressClasses,
+} from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
+import LockIcon from '@mui/icons-material/Lock';
+import Tooltip from '@mui/material/Tooltip';
 
 import { listLessons, LessonListItem } from '@api/lessons';
 import { CardListItem, CardList } from '@components/CardList';
-import { EllipsisTypography } from '@components/EllispsisTypography';
 import { Text } from '@components/Text/Text';
 import { Heading } from '@components/Heading';
+import { I18N, I18NLangs } from '@components/I18N/I18N';
 
 // TODO: scroll to current active lesson on mobile and current active section on desktop
+// TODO current active section is the first section with a locked lesson
 
-const LessonProgress = styled(LinearProgress)`
-    && {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
+interface LessonCardProps {
+    locked: boolean;
+}
 
-        height: 0.5rem;
-    }
-`;
-
-const CardLink = styled(Link)`
+const LessonLink = styled(Link)<LessonCardProps>`
+    ${(props) => props.locked && 'pointer-events: none;'}
     display: block;
     height: 100%;
     text-decoration: none;
 `;
 
-const CustomCard = styled.div`
+const LessonCard = styled.div<LessonCardProps>`
     position: relative;
 
     width: 100%;
@@ -44,28 +45,95 @@ const CustomCard = styled.div`
         0px 1px 1px 0px rgba(0, 0, 0, 0.14),
         0px 1px 3px 0px rgba(0, 0, 0, 0.12);
     border-radius: 0.25rem;
-    background-color: rgba(217, 175, 207, 0.2);
+    color: var(--text-color);
+    background-color: ${(props) =>
+        props.locked ? 'rgba(208,208,208, 0.3)' : 'rgba(217, 175, 207, 0.2)'};
 
     overflow: hidden;
 `;
 
+const LessonHeading = styled(Heading)`
+    && {
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+        margin-bottom: 0.5rem;
+    }
+`;
+
+const LessonHeadingIcon = styled.span`
+    &:not(:empty) {
+        pointer-events: auto;
+        margin-bottom: -6px;
+        margin-right: 0.25rem;
+    }
+`;
+
+const LessonHeadingText = styled.span`
+    flex-shrink: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+`;
+
+const LessonProgress = styled(LinearProgress)<LessonCardProps>`
+    && {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        height: 0.5rem;
+    }
+
+    &.${linearProgressClasses.colorPrimary} {
+        background-color: ${(props) =>
+            props.locked ? 'rgb(205, 205, 205)' : 'rgb(217, 175, 206)'};
+    }
+`;
+
+// TODO tooltip for locked and completed lessons when hovering over the icon
 function renderLessonList(lessons: LessonListItem[]) {
     return lessons.map((lesson) => (
         <CardListItem key={lesson.id}>
-            <CardLink to={`/lessons/${lesson.id}`}>
-                <CustomCard>
-                    <EllipsisTypography variant="heading_s" gutterBottom>
-                        {lesson.displayTopic} &middot; {lesson.displayName}
-                    </EllipsisTypography>
+            <LessonLink to={`/lessons/${lesson.id}`} locked={lesson.locked}>
+                <LessonCard locked={lesson.locked}>
+                    <LessonHeading
+                        size="s"
+                        color={lesson.locked ? 'currentColor' : 'default'}
+                    >
+                        <Tooltip
+                            title={
+                                <I18N
+                                    textKey="lesson-list-locked-message"
+                                    lang={I18NLangs.RU}
+                                ></I18N>
+                            }
+                            enterTouchDelay={0}
+                            enterDelay={100}
+                            leaveDelay={100}
+                            arrow
+                        >
+                            <LessonHeadingIcon>
+                                {lesson.locked && (
+                                    <LockIcon fontSize="inherit" />
+                                )}
+                            </LessonHeadingIcon>
+                        </Tooltip>
+
+                        <LessonHeadingText>
+                            {lesson.displayTopic} &middot; {lesson.displayName}
+                        </LessonHeadingText>
+                    </LessonHeading>
                     <Text type="primary" color="default" withMargin={false}>
                         {lesson.description}
                     </Text>
                     <LessonProgress
+                        locked={lesson.locked}
                         variant="determinate"
                         value={lesson.progress}
                     ></LessonProgress>
-                </CustomCard>
-            </CardLink>
+                </LessonCard>
+            </LessonLink>
         </CardListItem>
     ));
 }
@@ -102,6 +170,8 @@ export const LessonList = () => {
             />
         );
     }
+
+    console.log(sections);
 
     return sections.map((section) => (
         <SectionContainer key={section.name}>

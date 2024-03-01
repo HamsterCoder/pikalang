@@ -45,6 +45,10 @@ const dictionary: Record<
         en: 'Lessons',
         ru: 'Уроки',
     },
+    'lesson-list-locked-message': {
+        en: 'Complete the previous lesson to unlock this one. Fill the progress bar.',
+        ru: 'Сначала нужно полностью пройти предыдущий урок. Заполните весь прогресс-бар.',
+    },
     'lesson-submit-button': {
         en: 'Check',
         ru: 'Проверить',
@@ -85,6 +89,7 @@ const dictionary: Record<
         en: 'See other lessons',
         ru: 'Посмотреть другие уроки',
     },
+
     'conversation-list-heading': {
         en: 'Conversations',
         ru: 'Разговоры',
