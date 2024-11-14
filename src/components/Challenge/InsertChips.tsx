@@ -35,31 +35,55 @@ const WordInsert = styled.span<WordInsertProps>`
     border-bottom: 2px solid var(--primary-accent);
 `;
 
-function isMissingWord(word: string) {
-    return word[0] === '{' && word[word.length - 1] === '}';
+function countMissingWords(sentence: string) {
+    let wordCount = 0;
+
+    for (const char of sentence) {
+        if (char === '{') {
+            wordCount += 1;
+        }
+    }
+    return wordCount;
 }
 
-function countMissingWords(sentence: string) {
-    return sentence.split(' ').reduce((agr: number, word: string) => {
-        if (isMissingWord(word)) {
-            agr += 1;
-        }
+function getMissingWordsAndFragments(sentence: string) {
+    const missingWords = [];
+    const fragments = [];
 
-        return agr;
-    }, 0);
+    let readingWord = false;
+    let currentWord = '';
+    let currentFragment = '';
+
+    for (const char of sentence) {
+        if (readingWord) {
+            if (char === '}') {
+                missingWords.push(currentWord);
+                currentWord = '';
+                readingWord = false;
+            } else {
+                currentWord += char;
+            }
+        } else {
+            if (char === '{') {
+                fragments.push(currentFragment);
+                currentFragment = '';
+                readingWord = true;
+            } else {
+                currentFragment += char;
+            }
+        }
+    }
+
+    fragments.push(currentFragment);
+
+    return {
+        missingWords,
+        fragments,
+    };
 }
 
 function computeAnswer(sentence: string) {
-    return sentence
-        .split(' ')
-        .map((word: string) => {
-            if (isMissingWord(word)) {
-                return word.slice(1, -1);
-            }
-
-            return word;
-        })
-        .join(' ');
+    return sentence.replace(/{|}/g, '');
 }
 
 function plausibleAnswerSelected(
@@ -89,10 +113,10 @@ export const InsertChips: FunctionComponent<TranslateChipsProps> = ({
             `LOG::Answer chips: ${answerChips} and chips: ${data.chips}`,
         );
 
-        const missingWordsCount: number = countMissingWords(data.sentence);
+        const { missingWords } = getMissingWordsAndFragments(data.sentence);
 
-        for (let i = 0; i < missingWordsCount; i += 1) {
-            if (answerChips[i] !== data.chips[i]) {
+        for (let i = 0; i < missingWords.length; i += 1) {
+            if (answerChips[i] !== missingWords[i]) {
                 return false;
             }
         }
@@ -155,30 +179,54 @@ export const InsertChips: FunctionComponent<TranslateChipsProps> = ({
     ): ReactNode[] {
         let insertCounter = 0;
 
-        return sentence.split(' ').map((word) => {
-            if (isMissingWord(word)) {
-                const chip = answerChips[insertCounter] && (
-                    <Chip
-                        sx={{ marginBottom: '5px' }}
-                        variant="outlined"
-                        onClick={onChipDeselect.bind(
-                            null,
-                            answerChips[insertCounter],
-                            insertCounter,
-                        )}
-                        color="primary"
-                        label={answerChips[insertCounter]}
-                    />
-                );
-                insertCounter += 1;
-                return (
-                    <>
-                        <WordInsert len={word.length}>{chip}</WordInsert>{' '}
-                    </>
-                );
+        let readingWord = false;
+        let currentWord = '';
+        let currentFragment = '';
+        const formattedSentence = [];
+
+        for (const char of sentence) {
+            if (readingWord) {
+                if (char === '}') {
+                    const chip = answerChips[insertCounter] && (
+                        <Chip
+                            sx={{ marginBottom: '5px' }}
+                            variant="outlined"
+                            onClick={onChipDeselect.bind(
+                                null,
+                                answerChips[insertCounter],
+                                insertCounter,
+                            )}
+                            color="primary"
+                            label={answerChips[insertCounter]}
+                        />
+                    );
+                    formattedSentence.push(
+                        <>
+                            <WordInsert len={currentWord.length}>
+                                {chip}
+                            </WordInsert>{' '}
+                        </>,
+                    );
+                    currentWord = '';
+                    readingWord = false;
+                    insertCounter += 1;
+                } else {
+                    currentWord += char;
+                }
+            } else {
+                if (char === '{') {
+                    formattedSentence.push(currentFragment);
+                    currentFragment = '';
+                    readingWord = true;
+                } else {
+                    currentFragment += char;
+                }
             }
-            return word + ' ';
-        });
+        }
+
+        formattedSentence.push(currentFragment);
+
+        return formattedSentence;
     }
 
     const expectedAnswer = computeAnswer(data.sentence);
