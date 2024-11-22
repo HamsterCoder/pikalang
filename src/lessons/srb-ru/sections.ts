@@ -27,4 +27,9 @@ export const sections: SectionDescription[] = [
             'food/kitchenware',
         ],
     },
+    {
+        name: 'verbs',
+        displayName: 'Полезные глаголы',
+        lessonIds: ['verb/understand'],
+    },
 ];

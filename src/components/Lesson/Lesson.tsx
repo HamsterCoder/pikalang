@@ -17,6 +17,20 @@ import {
 import { shuffle } from '@utils/shuffle';
 import { EnvContext } from '@routes/App';
 import { Text } from '@components/Text/Text';
+import {
+    ConjugationTable,
+    ConjugationTableProps,
+} from '@components/ConjugationTable';
+
+export type LessonHelpType = 'conjugation';
+
+export interface LessonHelp {
+    type: LessonHelpType;
+    // TODO: make it more generic supporting other help types
+    data: {
+        verb: ConjugationTableProps['verb'];
+    };
+}
 
 export interface LessonDescription {
     id: string;
@@ -26,6 +40,7 @@ export interface LessonDescription {
     displayTopic: string;
     description: string;
     image: string;
+    help?: LessonHelp;
 }
 
 const LessonBody = styled.div`
@@ -43,10 +58,12 @@ enum LessonChallengeStatus {
     COMPLETE,
 }
 
+type LIFECYCLE = 'help' | 'challenge' | 'complete';
+
 interface LessonState {
+    lifecycle: LIFECYCLE;
     challengeNumber: number;
     challengeStatus: LessonChallengeStatus;
-    complete: boolean;
     correct: number;
     incorrect: number;
 }
@@ -55,6 +72,7 @@ enum LessonActionType {
     COMPLETE_LESSON,
     COMPLETE_CHALLENGE,
     SHOW_NEXT_CHALLENGE,
+    HELP_READ,
 }
 
 interface LessonAction {
@@ -71,7 +89,7 @@ function lessonStateReducer(
     if (type === LessonActionType.COMPLETE_LESSON) {
         return {
             ...state,
-            complete: true,
+            lifecycle: 'complete',
         };
     } else if (type === LessonActionType.COMPLETE_CHALLENGE) {
         const updatedState: Partial<LessonState> = {};
@@ -93,6 +111,11 @@ function lessonStateReducer(
             challengeNumber: state.challengeNumber + 1,
             challengeStatus: LessonChallengeStatus.PROGRESS,
         };
+    } else if (type === LessonActionType.HELP_READ) {
+        return {
+            ...state,
+            lifecycle: 'challenge',
+        };
     }
 
     return state;
@@ -101,14 +124,6 @@ function lessonStateReducer(
 const MAX_CHALLENGES = 10;
 
 export const Lesson = () => {
-    const [showChallenge, setShowChallenge] = useState(true);
-    const [state, dispatch] = useReducer(lessonStateReducer, {
-        challengeNumber: 0,
-        challengeStatus: LessonChallengeStatus.PROGRESS,
-        complete: false,
-        correct: 0,
-        incorrect: 0,
-    });
     const { lessonTopic, lessonId } = useParams();
 
     if (
@@ -132,8 +147,22 @@ export const Lesson = () => {
         return getLessonDescriptionById(lessonTopic, lessonId);
     }, [lessonTopic, lessonId]);
 
+    const [showChallenge, setShowChallenge] = useState(true);
+    const [state, dispatch] = useReducer(lessonStateReducer, {
+        // TODO show help window before starting the lesson
+        lifecycle: description.help ? 'help' : 'challenge',
+        challengeNumber: 0,
+        challengeStatus: LessonChallengeStatus.PROGRESS,
+        correct: 0,
+        incorrect: 0,
+    });
+
     function onChallengeComplete(data: LessonAction['data']) {
         dispatch({ type: LessonActionType.COMPLETE_CHALLENGE, data });
+    }
+
+    function onHelpRead() {
+        dispatch({ type: LessonActionType.HELP_READ });
     }
 
     const saveProgress = useCallback(async () => {
@@ -175,7 +204,40 @@ export const Lesson = () => {
                 </BaseHeader>
             </HeaderContainer>
             <LessonBody>
-                {state.complete && (
+                {state.lifecycle === 'help' && description.help && (
+                    <div>
+                        <Heading
+                            size="m"
+                            color="default"
+                            sx={{ marginBottom: '1rem' }}
+                        >
+                            <I18N
+                                textKey="lesson-help-title"
+                                lang={I18NLangs.RU}
+                            ></I18N>
+                        </Heading>
+                        <ConjugationTable
+                            verb={description.help.data.verb}
+                        ></ConjugationTable>
+                        <Button
+                            color="success"
+                            variant="contained"
+                            onClick={onHelpRead}
+                        >
+                            <I18N
+                                textKey="lesson-start-button"
+                                lang={I18NLangs.RU}
+                            ></I18N>
+                        </Button>
+                    </div>
+                )}
+                {state.lifecycle === 'challenge' && showChallenge && (
+                    <Challenge
+                        challenge={challenges[state.challengeNumber]}
+                        onComplete={onChallengeComplete}
+                    />
+                )}
+                {state.lifecycle === 'complete' && (
                     <div>
                         <Heading
                             size="m"
@@ -200,15 +262,9 @@ export const Lesson = () => {
                         </Text>
                     </div>
                 )}
-                {!state.complete && showChallenge && (
-                    <Challenge
-                        challenge={challenges[state.challengeNumber]}
-                        onComplete={onChallengeComplete}
-                    />
-                )}
             </LessonBody>
             <LessonFooter>
-                {state.complete && (
+                {state.lifecycle === 'complete' && (
                     <Link to="/lessons/">
                         <Button color="success" variant="contained">
                             <I18N
@@ -218,7 +274,7 @@ export const Lesson = () => {
                         </Button>
                     </Link>
                 )}
-                {!state.complete &&
+                {state.lifecycle === 'challenge' &&
                     state.challengeStatus ===
                         LessonChallengeStatus.COMPLETE && (
                         <Button

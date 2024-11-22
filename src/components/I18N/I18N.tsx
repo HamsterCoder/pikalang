@@ -16,6 +16,8 @@ export interface I18NTranslation {
     [I18NLangs.RU]: string;
 }
 
+// TODO
+// Allow using external dictionaries
 const dictionary: Record<
     string,
     | I18NTranslation
@@ -36,6 +38,14 @@ const dictionary: Record<
     'insert-chips-prompt': {
         en: 'Insert the missing words',
         ru: 'Вставьте пропущенные слова',
+    },
+    'lesson-help-title': {
+        ru: 'Перед прохождением урока',
+        en: 'Before starting the lesson',
+    },
+    'lesson-start-button': {
+        en: 'Перейти к уроку',
+        ru: 'Start lesson',
     },
     'lesson-list-practice-button': {
         en: 'Practice',
