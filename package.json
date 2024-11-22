@@ -56,8 +56,8 @@
     "sharp": "^0.33.2",
     "storybook": "^7.6.20",
     "typescript": "^5.0.2",
-    "vite": "^4.3.9",
-    "vite-plugin-ejs": "^1.6.4"
+    "vite": "^4.5.5",
+    "vite-plugin-ejs": "1.6.4"
   },
   "lint-staged": {
     "*.{ts,tsx,js,css,md}": "prettier --write",
