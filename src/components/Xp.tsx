@@ -21,7 +21,8 @@ export const Xp = ({ mobile = false, className, xp }: XpProps) => {
             color="currentcolor"
         >
             {' '}
-            <Star fontSize="inherit" sx={{ marginRight: '0.25rem' }} /> {xp}{' '}
+            <Star fontSize="inherit" sx={{ marginRight: '0.25rem' }} />{' '}
+            {xp}{' '}
         </Container>
     );
 };

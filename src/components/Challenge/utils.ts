@@ -1,4 +1,7 @@
-export function isCorrectAnswer(possibleAnswers: string[], answerChips: string[]) {
+export function isCorrectAnswer(
+    possibleAnswers: string[],
+    answerChips: string[],
+) {
     return possibleAnswers.some(
         (possibleAnswer) =>
             possibleAnswer.toLowerCase() ===
@@ -6,10 +9,14 @@ export function isCorrectAnswer(possibleAnswers: string[], answerChips: string[]
     );
 }
 
-export function prepareAnotherAnswer(possibleAnswers: string[], answerChips: string[]): string|undefined {
+export function prepareAnotherAnswer(
+    possibleAnswers: string[],
+    answerChips: string[],
+): string | undefined {
     const answerIndex = possibleAnswers.findIndex(
-        (possibleAnswer) => possibleAnswer.toLowerCase() ===
-        answerChips.join(' ').toLowerCase(),
+        (possibleAnswer) =>
+            possibleAnswer.toLowerCase() ===
+            answerChips.join(' ').toLowerCase(),
     );
 
     if (answerIndex !== -1) {
@@ -26,4 +33,3 @@ export function prepareAnotherAnswer(possibleAnswers: string[], answerChips: str
 
     return;
 }
-
