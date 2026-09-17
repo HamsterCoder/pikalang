@@ -1,6 +1,6 @@
 import { About } from '@components/About/About';
 import { Header } from '@components/Header/Header';
-import { Outlet, useLoaderData } from 'react-router-dom';
+import { Outlet, useLoaderData } from 'react-router';
 import styled from 'styled-components';
 
 import type { AppModesLayoutLoaderData } from '@routes/AppModesLayout.loader';

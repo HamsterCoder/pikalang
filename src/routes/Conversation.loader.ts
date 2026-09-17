@@ -1,4 +1,4 @@
-import { Params } from 'react-router-dom';
+import { Params } from 'react-router';
 
 import { ConversationData, api } from '@api/conversations';
 

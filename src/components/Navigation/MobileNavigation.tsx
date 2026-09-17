@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 import { NavigationItem } from './NavigationItem';
 import { UnstyledList } from './UnstyledList';
-import { useMatches } from 'react-router-dom';
+import { useMatches } from 'react-router';
 import { Heading } from '@components/Heading';
 
 export interface NavigationLink {

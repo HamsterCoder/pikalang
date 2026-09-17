@@ -7,7 +7,8 @@ import { withThemeFromJSXProvider } from '@storybook/addon-themes';
 import { theme } from '../src/themes/default';
 import '../src/index.css';
 
-import { createMemoryRouter, RouterProvider } from 'react-router-dom';
+import { createMemoryRouter } from 'react-router';
+import { RouterProvider } from 'react-router/dom';
 
 const reactRouterDecorator: Decorator = (Story) => {
     const router = createMemoryRouter(

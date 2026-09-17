@@ -1,4 +1,4 @@
-import { NavLinkProps, NavLink } from 'react-router-dom';
+import { NavLinkProps, NavLink } from 'react-router';
 import styled from 'styled-components';
 
 import { I18N, I18NLangs } from '@components/I18N/I18N';
