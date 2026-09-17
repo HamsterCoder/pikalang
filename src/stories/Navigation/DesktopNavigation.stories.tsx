@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { DesktopNavigation } from '@components/Navigation/DesktopNavigation';
 
@@ -7,7 +7,9 @@ const meta = {
     component: DesktopNavigation,
     parameters: {
         layout: 'centered',
-        backgrounds: { default: 'accent' },
+    },
+    globals: {
+        backgrounds: { value: 'accent' },
     },
     tags: ['autodocs'],
 } satisfies Meta<typeof DesktopNavigation>;

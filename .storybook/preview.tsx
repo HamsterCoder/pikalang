@@ -1,4 +1,4 @@
-import type { Decorator, Preview } from '@storybook/react';
+import type { Decorator, Preview } from '@storybook/react-vite';
 
 // Providing Css Context and MUI Theme
 // https://storybook.js.org/recipes/@mui/material
@@ -27,7 +27,6 @@ const reactRouterDecorator: Decorator = (Story) => {
 
 const preview: Preview = {
     parameters: {
-        actions: { argTypesRegex: '^on[A-Z].*' },
         controls: {
             matchers: {
                 color: /(background|color)$/i,
@@ -35,18 +34,15 @@ const preview: Preview = {
             },
         },
         backgrounds: {
-            default: 'white',
-            values: [
-                {
-                    name: 'white',
-                    value: '#ffffff',
-                },
-                {
-                    name: 'accent',
-                    value: 'var(--primary-accent)',
-                },
-            ],
+            options: {
+                white: { name: 'white', value: '#ffffff' },
+                accent: { name: 'accent', value: 'var(--primary-accent)' },
+            },
         },
+    },
+
+    initialGlobals: {
+        backgrounds: { value: 'white' },
     },
 
     decorators: [
