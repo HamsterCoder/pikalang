@@ -125,8 +125,7 @@ interface DisplayedLessonProgress {
 }
 
 export interface LessonListItem
-    extends LessonDescription,
-        DisplayedLessonProgress {}
+    extends LessonDescription, DisplayedLessonProgress {}
 
 export interface SectionDescription {
     name: string;
