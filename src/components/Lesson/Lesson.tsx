@@ -4,9 +4,10 @@ import { Link, useParams } from 'react-router';
 import { Button } from '@mui/material';
 
 import { Challenge } from '@components/Challenge/Challenge';
-import { BaseHeader, HeaderContainer } from '@components/Header/Header';
+import { BaseHeader, HeaderContainer } from '@components/Header/Header.styles';
 import { Heading } from '@components/Heading';
-import { I18N, I18NLangs } from '@components/I18N/I18N';
+import { I18N } from '@components/I18N/I18N';
+import { I18NLangs } from '@components/I18N/types';
 import { userDataApi } from '@api/user-data';
 import {
     getLessonById,
@@ -15,7 +16,7 @@ import {
     saveLessonProgress,
 } from '@api/lessons';
 import { shuffle } from '@utils/shuffle';
-import { EnvContext } from '@routes/App';
+import { EnvContext } from '@routes/EnvContext';
 import { Text } from '@components/Text/Text';
 import {
     ConjugationTable,

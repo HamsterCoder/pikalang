@@ -1,7 +1,8 @@
 import { styled } from 'styled-components';
 import { IconButton } from '@mui/material';
 
-import { I18N, I18NLangs } from '@components/I18N/I18N';
+import { I18N } from '@components/I18N/I18N';
+import { I18NLangs } from '@components/I18N/types';
 import { Menu } from '@mui/icons-material';
 import { useState } from 'react';
 

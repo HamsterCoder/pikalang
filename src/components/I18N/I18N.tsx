@@ -1,20 +1,6 @@
 import { FunctionComponent } from 'react';
 
-export enum I18NLangs {
-    EN = 'en',
-    RU = 'ru',
-}
-
-export interface I18NProps {
-    textKey: string;
-    lang: I18NLangs;
-    values?: Record<string, number | string>;
-}
-
-export interface I18NTranslation {
-    [I18NLangs.EN]: string;
-    [I18NLangs.RU]: string;
-}
+import { I18NLangs, I18NProps, I18NTranslation } from '@components/I18N/types';
 
 // TODO
 // Allow using external dictionaries
@@ -134,8 +120,6 @@ function translate(
     return key;
 }
 
-// eslint-plugin-react-refresh <0.4 requires a lowercase letter in component names
-// eslint-disable-next-line react-refresh/only-export-components
 export const I18N: FunctionComponent<I18NProps> = ({
     textKey,
     lang,

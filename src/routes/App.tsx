@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createHashRouter, redirect } from 'react-router';
 import { RouterProvider } from 'react-router/dom';
 import { CssBaseline, ThemeProvider } from '@mui/material';
@@ -17,6 +17,7 @@ import { ErrorPage } from '@components/ErrorPage/ErrorPage';
 import { LoadingError } from '@components/LoadingError';
 
 import { theme } from '@themes/default';
+import { EnvContext } from '@routes/EnvContext';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
@@ -64,8 +65,6 @@ const router = createHashRouter([
         ),
     },
 ]);
-
-export const EnvContext = createContext({ mobile: false });
 
 // TODO App itself is not a route, move it to a different folder
 export const App = () => {

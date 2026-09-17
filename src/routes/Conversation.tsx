@@ -2,12 +2,13 @@ import { useLoaderData } from 'react-router';
 import styled from 'styled-components';
 
 import { ConversationEntry } from '@api/conversations';
-import { BaseHeader, HeaderContainer } from '@components/Header/Header';
-import { I18N, I18NLangs } from '@components/I18N/I18N';
+import { BaseHeader, HeaderContainer } from '@components/Header/Header.styles';
+import { I18N } from '@components/I18N/I18N';
+import { I18NLangs } from '@components/I18N/types';
 import { Heading } from '@components/Heading';
 import { Text } from '@components/Text/Text';
 import type { ConversationLoaderResponse } from '@routes/Conversation.loader';
-import { EnvContext } from './App';
+import { EnvContext } from '@routes/EnvContext';
 import { useContext } from 'react';
 
 // TODO mobile layout

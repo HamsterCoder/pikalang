@@ -3,7 +3,8 @@ import { styled } from 'styled-components';
 import { Link, useLoaderData } from 'react-router';
 import { Button, Card, CardActions, CardContent } from '@mui/material';
 
-import { I18N, I18NLangs } from '@components/I18N/I18N';
+import { I18N } from '@components/I18N/I18N';
+import { I18NLangs } from '@components/I18N/types';
 import { EllipsisTypography } from '@components/EllispsisTypography';
 import { CardList, CardListItem } from '@components/CardList';
 import type { ConversationListLoaderData } from '@routes/ConversationList.loader';

@@ -1,7 +1,8 @@
 import { NavLinkProps, NavLink } from 'react-router';
 import styled from 'styled-components';
 
-import { I18N, I18NLangs } from '@components/I18N/I18N';
+import { I18N } from '@components/I18N/I18N';
+import { I18NLangs } from '@components/I18N/types';
 import { Heading } from '@components/Heading';
 
 interface NavItemProps extends NavLinkProps {

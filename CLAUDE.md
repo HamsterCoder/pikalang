@@ -56,6 +56,8 @@ Husky pre-commit runs lint-staged: prettier (single quotes, 4-space indent), the
 ## Conventions
 
 - Use path aliases (`@components`, `@api`, `@utils`, `@routes`, `@hooks`, `@lessons`, `@conversations-data`, `@dictionary`, `@themes`) instead of relative imports; ESLint has a `no-restricted-imports` warning for `../`. Aliases are defined in both `vite.config.ts` and `tsconfig.json` and must be kept in sync.
-- Route loaders live in `<Route>.loader.ts` next to the route component, because `react-refresh/only-export-components` warns when a `.tsx` file exports non-components.
+- ESLint uses flat config in `eslint.config.js` (ESLint 10); there is no `.eslintrc.cjs`.
+- A `.tsx` file may only export components: `react-refresh/only-export-components` is an error. Anything else shared between components goes in a `.ts` file next to it — route loaders in `<Route>.loader.ts`, enums and prop types in `types.ts`, shared styled-components in `<Component>.styles.ts`, React contexts in their own module (e.g. `routes/EnvContext.ts`).
+- Import MUI icons from the `@mui/icons-material` barrel, not `@mui/icons-material/<Icon>`: that package has no `exports` map, so a deep import resolves to CommonJS and Vite 8 hands back a namespace object instead of the component.
 - Styling mixes MUI components with `styled-components`.
 - `index.html` is an EJS template: Google Analytics is only included when `env.PROD` is set.
