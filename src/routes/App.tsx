@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
-import { createHashRouter, RouterProvider, redirect } from 'react-router-dom';
+import { createHashRouter, redirect } from 'react-router';
+import { RouterProvider } from 'react-router/dom';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 
 import { LessonList } from '@routes/LessonList.tsx';

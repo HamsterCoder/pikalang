@@ -1,6 +1,6 @@
 import { useCallback, useContext, useMemo, useReducer, useState } from 'react';
 import { styled } from 'styled-components';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router';
 import { Button } from '@mui/material';
 
 import { Challenge } from '@components/Challenge/Challenge';

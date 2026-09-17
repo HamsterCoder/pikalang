@@ -1,5 +1,5 @@
 import { isApiError } from '@api/conversations';
-import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
+import { isRouteErrorResponse, useRouteError } from 'react-router';
 
 export interface PreparedErrorData {
     status?: string | number;

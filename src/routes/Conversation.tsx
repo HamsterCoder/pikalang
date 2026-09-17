@@ -1,4 +1,4 @@
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData } from 'react-router';
 import styled from 'styled-components';
 
 import { ConversationEntry } from '@api/conversations';

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Button } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 import { useParsedError } from '@hooks/useParsedError';
 import { Heading } from '@components/Heading';
