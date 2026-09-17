@@ -1,9 +1,10 @@
 import { Button, Alert, AlertTitle } from '@mui/material';
 import { FunctionComponent, useCallback, useState } from 'react';
 
-import { I18N, I18NLangs } from '@components/I18N/I18N';
+import { I18N } from '@components/I18N/I18N';
+import { I18NLangs } from '@components/I18N/types';
 
-export enum ChallengeStatus {
+enum ChallengeStatus {
     PROGRESS,
     CORRECT,
     INCORRECT,

@@ -1,5 +1,6 @@
 import { Heading } from '@components/Heading';
-import { I18N, I18NLangs } from '@components/I18N/I18N';
+import { I18N } from '@components/I18N/I18N';
+import { I18NLangs } from '@components/I18N/types';
 
 interface PromptProps {
     textKey: string;

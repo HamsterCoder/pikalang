@@ -44,7 +44,7 @@ export const Picture: FunctionComponent<PictureProps> = ({
     onSelect,
 }) => {
     function onClick() {
-        onSelect && onSelect(image);
+        onSelect?.(image);
     }
 
     return (
