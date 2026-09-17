@@ -3,25 +3,19 @@ import { createHashRouter, RouterProvider, redirect } from 'react-router-dom';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 
 import { LessonList } from '@routes/LessonList.tsx';
-import {
-    ConversationList,
-    loader as conversationListLoader,
-} from '@routes/ConversationList.tsx';
-import {
-    Conversation,
-    loader as conversationLoader,
-} from '@routes/Conversation.tsx';
+import { ConversationList } from '@routes/ConversationList.tsx';
+import { loader as conversationListLoader } from '@routes/ConversationList.loader';
+import { Conversation } from '@routes/Conversation.tsx';
+import { loader as conversationLoader } from '@routes/Conversation.loader';
 
-import {
-    AppModesLayout,
-    loader as appModesLayoutLoader,
-} from '@routes/AppModesLayout';
+import { AppModesLayout } from '@routes/AppModesLayout';
+import { loader as appModesLayoutLoader } from '@routes/AppModesLayout.loader';
 
 import { Lesson } from '@components/Lesson/Lesson.tsx';
 import { ErrorPage } from '@components/ErrorPage/ErrorPage';
 import { LoadingError } from '@components/LoadingError';
 
-import { theme } from '../themes/default';
+import { theme } from '@themes/default';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 

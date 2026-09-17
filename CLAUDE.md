@@ -32,11 +32,13 @@ Husky pre-commit runs lint-staged: prettier (single quotes, 4-space indent), the
 **Routing** (`src/routes/App.tsx`): uses `createHashRouter` (hash routing, needed for GitHub Pages). `vite.config.ts` sets `base: '/pikalang/'`. `AppModesLayout` wraps the `/lessons/` and `/conversations/` lists with the header. Lesson pages (`/lessons/:lessonTopic/:lessonId/`) and conversation pages are top-level routes without that layout. `App` also provides `EnvContext` (`mobile` is true when `#root` width ≤ 840px, via ResizeObserver), the MUI theme, and a React Query client.
 
 **No backend.** Everything in `src/api/` imitates an async API on top of `localStorage` and statically imported lesson data. Functions return Promises, and list/get calls add fake latency in dev (`emulateLatency`). They take a `username` argument (currently always `'default'`) so a real API can replace them later. localStorage keys:
+
 - `<username>`: `UserData` (xp)
 - `<username>/lessons_progress`: per-lesson `{recommendedTries: 4, currentTries}`. Progress is `currentTries / recommendedTries`.
 - `<username>/conversations_progress`
 
 **Lessons are data in TypeScript files.** Each `src/lessons/srb-ru/lesson-N-ru.ts` exports a `description: LessonDescription` (whose `id` is `"<topic>/<name>"` and must match the URL params) and `challenges: ChallengeDescription[]`. To add a lesson:
+
 1. Create the lesson file.
 2. Import it in `src/api/lessons.ts` and add it to `lessonsMap`, `descriptionMap`, and the `lessons` array. This is manual, with no auto-discovery.
 3. Add its id to a section in `src/lessons/srb-ru/sections.ts`. Sections control the order in the lesson list, and a lesson unlocks only once the previous lesson in its section reaches 100% progress.
@@ -53,6 +55,7 @@ Husky pre-commit runs lint-staged: prettier (single quotes, 4-space indent), the
 
 ## Conventions
 
-- Use path aliases (`@components`, `@api`, `@utils`, `@routes`, `@hooks`) instead of relative imports; ESLint has a `no-restricted-imports` warning for `../`. Aliases are defined in both `vite.config.ts` and `tsconfig.json` and must be kept in sync. Folders without an alias (`src/lessons`, `src/dictionary`, `src/themes`) are still imported relatively.
+- Use path aliases (`@components`, `@api`, `@utils`, `@routes`, `@hooks`, `@lessons`, `@conversations-data`, `@dictionary`, `@themes`) instead of relative imports; ESLint has a `no-restricted-imports` warning for `../`. Aliases are defined in both `vite.config.ts` and `tsconfig.json` and must be kept in sync.
+- Route loaders live in `<Route>.loader.ts` next to the route component, because `react-refresh/only-export-components` warns when a `.tsx` file exports non-components.
 - Styling mixes MUI components with `styled-components`.
 - `index.html` is an EJS template: Google Analytics is only included when `env.PROD` is set.

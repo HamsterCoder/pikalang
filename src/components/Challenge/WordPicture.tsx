@@ -7,7 +7,7 @@ import { Heading } from '@components/Heading';
 import { ChallengeType } from './types';
 import Prompt from './Prompt';
 
-import { DictionaryKeys, dictionary } from '../../dictionary/serbian-course';
+import { DictionaryKeys, dictionary } from '@dictionary/serbian-course';
 
 export interface WordPictureData {
     images: string[];

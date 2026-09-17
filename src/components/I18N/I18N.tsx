@@ -134,6 +134,8 @@ function translate(
     return key;
 }
 
+// eslint-plugin-react-refresh <0.4 requires a lowercase letter in component names
+// eslint-disable-next-line react-refresh/only-export-components
 export const I18N: FunctionComponent<I18NProps> = ({
     textKey,
     lang,

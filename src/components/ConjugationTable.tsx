@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Text } from './Text/Text';
 
 // Needs a more permanent backend solution
-import { understand } from '../lessons/srb-ru/verbs/understand';
+import { understand } from '@lessons/srb-ru/verbs/understand';
 import { I18NLangs } from './I18N/I18N';
 
 const verbs: Record<

@@ -4,29 +4,13 @@ import { Link, useLoaderData } from 'react-router-dom';
 import { Button, Card, CardActions, CardContent } from '@mui/material';
 
 import { I18N, I18NLangs } from '@components/I18N/I18N';
-import { ConversationDescription, api } from '@api/conversations';
 import { EllipsisTypography } from '@components/EllispsisTypography';
 import { CardList, CardListItem } from '@components/CardList';
+import type { ConversationListLoaderData } from '@routes/ConversationList.loader';
 
 // TODO create conversations layout (lesson cards are no good)
 // TODO show if conversation is completed or not
 // TODO * add logic that conversations can only be completed in order
-// FIX investigate what is fast refresh warning
-
-interface ConversationListLoaderData {
-    conversationsList: ConversationDescription[];
-}
-
-export const loader = async (): Promise<ConversationListLoaderData> => {
-    // If an error happens inside the loader, we will go to ErrorPage
-    // While the route is loading, the previous route is showing
-    // TODO how to show loader??
-    const conversationsList = await api.listConversations('default');
-
-    // throw new Error('Could not load conversations');
-
-    return { conversationsList };
-};
 
 const Item = styled(Link)`
     text-decoration: none;
