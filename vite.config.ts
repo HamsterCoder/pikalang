@@ -34,6 +34,22 @@ export default defineConfig({
                 find: '@hooks',
                 replacement: path.resolve(__dirname, 'src/hooks'),
             },
+            {
+                find: '@lessons',
+                replacement: path.resolve(__dirname, 'src/lessons'),
+            },
+            {
+                find: '@conversations-data',
+                replacement: path.resolve(__dirname, 'src/conversations-data'),
+            },
+            {
+                find: '@dictionary',
+                replacement: path.resolve(__dirname, 'src/dictionary'),
+            },
+            {
+                find: '@themes',
+                replacement: path.resolve(__dirname, 'src/themes'),
+            },
         ],
     },
     base: '/pikalang/',

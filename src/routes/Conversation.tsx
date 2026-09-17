@@ -1,39 +1,16 @@
-import { Params, useLoaderData } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { ConversationData, ConversationEntry, api } from '@api/conversations';
+import { ConversationEntry } from '@api/conversations';
 import { BaseHeader, HeaderContainer } from '@components/Header/Header';
 import { I18N, I18NLangs } from '@components/I18N/I18N';
 import { Heading } from '@components/Heading';
 import { Text } from '@components/Text/Text';
+import type { ConversationLoaderResponse } from '@routes/Conversation.loader';
 import { EnvContext } from './App';
 import { useContext } from 'react';
 
 // TODO mobile layout
-interface ConversationLoaderParams {
-    params: Params<string>;
-}
-
-interface ConversationLoaderResponse {
-    conversationData: ConversationData;
-}
-
-// FIX investigate fast refresh problem
-export const loader = async ({
-    params: { conversationId },
-}: ConversationLoaderParams): Promise<ConversationLoaderResponse> => {
-    if (typeof conversationId === 'undefined') {
-        throw new Error(`Conversation ${conversationId} could not be found.`);
-    }
-
-    const conversationData = await api.getConversation(
-        'default',
-        conversationId,
-    );
-
-    return { conversationData };
-};
-
 interface ConversationItemProps {
     className?: string;
     phrase: ConversationEntry;

@@ -1,7 +1,7 @@
 import {
     data as data1,
     description as description1,
-} from '../conversations-data/conversation-1-ru';
+} from '@conversations-data/conversation-1-ru';
 import { emulateLatency } from '@utils/emulateLatency';
 
 export interface ConversationProgress {
@@ -78,10 +78,13 @@ export interface ApiError {
     data?: unknown;
 }
 
-export function isApiError(error: any): error is ApiError {
+export function isApiError(error: unknown): error is ApiError {
     if (
-        typeof error?.message !== 'undefined' &&
-        typeof error?.status !== 'undefined' &&
+        typeof error === 'object' &&
+        error !== null &&
+        'message' in error &&
+        typeof error.message !== 'undefined' &&
+        'status' in error &&
         typeof error.status === 'number'
     ) {
         return true;

@@ -3,17 +3,7 @@ import { Header } from '@components/Header/Header';
 import { Outlet, useLoaderData } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { UserData, userDataApi } from '@api/user-data';
-
-interface AppModesLayoutLoaderData {
-    userData: UserData;
-}
-
-export const loader = async (): Promise<AppModesLayoutLoaderData> => {
-    // TODO handle error case, btw how?
-    const userData = await userDataApi.getUserData('default');
-    return { userData };
-};
+import type { AppModesLayoutLoaderData } from '@routes/AppModesLayout.loader';
 
 const Container = styled.div`
     container-type: inline-size;

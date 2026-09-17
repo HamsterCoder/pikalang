@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { styled } from 'styled-components';
-import { englishSerbianDictionary } from '../../dictionary/serbian-course';
+import { englishSerbianDictionary } from '@dictionary/serbian-course';
 
 export interface PictureProps {
     image: string;
