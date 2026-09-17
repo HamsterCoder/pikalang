@@ -1,5 +1,5 @@
 import { IconButton, Tooltip } from '@mui/material';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import { HelpOutline as HelpOutlineIcon } from '@mui/icons-material';
 
 export interface HintTooltipProps {
     text: string;
