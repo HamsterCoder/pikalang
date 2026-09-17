@@ -8,7 +8,7 @@ interface PromptProps {
 
 export const Prompt = ({ textKey }: PromptProps) => {
     return (
-        <Heading size="m" color="default" sx={{ marginBottom: '1rem' }}>
+        <Heading size="m" color="default" gutter>
             <I18N textKey={textKey} lang={I18NLangs.RU} />
         </Heading>
     );

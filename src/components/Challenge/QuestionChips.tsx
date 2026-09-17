@@ -68,7 +68,7 @@ export const QuestionChips: FunctionComponent<QuestionChipsProps> = ({
                 </PictureContainer>
             )}
 
-            <Heading size="m" color="default" sx={{ marginBottom: '1rem' }}>
+            <Heading size="m" color="default" gutter>
                 {data.question}
                 <HintTooltip text={data.questionHint} />
             </Heading>

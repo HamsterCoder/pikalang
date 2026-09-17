@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { createHashRouter, redirect } from 'react-router';
 import { RouterProvider } from 'react-router/dom';
-import { CssBaseline, ThemeProvider } from '@mui/material';
+import { ThemeProvider } from 'styled-components';
 
 import { LessonList } from '@routes/LessonList.tsx';
 import { ConversationList } from '@routes/ConversationList.tsx';
@@ -16,7 +16,9 @@ import { Lesson } from '@components/Lesson/Lesson.tsx';
 import { ErrorPage } from '@components/ErrorPage/ErrorPage';
 import { LoadingError } from '@components/LoadingError';
 
-import { theme } from '@themes/default';
+import { tokens } from '@themes/tokens';
+import { GlobalStyle } from '@themes/GlobalStyle';
+import { TooltipProvider } from '@components/ui/Tooltip';
 import { EnvContext } from '@routes/EnvContext';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -101,11 +103,13 @@ export const App = () => {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <EnvContext.Provider value={envContext}>
-                    <RouterProvider router={router} />
-                </EnvContext.Provider>
+            <ThemeProvider theme={tokens}>
+                <GlobalStyle />
+                <TooltipProvider delayDuration={100}>
+                    <EnvContext.Provider value={envContext}>
+                        <RouterProvider router={router} />
+                    </EnvContext.Provider>
+                </TooltipProvider>
             </ThemeProvider>
         </QueryClientProvider>
     );

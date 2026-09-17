@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button } from '@mui/material';
+import { Button } from '@components/ui/Button';
 import { Link } from 'react-router';
 
 import { useParsedError } from '@hooks/useParsedError';
@@ -33,9 +33,7 @@ export const LoadingError = ({
                 <p>Data: {error.data ?? ''}</p>
             </div>
             <Link to={recoveryTo}>
-                <Button color="success" variant="contained">
-                    {recoveryMessage}
-                </Button>
+                <Button tone="success">{recoveryMessage}</Button>
             </Link>
         </Container>
     );

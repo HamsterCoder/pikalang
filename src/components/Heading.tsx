@@ -1,8 +1,9 @@
-import { Typography, TypographyProps } from '@mui/material';
 import { ReactNode } from 'react';
+import { styled } from 'styled-components';
+
+import { TextToken } from '@themes/tokens';
 
 type Size = 's' | 'm' | 'l';
-type Variant = 'heading_xs' | 'heading_s' | 'heading_m' | 'heading_l';
 type Color = 'default' | 'inverted' | 'currentColor';
 
 export interface HeadingProps {
@@ -10,13 +11,14 @@ export interface HeadingProps {
     size: Size;
     children: ReactNode;
     color?: Color;
-    sx?: TypographyProps['sx'];
     mobile?: boolean;
+    /** Adds the standard 1rem spacing below the heading. */
+    gutter?: boolean;
 }
 
 const sizeMapByPlatform: {
-    mobile: Record<Size, Variant>;
-    desktop: Record<Size, Variant>;
+    mobile: Record<Size, TextToken>;
+    desktop: Record<Size, TextToken>;
 } = {
     mobile: {
         s: 'heading_xs',
@@ -44,12 +46,27 @@ const colorMap: Record<Color, string> = {
     inverted: 'var(--inverted-text-color)',
 };
 
+const StyledHeading = styled.h1<{
+    $token: TextToken;
+    $color: Color;
+    $gutter: boolean;
+}>`
+    margin: 0;
+    margin-bottom: ${({ $gutter }) => ($gutter ? '1rem' : '0')};
+
+    font-family: ${({ theme }) => theme.font.base};
+    font-size: ${({ theme, $token }) => theme.text[$token].size};
+    font-weight: ${({ theme, $token }) => theme.text[$token].weight};
+    line-height: ${({ theme, $token }) => theme.text[$token].lineHeight};
+    color: ${({ $color }) => colorMap[$color]};
+`;
+
 export const Heading = function ({
     children,
-    sx,
     size,
     mobile = false,
     color = 'default',
+    gutter = false,
     className,
 }: HeadingProps) {
     const sizeMap = mobile
@@ -57,14 +74,14 @@ export const Heading = function ({
         : sizeMapByPlatform.desktop;
 
     return (
-        <Typography
+        <StyledHeading
+            as={elementMap[size]}
             className={className}
-            variant={sizeMap[size]}
-            component={elementMap[size]}
-            color={colorMap[color]}
-            sx={sx}
+            $token={sizeMap[size]}
+            $color={color}
+            $gutter={gutter}
         >
             {children}
-        </Typography>
+        </StyledHeading>
     );
 };

@@ -1,15 +1,17 @@
 import { ReactNode } from 'react';
-import { Typography } from '@mui/material';
+import { styled } from 'styled-components';
+
+import { TextToken } from '@themes/tokens';
 
 type Color = 'default' | 'inverted' | 'currentColor';
 type Type = 'primary' | 'secondary' | 'dialog';
-type TypographyVariant = 'text_primary' | 'text_secondary' | 'dialog';
 
 export interface TextProps {
     children: ReactNode;
     color?: Color;
     withMargin?: boolean;
     type: Type;
+    className?: string;
 }
 
 const colorMap: Record<Color, string> = {
@@ -20,23 +22,43 @@ const colorMap: Record<Color, string> = {
     inverted: 'var(--inverted-text-color)',
 };
 
-const textMap: Record<Type, TypographyVariant> = {
+const textMap: Record<Type, TextToken> = {
     primary: 'text_primary',
     secondary: 'text_secondary',
     dialog: 'dialog',
 };
+
+const StyledText = styled.p<{
+    $token: TextToken;
+    $color: Color;
+    $withMargin: boolean;
+}>`
+    margin: 0;
+    margin-bottom: ${({ $withMargin }) => ($withMargin ? '1rem' : '0')};
+
+    font-family: ${({ theme, $token }) =>
+        $token === 'dialog' ? theme.font.dialog : theme.font.base};
+    font-size: ${({ theme, $token }) => theme.text[$token].size};
+    font-weight: ${({ theme, $token }) => theme.text[$token].weight};
+    line-height: ${({ theme, $token }) => theme.text[$token].lineHeight};
+    color: ${({ $color }) => colorMap[$color]};
+`;
 
 export const Text = ({
     children,
     color = 'default',
     withMargin = true,
     type,
+    className,
 }: TextProps) => {
-    const sx = withMargin ? { marginBottom: '1rem' } : {};
-
     return (
-        <Typography variant={textMap[type]} color={colorMap[color]} sx={sx}>
+        <StyledText
+            className={className}
+            $token={textMap[type]}
+            $color={color}
+            $withMargin={withMargin}
+        >
             {children}
-        </Typography>
+        </StyledText>
     );
 };

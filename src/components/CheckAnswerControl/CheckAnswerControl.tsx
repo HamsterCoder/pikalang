@@ -1,4 +1,5 @@
-import { Button, Alert, AlertTitle } from '@mui/material';
+import { Alert } from '@components/ui/Alert';
+import { Button } from '@components/ui/Button';
 import { FunctionComponent, useCallback, useState } from 'react';
 
 import { I18N } from '@components/I18N/I18N';
@@ -50,8 +51,7 @@ export const CheckAnswerControl: FunctionComponent<CheckAnswerControlProps> = ({
         <>
             {status === ChallengeStatus.PROGRESS && (
                 <Button
-                    color="success"
-                    variant="contained"
+                    tone="success"
                     onClick={handleSubmit}
                     disabled={disabled}
                 >
@@ -62,14 +62,15 @@ export const CheckAnswerControl: FunctionComponent<CheckAnswerControlProps> = ({
                 </Button>
             )}
             {status === ChallengeStatus.CORRECT && (
-                <Alert severity="success">
-                    <AlertTitle>
+                <Alert
+                    severity="success"
+                    title={
                         <I18N
                             textKey="lesson-submit-correct-message"
                             lang={I18NLangs.RU}
                         ></I18N>
-                    </AlertTitle>
-
+                    }
+                >
                     {translation && (
                         <>
                             <I18N
@@ -92,13 +93,15 @@ export const CheckAnswerControl: FunctionComponent<CheckAnswerControlProps> = ({
                 </Alert>
             )}
             {status === ChallengeStatus.INCORRECT && (
-                <Alert severity="error">
-                    <AlertTitle>
+                <Alert
+                    severity="error"
+                    title={
                         <I18N
                             textKey="lesson-submit-error-message"
                             lang={I18NLangs.RU}
                         ></I18N>
-                    </AlertTitle>
+                    }
+                >
                     <I18N
                         textKey="lesson-submit-expected-message"
                         lang={I18NLangs.RU}

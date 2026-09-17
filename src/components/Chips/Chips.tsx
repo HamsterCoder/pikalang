@@ -1,4 +1,4 @@
-import { Chip } from '@mui/material';
+import { Chip } from '@components/ui/Chip';
 import { FunctionComponent } from 'react';
 import { styled } from 'styled-components';
 
@@ -44,9 +44,7 @@ export const Chips: FunctionComponent<ChipsProps> = ({
             {chips.map((chip, index) => (
                 <Item key={chip + index}>
                     <Chip
-                        variant="outlined"
                         onClick={onSelect.bind(null, chip, index)}
-                        color="primary"
                         label={chip}
                     />
                 </Item>

@@ -1,4 +1,4 @@
-import { Chip } from '@mui/material';
+import { Chip } from '@components/ui/Chip';
 import { FunctionComponent, useState, useCallback, ReactNode } from 'react';
 import { styled } from 'styled-components';
 
@@ -29,6 +29,10 @@ export interface TranslateChipsProps {
 interface WordInsertProps {
     len: number;
 }
+
+const InsertedChip = styled(Chip)`
+    margin-bottom: 5px;
+`;
 
 const WordInsert = styled.span<WordInsertProps>`
     display: inline-block;
@@ -189,15 +193,12 @@ export const InsertChips: FunctionComponent<TranslateChipsProps> = ({
             if (readingWord) {
                 if (char === '}') {
                     const chip = answerChips[insertCounter] && (
-                        <Chip
-                            sx={{ marginBottom: '5px' }}
-                            variant="outlined"
+                        <InsertedChip
                             onClick={onChipDeselect.bind(
                                 null,
                                 answerChips[insertCounter],
                                 insertCounter,
                             )}
-                            color="primary"
                             label={answerChips[insertCounter]}
                         />
                     );
@@ -234,11 +235,11 @@ export const InsertChips: FunctionComponent<TranslateChipsProps> = ({
 
     return (
         <div>
-            <Heading size="m" color="default" sx={{ marginBottom: '1rem' }}>
+            <Heading size="m" color="default" gutter>
                 <I18N textKey="insert-chips-prompt" lang={I18NLangs.RU} />
             </Heading>
 
-            <Heading size="s" color="default" sx={{ marginBottom: '1rem' }}>
+            <Heading size="s" color="default" gutter>
                 {prepareSentence(data.sentence, answerChips)}
             </Heading>
 
