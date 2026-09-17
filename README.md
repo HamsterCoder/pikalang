@@ -8,8 +8,8 @@ More lessons will be gradually added.
 
 ## Contibuting
 
--   If you have a lesson idea or feedback on current lessons, please open an issue or you can join our [telegram](https://t.me/+dnIZ_udnkhtiZjEy).
--   If you like to contribute full lessons or any other code improvements, please open a pull request
+- If you have a lesson idea or feedback on current lessons, please open an issue or you can join our [telegram](https://t.me/+dnIZ_udnkhtiZjEy).
+- If you like to contribute full lessons or any other code improvements, please open a pull request
 
 ## Development
 
@@ -26,6 +26,18 @@ Starting storybook:
 npm run storybook
 ```
 
+### UI components
+
+The interface is built from a small set of primitives in `src/components/ui/`
+(Button, Chip, Card, Alert, Tooltip and friends), styled with
+`styled-components` on top of the design tokens in `src/themes/tokens.ts`.
+Behaviour that needs accessibility plumbing (tooltips, popovers) uses
+[Radix primitives](https://www.radix-ui.com/primitives); icons come from
+`lucide-react`.
+
+To change how the app looks, start with the tokens. Every primitive has a
+story, so `npm run storybook` shows the whole set in one place.
+
 Checking bundle size:
 
 ```
@@ -36,11 +48,11 @@ npx vite-bundle-visualizer
 
 This project uses images from unsplash as well as original images.
 
--   Original images must be high quality 1000x1000 pixels JPEGS.
--   Original images are stored in `public/assets-raw-orig/`
--   Original images are then compressed for production with mozjpeg and sharp, to create jpg and webp assets.
--   Unsplash images are resized and cropped to 1000x1000, and the compressed with mozjpeg and sharp.
--   Unsplash images are stored in `public/assets-raw/`
+- Original images must be high quality 1000x1000 pixels JPEGS.
+- Original images are stored in `public/assets-raw-orig/`
+- Original images are then compressed for production with mozjpeg and sharp, to create jpg and webp assets.
+- Unsplash images are resized and cropped to 1000x1000, and the compressed with mozjpeg and sharp.
+- Unsplash images are stored in `public/assets-raw/`
 
 Whenever new images are added run:
 
@@ -52,5 +64,5 @@ node convert-images.js
 
 Further more, there are plans to grow this into a generic intrument for making language courses through writing lessons in json-style configs. However, the following issues must be adressed to achieve this:
 
--   Switching base language for courses [currently RU]
--   Creating courses for different target languages, [currently SRB]
+- Switching base language for courses [currently RU]
+- Creating courses for different target languages, [currently SRB]

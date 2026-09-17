@@ -124,7 +124,7 @@ export const Conversation = () => {
             </HeaderContainer>
             <BodyContainer>
                 {/* // TODO use Prompt component from Challenge? */}
-                <Heading size="m" color="default" sx={{ marginBottom: '1rem' }}>
+                <Heading size="m" color="default" gutter>
                     <I18N
                         textKey="conversation-prompt"
                         lang={I18NLangs.RU}

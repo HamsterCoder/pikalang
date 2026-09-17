@@ -1,11 +1,12 @@
 import { FunctionComponent } from 'react';
 import { styled } from 'styled-components';
 import { Link, useLoaderData } from 'react-router';
-import { Button, Card, CardActions, CardContent } from '@mui/material';
+import { Button } from '@components/ui/Button';
+import { Card, CardActions, CardContent } from '@components/ui/Card';
 
 import { I18N } from '@components/I18N/I18N';
 import { I18NLangs } from '@components/I18N/types';
-import { EllipsisTypography } from '@components/EllispsisTypography';
+import { EllipsisHeading } from '@components/EllipsisHeading';
 import { CardList, CardListItem } from '@components/CardList';
 import type { ConversationListLoaderData } from '@routes/ConversationList.loader';
 
@@ -17,6 +18,11 @@ const Item = styled(Link)`
     text-decoration: none;
 `;
 
+const ConversationCard = styled(Card)`
+    width: 100%;
+    min-height: 100%;
+`;
+
 export const ConversationList: FunctionComponent = () => {
     const { conversationsList } = useLoaderData() as ConversationListLoaderData;
 
@@ -25,24 +31,15 @@ export const ConversationList: FunctionComponent = () => {
             {conversationsList.map((conversation) => (
                 <CardListItem key={conversation.id}>
                     <Item to={`/conversations/${conversation.id}`}>
-                        <Card
-                            sx={{
-                                width: '100%',
-                                minHeight: '100%',
-                                display: 'flex',
-                                flexDirection: 'column',
-                            }}
-                        >
-                            <CardContent sx={{ flexGrow: 1 }}>
-                                <EllipsisTypography
-                                    variant="heading_s"
-                                    gutterBottom
-                                >
+                        <ConversationCard>
+                            <CardContent>
+                                <EllipsisHeading size="s" gutter>
                                     {conversation.displayName}
-                                </EllipsisTypography>
+                                </EllipsisHeading>
                             </CardContent>
-                            <CardActions sx={{ flexShrink: 0 }}>
+                            <CardActions>
                                 <Button
+                                    variant="text"
                                     size="small"
                                     data-lesson-id={conversation.id}
                                 >
@@ -52,7 +49,7 @@ export const ConversationList: FunctionComponent = () => {
                                     ></I18N>
                                 </Button>
                             </CardActions>
-                        </Card>
+                        </ConversationCard>
                     </Item>
                 </CardListItem>
             ))}

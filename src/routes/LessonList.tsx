@@ -1,13 +1,11 @@
 import { styled } from 'styled-components';
 import { Link } from 'react-router';
-import {
-    CircularProgress,
-    LinearProgress,
-    linearProgressClasses,
-} from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
-import { Lock as LockIcon } from '@mui/icons-material';
-import Tooltip from '@mui/material/Tooltip';
+import { Lock as LockIcon } from 'lucide-react';
+
+import { ProgressBar } from '@components/ui/ProgressBar';
+import { Spinner } from '@components/ui/Spinner';
+import { Tooltip } from '@components/ui/Tooltip';
 
 import { listLessons, LessonListItem } from '@api/lessons';
 import { CardListItem, CardList } from '@components/CardList';
@@ -76,20 +74,21 @@ const LessonHeadingText = styled.span`
     text-overflow: ellipsis;
 `;
 
-const LessonProgress = styled(LinearProgress)<LessonCardProps>`
-    && {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
+const LessonProgress = styled(ProgressBar)<LessonCardProps>`
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
-        height: 0.5rem;
-    }
+    height: 0.5rem;
+    background-color: ${(props) =>
+        props.locked ? 'rgb(205, 205, 205)' : 'rgb(217, 175, 206)'};
+`;
 
-    &.${linearProgressClasses.colorPrimary} {
-        background-color: ${(props) =>
-            props.locked ? 'rgb(205, 205, 205)' : 'rgb(217, 175, 206)'};
-    }
+const CenteredSpinner = styled(Spinner)`
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 `;
 
 // TODO tooltip for locked and completed lessons when hovering over the icon
@@ -109,15 +108,9 @@ function renderLessonList(lessons: LessonListItem[]) {
                                     lang={I18NLangs.RU}
                                 ></I18N>
                             }
-                            enterTouchDelay={0}
-                            enterDelay={100}
-                            leaveDelay={100}
-                            arrow
                         >
                             <LessonHeadingIcon>
-                                {lesson.locked && (
-                                    <LockIcon fontSize="inherit" />
-                                )}
+                                {lesson.locked && <LockIcon size="1em" />}
                             </LessonHeadingIcon>
                         </Tooltip>
 
@@ -130,7 +123,6 @@ function renderLessonList(lessons: LessonListItem[]) {
                     </Text>
                     <LessonProgress
                         locked={lesson.locked}
-                        variant="determinate"
                         value={lesson.progress}
                     ></LessonProgress>
                 </LessonCard>
@@ -165,11 +157,7 @@ export const LessonList = () => {
     }
 
     if (isPending) {
-        return (
-            <CircularProgress
-                sx={{ marginLeft: 'auto', marginRight: 'auto' }}
-            />
-        );
+        return <CenteredSpinner />;
     }
 
     console.log(sections);

@@ -1,7 +1,7 @@
 import { useCallback, useContext, useMemo, useReducer, useState } from 'react';
 import { styled } from 'styled-components';
 import { Link, useParams } from 'react-router';
-import { Button } from '@mui/material';
+import { Button } from '@components/ui/Button';
 
 import { Challenge } from '@components/Challenge/Challenge';
 import { BaseHeader, HeaderContainer } from '@components/Header/Header.styles';
@@ -43,6 +43,10 @@ export interface LessonDescription {
     image: string;
     help?: LessonHelp;
 }
+
+const ChallengeCounter = styled(Heading)`
+    margin-left: auto;
+`;
 
 const LessonBody = styled.div`
     padding: 0 2rem;
@@ -194,24 +198,15 @@ export const Lesson = () => {
                     <Heading size="l" color="inverted" mobile={mobile}>
                         {description.displayName}
                     </Heading>
-                    <Heading
-                        size="l"
-                        color="inverted"
-                        mobile={mobile}
-                        sx={{ marginLeft: 'auto' }}
-                    >
+                    <ChallengeCounter size="l" color="inverted" mobile={mobile}>
                         {state.challengeNumber + 1}/{challenges.length}
-                    </Heading>
+                    </ChallengeCounter>
                 </BaseHeader>
             </HeaderContainer>
             <LessonBody>
                 {state.lifecycle === 'help' && description.help && (
                     <div>
-                        <Heading
-                            size="m"
-                            color="default"
-                            sx={{ marginBottom: '1rem' }}
-                        >
+                        <Heading size="m" color="default" gutter>
                             <I18N
                                 textKey="lesson-help-title"
                                 lang={I18NLangs.RU}
@@ -220,11 +215,7 @@ export const Lesson = () => {
                         <ConjugationTable
                             verb={description.help.data.verb}
                         ></ConjugationTable>
-                        <Button
-                            color="success"
-                            variant="contained"
-                            onClick={onHelpRead}
-                        >
+                        <Button tone="success" onClick={onHelpRead}>
                             <I18N
                                 textKey="lesson-start-button"
                                 lang={I18NLangs.RU}
@@ -240,11 +231,7 @@ export const Lesson = () => {
                 )}
                 {state.lifecycle === 'complete' && (
                     <div>
-                        <Heading
-                            size="m"
-                            color="default"
-                            sx={{ marginBottom: '1rem' }}
-                        >
+                        <Heading size="m" color="default" gutter>
                             <I18N
                                 textKey="lesson-complete-appraisal"
                                 lang={I18NLangs.RU}
@@ -267,7 +254,7 @@ export const Lesson = () => {
             <LessonFooter>
                 {state.lifecycle === 'complete' && (
                     <Link to="/lessons/">
-                        <Button color="success" variant="contained">
+                        <Button tone="success">
                             <I18N
                                 textKey="lesson-complete-to-lesson-list"
                                 lang={I18NLangs.RU}
@@ -278,11 +265,7 @@ export const Lesson = () => {
                 {state.lifecycle === 'challenge' &&
                     state.challengeStatus ===
                         LessonChallengeStatus.COMPLETE && (
-                        <Button
-                            color="success"
-                            variant="contained"
-                            onClick={showNextChallenge}
-                        >
+                        <Button tone="success" onClick={showNextChallenge}>
                             <I18N
                                 textKey="lesson-next-button"
                                 lang={I18NLangs.RU}

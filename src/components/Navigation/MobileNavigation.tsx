@@ -1,9 +1,9 @@
 import { styled } from 'styled-components';
-import { IconButton } from '@mui/material';
+import { IconButton } from '@components/ui/IconButton';
 
 import { I18N } from '@components/I18N/I18N';
 import { I18NLangs } from '@components/I18N/types';
-import { Menu } from '@mui/icons-material';
+import { Menu } from 'lucide-react';
 import { useState } from 'react';
 
 import { NavigationItem } from './NavigationItem';

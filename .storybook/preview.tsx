@@ -1,14 +1,21 @@
 import type { Decorator, Preview } from '@storybook/react-vite';
+import { ThemeProvider } from 'styled-components';
 
-// Providing Css Context and MUI Theme
-// https://storybook.js.org/recipes/@mui/material
-import { ThemeProvider, CssBaseline } from '@mui/material';
-import { withThemeFromJSXProvider } from '@storybook/addon-themes';
-import { theme } from '../src/themes/default';
-import '../src/index.css';
+import { tokens } from '../src/themes/tokens';
+import { GlobalStyle } from '../src/themes/GlobalStyle';
+import { TooltipProvider } from '../src/components/ui/Tooltip';
 
 import { createMemoryRouter } from 'react-router';
 import { RouterProvider } from 'react-router/dom';
+
+const themeDecorator: Decorator = (Story) => (
+    <ThemeProvider theme={tokens}>
+        <GlobalStyle />
+        <TooltipProvider delayDuration={100}>
+            <Story />
+        </TooltipProvider>
+    </ThemeProvider>
+);
 
 const reactRouterDecorator: Decorator = (Story) => {
     const router = createMemoryRouter(
@@ -36,7 +43,7 @@ const preview: Preview = {
         backgrounds: {
             options: {
                 white: { name: 'white', value: '#ffffff' },
-                accent: { name: 'accent', value: 'var(--primary-accent)' },
+                accent: { name: 'accent', value: tokens.color.accent },
             },
         },
     },
@@ -45,20 +52,7 @@ const preview: Preview = {
         backgrounds: { value: 'white' },
     },
 
-    decorators: [
-        // TODO
-        // @ts-ignore
-        withThemeFromJSXProvider({
-            GlobalStyles: CssBaseline,
-            Provider: ThemeProvider,
-            themes: {
-                // Provide your custom themes here
-                light: theme,
-            },
-            defaultTheme: 'light',
-        }),
-        reactRouterDecorator,
-    ],
+    decorators: [themeDecorator, reactRouterDecorator],
 };
 
 export default preview;
