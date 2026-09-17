@@ -6,14 +6,15 @@ import {
     linearProgressClasses,
 } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
-import LockIcon from '@mui/icons-material/Lock';
+import { Lock as LockIcon } from '@mui/icons-material';
 import Tooltip from '@mui/material/Tooltip';
 
 import { listLessons, LessonListItem } from '@api/lessons';
 import { CardListItem, CardList } from '@components/CardList';
 import { Text } from '@components/Text/Text';
 import { Heading } from '@components/Heading';
-import { I18N, I18NLangs } from '@components/I18N/I18N';
+import { I18N } from '@components/I18N/I18N';
+import { I18NLangs } from '@components/I18N/types';
 
 // TODO: scroll to current active lesson on mobile and current active section on desktop
 // TODO current active section is the first section with a locked lesson
