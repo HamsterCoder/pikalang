@@ -28,6 +28,19 @@ export const Progress: Story = {
     ),
 };
 
+/** `inverted` tone, for the accent-coloured lesson header. */
+export const ProgressInverted: Story = {
+    render: () => (
+        <div style={{ width: '280px', padding: '1rem', background: '#9b2d7f' }}>
+            <ProgressBar
+                value={40}
+                tone="inverted"
+                aria-label="Прогресс урока"
+            />
+        </div>
+    ),
+};
+
 export const Loading: Story = {
     render: () => <Spinner label="Загрузка" />,
 };

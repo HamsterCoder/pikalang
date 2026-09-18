@@ -1,12 +1,17 @@
 import { useCallback, useContext, useMemo, useReducer, useState } from 'react';
 import { styled } from 'styled-components';
-import { Link, useParams } from 'react-router';
+import { Link, useNavigate, useParams } from 'react-router';
+import { X as CloseIcon } from 'lucide-react';
 import { Button } from '@components/ui/Button';
+import { IconButton } from '@components/ui/IconButton';
+import { ProgressBar } from '@components/ui/ProgressBar';
+import { Tooltip } from '@components/ui/Tooltip';
 
 import { Challenge } from '@components/Challenge/Challenge';
 import { BaseHeader, HeaderContainer } from '@components/Header/Header.styles';
 import { Heading } from '@components/Heading';
 import { I18N } from '@components/I18N/I18N';
+import { translate } from '@components/I18N/dictionary';
 import { I18NLangs } from '@components/I18N/types';
 import { userDataApi } from '@api/user-data';
 import {
@@ -18,6 +23,7 @@ import {
 import { shuffle } from '@utils/shuffle';
 import { EnvContext } from '@routes/EnvContext';
 import { Text } from '@components/Text/Text';
+import { EllipsisHeading } from '@components/EllipsisHeading';
 import {
     ConjugationTable,
     ConjugationTableProps,
@@ -44,8 +50,20 @@ export interface LessonDescription {
     help?: LessonHelp;
 }
 
-const ChallengeCounter = styled(Heading)`
-    margin-left: auto;
+const LessonTitle = styled(EllipsisHeading)`
+    flex-shrink: 1;
+    margin-right: 1rem;
+`;
+
+/**
+ * The explicit flex basis keeps the bar from claiming the full header width
+ * (the track itself is `width: 100%`) and squeezing out the lesson name.
+ */
+const LessonProgress = styled(ProgressBar)`
+    flex: 1 1 4rem;
+    max-width: 24rem;
+    margin: 0 1rem 0 auto;
+    border-radius: ${({ theme }) => theme.radius.pill};
 `;
 
 const LessonBody = styled.div`
@@ -170,16 +188,41 @@ export const Lesson = () => {
         dispatch({ type: LessonActionType.HELP_READ });
     }
 
-    const saveProgress = useCallback(async () => {
-        await userDataApi.saveXPProgress('default', state.correct);
-        await saveLessonProgress('default', description.id);
-    }, [state, description]);
+    const answered = state.correct + state.incorrect;
+
+    /**
+     * Ends the lesson and shows the results. Only a lesson played to the end
+     * counts as a try towards the lesson progress, but the XP for the solved
+     * challenges is kept either way.
+     */
+    const finishLesson = useCallback(
+        async (countAsTry: boolean) => {
+            await userDataApi.saveXPProgress('default', state.correct);
+
+            if (countAsTry) {
+                await saveLessonProgress('default', description.id);
+            }
+
+            dispatch({ type: LessonActionType.COMPLETE_LESSON });
+        },
+        [state.correct, description.id],
+    );
+
+    const navigate = useNavigate();
+
+    function exitLesson() {
+        if (answered === 0) {
+            // There are no results worth showing yet.
+            navigate('/lessons/');
+            return;
+        }
+
+        void finishLesson(false);
+    }
 
     async function showNextChallenge() {
         if (state.challengeNumber + 1 === challenges.length) {
-            await saveProgress();
-
-            dispatch({ type: LessonActionType.COMPLETE_LESSON });
+            await finishLesson(true);
         } else {
             setShowChallenge(false);
             dispatch({ type: LessonActionType.SHOW_NEXT_CHALLENGE });
@@ -195,12 +238,38 @@ export const Lesson = () => {
         <div>
             <HeaderContainer>
                 <BaseHeader>
-                    <Heading size="l" color="inverted" mobile={mobile}>
+                    <LessonTitle size="l" color="inverted" mobile={mobile}>
                         {description.displayName}
-                    </Heading>
-                    <ChallengeCounter size="l" color="inverted" mobile={mobile}>
-                        {state.challengeNumber + 1}/{challenges.length}
-                    </ChallengeCounter>
+                    </LessonTitle>
+                    <LessonProgress
+                        tone="inverted"
+                        value={(answered / challenges.length) * 100}
+                        aria-label={translate(
+                            I18NLangs.RU,
+                            'lesson-progress-label',
+                        )}
+                    />
+                    {state.lifecycle !== 'complete' && (
+                        <Tooltip
+                            title={
+                                <I18N
+                                    textKey="lesson-exit-button"
+                                    lang={I18NLangs.RU}
+                                ></I18N>
+                            }
+                            side="bottom"
+                        >
+                            <IconButton
+                                aria-label={translate(
+                                    I18NLangs.RU,
+                                    'lesson-exit-button',
+                                )}
+                                onClick={exitLesson}
+                            >
+                                <CloseIcon aria-hidden />
+                            </IconButton>
+                        </Tooltip>
+                    )}
                 </BaseHeader>
             </HeaderContainer>
             <LessonBody>
@@ -242,7 +311,7 @@ export const Lesson = () => {
                                 textKey="lesson-complete-stats"
                                 values={{
                                     correct: state.correct,
-                                    total: challenges.length,
+                                    total: answered,
                                     xp: state.correct,
                                 }}
                                 lang={I18NLangs.RU}
