@@ -15,7 +15,7 @@ export interface AppNavLink {
  */
 export const appNavLinks: AppNavLink[] = [
     {
-        to: '/path/',
+        to: '/lessons/',
         labelKey: 'lesson-path-heading',
         icon: BookOpen,
     },

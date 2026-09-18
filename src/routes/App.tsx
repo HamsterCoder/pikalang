@@ -3,16 +3,14 @@ import { createHashRouter, redirect } from 'react-router';
 import { RouterProvider } from 'react-router/dom';
 import { ThemeProvider } from 'styled-components';
 
-import { LessonList } from '@routes/LessonList.tsx';
 import { LessonPath } from '@routes/LessonPath.tsx';
 import { ConversationList } from '@routes/ConversationList.tsx';
 import { loader as conversationListLoader } from '@routes/ConversationList.loader';
 import { Conversation } from '@routes/Conversation.tsx';
 import { loader as conversationLoader } from '@routes/Conversation.loader';
 
-import { AppModesLayout } from '@routes/AppModesLayout';
-import { loader as appModesLayoutLoader } from '@routes/AppModesLayout.loader';
-import { PathLayout } from '@routes/PathLayout';
+import { AppLayout } from '@routes/AppLayout';
+import { loader as appLayoutLoader } from '@routes/AppLayout.loader';
 
 import { Lesson } from '@components/Lesson/Lesson.tsx';
 import { ErrorPage } from '@components/ErrorPage/ErrorPage';
@@ -30,9 +28,9 @@ const queryClient = new QueryClient();
 const router = createHashRouter([
     {
         path: '/',
-        element: <AppModesLayout />,
+        element: <AppLayout />,
         errorElement: <ErrorPage />,
-        loader: appModesLayoutLoader,
+        loader: appLayoutLoader,
         children: [
             {
                 index: true,
@@ -42,27 +40,12 @@ const router = createHashRouter([
             },
             {
                 path: '/lessons/',
-                element: <LessonList />,
+                element: <LessonPath />,
             },
             {
                 path: '/conversations/',
                 element: <ConversationList />,
                 loader: conversationListLoader,
-            },
-        ],
-    },
-    {
-        // A preview of the redesign, shown next to the current screens until we
-        // pick between them. Promoting it means moving these children under
-        // AppModesLayout (or swapping that layout's Header for AppHeader).
-        path: '/path/',
-        element: <PathLayout />,
-        errorElement: <ErrorPage />,
-        loader: appModesLayoutLoader,
-        children: [
-            {
-                index: true,
-                element: <LessonPath />,
             },
         ],
     },

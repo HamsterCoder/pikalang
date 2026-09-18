@@ -23,36 +23,43 @@ const ConversationCard = styled(Card)`
     min-height: 100%;
 `;
 
+/** The list sits directly under the app header, so it brings its own spacing. */
+const Page = styled.div`
+    padding: 1.5rem 0 3rem;
+`;
+
 export const ConversationList: FunctionComponent = () => {
     const { conversationsList } = useLoaderData() as ConversationListLoaderData;
 
     return (
-        <CardList>
-            {conversationsList.map((conversation) => (
-                <CardListItem key={conversation.id}>
-                    <Item to={`/conversations/${conversation.id}`}>
-                        <ConversationCard>
-                            <CardContent>
-                                <EllipsisHeading size="s" gutter>
-                                    {conversation.displayName}
-                                </EllipsisHeading>
-                            </CardContent>
-                            <CardActions>
-                                <Button
-                                    variant="text"
-                                    size="small"
-                                    data-lesson-id={conversation.id}
-                                >
-                                    <I18N
-                                        textKey="lesson-list-practice-button"
-                                        lang={I18NLangs.RU}
-                                    ></I18N>
-                                </Button>
-                            </CardActions>
-                        </ConversationCard>
-                    </Item>
-                </CardListItem>
-            ))}
-        </CardList>
+        <Page>
+            <CardList>
+                {conversationsList.map((conversation) => (
+                    <CardListItem key={conversation.id}>
+                        <Item to={`/conversations/${conversation.id}`}>
+                            <ConversationCard>
+                                <CardContent>
+                                    <EllipsisHeading size="s" gutter>
+                                        {conversation.displayName}
+                                    </EllipsisHeading>
+                                </CardContent>
+                                <CardActions>
+                                    <Button
+                                        variant="text"
+                                        size="small"
+                                        data-lesson-id={conversation.id}
+                                    >
+                                        <I18N
+                                            textKey="lesson-list-practice-button"
+                                            lang={I18NLangs.RU}
+                                        ></I18N>
+                                    </Button>
+                                </CardActions>
+                            </ConversationCard>
+                        </Item>
+                    </CardListItem>
+                ))}
+            </CardList>
+        </Page>
     );
 };
