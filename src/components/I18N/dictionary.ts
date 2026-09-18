@@ -154,6 +154,14 @@ const dictionary: Record<string, I18NEntry> = {
             'уроков',
         )} пройдено`,
     }),
+    'lesson-path-unit-collapse': ({ title }) => ({
+        en: `Collapse ${title}`,
+        ru: `Свернуть раздел «${title}»`,
+    }),
+    'lesson-path-unit-expand': ({ title }) => ({
+        en: `Expand ${title}`,
+        ru: `Развернуть раздел «${title}»`,
+    }),
     'lesson-path-unit-complete': {
         en: 'Unit complete',
         ru: 'Раздел пройден',

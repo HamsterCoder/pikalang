@@ -1,16 +1,6 @@
 import { ReactNode } from 'react';
 import { styled, css, keyframes } from 'styled-components';
-import type { LucideIcon } from 'lucide-react';
-import {
-    BookOpen,
-    Check,
-    Lock,
-    MessagesSquare,
-    Play,
-    RotateCcw,
-    Utensils,
-    Zap,
-} from 'lucide-react';
+import { Check, Lock, Play, RotateCcw, Zap } from 'lucide-react';
 
 import { Badge } from '@components/ui/Badge';
 import { ButtonLink } from '@components/ui/ButtonLink';
@@ -22,6 +12,7 @@ import { translate } from '@components/I18N/dictionary';
 import { I18NLangs } from '@components/I18N/types';
 
 import { LessonPathState } from '@components/LessonPath/types';
+import { topicIcons } from '@components/LessonPath/topicIcons';
 
 export interface PathLessonProps {
     state: LessonPathState;
@@ -41,12 +32,6 @@ export interface PathLessonProps {
     connected?: boolean;
     className?: string;
 }
-
-const topicIcons: Record<string, LucideIcon> = {
-    conversation: MessagesSquare,
-    food: Utensils,
-    verb: Zap,
-};
 
 const glow = keyframes`
     0%, 100% { box-shadow: 0 0 0 0 rgba(155, 45, 127, 0.18); }
@@ -251,7 +236,7 @@ export const PathLesson = ({
     connected = false,
     className,
 }: PathLessonProps) => {
-    const TopicIcon = topicIcons[topic] ?? BookOpen;
+    const TopicIcon = topicIcons[topic] ?? topicIcons.default;
     const MilestoneIcon = state === 'completed' ? Check : TopicIcon;
 
     const badgeTone =

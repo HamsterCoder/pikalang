@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { styled } from 'styled-components';
 import { Trophy } from 'lucide-react';
 
@@ -15,6 +16,8 @@ export interface UnitBannerProps {
     title: string;
     completed: number;
     total: number;
+    /** Control rendered at the top right, such as a collapse toggle. */
+    trigger?: ReactNode;
     className?: string;
 }
 
@@ -26,6 +29,13 @@ const Banner = styled.section`
     background-image: ${({ theme }) =>
         `linear-gradient(135deg, ${theme.color.accent}, ${theme.color.accentFaded})`};
     box-shadow: ${({ theme }) => theme.shadow.card};
+`;
+
+const Head = styled.div`
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
 `;
 
 const Labels = styled.div`
@@ -64,6 +74,7 @@ export const UnitBanner = ({
     title,
     completed,
     total,
+    trigger,
     className,
 }: UnitBannerProps) => {
     const isComplete = total > 0 && completed === total;
@@ -71,27 +82,35 @@ export const UnitBanner = ({
 
     return (
         <Banner className={className}>
-            <Labels>
-                <Badge tone="inverted">
-                    <I18N
-                        textKey="lesson-path-unit-label"
-                        lang={I18NLangs.RU}
-                        values={{ index }}
-                    />
-                </Badge>
-                {isComplete && (
-                    <Badge tone="inverted" icon={<Trophy size="0.9em" />}>
-                        <I18N
-                            textKey="lesson-path-unit-complete"
-                            lang={I18NLangs.RU}
-                        />
-                    </Badge>
-                )}
-            </Labels>
+            <Head>
+                <div>
+                    <Labels>
+                        <Badge tone="inverted">
+                            <I18N
+                                textKey="lesson-path-unit-label"
+                                lang={I18NLangs.RU}
+                                values={{ index }}
+                            />
+                        </Badge>
+                        {isComplete && (
+                            <Badge
+                                tone="inverted"
+                                icon={<Trophy size="0.9em" />}
+                            >
+                                <I18N
+                                    textKey="lesson-path-unit-complete"
+                                    lang={I18NLangs.RU}
+                                />
+                            </Badge>
+                        )}
+                    </Labels>
 
-            <Heading size="m" color="inverted">
-                {title}
-            </Heading>
+                    <Heading size="m" color="inverted">
+                        {title}
+                    </Heading>
+                </div>
+                {trigger}
+            </Head>
 
             <Progress>
                 <ProgressTrack
