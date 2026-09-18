@@ -6,6 +6,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Pikalang is a client-only React + TypeScript app (Vite) for learning Serbian, with the UI currently in Russian. It deploys to GitHub Pages at `https://hamstercoder.github.io/pikalang/` on every push to `main` (`.github/workflows/default.yml` runs `npm run build` and publishes `dist/`).
 
+## Starting a session
+
+Start every new chat by updating `main` before reading or changing any code:
+
+```bash
+git fetch origin main:main && git log --oneline HEAD..origin/main
+```
+
+If the current branch is behind `origin/main`, say so and rebase onto it before
+making changes — never build on a stale tree. (`git fetch origin main:main`
+updates the local `main` ref without checking it out, so it is safe to run from
+a feature branch.)
+
 ## Commands
 
 ```bash
