@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { styled } from 'styled-components';
+import { useCallback, useLayoutEffect, useRef, useState } from 'react';
+import { styled, keyframes } from 'styled-components';
 import { Collapsible } from 'radix-ui';
 import { ChevronDown } from 'lucide-react';
 
@@ -35,6 +35,62 @@ export interface PathUnitProps {
 const Unit = styled.section`
     & + & {
         margin-top: 2.5rem;
+    }
+
+    /*
+     * Where the unit is parked when a toggle happens off-screen: far enough
+     * down to clear the sticky header. Read back by settle(), so this stays
+     * the single definition of the offset.
+     */
+    scroll-margin-top: 5rem;
+`;
+
+const expand = keyframes`
+    from {
+        height: 0;
+        opacity: 0;
+    }
+    to {
+        height: var(--radix-collapsible-content-height);
+        opacity: 1;
+    }
+`;
+
+const collapse = keyframes`
+    from {
+        height: var(--radix-collapsible-content-height);
+        opacity: 1;
+    }
+    to {
+        height: 0;
+        opacity: 0;
+    }
+`;
+
+/**
+ * Both representations of a unit animate, so the swap reads as one movement
+ * rather than a jump. The inline padding gives the active card's pulse room to
+ * show: the overflow:hidden that makes the height animation work would
+ * otherwise clip it.
+ */
+const Region = styled(Collapsible.Content)`
+    overflow: hidden;
+    margin: 0 -10px;
+    padding: 0 10px;
+
+    &[data-state='open'] {
+        animation: ${expand} 260ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    &[data-state='closed'] {
+        animation: ${collapse} 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        &[data-state='open'],
+        &[data-state='closed'] {
+            animation: none;
+        }
     }
 `;
 
@@ -112,12 +168,63 @@ export const PathUnit = ({
     className,
 }: PathUnitProps) => {
     const [open, setOpen] = useState(defaultOpen);
+    const unitRef = useRef<HTMLElement>(null);
+    /** Where the unit sat in the viewport when the reader hit the toggle. */
+    const anchorTop = useRef<number | null>(null);
+
+    /**
+     * Put the unit back where the reader left it.
+     *
+     * Toggling changes the height of everything below the banner, and the
+     * browser does not keep up on its own: collapsing near the end of the page
+     * clamps the scroll offset, which throws the reader hundreds of pixels up.
+     * Expanding while the banner sits above the fold is just as disorienting —
+     * the unit opens around the viewport rather than below it — so a toggle
+     * that happened off-screen also pulls the unit back into view.
+     */
+    const settle = useCallback(() => {
+        const unit = unitRef.current;
+        const previousTop = anchorTop.current;
+
+        if (!unit || previousTop === null) {
+            return;
+        }
+
+        const safeTop = parseFloat(getComputedStyle(unit).scrollMarginTop) || 0;
+        const delta =
+            unit.getBoundingClientRect().top - Math.max(previousTop, safeTop);
+
+        if (Math.abs(delta) > 1) {
+            window.scrollBy(0, delta);
+        }
+    }, []);
+
+    const handleOpenChange = (next: boolean) => {
+        anchorTop.current =
+            unitRef.current?.getBoundingClientRect().top ?? null;
+        setOpen(next);
+    };
+
+    // The height animation keeps moving the page after the state change, so
+    // correct once up front and again once the animation has settled.
+    useLayoutEffect(settle, [open, settle]);
 
     const completed = lessons.filter(isCompleted).length;
 
     return (
-        <Collapsible.Root open={open} onOpenChange={setOpen} asChild>
-            <Unit className={className}>
+        <Collapsible.Root open={open} onOpenChange={handleOpenChange} asChild>
+            <Unit
+                ref={unitRef}
+                className={className}
+                onAnimationEnd={(event) => {
+                    if (
+                        event.target !== event.currentTarget &&
+                        (event.target as HTMLElement).dataset.state
+                    ) {
+                        settle();
+                    }
+                }}
+            >
                 <UnitBanner
                     index={index}
                     title={title}
@@ -140,24 +247,28 @@ export const PathUnit = ({
                     }
                 />
 
-                {!open && (
-                    <Summary>
-                        {lessons.map((lesson) => (
-                            <li key={lesson.id}>
-                                <CompactLesson
-                                    state={getLessonState(lesson)}
-                                    title={`${lesson.displayTopic} · ${lesson.displayName}`}
-                                    topic={lesson.topic}
-                                    to={`/lessons/${lesson.id}`}
-                                    currentTries={lesson.currentTries}
-                                    recommendedTries={lesson.recommendedTries}
-                                />
-                            </li>
-                        ))}
-                    </Summary>
-                )}
+                <Collapsible.Root open={!open}>
+                    <Region>
+                        <Summary>
+                            {lessons.map((lesson) => (
+                                <li key={lesson.id}>
+                                    <CompactLesson
+                                        state={getLessonState(lesson)}
+                                        title={`${lesson.displayTopic} · ${lesson.displayName}`}
+                                        topic={lesson.topic}
+                                        to={`/lessons/${lesson.id}`}
+                                        currentTries={lesson.currentTries}
+                                        recommendedTries={
+                                            lesson.recommendedTries
+                                        }
+                                    />
+                                </li>
+                            ))}
+                        </Summary>
+                    </Region>
+                </Collapsible.Root>
 
-                <Collapsible.Content>
+                <Region>
                     <Milestones>
                         {lessons.map((lesson, lessonIndex) => (
                             <Milestone key={lesson.id}>
@@ -187,7 +298,7 @@ export const PathUnit = ({
                             <PathEnd />
                         )}
                     </Outro>
-                </Collapsible.Content>
+                </Region>
             </Unit>
         </Collapsible.Root>
     );
