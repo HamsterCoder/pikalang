@@ -52,6 +52,14 @@ const meta = {
         lessons,
         nextUnit: { title: 'Еда', lessonCount: 6 },
     },
+} satisfies Meta<typeof PathUnit>;
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+/** The desktop treatment: a milestone card per lesson, closed by a teaser. */
+export const Cards: Story = {
     decorators: [
         (Story) => (
             <div style={{ maxWidth: '44rem' }}>
@@ -59,27 +67,54 @@ const meta = {
             </div>
         ),
     ],
-} satisfies Meta<typeof PathUnit>;
-
-export default meta;
-
-type Story = StoryObj<typeof meta>;
-
-/** The unit the learner is working on: full milestone cards, chevron up. */
-export const Expanded: Story = {};
+};
 
 /**
- * Everything else starts collapsed, trading the cards for one dense row per
- * lesson. Use the chevron to switch between the two.
+ * The phone treatment. The same lessons and the same three states, as one
+ * dense row each: no descriptions, no buttons, and no teaser card.
  */
-export const Collapsed: Story = {
-    args: { defaultOpen: false },
+export const Compact: Story = {
+    args: { variant: 'compact' },
+    decorators: [
+        (Story) => (
+            <div style={{ maxWidth: '24rem' }}>
+                <Story />
+            </div>
+        ),
+    ],
+};
+
+/** The two side by side, at the widths each is meant for. */
+export const Comparison: Story = {
+    render: (args) => (
+        <div
+            style={{
+                display: 'flex',
+                gap: '2rem',
+                alignItems: 'flex-start',
+                flexWrap: 'wrap',
+            }}
+        >
+            <div style={{ flex: '1 1 26rem', minWidth: 0 }}>
+                <PathUnit {...args} variant="cards" />
+            </div>
+            <div style={{ flex: '0 1 22rem', minWidth: 0 }}>
+                <PathUnit {...args} variant="compact" />
+            </div>
+        </div>
+    ),
 };
 
 /** A finished unit earns the trophy badge and a full progress bar. */
 export const Complete: Story = {
+    decorators: [
+        (Story) => (
+            <div style={{ maxWidth: '44rem' }}>
+                <Story />
+            </div>
+        ),
+    ],
     args: {
-        defaultOpen: false,
         lessons: lessons.map((item) => ({
             ...item,
             progress: 100,
@@ -91,5 +126,12 @@ export const Complete: Story = {
 
 /** The last unit on the path closes with the end card instead of a teaser. */
 export const LastUnit: Story = {
+    decorators: [
+        (Story) => (
+            <div style={{ maxWidth: '44rem' }}>
+                <Story />
+            </div>
+        ),
+    ],
     args: { index: 3, title: 'Полезные глаголы', nextUnit: undefined },
 };

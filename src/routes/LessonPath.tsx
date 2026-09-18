@@ -1,9 +1,11 @@
+import { useContext } from 'react';
 import { styled } from 'styled-components';
 import { useQuery } from '@tanstack/react-query';
 
-import { listLessons, SectionDescription } from '@api/lessons';
+import { listLessons } from '@api/lessons';
 import { Spinner } from '@components/ui/Spinner';
 import { PathUnit } from '@components/LessonPath/PathUnit';
+import { EnvContext } from '@routes/EnvContext';
 
 const Page = styled.div`
     max-width: 52rem;
@@ -17,25 +19,12 @@ const CenteredSpinner = styled(Spinner)`
 `;
 
 /**
- * The unit the learner is working on: the first one holding a lesson that is
- * unlocked but unfinished. Falls back to the first unit once everything is
- * complete, so the path never opens fully collapsed.
- */
-function findCurrentUnit(sections: SectionDescription[]) {
-    const index = sections.findIndex((section) =>
-        section.lessons.some(
-            (lesson) => !lesson.locked && lesson.progress < 100,
-        ),
-    );
-
-    return index === -1 ? 0 : index;
-}
-
-/**
  * The learning path: the same lessons as `LessonList`, laid out as a vertical
  * roadmap of units instead of a grid of cards.
  */
 export const LessonPath = () => {
+    const { mobile } = useContext(EnvContext);
+
     const {
         isPending,
         error,
@@ -53,8 +42,6 @@ export const LessonPath = () => {
         return <CenteredSpinner />;
     }
 
-    const currentUnit = findCurrentUnit(sections);
-
     return (
         <Page>
             {sections.map((section, index) => {
@@ -66,13 +53,13 @@ export const LessonPath = () => {
                         index={index + 1}
                         title={section.displayName}
                         lessons={section.lessons}
+                        variant={mobile ? 'compact' : 'cards'}
                         nextUnit={
                             nextSection && {
                                 title: nextSection.displayName,
                                 lessonCount: nextSection.lessons.length,
                             }
                         }
-                        defaultOpen={index === currentUnit}
                     />
                 );
             })}
