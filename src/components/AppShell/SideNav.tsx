@@ -1,7 +1,7 @@
 import { styled, css } from 'styled-components';
 import { NavLink } from 'react-router';
 
-import { UnstyledList } from '@components/Navigation/UnstyledList';
+import { UnstyledList } from '@components/ui/UnstyledList';
 import { I18N } from '@components/I18N/I18N';
 import { translate } from '@components/I18N/dictionary';
 import { I18NLangs } from '@components/I18N/types';

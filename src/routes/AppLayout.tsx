@@ -12,7 +12,7 @@ import { SideNav, SIDE_NAV_WIDTH } from '@components/AppShell/SideNav';
 import { appNavLinks } from '@components/AppShell/navLinks';
 import { EnvContext } from '@routes/EnvContext';
 
-import type { AppModesLayoutLoaderData } from '@routes/AppModesLayout.loader';
+import type { AppLayoutLoaderData } from '@routes/AppLayout.loader';
 
 const Main = styled.div<{ $mobile: boolean }>`
     /* Leaves room for the fixed rail. */
@@ -37,12 +37,11 @@ const RaisedAbout = styled(About)<{ $mobile: boolean }>`
 `;
 
 /**
- * Layout for the redesigned screens: a left rail for destinations, a top bar
- * for the learner's own state. Kept separate from `AppModesLayout` so the
- * current design stays reachable side by side while we pick between them.
+ * The application shell: a left rail for destinations, a top bar for the
+ * learner's own state, and a bottom dock in place of the rail on phones.
  */
-export const PathLayout = () => {
-    const { userData } = useLoaderData() as AppModesLayoutLoaderData;
+export const AppLayout = () => {
+    const { userData } = useLoaderData() as AppLayoutLoaderData;
     const { mobile } = useContext(EnvContext);
 
     return (

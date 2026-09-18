@@ -58,14 +58,6 @@ const dictionary: Record<string, I18NEntry> = {
         en: 'Practice',
         ru: 'Начать',
     },
-    'lesson-list-heading': {
-        en: 'Lessons',
-        ru: 'Уроки',
-    },
-    'lesson-list-locked-message': {
-        en: 'Complete the previous lesson to unlock this one. Fill the progress bar.',
-        ru: 'Сначала нужно полностью пройти предыдущий урок. Заполните весь прогресс-бар.',
-    },
     'lesson-submit-button': {
         en: 'Check',
         ru: 'Проверить',
@@ -142,11 +134,6 @@ const dictionary: Record<string, I18NEntry> = {
     'lesson-path-heading': {
         en: 'Lessons',
         ru: 'Уроки',
-    },
-    /** Labels the doorway to the redesign from the old header. */
-    'lesson-path-preview-heading': {
-        en: 'New design',
-        ru: 'Новый дизайн',
     },
     'lesson-path-unit-label': ({ index }) => ({
         en: `Unit ${index}`,

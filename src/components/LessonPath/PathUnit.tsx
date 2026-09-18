@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-import { UnstyledList } from '@components/Navigation/UnstyledList';
+import { UnstyledList } from '@components/ui/UnstyledList';
 import { LessonListItem } from '@api/lessons';
 
 import { CompactLesson } from '@components/LessonPath/CompactLesson';
