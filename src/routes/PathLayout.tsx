@@ -3,11 +3,21 @@ import { Outlet, useLoaderData } from 'react-router';
 import styled from 'styled-components';
 
 import { About } from '@components/About/About';
-import { AppHeader } from '@components/AppHeader/AppHeader';
-import { MOBILE_DOCK_HEIGHT } from '@components/AppHeader/MobileDock';
+import { AppHeader } from '@components/AppShell/AppHeader';
+import {
+    MobileDock,
+    MOBILE_DOCK_HEIGHT,
+} from '@components/AppShell/MobileDock';
+import { SideNav, SIDE_NAV_WIDTH } from '@components/AppShell/SideNav';
+import { appNavLinks } from '@components/AppShell/navLinks';
 import { EnvContext } from '@routes/EnvContext';
 
 import type { AppModesLayoutLoaderData } from '@routes/AppModesLayout.loader';
+
+const Main = styled.div<{ $mobile: boolean }>`
+    /* Leaves room for the fixed rail. */
+    margin-left: ${({ $mobile }) => ($mobile ? '0' : SIDE_NAV_WIDTH)};
+`;
 
 const Container = styled.div<{ $mobile: boolean }>`
     container-type: inline-size;
@@ -27,9 +37,9 @@ const RaisedAbout = styled(About)<{ $mobile: boolean }>`
 `;
 
 /**
- * Layout for the redesigned screens: the new `AppHeader` instead of the
- * accent-coloured `Header`. Kept separate from `AppModesLayout` so the current
- * design stays reachable side by side while we pick between them.
+ * Layout for the redesigned screens: a left rail for destinations, a top bar
+ * for the learner's own state. Kept separate from `AppModesLayout` so the
+ * current design stays reachable side by side while we pick between them.
  */
 export const PathLayout = () => {
     const { userData } = useLoaderData() as AppModesLayoutLoaderData;
@@ -37,11 +47,15 @@ export const PathLayout = () => {
 
     return (
         <>
-            <AppHeader xp={userData?.xp} />
-            <Container $mobile={mobile}>
-                <Outlet />
-                <RaisedAbout $mobile={mobile} />
-            </Container>
+            {!mobile && <SideNav links={appNavLinks} />}
+            <Main $mobile={mobile}>
+                <AppHeader xp={userData?.xp} />
+                <Container $mobile={mobile}>
+                    <Outlet />
+                    <RaisedAbout $mobile={mobile} />
+                </Container>
+            </Main>
+            {mobile && <MobileDock links={appNavLinks} />}
         </>
     );
 };

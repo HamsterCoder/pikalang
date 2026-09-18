@@ -16,9 +16,10 @@
             "runtimeExecutable": "zsh",
             "runtimeArgs": [
                 "-lic",
-                "npm run storybook -- --no-open"
+                "npm run storybook -- --no-open -p ${PORT:-6006}"
             ],
-            "port": 6006
+            "port": 6006,
+            "autoPort": true
         }
     ]
 }
