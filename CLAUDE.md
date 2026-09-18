@@ -27,6 +27,10 @@ Husky pre-commit runs lint-staged: prettier (single quotes, 4-space indent), the
 
 `*.jpg` and `*.webp` are stored in Git LFS (`.gitattributes`), and the husky `pre-push` hook fails without `git-lfs` installed. Without LFS, the files in `public/assets/` are just pointer text files, so images won't render locally. Run `git lfs install && git lfs pull` to fetch them.
 
+## Pull requests
+
+Before opening a pull request, always rebase the branch onto a freshly fetched `main`.
+
 ## Architecture
 
 **Routing** (`src/routes/App.tsx`): uses `createHashRouter` (hash routing, needed for GitHub Pages). `vite.config.ts` sets `base: '/pikalang/'`. `AppModesLayout` wraps the `/lessons/` and `/conversations/` lists with the header. Lesson pages (`/lessons/:lessonTopic/:lessonId/`) and conversation pages are top-level routes without that layout. `App` also provides `EnvContext` (`mobile` is true when `#root` width ≤ 840px, via ResizeObserver), the MUI theme, and a React Query client.
