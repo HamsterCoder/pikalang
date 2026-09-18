@@ -12,6 +12,7 @@ export const tokens = {
         accentFaded: '#c953ab',
         accentBorder: 'rgba(155, 45, 127, 0.7)',
         accentWash: 'rgba(155, 45, 127, 0.06)',
+        accentSoft: 'rgba(155, 45, 127, 0.12)',
         accentTrack: '#d9afce',
 
         // Text
@@ -23,7 +24,13 @@ export const tokens = {
         // Surfaces
         surface: '#ffffff',
         surfaceMuted: '#f1f1f1',
+        /** Page background behind cards, a barely tinted neutral. */
+        surfaceSunken: '#faf7fb',
         overlay: 'rgba(97, 97, 97, 0.92)',
+
+        // Lines
+        border: 'rgba(125, 10, 96, 0.14)',
+        borderStrong: 'rgba(125, 10, 96, 0.3)',
 
         // Status
         success: '#99cc00',
@@ -34,6 +41,11 @@ export const tokens = {
         errorSurface: '#fff0f0',
         errorText: '#662a2a',
         warning: '#ffbb33',
+
+        // Achievement (completed units, rewards)
+        trophy: '#8a6b00',
+        trophySurface: '#fff8e1',
+        trophyBorder: 'rgba(212, 167, 0, 0.4)',
 
         // States
         disabledSurface: 'rgba(0, 0, 0, 0.12)',
@@ -69,6 +81,7 @@ export const tokens = {
     },
 
     shadow: {
+        subtle: '0 1px 2px 0 rgba(0, 0, 0, 0.06)',
         card: '0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12)',
         raised: '0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)',
         floating:

@@ -22,9 +22,13 @@ const AboutContent = styled.div`
     width: 280px;
 `;
 
-export const About = () => {
+export interface AboutProps {
+    className?: string;
+}
+
+export const About = ({ className }: AboutProps) => {
     return (
-        <Container>
+        <Container className={className}>
             <Popover
                 side="top"
                 align="end"
