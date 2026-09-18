@@ -1,0 +1,498 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Lingopop - Spanish Learning Path</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;0,6..12,800;0,6..12,900;1,6..12,700&amp;family=Quicksand:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-fixed": "#ffdf92",
+            "secondary-fixed-dim": "#6be026",
+            "on-error": "#ffffff",
+            "inverse-primary": "#ffb1c3",
+            "surface-tint": "#ba0659",
+            "on-tertiary-container": "#fffbff",
+            "outline": "#8d6f76",
+            "tertiary-fixed-dim": "#f4bf00",
+            "on-background": "#0c1d2b",
+            "on-primary-container": "#590027",
+            "primary-fixed-dim": "#ffb1c3",
+            "on-surface-variant": "#594046",
+            "secondary-fixed": "#87fe45",
+            "on-tertiary": "#ffffff",
+            "secondary": "#2b6c00",
+            "surface-container-low": "#edf4ff",
+            "primary-fixed": "#ffd9e0",
+            "inverse-on-surface": "#e7f2ff",
+            "outline-variant": "#e1bec4",
+            "background": "#f7f9ff",
+            "primary-container": "#ff4b8b",
+            "on-secondary-container": "#2d7100",
+            "surface": "#f7f9ff",
+            "surface-dim": "#cbdcef",
+            "on-tertiary-fixed-variant": "#594400",
+            "error-container": "#ffdad6",
+            "on-tertiary-fixed": "#241a00",
+            "on-secondary": "#ffffff",
+            "on-primary-fixed-variant": "#8f0043",
+            "on-surface": "#0c1d2b",
+            "surface-variant": "#d3e4f7",
+            "surface-container-highest": "#d3e4f7",
+            "tertiary-container": "#907000",
+            "surface-container-high": "#d9eafd",
+            "tertiary": "#735800",
+            "primary": "#ba0659",
+            "secondary-container": "#84fb42",
+            "inverse-surface": "#223240",
+            "on-error-container": "#93000a",
+            "on-primary": "#ffffff",
+            "on-primary-fixed": "#3f0019",
+            "on-secondary-fixed-variant": "#1f5100",
+            "error": "#ba1a1a",
+            "surface-container-lowest": "#ffffff",
+            "on-secondary-fixed": "#082100",
+            "surface-bright": "#f7f9ff",
+            "surface-container": "#e2efff"
+          },
+          "borderRadius": {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-tablet": "1.25rem",
+            "space-xs": "0.25rem",
+            "space-md": "1rem",
+            "gutter-desktop": "1.5rem",
+            "margin": "1rem",
+            "gutter": "1rem",
+            "space-lg": "1.5rem",
+            "space-2xl": "3rem",
+            "margin-tablet": "1.5rem",
+            "space-sm": "0.5rem",
+            "margin-desktop": "2.5rem",
+            "space-xl": "2rem"
+          },
+          "fontFamily": {
+            "label-sm": ["Nunito Sans"],
+            "headline-lg-mobile": ["Quicksand"],
+            "body-md": ["Nunito Sans"],
+            "display-hero": ["Quicksand"],
+            "headline-md": ["Quicksand"],
+            "headline-lg": ["Quicksand"],
+            "display-hero-mobile": ["Quicksand"],
+            "label-md": ["Nunito Sans"],
+            "label-caps": ["Nunito Sans"],
+            "label-lg": ["Nunito Sans"],
+            "headline-sm": ["Quicksand"],
+            "body-sm": ["Nunito Sans"],
+            "body-lg": ["Nunito Sans"]
+          },
+          "fontSize": {
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "800" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "fontWeight": "700" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "display-hero": ["40px", { "lineHeight": "48px", "fontWeight": "700" }],
+            "headline-md": ["24px", { "lineHeight": "30px", "fontWeight": "700" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+            "display-hero-mobile": ["30px", { "lineHeight": "36px", "fontWeight": "700" }],
+            "label-md": ["14px", { "lineHeight": "18px", "fontWeight": "800" }],
+            "label-caps": ["12px", { "lineHeight": "16px", "fontWeight": "800" }],
+            "label-lg": ["16px", { "lineHeight": "20px", "fontWeight": "800" }],
+            "headline-sm": ["20px", { "lineHeight": "26px", "fontWeight": "700" }],
+            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "26px", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill-icon {
+      font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+    }
+    
+    /* Subtle modern button transitions */
+    .btn-action-primary {
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-action-primary:hover {
+      box-shadow: 0 8px 20px -4px rgba(186, 6, 89, 0.35);
+      transform: translateY(-1px);
+    }
+    .btn-action-primary:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 6px -2px rgba(186, 6, 89, 0.4);
+    }
+
+    .btn-action-secondary {
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-action-secondary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.06);
+    }
+    .btn-action-secondary:active {
+      transform: translateY(1px);
+    }
+
+    .card-modern {
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .card-modern:hover {
+      border-color: #ffb1c3;
+    }
+
+    /* Pulse soft glow */
+    @keyframes soft-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(186, 6, 89, 0.15); }
+      50% { box-shadow: 0 0 0 8px rgba(186, 6, 89, 0); }
+    }
+    .glow-active {
+      animation: soft-pulse 2.2s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TOP STATS HEADER (SHARED COMPONENT: TopNavBar) -->
+<header class="sticky top-0 w-full z-30 flex items-center justify-between px-4 lg:px-8 py-3 bg-surface/95 backdrop-blur-md max-w-full border-b border-outline-variant/50">
+<div class="flex items-center gap-3 lg:hidden">
+<div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-on-primary font-headline-md shadow-sm">
+<span class="material-symbols-outlined fill-icon" data-icon="school" style="font-variation-settings: &quot;FILL&quot; 1;">school</span>
+</div>
+<span class="text-headline-sm font-headline-sm text-primary font-extrabold tracking-tight">Lingopop</span>
+</div>
+<!-- Active Course Pill (Left on desktop) -->
+<div class="hidden lg:flex items-center gap-2 pl-64">
+<div class="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-outline-variant/60 bg-surface-container-lowest hover:bg-surface-container-low transition-colors cursor-pointer shadow-xs">
+<span class="text-label-md font-label-md text-primary font-bold">🇪🇸</span>
+<span class="text-label-md font-label-md text-on-surface font-bold">Spanish (ES)</span>
+<span class="material-symbols-outlined text-outline text-[18px]" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<!-- Right Side Floating Gamification Counters -->
+<div class="flex items-center gap-2 sm:gap-4 lg:gap-6">
+<!-- Streak -->
+<div class="flex items-center gap-1.5 px-3 py-1.5 bg-surface-container-lowest rounded-full border border-outline-variant/60 shadow-xs hover:border-tertiary-fixed-dim transition-colors cursor-pointer">
+<span class="material-symbols-outlined fill-icon text-tertiary-fixed-dim text-[20px]" data-icon="local_fire_department" style="font-variation-settings: &quot;FILL&quot; 1;">local_fire_department</span>
+<span class="text-label-md font-label-md text-tertiary font-bold tracking-tight">7</span>
+</div>
+<!-- Gems -->
+<div class="flex items-center gap-1.5 px-3 py-1.5 bg-surface-container-lowest rounded-full border border-outline-variant/60 shadow-xs hover:border-primary-container transition-colors cursor-pointer">
+<span class="material-symbols-outlined fill-icon text-primary-container text-[20px]" data-icon="diamond" style="font-variation-settings: &quot;FILL&quot; 1;">diamond</span>
+<span class="text-label-md font-label-md text-primary font-bold tracking-tight">1,420</span>
+</div>
+<!-- Hearts -->
+<div class="flex items-center gap-2 pl-1 pr-2.5 py-1 bg-surface-container-lowest rounded-full border border-outline-variant/60 shadow-xs hover:bg-surface-container-low transition-colors cursor-pointer"><div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center text-xs font-bold ring-2 ring-primary/20">AL</div><span class="text-label-sm font-label-sm font-bold text-on-surface">Alex L.</span></div>
+<!-- Start Lesson CTA button from top nav -->
+
+</div>
+</header>
+<!-- MAIN APP WRAPPER -->
+<div class="flex flex-1 w-full max-w-[1440px] mx-auto">
+<!-- LEFT SIDEBAR (SHARED COMPONENT: SideNavBar) -->
+<aside class="hidden lg:flex flex-col justify-between fixed left-0 top-0 h-screen w-64 p-4 z-40 bg-surface border-r border-outline-variant/60">
+<!-- Top Rail: Logo & Mascot -->
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-3 px-3 py-2 cursor-pointer">
+<div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-primary to-primary-container flex items-center justify-center text-on-primary shadow-sm">
+<span class="material-symbols-outlined fill-icon text-2xl" data-icon="school" style="font-variation-settings: &quot;FILL&quot; 1;">school</span>
+</div>
+<div>
+<h1 class="text-headline-md font-headline-md text-primary font-extrabold tracking-tight">Lingopop</h1>
+<p class="text-label-sm font-label-sm text-outline font-semibold">Spanish Course</p>
+</div>
+</div>
+<!-- Navigation Tabs: Learn, Practice, Leaderboard, Quests, Shop, Profile -->
+<nav class="flex flex-col gap-1.5">
+<!-- Learn (Active match for learning path dashboard) -->
+<a class="flex items-center gap-3.5 px-3.5 py-2.5 bg-primary-fixed/50 text-primary rounded-xl font-bold transition-all duration-150" href="#">
+<span class="material-symbols-outlined fill-icon text-2xl" data-icon="school" style="font-variation-settings: &quot;FILL&quot; 1;">school</span>
+<span class="text-label-md font-label-md">Learn</span>
+<div class="ml-auto w-1.5 h-4 rounded-full bg-primary"></div>
+</a>
+<!-- Practice -->
+<a class="flex items-center gap-3.5 px-3.5 py-2.5 text-on-surface-variant font-bold hover:bg-surface-container-low rounded-xl transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="fitness_center">fitness_center</span>
+<span class="text-label-md font-label-md">Practice</span>
+</a>
+<!-- Leaderboard -->
+<!-- Quests -->
+<!-- Shop -->
+<!-- Profile -->
+
+</nav>
+</div>
+<!-- Bottom Rail CTA -->
+<div class="pt-4 border-t border-outline-variant/60">
+
+</div>
+</aside>
+<!-- CONTENT CANVAS (CENTER PROGRESSION + RIGHT WIDGETS) -->
+<main class="flex-1 lg:pl-64 flex justify-center pb-24">
+<div class="w-full px-4 md:px-6 py-6 grid grid-cols-1 gap-8 max-w-[840px]">
+<!-- CENTER LEARNING ROADMAP -->
+<section class="flex flex-col items-center w-full mx-auto max-w-full"><!-- UNIT 1 HEADER BANNER (Styled like SCREEN_3) -->
+<div class="w-full bg-primary rounded-2xl p-6 sm:p-7 text-white shadow-sm relative overflow-hidden mb-6">
+  <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between relative z-10 gap-5">
+    <div class="flex flex-col gap-2 max-w-xl">
+      <div class="inline-flex items-center gap-2 self-start">
+        <span class="px-3 py-1 rounded-full bg-white/20 text-xs font-extrabold uppercase tracking-wider text-white">UNIT 1 • Spanish Fundamentals</span>
+      </div>
+      <h2 class="text-headline-md sm:text-headline-lg font-headline-md font-extrabold text-white leading-tight mt-0.5">Order Food &amp; Drinks in Spanish</h2>
+      <p class="text-body-sm sm:text-body-md text-white/90 font-medium">Master taproom greetings, ordering churros, and the café essentials.</p>
+      <div class="mt-2 flex items-center gap-3">
+        <div class="w-44 h-2.5 bg-black/20 rounded-full overflow-hidden p-0.5">
+          <div class="h-full bg-white rounded-full transition-all duration-500" style="width: 35%;"></div>
+        </div>
+        <span class="text-xs font-extrabold text-white/95 tracking-wide">1 of 4 modules complete</span>
+      </div>
+    </div>
+    <button class="flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/40 text-white font-bold rounded-xl px-4 py-2.5 text-xs font-label-sm tracking-wider uppercase transition-all shadow-none self-start sm:self-center flex-shrink-0 active:scale-95">
+      <span class="material-symbols-outlined text-lg" data-icon="menu_book">menu_book</span>
+      <span class="">GUIDEBOOK</span>
+    </button>
+  </div>
+</div>
+
+<!-- SOPHISTICATED MODULAR TIMELINE ROADMAP -->
+<div class="w-full flex flex-col gap-4"><!-- UNIT MODULE 1: COMPLETED -->
+<div class="card-modern relative bg-surface-container-lowest border border-outline-variant/60 rounded-2xl p-5 sm:p-6 shadow-xs flex items-start gap-4 sm:gap-5">
+  <!-- Left Milestone Circular Icon with Connector -->
+  <div class="relative flex flex-col items-center flex-shrink-0 pt-0.5">
+    <div class="w-12 h-12 rounded-full bg-secondary text-white flex items-center justify-center shadow-xs ring-4 ring-secondary/10">
+      <span class="material-symbols-outlined fill-icon text-2xl" data-icon="check" style="font-variation-settings: 'FILL' 1;">check</span>
+    </div>
+    <div class="w-0.5 h-12 bg-secondary/30 my-1 rounded-full"></div>
+  </div>
+  <div class="flex-1 min-w-0">
+    <div class="flex items-center justify-between gap-3 flex-wrap">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-extrabold uppercase tracking-wider text-secondary">Module 1.1</span>
+          <span class="inline-flex items-center gap-1 text-[11px] font-extrabold text-secondary bg-secondary/10 border border-secondary/20 px-2.5 py-0.5 rounded-full">
+            <span class="material-symbols-outlined fill-icon text-xs" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+            Mastered
+          </span>
+        </div>
+        <h3 class="text-headline-sm font-headline-sm text-on-surface font-extrabold mt-1">Introduction</h3>
+        <p class="text-body-sm font-body-sm text-outline mt-0.5">Basic greetings, polite interactions, and essential phonetics.</p>
+      </div>
+      <button class="px-4 py-2 rounded-xl border border-outline-variant/80 hover:bg-surface-container-low text-label-sm font-label-sm font-bold text-on-surface transition-colors flex items-center gap-1.5 shadow-xs active:scale-95">
+        <span class="material-symbols-outlined text-base text-outline" data-icon="replay">replay</span>
+        Review
+      </button>
+    </div>
+    <div class="mt-4 flex items-center gap-2">
+      <div class="h-2 flex-1 rounded-full bg-secondary"></div>
+      <div class="h-2 flex-1 rounded-full bg-secondary"></div>
+      <div class="h-2 flex-1 rounded-full bg-secondary"></div>
+      <div class="h-2 flex-1 rounded-full bg-secondary"></div>
+      <span class="text-xs font-extrabold text-secondary pl-1">4/4 Steps</span>
+    </div>
+  </div>
+</div>
+
+<!-- UNIT MODULE 2: ACTIVE / IN PROGRESS -->
+<div class="card-modern relative bg-surface-container-lowest border-2 border-primary rounded-2xl p-5 sm:p-6 shadow-sm glow-active flex items-start gap-4 sm:gap-5">
+  <!-- Left Milestone Circular Icon with Connector -->
+  <div class="relative flex flex-col items-center flex-shrink-0 pt-0.5">
+    <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-primary to-primary-container text-white flex items-center justify-center shadow-sm ring-4 ring-primary/10">
+      <span class="material-symbols-outlined fill-icon text-2xl" data-icon="local_cafe" style="font-variation-settings: 'FILL' 1;">local_cafe</span>
+    </div>
+    <div class="w-0.5 h-16 bg-outline-variant/60 my-1 rounded-full"></div>
+  </div>
+  <div class="flex-1 min-w-0">
+    <div class="flex items-start justify-between gap-3 flex-wrap sm:flex-nowrap">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-extrabold uppercase tracking-wider text-primary">Module 1.2</span>
+          <span class="inline-flex items-center gap-1 text-[11px] font-extrabold text-primary bg-primary-fixed/50 px-2.5 py-0.5 rounded-full">
+            <span class="material-symbols-outlined fill-icon text-xs text-primary" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+            In Progress • +10 XP
+          </span>
+        </div>
+        <h3 class="text-headline-sm font-headline-sm text-on-surface font-extrabold mt-1">Café Basics</h3>
+        <p class="text-body-sm font-body-sm text-outline mt-0.5">Ordering café con leche, pastry vocabulary, and polite requests.</p>
+      </div>
+      <button class="px-5 py-2.5 rounded-xl bg-primary hover:bg-primary-container text-on-primary text-label-md font-label-md font-bold btn-action-primary shadow-sm flex items-center gap-2 flex-shrink-0 active:scale-95">
+        <span class="material-symbols-outlined fill-icon text-xl" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+        Continue
+      </button>
+    </div>
+    <div class="mt-4 pt-3 border-t border-outline-variant/40">
+      <div class="flex items-center justify-between text-xs font-bold mb-2">
+        <span class="text-on-surface font-extrabold">Lesson 2 of 5</span>
+        <span class="text-primary font-extrabold">40% Complete</span>
+      </div>
+      <div class="grid grid-cols-5 gap-2">
+        <div class="h-2 rounded-full bg-primary" title="Lesson 1: Done"></div>
+        <div class="h-2 rounded-full bg-primary relative" title="Lesson 2: Current">
+          <span class="absolute -top-1 -right-0.5 w-2 h-2 rounded-full bg-primary-container ring-2 ring-white"></span>
+        </div>
+        <div class="h-2 rounded-full bg-surface-container-high" title="Lesson 3"></div>
+        <div class="h-2 rounded-full bg-surface-container-high" title="Lesson 4"></div>
+        <div class="h-2 rounded-full bg-surface-container-high" title="Lesson 5"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- UNIT MODULE 3: LOCKED -->
+<div class="card-modern relative bg-surface-container-lowest border border-outline-variant/60 rounded-2xl p-5 sm:p-6 shadow-xs flex items-start gap-4 sm:gap-5 opacity-85 hover:opacity-100 transition-opacity">
+  <div class="relative flex flex-col items-center flex-shrink-0 pt-0.5">
+    <div class="w-12 h-12 rounded-full bg-surface-container-high border border-outline-variant/60 flex items-center justify-center text-outline">
+      <span class="material-symbols-outlined text-2xl" data-icon="restaurant">restaurant</span>
+    </div>
+    <div class="w-0.5 h-12 bg-outline-variant/40 my-1 rounded-full"></div>
+  </div>
+  <div class="flex-1 min-w-0">
+    <div class="flex items-center justify-between gap-3">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-outline">Module 1.3</span>
+          <span class="inline-flex items-center gap-1 text-[11px] font-bold text-outline bg-surface-container px-2.5 py-0.5 rounded-full">
+            <span class="material-symbols-outlined text-xs" data-icon="lock">lock</span> Up Next • Locked
+          </span>
+        </div>
+        <h3 class="text-headline-sm font-headline-sm text-on-surface/80 font-bold mt-1">Ordering Tapas</h3>
+        <p class="text-body-sm font-body-sm text-outline mt-0.5">Spanish bar culture, sharing portions, and dietary preferences.</p>
+      </div>
+      <div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-outline flex-shrink-0">
+        <span class="material-symbols-outlined text-base" data-icon="lock">lock</span>
+      </div>
+    </div>
+    <div class="mt-4 flex items-center gap-2">
+      <div class="h-2 flex-1 rounded-full bg-surface-container-high"></div>
+      <div class="h-2 flex-1 rounded-full bg-surface-container-high"></div>
+      <div class="h-2 flex-1 rounded-full bg-surface-container-high"></div>
+      <span class="text-xs font-semibold text-outline pl-1">3 Lessons</span>
+    </div>
+  </div>
+</div>
+
+<!-- UNIT MODULE 4: LOCKED -->
+<div class="card-modern relative bg-surface-container-lowest border border-outline-variant/60 rounded-2xl p-5 sm:p-6 shadow-xs flex items-start gap-4 sm:gap-5 opacity-80 hover:opacity-100 transition-opacity">
+  <div class="relative flex flex-col items-center flex-shrink-0 pt-0.5">
+    <div class="w-12 h-12 rounded-full bg-surface-container-high border border-outline-variant/60 flex items-center justify-center text-outline">
+      <span class="material-symbols-outlined text-2xl" data-icon="payments">payments</span>
+    </div>
+    <div class="w-0.5 h-12 bg-outline-variant/40 my-1 rounded-full"></div>
+  </div>
+  <div class="flex-1 min-w-0">
+    <div class="flex items-center justify-between gap-3">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-outline">Module 1.4</span>
+          <span class="inline-flex items-center gap-1 text-[11px] font-bold text-outline bg-surface-container px-2.5 py-0.5 rounded-full">
+            <span class="material-symbols-outlined text-xs" data-icon="lock">lock</span> Locked
+          </span>
+        </div>
+        <h3 class="text-headline-sm font-headline-sm text-on-surface/80 font-bold mt-1">Paying the Bill</h3>
+        <p class="text-body-sm font-body-sm text-outline mt-0.5">Numbers 1–100, requesting la cuenta, and tipping etiquette.</p>
+      </div>
+      <div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-outline flex-shrink-0">
+        <span class="material-symbols-outlined text-base" data-icon="lock">lock</span>
+      </div>
+    </div>
+    <div class="mt-4 flex items-center gap-2">
+      <div class="h-2 flex-1 rounded-full bg-surface-container-high"></div>
+      <div class="h-2 flex-1 rounded-full bg-surface-container-high"></div>
+      <div class="h-2 flex-1 rounded-full bg-surface-container-high"></div>
+      <div class="h-2 flex-1 rounded-full bg-surface-container-high"></div>
+      <span class="text-xs font-semibold text-outline pl-1">4 Lessons</span>
+    </div>
+  </div>
+</div>
+
+<!-- UNIT 1 CAPSTONE TROPHY CARD -->
+<div class="card-modern relative bg-tertiary-fixed/30 border-2 border-dashed border-tertiary-fixed-dim/40 rounded-2xl p-5 sm:p-6 shadow-xs flex items-center justify-between gap-4">
+  <div class="flex items-center gap-4">
+    <div class="w-12 h-12 rounded-full bg-tertiary-fixed border border-tertiary-fixed-dim/40 flex items-center justify-center text-tertiary flex-shrink-0 shadow-xs">
+      <span class="material-symbols-outlined fill-icon text-2xl" data-icon="military_tech" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+    </div>
+    <div>
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-extrabold uppercase tracking-wider text-tertiary">Unit 1 Capstone</span>
+        <span class="text-[11px] font-extrabold text-tertiary bg-white/70 px-2.5 py-0.5 rounded-full border border-tertiary-fixed-dim/30">150 XP</span>
+      </div>
+      <h4 class="text-headline-sm font-headline-sm text-on-surface font-extrabold mt-0.5">Unit 1 Trophy Assessment</h4>
+      <p class="text-body-sm font-body-sm text-outline">Comprehensive checkpoint test covering greetings to bill-paying.</p>
+    </div>
+  </div>
+  <div class="px-4 py-2 rounded-xl bg-surface-container border border-outline-variant/50 text-label-sm font-label-sm font-bold text-outline flex items-center gap-1.5 flex-shrink-0 shadow-xs">
+    <span class="material-symbols-outlined text-base" data-icon="lock">lock</span>
+    <span class="">Locked</span>
+  </div>
+</div>
+
+<!-- UPCOMING UNIT 2 PREVIEW SECTION -->
+<div class="w-full bg-surface-container-low/60 rounded-2xl p-5 sm:p-6 border border-outline-variant/60 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mt-1">
+  <div class="flex items-start gap-4">
+    <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-outline flex-shrink-0">
+      <span class="material-symbols-outlined text-2xl" data-icon="explore">explore</span>
+    </div>
+    <div>
+      <div class="flex items-center gap-2">
+        <span class="text-label-caps font-label-caps text-outline font-extrabold uppercase tracking-wider">Next Milestone</span>
+        <span class="text-xs font-bold text-outline">• 5 Modules Ahead</span>
+      </div>
+      <h3 class="text-headline-sm font-headline-sm text-on-surface font-extrabold mt-0.5">Unit 2: City Navigation &amp; Directions</h3>
+      <p class="text-body-sm font-body-sm text-outline mt-0.5 max-w-md">Complete all Unit 1 lessons and capstone checkpoint to unlock Madrid city paths.</p>
+    </div>
+  </div>
+  <div class="flex items-center gap-2 self-end sm:self-center flex-shrink-0">
+    <span class="px-4 py-2 bg-surface-container-lowest rounded-xl border border-outline-variant/60 text-label-sm font-label-sm text-outline font-bold shadow-xs">120 XP Reward</span>
+  </div>
+</div></div></section>
+<!-- RIGHT WIDGETS SIDEBAR -->
+</div>
+</main>
+</div>
+<!-- MOBILE BOTTOM NAVIGATION DOCK (RESPONSIVE FALLBACK) -->
+<nav class="lg:hidden fixed bottom-0 left-0 right-0 bg-surface/95 backdrop-blur-md border-t border-outline-variant/60 px-4 py-2 flex justify-around items-center z-50">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill-icon text-2xl" data-icon="school" style="font-variation-settings: &quot;FILL&quot; 1;">school</span>
+<span class="text-[11px] font-bold">Learn</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-outline" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="fitness_center">fitness_center</span>
+<span class="text-[11px] font-medium">Practice</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-outline" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="military_tech">military_tech</span>
+<span class="text-[11px] font-medium">Rank</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-outline" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="flag">flag</span>
+<span class="text-[11px] font-medium">Quests</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-outline" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="person">person</span>
+<span class="text-[11px] font-medium">Profile</span>
+</a>
+</nav>
+
+
+
+
+
+
+</body></html>
