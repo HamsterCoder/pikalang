@@ -119,6 +119,14 @@ const dictionary: Record<string, I18NEntry> = {
         en: 'Serbian',
         ru: 'Сербский',
     },
+    'course-subtitle': {
+        en: 'Serbian course',
+        ru: 'Курс сербского',
+    },
+    'app-navigation-label': {
+        en: 'Main navigation',
+        ru: 'Основная навигация',
+    },
     'course-label': {
         en: 'Current course',
         ru: 'Текущий курс',
@@ -153,14 +161,6 @@ const dictionary: Record<string, I18NEntry> = {
             'уроков',
             'уроков',
         )} пройдено`,
-    }),
-    'lesson-path-unit-collapse': ({ title }) => ({
-        en: `Collapse ${title}`,
-        ru: `Свернуть раздел «${title}»`,
-    }),
-    'lesson-path-unit-expand': ({ title }) => ({
-        en: `Expand ${title}`,
-        ru: `Развернуть раздел «${title}»`,
     }),
     'lesson-path-unit-complete': {
         en: 'Unit complete',

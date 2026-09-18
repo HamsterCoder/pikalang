@@ -1,12 +1,6 @@
-import { useCallback, useLayoutEffect, useRef, useState } from 'react';
-import { styled, keyframes } from 'styled-components';
-import { Collapsible } from 'radix-ui';
-import { ChevronDown } from 'lucide-react';
+import { styled } from 'styled-components';
 
-import { IconButton } from '@components/ui/IconButton';
 import { UnstyledList } from '@components/Navigation/UnstyledList';
-import { translate } from '@components/I18N/dictionary';
-import { I18NLangs } from '@components/I18N/types';
 import { LessonListItem } from '@api/lessons';
 
 import { CompactLesson } from '@components/LessonPath/CompactLesson';
@@ -14,6 +8,14 @@ import { NextUnitCard, PathEnd } from '@components/LessonPath/NextUnitCard';
 import { PathLesson } from '@components/LessonPath/PathLesson';
 import { UnitBanner } from '@components/LessonPath/UnitBanner';
 import { LessonPathState } from '@components/LessonPath/types';
+
+/**
+ * How much of a lesson a unit shows.
+ *
+ * `cards` is the full milestone treatment; `compact` is one dense row per
+ * lesson, which is what fits a phone.
+ */
+export type PathUnitVariant = 'cards' | 'compact';
 
 export interface NextUnit {
     title: string;
@@ -25,84 +27,15 @@ export interface PathUnitProps {
     index: number;
     title: string;
     lessons: LessonListItem[];
-    /** Teased at the end of the unit; omit for the last one. */
+    variant?: PathUnitVariant;
+    /** Teased at the end of the unit; omit for the last one. Cards only. */
     nextUnit?: NextUnit;
-    /** Units the learner is not working on start collapsed. */
-    defaultOpen?: boolean;
     className?: string;
 }
 
 const Unit = styled.section`
     & + & {
         margin-top: 2.5rem;
-    }
-
-    /*
-     * Where the unit is parked when a toggle happens off-screen: far enough
-     * down to clear the sticky header. Read back by settle(), so this stays
-     * the single definition of the offset.
-     */
-    scroll-margin-top: 5rem;
-`;
-
-const expand = keyframes`
-    from {
-        height: 0;
-        opacity: 0;
-    }
-    to {
-        height: var(--radix-collapsible-content-height);
-        opacity: 1;
-    }
-`;
-
-const collapse = keyframes`
-    from {
-        height: var(--radix-collapsible-content-height);
-        opacity: 1;
-    }
-    to {
-        height: 0;
-        opacity: 0;
-    }
-`;
-
-/**
- * Both representations of a unit animate, so the swap reads as one movement
- * rather than a jump. The inline padding gives the active card's pulse room to
- * show: the overflow:hidden that makes the height animation work would
- * otherwise clip it.
- */
-const Region = styled(Collapsible.Content)`
-    overflow: hidden;
-    margin: 0 -10px;
-    padding: 0 10px;
-
-    &[data-state='open'] {
-        animation: ${expand} 260ms cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    &[data-state='closed'] {
-        animation: ${collapse} 200ms cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-        &[data-state='open'],
-        &[data-state='closed'] {
-            animation: none;
-        }
-    }
-`;
-
-const Toggle = styled(IconButton)`
-    flex-shrink: 0;
-
-    svg {
-        transition: transform ${({ theme }) => theme.transition.fast};
-    }
-
-    &[data-state='open'] svg {
-        transform: rotate(180deg);
     }
 `;
 
@@ -155,120 +88,47 @@ function getLessonState(lesson: LessonListItem): LessonPathState {
     return isCompleted(lesson) ? 'completed' : 'active';
 }
 
-/**
- * One unit of the path. Expanded it shows the full milestone cards; collapsed
- * it falls back to a dense list, so a long path stays scannable.
- */
+function lessonTitle(lesson: LessonListItem) {
+    return `${lesson.displayTopic} · ${lesson.displayName}`;
+}
+
+/** One unit of the path: its banner plus its lessons. */
 export const PathUnit = ({
     index,
     title,
     lessons,
+    variant = 'cards',
     nextUnit,
-    defaultOpen = true,
     className,
 }: PathUnitProps) => {
-    const [open, setOpen] = useState(defaultOpen);
-    const unitRef = useRef<HTMLElement>(null);
-    /** Where the unit sat in the viewport when the reader hit the toggle. */
-    const anchorTop = useRef<number | null>(null);
-
-    /**
-     * Put the unit back where the reader left it.
-     *
-     * Toggling changes the height of everything below the banner, and the
-     * browser does not keep up on its own: collapsing near the end of the page
-     * clamps the scroll offset, which throws the reader hundreds of pixels up.
-     * Expanding while the banner sits above the fold is just as disorienting —
-     * the unit opens around the viewport rather than below it — so a toggle
-     * that happened off-screen also pulls the unit back into view.
-     */
-    const settle = useCallback(() => {
-        const unit = unitRef.current;
-        const previousTop = anchorTop.current;
-
-        if (!unit || previousTop === null) {
-            return;
-        }
-
-        const safeTop = parseFloat(getComputedStyle(unit).scrollMarginTop) || 0;
-        const delta =
-            unit.getBoundingClientRect().top - Math.max(previousTop, safeTop);
-
-        if (Math.abs(delta) > 1) {
-            window.scrollBy(0, delta);
-        }
-    }, []);
-
-    const handleOpenChange = (next: boolean) => {
-        anchorTop.current =
-            unitRef.current?.getBoundingClientRect().top ?? null;
-        setOpen(next);
-    };
-
-    // The height animation keeps moving the page after the state change, so
-    // correct once up front and again once the animation has settled.
-    useLayoutEffect(settle, [open, settle]);
-
     const completed = lessons.filter(isCompleted).length;
 
     return (
-        <Collapsible.Root open={open} onOpenChange={handleOpenChange} asChild>
-            <Unit
-                ref={unitRef}
-                className={className}
-                onAnimationEnd={(event) => {
-                    if (
-                        event.target !== event.currentTarget &&
-                        (event.target as HTMLElement).dataset.state
-                    ) {
-                        settle();
-                    }
-                }}
-            >
-                <UnitBanner
-                    index={index}
-                    title={title}
-                    completed={completed}
-                    total={lessons.length}
-                    trigger={
-                        <Collapsible.Trigger asChild>
-                            <Toggle
-                                aria-label={translate(
-                                    I18NLangs.RU,
-                                    open
-                                        ? 'lesson-path-unit-collapse'
-                                        : 'lesson-path-unit-expand',
-                                    { title },
-                                )}
-                            >
-                                <ChevronDown size={22} aria-hidden="true" />
-                            </Toggle>
-                        </Collapsible.Trigger>
-                    }
-                />
+        <Unit className={className}>
+            <UnitBanner
+                index={index}
+                title={title}
+                completed={completed}
+                total={lessons.length}
+            />
 
-                <Collapsible.Root open={!open}>
-                    <Region>
-                        <Summary>
-                            {lessons.map((lesson) => (
-                                <li key={lesson.id}>
-                                    <CompactLesson
-                                        state={getLessonState(lesson)}
-                                        title={`${lesson.displayTopic} · ${lesson.displayName}`}
-                                        topic={lesson.topic}
-                                        to={`/lessons/${lesson.id}`}
-                                        currentTries={lesson.currentTries}
-                                        recommendedTries={
-                                            lesson.recommendedTries
-                                        }
-                                    />
-                                </li>
-                            ))}
-                        </Summary>
-                    </Region>
-                </Collapsible.Root>
-
-                <Region>
+            {variant === 'compact' ? (
+                <Summary>
+                    {lessons.map((lesson) => (
+                        <li key={lesson.id}>
+                            <CompactLesson
+                                state={getLessonState(lesson)}
+                                title={lessonTitle(lesson)}
+                                topic={lesson.topic}
+                                to={`/lessons/${lesson.id}`}
+                                currentTries={lesson.currentTries}
+                                recommendedTries={lesson.recommendedTries}
+                            />
+                        </li>
+                    ))}
+                </Summary>
+            ) : (
+                <>
                     <Milestones>
                         {lessons.map((lesson, lessonIndex) => (
                             <Milestone key={lesson.id}>
@@ -276,7 +136,7 @@ export const PathUnit = ({
                                     state={getLessonState(lesson)}
                                     index={lessonIndex + 1}
                                     unitIndex={index}
-                                    title={`${lesson.displayTopic} · ${lesson.displayName}`}
+                                    title={lessonTitle(lesson)}
                                     description={lesson.description}
                                     topic={lesson.topic}
                                     to={`/lessons/${lesson.id}`}
@@ -298,8 +158,8 @@ export const PathUnit = ({
                             <PathEnd />
                         )}
                     </Outro>
-                </Region>
-            </Unit>
-        </Collapsible.Root>
+                </>
+            )}
+        </Unit>
     );
 };
