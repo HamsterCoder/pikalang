@@ -114,6 +114,8 @@ function getLocalStoragePath(username: string) {
     return `${username}/lessons_progress`;
 }
 
+const DEFAULT_RECOMMENDED_TRIES = 4;
+
 interface SavedLessonProgress {
     recommendedTries: number;
     currentTries: number;
@@ -122,6 +124,10 @@ interface SavedLessonProgress {
 interface DisplayedLessonProgress {
     progress: number;
     locked: boolean;
+    /** Attempts made so far, for progress displayed as discrete steps. */
+    currentTries: number;
+    /** Attempts needed to complete the lesson. */
+    recommendedTries: number;
 }
 
 export interface LessonListItem
@@ -131,6 +137,18 @@ export interface SectionDescription {
     name: string;
     displayName: string;
     lessons: LessonListItem[];
+}
+
+function getLessonTries(
+    progressData: Record<string, SavedLessonProgress> | null,
+    lessonId: string,
+): SavedLessonProgress {
+    return (
+        progressData?.[lessonId] ?? {
+            recommendedTries: DEFAULT_RECOMMENDED_TRIES,
+            currentTries: 0,
+        }
+    );
 }
 
 function computeLessonProgress(
@@ -165,10 +183,17 @@ export async function listLessons(
         );
 
         lessons = lessonDescriptions.map((lesson) => {
+            const { currentTries, recommendedTries } = getLessonTries(
+                progressData,
+                lesson.id,
+            );
+
             return {
                 ...lesson,
                 progress: computeLessonProgress(progressData, lesson.id),
                 locked: false, // Temporary, will be updated below
+                currentTries,
+                recommendedTries,
             };
         });
 
@@ -234,7 +259,7 @@ export async function saveLessonProgress(
         const updatedProgressData = progressData ?? {};
 
         updatedProgressData[id] = updatedProgressData[id] ?? {
-            recommendedTries: 4,
+            recommendedTries: DEFAULT_RECOMMENDED_TRIES,
             currentTries: 0,
         };
         updatedProgressData[id].currentTries += 1;

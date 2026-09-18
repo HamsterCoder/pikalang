@@ -4,6 +4,29 @@ type I18NEntry =
     | I18NTranslation
     | ((values: Record<string, number | string>) => I18NTranslation);
 
+/**
+ * Picks the Russian plural form for a count: 1 урок, 2 урока, 5 уроков.
+ */
+function pluralRu(
+    count: number,
+    one: string,
+    few: string,
+    many: string,
+): string {
+    const mod100 = count % 100;
+    const mod10 = count % 10;
+
+    if (mod100 >= 11 && mod100 <= 14) {
+        return many;
+    }
+
+    if (mod10 === 1) {
+        return one;
+    }
+
+    return mod10 >= 2 && mod10 <= 4 ? few : many;
+}
+
 // TODO
 // Allow using external dictionaries
 const dictionary: Record<string, I18NEntry> = {
@@ -90,6 +113,120 @@ const dictionary: Record<string, I18NEntry> = {
     'lesson-complete-to-lesson-list': {
         en: 'See other lessons',
         ru: 'Посмотреть другие уроки',
+    },
+
+    'course-name': {
+        en: 'Serbian',
+        ru: 'Сербский',
+    },
+    'course-label': {
+        en: 'Current course',
+        ru: 'Текущий курс',
+    },
+    'xp-label': {
+        en: 'Experience',
+        ru: 'Опыт',
+    },
+    'word-list-heading': {
+        en: 'Words',
+        ru: 'Слова',
+    },
+    'lesson-path-heading': {
+        en: 'Lessons',
+        ru: 'Уроки',
+    },
+    /** Labels the doorway to the redesign from the old header. */
+    'lesson-path-preview-heading': {
+        en: 'New design',
+        ru: 'Новый дизайн',
+    },
+    'lesson-path-unit-label': ({ index }) => ({
+        en: `Unit ${index}`,
+        ru: `Раздел ${index}`,
+    }),
+    'lesson-path-unit-progress': ({ completed, total }) => ({
+        en: `${completed} of ${total} lessons complete`,
+        // After "из" the noun is genitive: "из 1 урока", "из 6 уроков".
+        ru: `${completed} из ${total} ${pluralRu(
+            Number(total),
+            'урока',
+            'уроков',
+            'уроков',
+        )} пройдено`,
+    }),
+    'lesson-path-unit-complete': {
+        en: 'Unit complete',
+        ru: 'Раздел пройден',
+    },
+    'lesson-path-lesson-label': ({ unit, index }) => ({
+        en: `Lesson ${unit}.${index}`,
+        ru: `Урок ${unit}.${index}`,
+    }),
+    'lesson-path-state-completed': {
+        en: 'Mastered',
+        ru: 'Пройден',
+    },
+    'lesson-path-state-active': {
+        en: 'In progress',
+        ru: 'В процессе',
+    },
+    'lesson-path-state-locked': {
+        en: 'Locked',
+        ru: 'Закрыт',
+    },
+    'lesson-path-action-review': {
+        en: 'Review',
+        ru: 'Повторить',
+    },
+    'lesson-path-action-continue': {
+        en: 'Continue',
+        ru: 'Продолжить',
+    },
+    'lesson-path-action-start': {
+        en: 'Start',
+        ru: 'Начать',
+    },
+    'lesson-path-steps': ({ completed, total }) => ({
+        en: `${completed}/${total} runs`,
+        ru: `${completed}/${total} подходов`,
+    }),
+    'lesson-path-steps-locked': ({ total }) => ({
+        en: `${total} runs`,
+        ru: `${total} ${pluralRu(
+            Number(total),
+            'подход',
+            'подхода',
+            'подходов',
+        )}`,
+    }),
+    'lesson-path-steps-label': {
+        en: 'Lesson attempts',
+        ru: 'Подходы к уроку',
+    },
+    'lesson-path-next-unit': {
+        en: 'Next milestone',
+        ru: 'Следующая цель',
+    },
+    'lesson-path-next-unit-hint': {
+        en: 'Finish every lesson in this unit to unlock it.',
+        ru: 'Пройдите все уроки этого раздела, чтобы открыть его.',
+    },
+    'lesson-path-next-unit-lessons': ({ count }) => ({
+        en: `${count} lessons ahead`,
+        ru: `Впереди ${count} ${pluralRu(
+            Number(count),
+            'урок',
+            'урока',
+            'уроков',
+        )}`,
+    }),
+    'lesson-path-finish': {
+        en: 'That is every lesson for now',
+        ru: 'Это все уроки на сегодня',
+    },
+    'lesson-path-finish-hint': {
+        en: 'New units are on the way. Review what you have learned in the meantime.',
+        ru: 'Новые разделы уже в пути. А пока можно повторить пройденное.',
     },
 
     'conversation-list-heading': {

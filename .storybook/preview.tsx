@@ -17,7 +17,12 @@ const themeDecorator: Decorator = (Story) => (
     </ThemeProvider>
 );
 
-const reactRouterDecorator: Decorator = (Story) => {
+/**
+ * Stories render inside a memory router so `Link` and `NavLink` work. Set the
+ * `initialRoute` parameter on a story to control which destination reads as
+ * active.
+ */
+const reactRouterDecorator: Decorator = (Story, { parameters }) => {
     const router = createMemoryRouter(
         [
             {
@@ -26,7 +31,9 @@ const reactRouterDecorator: Decorator = (Story) => {
             },
         ],
         {
-            initialEntries: ['/lessons/'],
+            initialEntries: [
+                (parameters.initialRoute as string | undefined) ?? '/lessons/',
+            ],
         },
     );
     return <RouterProvider router={router} />;

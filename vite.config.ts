@@ -62,4 +62,8 @@ export default defineConfig({
         ],
     },
     base: '/pikalang/',
+    server: {
+        // Lets a launcher hand us a free port instead of colliding on 5173.
+        port: process.env.PORT ? Number(process.env.PORT) : undefined,
+    },
 });

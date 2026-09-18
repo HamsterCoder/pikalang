@@ -40,6 +40,10 @@ export const Header = ({ xp = 0 }: HeaderProps) => {
             labelKey: 'lesson-list-heading',
         },
         {
+            to: '/path/',
+            labelKey: 'lesson-path-preview-heading',
+        },
+        {
             to: '/conversations/',
             labelKey: 'conversation-list-heading',
         },

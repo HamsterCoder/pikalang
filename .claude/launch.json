@@ -6,9 +6,10 @@
             "runtimeExecutable": "zsh",
             "runtimeArgs": [
                 "-lic",
-                "npm run dev -- --port 5173 --strictPort"
+                "npm run dev"
             ],
-            "port": 5173
+            "port": 5173,
+            "autoPort": true
         },
         {
             "name": "storybook",
