@@ -4,7 +4,7 @@ import { NavLink } from 'react-router';
 import { UnstyledList } from '@components/Navigation/UnstyledList';
 import { I18N } from '@components/I18N/I18N';
 import { I18NLangs } from '@components/I18N/types';
-import { AppNavLink } from '@components/AppHeader/navLinks';
+import { AppNavLink } from '@components/AppShell/navLinks';
 
 export interface MobileDockProps {
     links: AppNavLink[];

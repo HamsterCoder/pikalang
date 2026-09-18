@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { AppHeader } from '@components/AppHeader/AppHeader';
+import { AppHeader } from '@components/AppShell/AppHeader';
 import { EnvContext } from '@routes/EnvContext';
 
 const meta = {
-    title: 'AppHeader/AppHeader',
+    title: 'AppShell/AppHeader',
     component: AppHeader,
     parameters: {
         layout: 'fullscreen',
@@ -20,7 +20,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Brand, destinations, active course and the experience counter. */
+/** Wide layout: active course on the left, experience on the right. */
 export const Desktop: Story = {};
 
 export const NoProgress: Story = {
@@ -32,8 +32,8 @@ export const LargeCount: Story = {
 };
 
 /**
- * Under 840px the destinations move to a bottom dock, leaving the bar with the
- * brand and the counter. `EnvContext` is what makes the switch, so the story
+ * On phones there is no rail to hold the brand, so it moves into the bar and
+ * the course pill gives way. `EnvContext` makes the switch, so the story
  * supplies it directly rather than relying on the preview width.
  */
 export const Mobile: Story = {
