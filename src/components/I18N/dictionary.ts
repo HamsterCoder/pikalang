@@ -51,8 +51,8 @@ const dictionary: Record<string, I18NEntry> = {
         en: 'Before starting the lesson',
     },
     'lesson-start-button': {
-        en: 'Перейти к уроку',
-        ru: 'Start lesson',
+        en: 'Start lesson',
+        ru: 'Перейти к уроку',
     },
     'lesson-list-practice-button': {
         en: 'Practice',

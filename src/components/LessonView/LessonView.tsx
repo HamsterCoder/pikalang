@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useReducer } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { styled } from 'styled-components';
-import { X as CloseIcon } from 'lucide-react';
 
 import {
     getLessonById,
@@ -14,21 +13,17 @@ import { ChallengeType } from '@components/Challenge/types';
 import { ConjugationTable } from '@components/ConjugationTable';
 import { Heading } from '@components/Heading';
 import { I18N } from '@components/I18N/I18N';
-import { translate } from '@components/I18N/dictionary';
 import { I18NLangs } from '@components/I18N/types';
 import { Text } from '@components/Text/Text';
-import { Button } from '@components/ui/Button';
-import { ButtonLink } from '@components/ui/ButtonLink';
-import { IconButton } from '@components/ui/IconButton';
-import { ProgressBar } from '@components/ui/ProgressBar';
-import { Tooltip } from '@components/ui/Tooltip';
 import { shuffle } from '@utils/shuffle';
 
+import { ChallengePrompt } from './ChallengePrompt';
 import { ChallengeView } from './ChallengeView';
-import { FeedbackDock } from './FeedbackDock';
+import { LessonFooter } from './LessonFooter';
+import { LessonTopBar } from './LessonTopBar';
 import { evaluateChallenge, isAnswerReady, promptKeys } from './evaluate';
 import { initialLessonViewState, lessonViewReducer } from './lessonState';
-import { LESSON_WIDTH, LessonRow } from './LessonView.styles';
+import { LESSON_WIDTH } from './LessonView.styles';
 
 const MAX_CHALLENGES = 10;
 
@@ -43,32 +38,6 @@ const Screen = styled.div`
     background-color: ${({ theme }) => theme.color.surfaceSunken};
 `;
 
-const TopBar = styled.header`
-    position: sticky;
-    top: 0;
-    z-index: 5;
-
-    padding: 0.75rem 0;
-    border-bottom: 1px solid ${({ theme }) => theme.color.border};
-
-    background-color: ${({ theme }) => theme.color.surface};
-`;
-
-const Track = styled(ProgressBar)`
-    flex: 1 1 auto;
-    border-radius: ${({ theme }) => theme.radius.pill};
-`;
-
-const Counter = styled.span`
-    flex-shrink: 0;
-
-    font-family: ${({ theme }) => theme.font.base};
-    font-size: ${({ theme }) => theme.text.controlSmall.size};
-    font-weight: 500;
-    color: ${({ theme }) => theme.color.hint};
-    font-variant-numeric: tabular-nums;
-`;
-
 const Body = styled.main`
     display: flex;
     flex-direction: column;
@@ -81,47 +50,6 @@ const Body = styled.main`
     padding: 1.5rem 1rem 2rem;
 `;
 
-/** The accent rule that opens every challenge, as in the design. */
-const Prompt = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-
-    font-family: ${({ theme }) => theme.font.base};
-    font-size: ${({ theme }) => theme.text.heading_s.size};
-    font-weight: ${({ theme }) => theme.text.heading_s.weight};
-    color: ${({ theme }) => theme.color.heading};
-
-    &::before {
-        content: '';
-
-        width: 6px;
-        height: 1.25rem;
-        border-radius: ${({ theme }) => theme.radius.pill};
-
-        background-color: ${({ theme }) => theme.color.accent};
-    }
-`;
-
-const Footer = styled.footer`
-    position: sticky;
-    bottom: 0;
-    z-index: 5;
-
-    border-top: 1px solid ${({ theme }) => theme.color.border};
-    background-color: ${({ theme }) => theme.color.surface};
-`;
-
-const Actions = styled(LessonRow)`
-    justify-content: space-between;
-    padding-block: 0.75rem;
-`;
-
-/**
- * The redesigned lesson screen, built against `stitch/lesson-1.html` and
- * `stitch/lesson-2.html`. It lives beside `Lesson` rather than replacing it,
- * so the two can be compared before one is retired.
- */
 export const LessonView = () => {
     const { lessonTopic, lessonId } = useParams();
 
@@ -261,64 +189,34 @@ export const LessonView = () => {
 
     return (
         <Screen>
-            <TopBar>
-                <LessonRow>
-                    <Tooltip
-                        title={
-                            <I18N
-                                textKey="lesson-exit-button"
-                                lang={I18NLangs.RU}
-                            />
-                        }
-                        side="bottom"
-                    >
-                        <IconButton
-                            tone="default"
-                            aria-label={translate(
-                                I18NLangs.RU,
-                                'lesson-exit-button',
-                            )}
-                            onClick={exitLesson}
-                        >
-                            <CloseIcon aria-hidden />
-                        </IconButton>
-                    </Tooltip>
-                    <Track
-                        tone="muted"
-                        value={(answered / challenges.length) * 100}
-                        aria-label={translate(
-                            I18NLangs.RU,
-                            'lesson-progress-label',
-                        )}
-                    />
-                    <Counter>
-                        {Math.min(state.challengeNumber + 1, challenges.length)}{' '}
-                        / {challenges.length}
-                    </Counter>
-                </LessonRow>
-            </TopBar>
+            <LessonTopBar
+                current={Math.min(state.challengeNumber + 1, challenges.length)}
+                total={challenges.length}
+                progress={(answered / challenges.length) * 100}
+                onExit={exitLesson}
+            />
 
             <Body>
                 {state.lifecycle === 'help' && description.help && (
                     <>
-                        <Prompt>
+                        <ChallengePrompt>
                             <I18N
                                 textKey="lesson-help-title"
                                 lang={I18NLangs.RU}
                             />
-                        </Prompt>
+                        </ChallengePrompt>
                         <ConjugationTable verb={description.help.data.verb} />
                     </>
                 )}
 
                 {state.lifecycle === 'challenge' && (
                     <>
-                        <Prompt>
+                        <ChallengePrompt>
                             <I18N
                                 textKey={promptKeys[challenge.type]}
                                 lang={I18NLangs.RU}
                             />
-                        </Prompt>
+                        </ChallengePrompt>
                         <ChallengeView
                             // A fresh challenge starts from a clean slate.
                             key={state.challengeNumber}
@@ -355,62 +253,15 @@ export const LessonView = () => {
                 )}
             </Body>
 
-            <Footer>
-                {state.lifecycle === 'help' && (
-                    <Actions>
-                        <span />
-                        <Button
-                            tone="success"
-                            onClick={() => dispatch({ type: 'help-read' })}
-                        >
-                            <I18N
-                                textKey="lesson-start-button"
-                                lang={I18NLangs.RU}
-                            />
-                        </Button>
-                    </Actions>
-                )}
-
-                {state.lifecycle === 'challenge' && !state.verdict && (
-                    <Actions>
-                        <Button variant="text" onClick={() => advance(true)}>
-                            <I18N
-                                textKey="lesson-skip-button"
-                                lang={I18NLangs.RU}
-                            />
-                        </Button>
-                        <Button
-                            tone="success"
-                            disabled={!ready}
-                            onClick={check}
-                        >
-                            <I18N
-                                textKey="lesson-submit-button"
-                                lang={I18NLangs.RU}
-                            />
-                        </Button>
-                    </Actions>
-                )}
-
-                {state.lifecycle === 'challenge' && state.verdict && (
-                    <FeedbackDock
-                        verdict={state.verdict}
-                        onContinue={() => advance(false)}
-                    />
-                )}
-
-                {state.lifecycle === 'complete' && (
-                    <Actions>
-                        <span />
-                        <ButtonLink to="/lessons/" tone="success">
-                            <I18N
-                                textKey="lesson-complete-to-lesson-list"
-                                lang={I18NLangs.RU}
-                            />
-                        </ButtonLink>
-                    </Actions>
-                )}
-            </Footer>
+            <LessonFooter
+                lifecycle={state.lifecycle}
+                verdict={state.verdict}
+                canCheck={ready}
+                onStart={() => dispatch({ type: 'help-read' })}
+                onSkip={() => advance(true)}
+                onCheck={check}
+                onContinue={() => advance(false)}
+            />
         </Screen>
     );
 };
