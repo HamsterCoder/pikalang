@@ -5,6 +5,7 @@ import { styled } from 'styled-components';
 import { getWordSet, isWordSetValid, saveWordSetProgress } from '@api/words';
 import type { WordSet } from '@api/words';
 import { userDataApi } from '@api/user-data';
+import { NotFoundError } from '@components/ErrorScreen/NotFoundError';
 import { Heading } from '@components/Heading';
 import { I18N } from '@components/I18N/I18N';
 import { translate } from '@components/I18N/dictionary';
@@ -290,7 +291,8 @@ export const WordLessonView = () => {
         typeof topicName === 'undefined' ||
         !isWordSetValid(topicName, parsedSetNumber)
     ) {
-        throw new Error(
+        throw new NotFoundError(
+            `${topicName}/${setNumber}`,
             `Word set ${topicName}/${setNumber} could not be found.`,
         );
     }

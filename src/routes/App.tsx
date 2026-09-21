@@ -16,7 +16,7 @@ import { loader as appLayoutLoader } from '@routes/AppLayout.loader';
 
 import { LessonView } from '@components/LessonView/LessonView';
 import { WordLessonView } from '@components/WordLesson/WordLessonView';
-import { ErrorPage } from '@components/ErrorPage/ErrorPage';
+import { RouteErrorScreen } from '@components/ErrorScreen/RouteErrorScreen';
 import { LoadingError } from '@components/LoadingError';
 
 import { tokens } from '@themes/tokens';
@@ -34,7 +34,7 @@ const router = createHashRouter([
     {
         path: '/',
         element: <AppLayout />,
-        errorElement: <ErrorPage />,
+        errorElement: <RouteErrorScreen resource="app" />,
         loader: appLayoutLoader,
         children: [
             {
@@ -65,18 +65,12 @@ const router = createHashRouter([
     {
         path: '/lessons/:lessonTopic/:lessonId/',
         element: <LessonView />,
-        errorElement: <ErrorPage />,
+        errorElement: <RouteErrorScreen resource="lesson" />,
     },
     {
         path: '/words/:topicName/:setNumber/',
         element: <WordLessonView />,
-        errorElement: (
-            <LoadingError
-                name={'Word set'}
-                recoveryTo="/words/"
-                recoveryMessage="View available topics"
-            />
-        ),
+        errorElement: <RouteErrorScreen resource="word-set" />,
     },
     {
         path: '/conversations/:conversationId/',

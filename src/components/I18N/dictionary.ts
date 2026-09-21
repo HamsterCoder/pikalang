@@ -402,6 +402,63 @@ const dictionary: Record<string, I18NEntry> = {
         ru: 'Добавить возможность отвечать горячими клавишами при прохождении уроков.',
     },
 
+    'error-badge-not-found': {
+        en: 'Error 404 • Lost path',
+        ru: 'Ошибка 404 • Путь потерян',
+    },
+    'error-badge-unexpected': {
+        en: 'Error • Something broke',
+        ru: 'Ошибка • Что-то сломалось',
+    },
+    'error-lesson-not-found-title': {
+        en: 'Lesson not found',
+        ru: 'Урок не найден',
+    },
+    'error-lesson-not-found-text': {
+        en: 'This lesson has moved or does not exist yet. Let’s get you back on the path.',
+        ru: 'Этот урок переехал или ещё не существует. Вернёмся на путь обучения.',
+    },
+    'error-word-set-not-found-title': {
+        en: 'Word set not found',
+        ru: 'Набор слов не найден',
+    },
+    'error-word-set-not-found-text': {
+        en: 'This set has moved or does not exist yet. Pick another one from the topics.',
+        ru: 'Этот набор переехал или ещё не существует. Выберите другой в списке тем.',
+    },
+    'error-page-not-found-title': {
+        en: 'Page not found',
+        ru: 'Страница не найдена',
+    },
+    'error-page-not-found-text': {
+        en: 'There is nothing at this address. Let’s get you back to learning.',
+        ru: 'По этому адресу ничего нет. Вернёмся к учёбе.',
+    },
+    'error-unexpected-title': {
+        en: 'Something went wrong',
+        ru: 'Что-то пошло не так',
+    },
+    'error-unexpected-text': {
+        en: 'We could not open this one. Try again, or go back and pick another.',
+        ru: 'Не удалось открыть эту страницу. Попробуйте ещё раз или вернитесь назад.',
+    },
+    'error-back-to-lessons': {
+        en: 'Back to lessons',
+        ru: 'К списку уроков',
+    },
+    'error-back-to-words': {
+        en: 'Back to word topics',
+        ru: 'К темам слов',
+    },
+    'error-details-toggle': {
+        en: 'Technical details',
+        ru: 'Технические подробности',
+    },
+    'error-mascot-alt': {
+        en: 'A pika holding a map, unsure which way to go',
+        ru: 'Пика с картой не понимает, куда идти',
+    },
+
     'conversation-list-heading': {
         en: 'Conversations',
         ru: 'Разговоры',

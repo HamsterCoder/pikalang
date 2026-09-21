@@ -11,6 +11,7 @@ import {
 import { userDataApi } from '@api/user-data';
 import { ChallengeType } from '@lessons/types';
 import { ConjugationTable } from '@components/ConjugationTable';
+import { NotFoundError } from '@components/ErrorScreen/NotFoundError';
 import { Heading } from '@components/Heading';
 import { I18N } from '@components/I18N/I18N';
 import { I18NLangs } from '@components/I18N/types';
@@ -59,7 +60,8 @@ export const LessonView = () => {
         typeof lessonId === 'undefined' ||
         !isLessonIdValid(lessonTopic, lessonId)
     ) {
-        throw new Error(
+        throw new NotFoundError(
+            `${lessonTopic}/${lessonId}`,
             `Lesson ${lessonTopic}/${lessonId} could not be found.`,
         );
     }
