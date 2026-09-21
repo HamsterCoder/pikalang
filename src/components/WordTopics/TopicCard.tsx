@@ -10,7 +10,6 @@ import { Text } from '@components/Text/Text';
 import { Badge } from '@components/ui/Badge';
 import { ButtonLink } from '@components/ui/ButtonLink';
 import { SegmentedProgress } from '@components/ui/SegmentedProgress';
-import { StarTally } from '@components/WordLesson/StarTally';
 
 export interface TopicCardProps {
     /** The route param, used to build the link to a set. */
@@ -26,8 +25,6 @@ export interface TopicCardProps {
     setCount: number;
     /** Sets played through. */
     completedSets: number;
-    stars: number;
-    maxStars: number;
     /** Which set the action opens, counting from one. */
     nextSet: number;
     className?: string;
@@ -133,8 +130,6 @@ export const TopicCard = ({
     learnedCount,
     setCount,
     completedSets,
-    stars,
-    maxStars,
     nextSet,
     className,
 }: TopicCardProps) => {
@@ -176,9 +171,6 @@ export const TopicCard = ({
                                     }}
                                 />
                             </Badge>
-                            {stars > 0 && (
-                                <StarTally earned={stars} total={maxStars} />
-                            )}
                         </Labels>
 
                         <Heading size="s" color="default">

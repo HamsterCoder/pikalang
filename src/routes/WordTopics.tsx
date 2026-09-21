@@ -148,8 +148,6 @@ export const WordTopics = () => {
                                 learnedCount={topic.learnedCount}
                                 setCount={topic.sets.length}
                                 completedSets={completedSets}
-                                stars={topic.stars}
-                                maxStars={topic.maxStars}
                                 nextSet={nextSet}
                             />
                         );
