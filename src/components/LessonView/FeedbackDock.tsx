@@ -18,7 +18,7 @@ const Dock = styled.div<{ $solved: boolean }>`
     padding: 1rem 0;
     border-top: 1px solid
         ${({ theme, $solved }) =>
-            $solved ? theme.color.success : theme.color.error};
+            $solved ? theme.color.successBorder : theme.color.errorBorder};
 
     background-color: ${({ theme, $solved }) =>
         $solved ? theme.color.successSurface : theme.color.errorSurface};

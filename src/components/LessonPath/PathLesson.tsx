@@ -110,7 +110,9 @@ const Connector = styled.div<{ $state: LessonPathState }>`
     border-radius: ${({ theme }) => theme.radius.pill};
 
     background-color: ${({ theme, $state }) =>
-        $state === 'completed' ? theme.color.success : theme.color.border};
+        $state === 'completed'
+            ? theme.color.successBorder
+            : theme.color.border};
 `;
 
 const Body = styled.div`
