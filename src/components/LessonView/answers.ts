@@ -1,6 +1,10 @@
+/**
+ * Checking what the learner entered, and building the words they choose
+ * from. Kept apart from the views so the rules live in one place.
+ */
 import { shuffle } from '@utils/shuffle';
 
-import type { TranslateChipsData } from './TranslateChips';
+import type { TranslateChipsData } from '@lessons/types';
 
 export function isCorrectAnswer(
     possibleAnswers: string[],

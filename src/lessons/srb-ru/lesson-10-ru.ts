@@ -1,8 +1,8 @@
 import {
     ChallengeDescription,
     ChallengeType,
-} from '@components/Challenge/types';
-import { LessonDescription } from '@components/Lesson/Lesson';
+    LessonDescription,
+} from '@lessons/types';
 
 // Lesson: Kuhinski pribor
 // 1. Viljuška WordPicture challenge

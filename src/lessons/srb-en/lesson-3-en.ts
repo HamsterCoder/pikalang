@@ -1,7 +1,4 @@
-import {
-    ChallengeDescription,
-    ChallengeType,
-} from '@components/Challenge/types';
+import { ChallengeDescription, ChallengeType } from '@lessons/types';
 
 // NEW WORDS: blueberry, raspberry, strawberry, blackberry
 

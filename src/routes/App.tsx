@@ -12,7 +12,6 @@ import { loader as conversationLoader } from '@routes/Conversation.loader';
 import { AppLayout } from '@routes/AppLayout';
 import { loader as appLayoutLoader } from '@routes/AppLayout.loader';
 
-import { Lesson } from '@components/Lesson/Lesson.tsx';
 import { LessonView } from '@components/LessonView/LessonView';
 import { ErrorPage } from '@components/ErrorPage/ErrorPage';
 import { LoadingError } from '@components/LoadingError';
@@ -52,15 +51,6 @@ const router = createHashRouter([
     },
     {
         path: '/lessons/:lessonTopic/:lessonId/',
-        element: <Lesson />,
-        errorElement: <ErrorPage />,
-    },
-    /**
-     * The redesigned lesson screen, kept beside the current one until we pick
-     * between them. Promoting it means pointing the route above at LessonView.
-     */
-    {
-        path: '/preview/lessons/:lessonTopic/:lessonId/',
         element: <LessonView />,
         errorElement: <ErrorPage />,
     },

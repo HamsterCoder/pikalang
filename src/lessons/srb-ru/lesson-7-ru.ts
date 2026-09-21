@@ -1,8 +1,8 @@
 import {
     ChallengeDescription,
     ChallengeType,
-} from '@components/Challenge/types';
-import { LessonDescription } from '@components/Lesson/Lesson';
+    LessonDescription,
+} from '@lessons/types';
 
 // TARGET WORDS: Da li govorite, engleski, ruski, srpski, govorim,
 // SECONDARY WORDS: izvenite, loše, dobro, sporije,

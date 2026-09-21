@@ -6,7 +6,7 @@ import { PictureImage } from '@components/Picture/PictureImage';
 import { ChipsAnswer } from './ChipsAnswer';
 import { SubjectCard } from './SubjectCard';
 
-import type { QuestionChipsData } from '@components/Challenge/QuestionChips';
+import type { QuestionChipsData } from '@lessons/types';
 import type { ChallengeViewProps } from './types';
 
 const Illustration = styled.div`

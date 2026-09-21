@@ -1,5 +1,5 @@
-import { ChallengeDescription } from '@components/Challenge/types';
-import { LessonDescription } from '@components/Lesson/Lesson';
+import { ChallengeDescription } from '@lessons/types';
+import { LessonDescription } from '@lessons/types';
 import { emulateLatency } from '@utils/emulateLatency';
 
 import {

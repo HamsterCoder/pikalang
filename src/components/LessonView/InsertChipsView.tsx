@@ -2,7 +2,7 @@ import { Fragment, useMemo, useState } from 'react';
 import { X as RemoveIcon } from 'lucide-react';
 import { styled } from 'styled-components';
 
-import { parseSentence } from '@components/Challenge/utils';
+import { parseSentence } from './answers';
 import { Chip } from '@components/ui/Chip';
 import { shuffle } from '@utils/shuffle';
 
@@ -10,7 +10,7 @@ import { AnswerSlot } from './AnswerSlot.styles';
 import { SubjectCard } from './SubjectCard';
 import { WordBank } from './WordBank';
 
-import type { InsertChipsData } from '@components/Challenge/InsertChips';
+import type { InsertChipsData } from '@lessons/types';
 import type { ChallengeAnswer, ChallengeViewProps } from './types';
 
 const Layout = styled.div`

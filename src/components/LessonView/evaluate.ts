@@ -1,14 +1,11 @@
-import {
-    ChallengeDescription,
-    ChallengeType,
-} from '@components/Challenge/types';
+import { ChallengeDescription, ChallengeType } from '@lessons/types';
 import {
     computeAnswer,
     countMissingWords,
     isCorrectAnswer,
     parseSentence,
     prepareAnotherAnswer,
-} from '@components/Challenge/utils';
+} from './answers';
 import { dictionary } from '@dictionary/serbian-course';
 
 import type { ChallengeAnswer, ChallengeVerdict } from './types';

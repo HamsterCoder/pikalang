@@ -1,13 +1,13 @@
 import { useMemo } from 'react';
 
-import { buildChips } from '@components/Challenge/utils';
+import { buildChips } from './answers';
 import { I18N } from '@components/I18N/I18N';
 import { I18NLangs } from '@components/I18N/types';
 
 import { ChipsAnswer } from './ChipsAnswer';
 import { SubjectCard } from './SubjectCard';
 
-import type { TranslateChipsData } from '@components/Challenge/TranslateChips';
+import type { TranslateChipsData } from '@lessons/types';
 import type { ChallengeViewProps } from './types';
 
 export const TranslateChipsView = ({

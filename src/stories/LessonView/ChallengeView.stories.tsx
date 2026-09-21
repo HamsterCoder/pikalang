@@ -2,9 +2,9 @@ import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { ChallengeView } from '@components/LessonView/ChallengeView';
-import { ChallengeType } from '@components/Challenge/types';
+import { ChallengeType } from '@lessons/types';
 
-import type { ChallengeDescription } from '@components/Challenge/types';
+import type { ChallengeDescription } from '@lessons/types';
 import type { ChallengeAnswer } from '@components/LessonView/types';
 
 /**
