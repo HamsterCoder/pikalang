@@ -102,6 +102,22 @@ const dictionary: Record<string, I18NEntry> = {
         en: `You have ${correct} out of ${total} challenges correct and you have earned ${xp} stars.`,
         ru: `Вы сделали ${correct} из ${total} упражнений верно и заработали ${xp} звездочек.`,
     }),
+    'lesson-skip-button': {
+        en: 'Skip',
+        ru: 'Пропустить',
+    },
+    'lesson-word-bank': {
+        en: 'Available words',
+        ru: 'Доступные слова',
+    },
+    'lesson-reset-answer': {
+        en: 'Reset',
+        ru: 'Сбросить',
+    },
+    'lesson-tap-words-hint': {
+        en: 'Tap the words below to translate',
+        ru: 'Нажимайте на слова ниже, чтобы перевести',
+    },
     'lesson-complete-to-lesson-list': {
         en: 'See other lessons',
         ru: 'Посмотреть другие уроки',

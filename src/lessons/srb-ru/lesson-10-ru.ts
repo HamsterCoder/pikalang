@@ -37,56 +37,56 @@ export const challenges: ChallengeDescription[] = [
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'viljuška',
-            images: ['fork', 'spoon', 'knife'],
+            images: ['fork', 'spoon', 'knife', 'teaspoon'],
         },
     },
     {
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'kašika',
-            images: ['spoon', 'fork', 'knife'],
+            images: ['fork', 'spoon', 'teaspoon', 'knife'],
         },
     },
     {
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'nož',
-            images: ['knife', 'teaspoon', 'spoon'],
+            images: ['teaspoon', 'spoon', 'knife', 'fork'],
         },
     },
     {
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'kašičica',
-            images: ['teaspoon', 'fork', 'spoon'],
+            images: ['fork', 'spoon', 'knife', 'teaspoon'],
         },
     },
     {
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'tanjir',
-            images: ['plate', 'glass', 'bottle'],
+            images: ['plate', 'glass', 'bottle', 'cup'],
         },
     },
     {
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'čaša',
-            images: ['glass', 'cup', 'bottle'],
+            images: ['cup', 'glass', 'bottle', 'plate'],
         },
     },
     {
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'šolja',
-            images: ['cup', 'glass', 'bottle'],
+            images: ['glass', 'bottle', 'cup', 'plate'],
         },
     },
     {
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'flaša',
-            images: ['bottle', 'cup', 'glass'],
+            images: ['cup', 'glass', 'plate', 'bottle'],
         },
     },
     {

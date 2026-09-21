@@ -9,6 +9,7 @@ import { I18NLangs } from '@components/I18N/types';
 import { Chips } from '@components/Chips/Chips';
 import { shuffle } from '@utils/shuffle';
 import { Heading } from '@components/Heading';
+import { computeAnswer, countMissingWords, parseSentence } from './utils';
 
 export interface InsertChipsData {
     sentence: string;
@@ -40,57 +41,6 @@ const WordInsert = styled.span<WordInsertProps>`
     border-bottom: 2px solid var(--primary-accent);
 `;
 
-function countMissingWords(sentence: string) {
-    let wordCount = 0;
-
-    for (const char of sentence) {
-        if (char === '{') {
-            wordCount += 1;
-        }
-    }
-    return wordCount;
-}
-
-function getMissingWordsAndFragments(sentence: string) {
-    const missingWords = [];
-    const fragments = [];
-
-    let readingWord = false;
-    let currentWord = '';
-    let currentFragment = '';
-
-    for (const char of sentence) {
-        if (readingWord) {
-            if (char === '}') {
-                missingWords.push(currentWord);
-                currentWord = '';
-                readingWord = false;
-            } else {
-                currentWord += char;
-            }
-        } else {
-            if (char === '{') {
-                fragments.push(currentFragment);
-                currentFragment = '';
-                readingWord = true;
-            } else {
-                currentFragment += char;
-            }
-        }
-    }
-
-    fragments.push(currentFragment);
-
-    return {
-        missingWords,
-        fragments,
-    };
-}
-
-function computeAnswer(sentence: string) {
-    return sentence.replace(/{|}/g, '');
-}
-
 function plausibleAnswerSelected(
     answerChips: string[],
     missingWordsCount: number,
@@ -118,7 +68,7 @@ export const InsertChips: FunctionComponent<TranslateChipsProps> = ({
             `LOG::Answer chips: ${answerChips} and chips: ${data.chips}`,
         );
 
-        const { missingWords } = getMissingWordsAndFragments(data.sentence);
+        const { missingWords } = parseSentence(data.sentence);
 
         for (let i = 0; i < missingWords.length; i += 1) {
             if (answerChips[i] !== missingWords[i]) {

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Lingopop - Practice Lesson</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400..900;1,6..12,400..900&amp;family=Quicksand:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-fixed": "#ffdf92",
+            "secondary-fixed-dim": "#6be026",
+            "on-error": "#ffffff",
+            "inverse-primary": "#ffb1c3",
+            "surface-tint": "#ba0659",
+            "on-tertiary-container": "#fffbff",
+            "outline": "#8d6f76",
+            "tertiary-fixed-dim": "#f4bf00",
+            "on-background": "#0c1d2b",
+            "on-primary-container": "#590027",
+            "primary-fixed-dim": "#ffb1c3",
+            "on-surface-variant": "#594046",
+            "secondary-fixed": "#87fe45",
+            "on-tertiary": "#ffffff",
+            "secondary": "#2b6c00",
+            "surface-container-low": "#edf4ff",
+            "primary-fixed": "#ffd9e0",
+            "inverse-on-surface": "#e7f2ff",
+            "outline-variant": "#e1bec4",
+            "background": "#f7f9ff",
+            "primary-container": "#ff4b8b",
+            "on-secondary-container": "#2d7100",
+            "surface": "#f7f9ff",
+            "surface-dim": "#cbdcef",
+            "on-tertiary-fixed-variant": "#594400",
+            "error-container": "#ffdad6",
+            "on-tertiary-fixed": "#241a00",
+            "on-secondary": "#ffffff",
+            "on-primary-fixed-variant": "#8f0043",
+            "on-surface": "#0c1d2b",
+            "surface-variant": "#d3e4f7",
+            "surface-container-highest": "#d3e4f7",
+            "tertiary-container": "#907000",
+            "surface-container-high": "#d9eafd",
+            "tertiary": "#735800",
+            "primary": "#ba0659",
+            "secondary-container": "#84fb42",
+            "inverse-surface": "#223240",
+            "on-error-container": "#93000a",
+            "on-primary": "#ffffff",
+            "on-primary-fixed": "#3f0019",
+            "on-secondary-fixed-variant": "#1f5100",
+            "error": "#ba1a1a",
+            "surface-container-lowest": "#ffffff",
+            "on-secondary-fixed": "#082100",
+            "surface-bright": "#f7f9ff",
+            "surface-container": "#e2efff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.75rem",
+            "lg": "1.25rem",
+            "xl": "1.75rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "label-sm": ["Nunito Sans"],
+            "headline-lg-mobile": ["Quicksand"],
+            "body-md": ["Nunito Sans"],
+            "display-hero": ["Quicksand"],
+            "headline-md": ["Quicksand"],
+            "headline-lg": ["Quicksand"],
+            "display-hero-mobile": ["Quicksand"],
+            "label-md": ["Nunito Sans"],
+            "label-caps": ["Nunito Sans"],
+            "label-lg": ["Nunito Sans"],
+            "headline-sm": ["Quicksand"],
+            "body-sm": ["Nunito Sans"],
+            "body-lg": ["Nunito Sans"]
+          },
+          "fontSize": {
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "700" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "30px", "fontWeight": "700" }],
+            "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "headline-md": ["20px", { "lineHeight": "26px", "fontWeight": "700" }],
+            "label-md": ["14px", { "lineHeight": "18px", "fontWeight": "700" }],
+            "label-caps": ["11px", { "lineHeight": "14px", "fontWeight": "700" }],
+            "label-lg": ["15px", { "lineHeight": "20px", "fontWeight": "700" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "700" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+    }
+
+    /* Flat, sleek transitions */
+    .chip-press {
+      transition: transform 0.1s ease, background-color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+    }
+    .chip-press:active {
+      transform: scale(0.96);
+    }
+  </style>
+</head>
+<body class="bg-[#f8faff] text-on-surface min-h-screen flex flex-col font-body-md selection:bg-primary-fixed selection:text-on-primary-container antialiased">
+<!-- SLIM MOBILE HEADER (Close, Delicate Progress Line, Minimal Heart Counter) -->
+<header class="w-full bg-white/90 backdrop-blur-md sticky top-0 z-30 px-4 py-3 border-b border-slate-100">
+<div class="max-w-md mx-auto flex items-center justify-between gap-3">
+<!-- Exit Button -->
+<button aria-label="Exit lesson" class="w-9 h-9 flex items-center justify-center rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors active:scale-90" onclick="window.history.back()">
+<span class="material-symbols-outlined text-[22px]" data-icon="close">close</span>
+</button>
+<!-- Delicate Flat Progress Bar -->
+<div class="flex-1 px-1">
+<div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full transition-all duration-300 ease-out" style="width: 70%;"></div>
+</div>
+</div>
+<!-- Flat Minimal Hearts Counter -->
+<div class="flex items-center gap-1.5 px-2.5 py-1 bg-rose-50/80 rounded-full">
+<span class="material-symbols-outlined text-primary-container text-[18px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="font-headline-sm text-sm font-bold text-primary-container">5</span>
+</div>
+</div>
+</header>
+<!-- MAIN CONTENT AREA -->
+<main class="flex-1 max-w-md w-full mx-auto px-4 py-5 flex flex-col justify-between">
+<div class="flex flex-col gap-4">
+<!-- Exercise Title -->
+<div class="flex items-center gap-2">
+<div class="w-1.5 h-4 bg-primary-container rounded-full"></div>
+<h1 class="font-headline-md text-[19px] text-on-surface font-bold tracking-tight">Translate this sentence</h1>
+</div>
+<!-- Streamlined Mascot & Audio Card -->
+<div class="bg-white rounded-2xl p-3.5 border border-slate-100 flex items-center gap-3.5">
+<!-- Mascot Avatar -->
+<div class="relative flex-shrink-0">
+<div class="w-14 h-14 rounded-full overflow-hidden bg-primary-fixed ring-2 ring-primary-fixed/40 flex items-center justify-center">
+<img alt="Pink fox mascot" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOU2FfYtmnXvAvh9pchPP83-bmA-gKRsFih45CC0juqGydBmhzYmaNk3JXbEAe640t7FL5DKL69VwB4r0NouFzN4PENNtJinKrQeupbOUlFIGO3_XsbdpmRP17EFuoBRm1qLx7G2f_mfgikSFchaI3nsjMe_Wwy4ErppbRRL6sReoANgdMxTBFT4qCAbe-Ci5LmgWPpwJ6QszZ5daRFxsfEBuQIu9GwnytftB_zU3Ks_CxudW_ggeU"/>
+</div>
+<span class="absolute -bottom-1 -right-1 bg-amber-400 text-amber-950 font-label-sm text-[10px] px-1.5 py-0.2 rounded-full font-bold">
+          ES
+        </span>
+</div>
+<!-- Phrase & Audio Controls -->
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<!-- Audio Buttons (Flat & lightweight) -->
+<button aria-label="Listen at normal speed" class="w-8 h-8 rounded-full bg-primary-container text-white flex items-center justify-center active:scale-90 transition-transform" id="listenNormal" onclick="playAudioEffect('normal')">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">volume_up</span>
+</button>
+<button aria-label="Listen slowly" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center active:scale-90 transition-transform" id="listenSlow" onclick="playAudioEffect('slow')">
+<span class="material-symbols-outlined text-[17px]">cruelty_free</span>
+</button>
+</div>
+<p class="font-headline-sm text-base text-slate-900 leading-snug truncate sm:whitespace-normal">
+          Ella bebe leche por la mañana.
+        </p>
+<p class="text-[12px] text-slate-400 font-medium mt-0.5">
+          Tap words to translate
+        </p>
+</div>
+</div>
+<!-- TARGET TRANSLATION ASSEMBLY AREA -->
+<div class="min-h-[76px] w-full p-3 bg-white rounded-2xl border border-slate-200/80 flex flex-wrap items-center gap-2 content-start transition-all" id="targetSentenceStrip">
+<!-- Slotted word chips -->
+<button class="slotted-word-btn chip-press inline-flex items-center gap-1 px-3 py-1.5 bg-primary-container text-white text-sm font-semibold rounded-xl" onclick="unslotWord('She', this)">
+<span>She</span>
+<span class="material-symbols-outlined text-[15px] opacity-75">close</span>
+</button>
+<button class="slotted-word-btn chip-press inline-flex items-center gap-1 px-3 py-1.5 bg-primary-container text-white text-sm font-semibold rounded-xl" onclick="unslotWord('drinks', this)">
+<span>drinks</span>
+<span class="material-symbols-outlined text-[15px] opacity-75">close</span>
+</button>
+<!-- Clean dashed outline placeholders -->
+<div class="h-8 w-16 rounded-xl border border-dashed border-slate-300/80" id="slotGuide1"></div>
+<div class="h-8 w-20 rounded-xl border border-dashed border-slate-300/80" id="slotGuide2"></div>
+</div>
+<!-- WORD BANK GRID -->
+<div class="mt-1">
+<div class="flex items-center justify-between mb-2.5 px-0.5">
+<span class="font-label-caps text-slate-400 uppercase tracking-wider text-[11px] font-bold">Word Bank</span>
+<button class="font-label-sm text-[12px] text-primary-container hover:text-primary flex items-center gap-1 font-semibold" onclick="resetAllWords()">
+<span class="material-symbols-outlined text-[14px]">refresh</span>
+          Reset
+        </button>
+</div>
+<!-- Clean, Flat Word Bank Grid -->
+<div class="grid grid-cols-3 gap-2">
+<button class="word-chip chip-press h-11 px-2.5 rounded-xl bg-slate-100/70 text-slate-400 text-sm font-semibold border border-transparent cursor-not-allowed opacity-40" disabled="" id="word-drinks" onclick="slotWord('drinks')">
+          drinks
+        </button>
+<button class="word-chip chip-press h-11 px-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 text-sm font-semibold border border-slate-200" id="word-He" onclick="slotWord('He')">
+          He
+        </button>
+<button class="word-chip chip-press h-11 px-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 text-sm font-semibold border border-slate-200" id="word-water" onclick="slotWord('water')">
+          water
+        </button>
+<button class="word-chip chip-press h-11 px-2.5 rounded-xl bg-slate-100/70 text-slate-400 text-sm font-semibold border border-transparent cursor-not-allowed opacity-40" disabled="" id="word-She" onclick="slotWord('She')">
+          She
+        </button>
+<button class="word-chip chip-press h-11 px-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 text-sm font-semibold border border-slate-200" id="word-morning" onclick="slotWord('morning')">
+          morning
+        </button>
+<button class="word-chip chip-press h-11 px-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 text-sm font-semibold border border-slate-200" id="word-milk" onclick="slotWord('milk')">
+          milk
+        </button>
+<button class="word-chip chip-press h-11 px-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 text-sm font-semibold border border-slate-200" id="word-inthe" onclick="slotWord('in the')">
+          in the
+        </button>
+<button class="word-chip chip-press h-11 px-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 text-sm font-semibold border border-slate-200" id="word-bread" onclick="slotWord('bread')">
+          bread
+        </button>
+<button class="word-chip chip-press h-11 px-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 text-sm font-semibold border border-slate-200" id="word-tea" onclick="slotWord('tea')">
+          tea
+        </button>
+</div>
+</div>
+</div>
+<!-- Lightweight Tip Card -->
+<div class="mt-4 p-3 rounded-xl bg-rose-50/60 border border-rose-100/80 flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-full bg-rose-100 text-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div>
+<p class="text-xs font-bold text-slate-800 leading-tight">Combo Streak Bonus</p>
+<p class="text-[11px] text-slate-500">Answer 3 more for 2x XP boost!</p>
+</div>
+</div>
+<span class="text-[11px] font-bold text-primary-container bg-white px-2 py-0.5 rounded-full border border-rose-200">
+      +15 XP
+    </span>
+</div>
+</main>
+<!-- FIXED BOTTOM ACTION DOCK (Clean, Flat, High-Contrast) -->
+<footer class="sticky bottom-0 w-full bg-white border-t border-slate-100 py-3.5 px-4 z-40">
+<div class="max-w-md mx-auto flex items-center justify-between gap-3">
+<!-- Clean Flat Skip Button -->
+<button class="px-4 py-2.5 text-slate-400 hover:text-slate-700 text-xs font-bold tracking-wider uppercase rounded-xl transition-colors active:scale-95" onclick="handleSkip()">
+      SKIP
+    </button>
+<!-- Flat, High-Contrast Action Button -->
+<button class="flex-1 bg-primary-container hover:bg-primary text-white font-headline-sm text-sm font-bold tracking-wider py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 uppercase active:scale-[0.98] transition-all" id="checkButton" onclick="checkAnswer()">
+<span>CHECK ANSWER</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</footer>
+<!-- Clean Flat Feedback Drawer -->
+<div class="fixed inset-x-0 bottom-0 z-50 transform translate-y-full transition-transform duration-200 ease-out" id="feedbackDrawer">
+<div class="max-w-md mx-auto p-4 sm:p-5 flex flex-col gap-3.5 rounded-t-2xl shadow-xl" id="feedbackContent">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" id="feedbackIconWrap">
+<span class="material-symbols-outlined text-[22px]" id="feedbackIcon"></span>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="text-base font-bold" id="feedbackTitle"></h3>
+<p class="text-xs" id="feedbackSubtitle"></p>
+</div>
+</div>
+<button class="w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wider text-white active:scale-[0.98] transition-transform" id="feedbackActionButton" onclick="closeFeedbackDrawer()">
+      CONTINUE
+    </button>
+</div>
+</div>
+<script>
+  function playAudioEffect(speed) {
+    const btn = speed === 'normal' ? document.getElementById('listenNormal') : document.getElementById('listenSlow');
+    btn.classList.add('scale-90');
+    setTimeout(() => btn.classList.remove('scale-90'), 150);
+  }
+
+  function getWordId(word) {
+    if (word === 'in the') return 'word-inthe';
+    return 'word-' + word;
+  }
+
+  function slotWord(word) {
+    const chipBtn = document.getElementById(getWordId(word));
+    if (!chipBtn || chipBtn.disabled) return;
+
+    chipBtn.disabled = true;
+    chipBtn.classList.remove('bg-white', 'hover:bg-slate-50', 'text-slate-800', 'border-slate-200');
+    chipBtn.classList.add('bg-slate-100/70', 'text-slate-400', 'opacity-40', 'cursor-not-allowed', 'border-transparent');
+
+    const strip = document.getElementById('targetSentenceStrip');
+    const newSlotted = document.createElement('button');
+    newSlotted.onclick = function() { unslotWord(word, this); };
+    newSlotted.className = 'slotted-word-btn chip-press inline-flex items-center gap-1 px-3 py-1.5 bg-primary-container text-white text-sm font-semibold rounded-xl';
+    newSlotted.innerHTML = `<span>${word}</span><span class="material-symbols-outlined text-[15px] opacity-75">close</span>`;
+
+    const guide = document.getElementById('slotGuide1');
+    strip.insertBefore(newSlotted, guide);
+    updateGuidesVisibility();
+  }
+
+  function unslotWord(word, element) {
+    element.remove();
+    const chipBtn = document.getElementById(getWordId(word));
+    if (chipBtn) {
+      chipBtn.disabled = false;
+      chipBtn.classList.remove('bg-slate-100/70', 'text-slate-400', 'opacity-40', 'cursor-not-allowed', 'border-transparent');
+      chipBtn.classList.add('bg-white', 'hover:bg-slate-50', 'text-slate-800', 'border-slate-200');
+    }
+    updateGuidesVisibility();
+  }
+
+  function updateGuidesVisibility() {
+    const slotted = document.querySelectorAll('.slotted-word-btn');
+    const guide1 = document.getElementById('slotGuide1');
+    const guide2 = document.getElementById('slotGuide2');
+
+    if (slotted.length >= 3) {
+      guide1.classList.add('hidden');
+      guide2.classList.add('hidden');
+    } else if (slotted.length >= 2) {
+      guide1.classList.remove('hidden');
+      guide2.classList.add('hidden');
+    } else {
+      guide1.classList.remove('hidden');
+      guide2.classList.remove('hidden');
+    }
+  }
+
+  function resetAllWords() {
+    const slotted = document.querySelectorAll('.slotted-word-btn');
+    slotted.forEach(btn => {
+      const spanText = btn.querySelector('span').innerText;
+      btn.remove();
+      const chipBtn = document.getElementById(getWordId(spanText));
+      if (chipBtn) {
+        chipBtn.disabled = false;
+        chipBtn.classList.remove('bg-slate-100/70', 'text-slate-400', 'opacity-40', 'cursor-not-allowed', 'border-transparent');
+        chipBtn.classList.add('bg-white', 'hover:bg-slate-50', 'text-slate-800', 'border-slate-200');
+      }
+    });
+    updateGuidesVisibility();
+  }
+
+  function checkAnswer() {
+    const slotted = document.querySelectorAll('.slotted-word-btn');
+    const assembled = Array.from(slotted).map(btn => btn.querySelector('span').innerText).join(' ');
+
+    const drawer = document.getElementById('feedbackDrawer');
+    const content = document.getElementById('feedbackContent');
+    const iconWrap = document.getElementById('feedbackIconWrap');
+    const icon = document.getElementById('feedbackIcon');
+    const title = document.getElementById('feedbackTitle');
+    const subtitle = document.getElementById('feedbackSubtitle');
+    const actionBtn = document.getElementById('feedbackActionButton');
+
+    const isCorrect = assembled.toLowerCase().startsWith('she drinks milk');
+
+    if (isCorrect) {
+      content.className = 'max-w-md mx-auto p-4 sm:p-5 flex flex-col gap-3.5 rounded-t-2xl shadow-xl bg-emerald-50 border-t-2 border-emerald-500';
+      iconWrap.className = 'w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 bg-emerald-500 text-white';
+      icon.innerText = 'check';
+      title.className = 'text-base font-bold text-emerald-900';
+      title.innerText = 'Spot on!';
+      subtitle.className = 'text-xs text-emerald-700 font-medium';
+      subtitle.innerText = 'You translated this sentence accurately.';
+      actionBtn.className = 'w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wider text-white bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] transition-transform';
+    } else {
+      content.className = 'max-w-md mx-auto p-4 sm:p-5 flex flex-col gap-3.5 rounded-t-2xl shadow-xl bg-rose-50 border-t-2 border-rose-500';
+      iconWrap.className = 'w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 bg-rose-500 text-white';
+      icon.innerText = 'close';
+      title.className = 'text-base font-bold text-rose-950';
+      title.innerText = 'Not quite';
+      subtitle.className = 'text-xs text-rose-800 font-medium';
+      subtitle.innerText = 'Solution: "She drinks milk in the morning"';
+      actionBtn.className = 'w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wider text-white bg-rose-600 hover:bg-rose-700 active:scale-[0.98] transition-transform';
+    }
+
+    drawer.classList.remove('translate-y-full');
+  }
+
+  function closeFeedbackDrawer() {
+    document.getElementById('feedbackDrawer').classList.add('translate-y-full');
+  }
+
+  function handleSkip() {
+    const drawer = document.getElementById('feedbackDrawer');
+    const content = document.getElementById('feedbackContent');
+    const iconWrap = document.getElementById('feedbackIconWrap');
+    const icon = document.getElementById('feedbackIcon');
+    const title = document.getElementById('feedbackTitle');
+    const subtitle = document.getElementById('feedbackSubtitle');
+    const actionBtn = document.getElementById('feedbackActionButton');
+
+    content.className = 'max-w-md mx-auto p-4 sm:p-5 flex flex-col gap-3.5 rounded-t-2xl shadow-xl bg-slate-50 border-t-2 border-slate-300';
+    iconWrap.className = 'w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 bg-slate-400 text-white';
+    icon.innerText = 'fast_forward';
+    title.className = 'text-base font-bold text-slate-800';
+    title.innerText = 'Skipped';
+    subtitle.className = 'text-xs text-slate-500 font-medium';
+    subtitle.innerText = 'This item will appear again in later reviews.';
+    actionBtn.className = 'w-full py-3 rounded-xl font-bold text-sm uppercase tracking-wider text-white bg-slate-800 hover:bg-slate-900 active:scale-[0.98] transition-transform';
+
+    drawer.classList.remove('translate-y-full');
+  }
+</script>
+</body></html>

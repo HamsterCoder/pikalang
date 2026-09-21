@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lingopop - Practice Lesson</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700;800&amp;family=Nunito+Sans:wght@500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-fixed": "#ffdf92",
+            "secondary-fixed-dim": "#6be026",
+            "on-error": "#ffffff",
+            "inverse-primary": "#ffb1c3",
+            "surface-tint": "#ba0659",
+            "on-tertiary-container": "#fffbff",
+            "outline": "#8d6f76",
+            "tertiary-fixed-dim": "#f4bf00",
+            "on-background": "#0c1d2b",
+            "on-primary-container": "#590027",
+            "primary-fixed-dim": "#ffb1c3",
+            "on-surface-variant": "#594046",
+            "secondary-fixed": "#87fe45",
+            "on-tertiary": "#ffffff",
+            "secondary": "#2b6c00",
+            "surface-container-low": "#edf4ff",
+            "primary-fixed": "#ffd9e0",
+            "inverse-on-surface": "#e7f2ff",
+            "outline-variant": "#e1bec4",
+            "background": "#f7f9ff",
+            "primary-container": "#ff4b8b",
+            "on-secondary-container": "#2d7100",
+            "surface": "#f7f9ff",
+            "surface-dim": "#cbdcef",
+            "on-tertiary-fixed-variant": "#594400",
+            "error-container": "#ffdad6",
+            "on-tertiary-fixed": "#241a00",
+            "on-secondary": "#ffffff",
+            "on-primary-fixed-variant": "#8f0043",
+            "on-surface": "#0c1d2b",
+            "surface-variant": "#d3e4f7",
+            "surface-container-highest": "#d3e4f7",
+            "tertiary-container": "#907000",
+            "surface-container-high": "#d9eafd",
+            "tertiary": "#735800",
+            "primary": "#ba0659",
+            "secondary-container": "#84fb42",
+            "inverse-surface": "#223240",
+            "on-error-container": "#93000a",
+            "on-primary": "#ffffff",
+            "on-primary-fixed": "#3f0019",
+            "on-secondary-fixed-variant": "#1f5100",
+            "error": "#ba1a1a",
+            "surface-container-lowest": "#ffffff",
+            "on-secondary-fixed": "#082100",
+            "surface-bright": "#f7f9ff",
+            "surface-container": "#e2efff"
+          },
+          "borderRadius": {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-tablet": "1.25rem",
+            "space-xs": "0.25rem",
+            "space-md": "1rem",
+            "gutter-desktop": "1.5rem",
+            "margin": "1rem",
+            "gutter": "1rem",
+            "space-lg": "1.5rem",
+            "space-2xl": "3rem",
+            "margin-tablet": "1.5rem",
+            "space-sm": "0.5rem",
+            "margin-desktop": "2.5rem",
+            "space-xl": "2rem"
+          },
+          "fontFamily": {
+            "label-sm": ["Nunito Sans"],
+            "headline-lg-mobile": ["Quicksand"],
+            "body-md": ["Nunito Sans"],
+            "display-hero": ["Quicksand"],
+            "headline-md": ["Quicksand"],
+            "headline-lg": ["Quicksand"],
+            "display-hero-mobile": ["Quicksand"],
+            "label-md": ["Nunito Sans"],
+            "label-caps": ["Nunito Sans"],
+            "label-lg": ["Nunito Sans"],
+            "headline-sm": ["Quicksand"],
+            "body-sm": ["Nunito Sans"],
+            "body-lg": ["Nunito Sans"]
+          },
+          "fontSize": {
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "700" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "fontWeight": "700" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "display-hero": ["40px", { "lineHeight": "48px", "fontWeight": "700" }],
+            "headline-md": ["24px", { "lineHeight": "30px", "fontWeight": "700" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+            "display-hero-mobile": ["30px", { "lineHeight": "36px", "fontWeight": "700" }],
+            "label-md": ["14px", { "lineHeight": "18px", "fontWeight": "700" }],
+            "label-caps": ["12px", { "lineHeight": "16px", "fontWeight": "700" }],
+            "label-lg": ["16px", { "lineHeight": "20px", "fontWeight": "700" }],
+            "headline-sm": ["20px", { "lineHeight": "26px", "fontWeight": "700" }],
+            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "26px", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-[#fcfdff] text-on-surface font-body-md min-h-screen flex flex-col justify-between select-none antialiased overflow-x-hidden">
+<!-- Top Session Header -->
+<header class="w-full max-w-4xl mx-auto px-6 pt-7 pb-4 flex items-center gap-5 sm:gap-7 z-20">
+<!-- Close / Exit Session Button -->
+<button aria-label="Exit lesson" class="w-10 h-10 shrink-0 rounded-full border border-outline-variant/40 bg-white text-on-surface-variant/80 flex items-center justify-center hover:bg-surface-container-low hover:text-on-surface active:scale-95 transition-all duration-150 shadow-xs">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+<!-- Slim Elegant Progress Bar (40% Complete) -->
+<div class="flex-1 bg-surface-container/60 rounded-full h-2 relative overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary-container to-primary rounded-full w-2/5 transition-all duration-500 ease-out"></div>
+</div>
+<!-- Health / Heart Counter -->
+<div class="relative group cursor-pointer">
+<div class="flex items-center gap-1.5 px-3 py-1.5 bg-white rounded-full border border-pink-100 shadow-xs hover:border-pink-200 transition-all">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="font-label-md text-label-md text-primary font-bold">4</span>
+</div>
+<!-- Tooltip Bubble -->
+<div class="absolute right-0 top-11 hidden group-hover:flex flex-col items-center z-30 pointer-events-none">
+<div class="w-2 h-2 bg-inverse-surface rotate-45 mb-[-4px]"></div>
+<div class="bg-inverse-surface text-inverse-on-surface font-label-sm text-label-sm px-3 py-1 rounded-lg whitespace-nowrap shadow-lg">
+          4 lives remaining
+        </div>
+</div>
+</div>
+</header>
+<!-- Central Exercise Canvas -->
+<main class="w-full max-w-3xl mx-auto px-4 sm:px-6 flex-1 flex flex-col justify-center py-6 sm:py-8">
+<!-- Prompt Instruction with Pronunciation CTA -->
+<div class="mb-7 sm:mb-9 text-center sm:text-left flex flex-col sm:flex-row items-center sm:items-center gap-3.5">
+<h1 class="font-headline-lg text-headline-lg text-[#102438] font-bold tracking-tight">
+        Which of these is <span class="text-primary font-extrabold relative inline-block after:absolute after:bottom-0.5 after:left-0 after:w-full after:h-[2.5px] after:bg-primary/25 after:rounded-full">"the apple"</span>?
+      </h1>
+<!-- Audio Speaker Button -->
+<button aria-label="Listen to pronunciation" class="w-9 h-9 shrink-0 rounded-full bg-pink-50/70 border border-pink-200/70 text-primary flex items-center justify-center hover:bg-pink-100/70 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[19px]">volume_up</span>
+</button>
+</div>
+<!-- 4 Clean Modern Cards Grid (2x2) -->
+<div class="grid grid-cols-2 gap-4 sm:gap-5 max-w-2xl mx-auto w-full">
+<!-- Option 1: La manzana (Active / Selected Correct State) -->
+<div class="group relative flex flex-col items-center justify-between p-5 rounded-2xl bg-pink-50/40 border border-primary ring-2 ring-primary/20 shadow-sm cursor-pointer transition-all duration-200">
+<!-- Shortcut badge -->
+<span class="absolute top-3 left-3 w-6 h-6 rounded-md bg-white border border-primary/30 font-label-caps text-label-caps text-primary font-bold flex items-center justify-center">1</span>
+<!-- Selection indicator -->
+<span class="absolute top-3 right-3 w-5 h-5 rounded-full bg-primary text-white flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</span>
+<!-- Illustration -->
+<div class="w-28 h-28 sm:w-32 sm:h-32 rounded-xl overflow-hidden my-3 p-2 flex items-center justify-center bg-white/80 border border-pink-100/60 transition-transform duration-200 group-hover:scale-105">
+<img class="w-full h-full object-contain" data-alt="A cute, vibrant candy-colored 3D vector style illustration of a glossy red apple with a tiny green leaf on its stem, set against a pristine, soft pastel pink background with joyful toy aesthetics and studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASSklLCqcFxdlWleSrzUUzAeerI8VlfZ-rS8PV71n8-qzXwAs4xw0AvxSpB6575u-7ES-_6vulsuDfu40rmAjY9M1xTTz3WytkKh5Fmlgvx161JefGzsO0CV6GNlHDvgqEtq142g0FsVVrffBC4kMuDMnC1TMOs_DLJ79gTn9GEaZbx58jgOYRAJO_hkNffC8pwJUBJpZ2yphTVKbbrXgDDyU-ISWwMuI-i-GBnYDj0tD7UbwgJzzb"/>
+</div>
+<!-- Label -->
+<span class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight">La manzana</span>
+</div>
+<!-- Option 2: El café -->
+<div class="group relative flex flex-col items-center justify-between p-5 rounded-2xl bg-white border border-slate-200/80 hover:border-slate-300 hover:bg-slate-50/40 shadow-xs hover:shadow-sm cursor-pointer transition-all duration-200">
+<!-- Shortcut badge -->
+<span class="absolute top-3 left-3 w-6 h-6 rounded-md bg-surface-container-low border border-slate-200 font-label-caps text-label-caps text-slate-500 font-bold flex items-center justify-center">2</span>
+<!-- Illustration -->
+<div class="w-28 h-28 sm:w-32 sm:h-32 rounded-xl overflow-hidden my-3 p-2 flex items-center justify-center bg-slate-50/60 border border-slate-100 transition-transform duration-200 group-hover:scale-105">
+<img class="w-full h-full object-contain" data-alt="A delightful 3D stylized illustration of a warm pastel ceramic cup filled with aromatic steaming coffee, featuring playful rounded contours and a gentle splash, illuminated by clean studio light against a light cream backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0xAXUf_8U00cm95VfMvZt__LmuHlGW-DfpuwNkRWTntYcT7H8OwfXXO6PsDfFigMcy6kDEDNpRW8qulVDFUJo2k_qKcWVmllYtg3uCyZOxiVn3vmYvMNGb6gMKgiB0TxZxtONlY5OJ0jp_2YBnw0oPcuVac_xP4OV_yWyzBO1a-KWmks6FNm36x8mxkxEqwCJCMsMpoMSHkTXg4ibEZRjcSnM4fOUEEYMxvJ81_DfTlj10WW86qT0"/>
+</div>
+<!-- Label -->
+<span class="font-headline-sm text-headline-sm text-[#102438] font-bold tracking-tight">El café</span>
+</div>
+<!-- Option 3: El pan -->
+<div class="group relative flex flex-col items-center justify-between p-5 rounded-2xl bg-white border border-slate-200/80 hover:border-slate-300 hover:bg-slate-50/40 shadow-xs hover:shadow-sm cursor-pointer transition-all duration-200">
+<!-- Shortcut badge -->
+<span class="absolute top-3 left-3 w-6 h-6 rounded-md bg-surface-container-low border border-slate-200 font-label-caps text-label-caps text-slate-500 font-bold flex items-center justify-center">3</span>
+<!-- Illustration -->
+<div class="w-28 h-28 sm:w-32 sm:h-32 rounded-xl overflow-hidden my-3 p-2 flex items-center justify-center bg-slate-50/60 border border-slate-100 transition-transform duration-200 group-hover:scale-105">
+<img class="w-full h-full object-contain" data-alt="A charming, chunky 3D toy-style loaf of golden baked artisan bread with scored crust details and soft crumbly accents, placed against a playful warm daylight gradient background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-AlE_ZrgBZ2juUxmeNf79QagEbUIU0IT5cryDyCbUmT1PWpdVojDwkeHBkIS8_PApJUyJjjLpFOljEgq7wxyT2TAUjInHqoDqD6lkZK6g3rmG8H-ijzv2FHcVEMvFri-TA-TRj_UzsZaQlF1QG0QUldTARvmnOJVj2J9QVujrrZgqG3zAhhaIqa9Fu-f2s-z8VROucb1Ayfi7G2zIWFt0U4VOrX_exe-A5MxE0Trg-SHhD4kMoAVP"/>
+</div>
+<!-- Label -->
+<span class="font-headline-sm text-headline-sm text-[#102438] font-bold tracking-tight">El pan</span>
+</div>
+<!-- Option 4: El agua -->
+<div class="group relative flex flex-col items-center justify-between p-5 rounded-2xl bg-white border border-slate-200/80 hover:border-slate-300 hover:bg-slate-50/40 shadow-xs hover:shadow-sm cursor-pointer transition-all duration-200">
+<!-- Shortcut badge -->
+<span class="absolute top-3 left-3 w-6 h-6 rounded-md bg-surface-container-low border border-slate-200 font-label-caps text-label-caps text-slate-500 font-bold flex items-center justify-center">4</span>
+<!-- Illustration -->
+<div class="w-28 h-28 sm:w-32 sm:h-32 rounded-xl overflow-hidden my-3 p-2 flex items-center justify-center bg-slate-50/60 border border-slate-100 transition-transform duration-200 group-hover:scale-105">
+<img class="w-full h-full object-contain" data-alt="A refreshing crystal-clear glass of water with floating ice cubes and playful cartoon water droplets, rendered in a crisp tactile 3D style with glossy highlights and bright reflections." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBB7_B2CxRSb-3Czqw_fAWpqIZnaIzGEYhDc0xsUShu315M__s2BemeyVZUWjERQ6PFrmQxxvbNjX98FB7mndT2Wq7rxKjRrW6TLby6ZgqBtmIs5QBMTXL_9pXb_hSEpi07QtYYc8JsCOtLD5Zh5eVa4k8JxDjneYGPbSEn75yKrnovQdlHvzUyrp9kS11dlBmXqqZcviNM6qGYPR3hEKM2z8kscbee8TBqod43Pw5StRZGxlTM4Df9"/>
+</div>
+<!-- Label -->
+<span class="font-headline-sm text-headline-sm text-[#102438] font-bold tracking-tight">El agua</span>
+</div>
+</div>
+</main>
+<!-- Sleek Floating Docked Feedback Action Banner -->
+<div class="w-full px-4 pb-5 pt-2">
+<section class="max-w-3xl mx-auto rounded-2xl bg-emerald-50/90 backdrop-blur-md border border-emerald-200/80 shadow-lg shadow-emerald-950/5 p-4 sm:px-6 sm:py-4 transition-all">
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+<!-- Feedback Message Block -->
+<div class="flex items-center gap-3.5 w-full sm:w-auto">
+<div class="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-[18px] text-emerald-900 font-bold leading-tight">Nicely done!</h2>
+<p class="font-body-sm text-body-sm text-emerald-700 font-medium">Meaning: The apple (feminine noun)</p>
+</div>
+</div>
+<!-- Action Button Group -->
+<div class="w-full sm:w-auto flex items-center gap-2.5">
+<!-- Sleek Modern Flat Continue Button -->
+<button class="w-full sm:w-auto min-w-[170px] py-2.5 px-6 rounded-full bg-emerald-500 hover:bg-emerald-600 active:scale-[0.98] text-white font-label-lg text-[15px] font-bold tracking-normal transition-all shadow-sm flex items-center justify-center gap-2">
+<span>Continue</span>
+<span class="hidden sm:inline-block px-1.5 py-0.5 bg-white/20 text-white/90 rounded text-[11px] font-semibold">↵</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</body></html>

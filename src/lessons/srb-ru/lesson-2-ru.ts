@@ -22,7 +22,7 @@ const appleChallenges: ChallengeDescription[] = [
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'jabuka',
-            images: ['apple', 'apricot', 'peach'],
+            images: ['apple', 'apricot', 'peach', 'pear'],
         },
     },
     {
@@ -50,7 +50,7 @@ const pearChallenges: ChallengeDescription[] = [
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'kruška',
-            images: ['pear', 'apricot', 'lemon'],
+            images: ['apricot', 'pear', 'lemon', 'apple'],
         },
     },
     {
@@ -78,7 +78,7 @@ const apricotChallenges: ChallengeDescription[] = [
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'kajsija',
-            images: ['apple', 'apricot', 'banana'],
+            images: ['apple', 'banana', 'apricot', 'peach'],
         },
     },
     {
@@ -106,7 +106,7 @@ const peachChallenges: ChallengeDescription[] = [
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'breskva',
-            images: ['pear', 'apricot', 'peach'],
+            images: ['pear', 'apricot', 'lemon', 'peach'],
         },
     },
     {

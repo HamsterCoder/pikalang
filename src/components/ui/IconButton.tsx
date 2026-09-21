@@ -1,9 +1,16 @@
 import { ButtonHTMLAttributes, forwardRef } from 'react';
 import { styled } from 'styled-components';
 
-export type IconButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
+/**
+ * `inverted` sits on an accent-coloured surface, `default` on a light one.
+ */
+export type IconButtonTone = 'inverted' | 'default';
 
-const StyledIconButton = styled.button`
+export interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    tone?: IconButtonTone;
+}
+
+const StyledIconButton = styled.button<{ $tone: IconButtonTone }>`
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -12,14 +19,20 @@ const StyledIconButton = styled.button`
     border: none;
     border-radius: ${({ theme }) => theme.radius.circle};
 
-    color: inherit;
+    color: ${({ theme, $tone }) =>
+        $tone === 'default' ? theme.color.hint : 'inherit'};
     background-color: transparent;
     cursor: pointer;
 
     transition: background-color ${({ theme }) => theme.transition.fast};
 
     &:hover:not(:disabled) {
-        background-color: rgba(255, 255, 255, 0.15);
+        color: ${({ theme, $tone }) =>
+            $tone === 'default' ? theme.color.accent : 'inherit'};
+        background-color: ${({ theme, $tone }) =>
+            $tone === 'default'
+                ? theme.color.accentWash
+                : 'rgba(255, 255, 255, 0.15)'};
     }
 
     &:disabled {
@@ -33,7 +46,9 @@ const StyledIconButton = styled.button`
  * though React 19 allows plain ref props.
  */
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
-    function IconButton({ type = 'button', ...rest }, ref) {
-        return <StyledIconButton ref={ref} type={type} {...rest} />;
+    function IconButton({ type = 'button', tone = 'inverted', ...rest }, ref) {
+        return (
+            <StyledIconButton ref={ref} type={type} $tone={tone} {...rest} />
+        );
     },
 );

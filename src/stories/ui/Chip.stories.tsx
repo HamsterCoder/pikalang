@@ -30,3 +30,17 @@ export const LongLabel: Story = {
 export const Disabled: Story = {
     args: { disabled: true },
 };
+
+/** The word bank keeps every tile in place, so a used one greys out here. */
+export const Bank: Story = {
+    args: { variant: 'bank' },
+};
+
+export const BankUsed: Story = {
+    args: { variant: 'bank', disabled: true },
+};
+
+/** A word the learner has placed into their answer, and can take back. */
+export const Solid: Story = {
+    args: { variant: 'solid' },
+};
