@@ -76,7 +76,8 @@ export const dictionary: Record<DictionaryKeys, Translation> = {
     },
     borovnica: {
         en: 'blueberry',
-        ru: 'черника',
+        // Голубика, not черника — черника is šumska borovnica.
+        ru: 'голубика',
     },
     kupina: {
         en: 'blackberry',

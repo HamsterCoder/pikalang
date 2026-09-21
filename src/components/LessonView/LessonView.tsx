@@ -15,6 +15,7 @@ import { Heading } from '@components/Heading';
 import { I18N } from '@components/I18N/I18N';
 import { I18NLangs } from '@components/I18N/types';
 import { Text } from '@components/Text/Text';
+import { useSettings } from '@hooks/useSettings';
 import { shuffle } from '@utils/shuffle';
 
 import { ChallengePrompt } from './ChallengePrompt';
@@ -83,6 +84,7 @@ export const LessonView = () => {
     const challenge = challenges[state.challengeNumber];
     const answered = state.correct + state.incorrect;
     const navigate = useNavigate();
+    const { settings } = useSettings();
 
     /**
      * Ends the lesson and shows the results. Only a lesson played to the end
@@ -145,10 +147,12 @@ export const LessonView = () => {
 
     /**
      * Enter checks the answer and then moves on; the digits pick a picture,
-     * matching the numbers shown on the option cards.
+     * matching the numbers shown on the option cards. Both wait on the
+     * `hotkeys` setting — a control still answers to Tab and Enter on its own,
+     * so nothing here is the only way in.
      */
     useEffect(() => {
-        if (state.lifecycle !== 'challenge') {
+        if (state.lifecycle !== 'challenge' || !settings.hotkeys) {
             return;
         }
 
@@ -185,7 +189,14 @@ export const LessonView = () => {
         window.addEventListener('keydown', onKeyDown);
 
         return () => window.removeEventListener('keydown', onKeyDown);
-    }, [state.lifecycle, state.verdict, challenge, check, advance]);
+    }, [
+        state.lifecycle,
+        state.verdict,
+        challenge,
+        check,
+        advance,
+        settings.hotkeys,
+    ]);
 
     return (
         <Screen>

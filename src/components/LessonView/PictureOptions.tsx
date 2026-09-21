@@ -2,6 +2,7 @@ import { Check } from 'lucide-react';
 import { styled } from 'styled-components';
 
 import { PictureImage } from '@components/Picture/PictureImage';
+import { useSettings } from '@hooks/useSettings';
 
 export interface PictureOptionsProps {
     images: string[];
@@ -64,7 +65,7 @@ const Frame = styled.div`
     border-radius: ${({ theme }) => theme.radius.m};
 `;
 
-/** The keyboard shortcut that picks this option. */
+/** The key that picks this option, drawn only when shortcuts are on. */
 const Shortcut = styled.span`
     position: absolute;
     top: 0.5rem;
@@ -114,6 +115,8 @@ export const PictureOptions = ({
     disabled = false,
     onSelect,
 }: PictureOptionsProps) => {
+    const { settings } = useSettings();
+
     return (
         <Grid>
             {images.map((image, index) => (
@@ -124,7 +127,9 @@ export const PictureOptions = ({
                     disabled={disabled}
                     onClick={() => onSelect(image)}
                 >
-                    <Shortcut aria-hidden="true">{index + 1}</Shortcut>
+                    {settings.hotkeys && (
+                        <Shortcut aria-hidden="true">{index + 1}</Shortcut>
+                    )}
                     {selected === image && (
                         <Selected aria-hidden="true">
                             <Check size={14} />
