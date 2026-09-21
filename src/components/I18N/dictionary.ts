@@ -98,10 +98,14 @@ const dictionary: Record<string, I18NEntry> = {
         en: 'Well done!',
         ru: 'Отличная работа!',
     },
-    'lesson-complete-stats': ({ correct, total, xp }) => ({
-        en: `You have ${correct} out of ${total} challenges correct and you have earned ${xp} stars.`,
-        ru: `Вы сделали ${correct} из ${total} упражнений верно и заработали ${xp} звездочек.`,
-    }),
+    'lesson-result-answered': {
+        en: 'Challenges done',
+        ru: 'Упражнений пройдено',
+    },
+    'lesson-result-correct': {
+        en: 'Answered correctly',
+        ru: 'Верных ответов',
+    },
     'lesson-skip-button': {
         en: 'Skip',
         ru: 'Пропустить',
@@ -402,7 +406,7 @@ const dictionary: Record<string, I18NEntry> = {
         ru: 'Добавить возможность отвечать горячими клавишами при прохождении уроков.',
     },
 
-    'word-complete-mascot-alt': {
+    'results-mascot-alt': {
         en: 'A pika holding a trophy overhead, cheering',
         ru: 'Пика радуется и держит кубок над головой',
     },

@@ -64,6 +64,8 @@ Before opening a pull request, always rebase the branch onto a freshly fetched `
 
 **The lesson screen** (`src/components/LessonView/`): `LessonView` runs the flow (optional help screen → shuffled challenges → completion) with a reducer, then saves lesson progress and XP. `LessonTopBar` and `LessonFooter` are the chrome; which controls the footer offers is the whole difference between the help screen, an unanswered challenge, a checked one and the results.
 
+Both the lesson and the word lesson close on `ResultsPanel` (`src/components/Results/`) — the same card, mascot and rows — so finishing either reads as the same event; only what the rows count differs.
+
 The challenge components are **controlled**: each one renders the subject, collects an answer and reports it up, while the shell owns the check, the verdict and the move on. That is what lets all four types share one footer. An answer is a `string[]` whatever the type — the chosen words, one entry per blank, or the single chosen image — and `evaluate.ts` decides whether it is right, with the checking itself in `answers.ts`. A new challenge type needs an enum value and a union member in `src/lessons/types.ts`, a view, a branch in `ChallengeView.tsx`, and a case in `evaluate.ts`.
 
 **Lesson help / verbs**: a `LessonDescription.help` of type `'conjugation'` renders `ConjugationTable`. Verb data lives in `src/lessons/srb-ru/verbs/` and is imported directly by `ConjugationTable.tsx`.

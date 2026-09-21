@@ -12,14 +12,13 @@ import { userDataApi } from '@api/user-data';
 import { ChallengeType } from '@lessons/types';
 import { ConjugationTable } from '@components/ConjugationTable';
 import { NotFoundError } from '@components/ErrorScreen/NotFoundError';
-import { Heading } from '@components/Heading';
 import { I18N } from '@components/I18N/I18N';
 import { I18NLangs } from '@components/I18N/types';
-import { Text } from '@components/Text/Text';
 import { useSettings } from '@hooks/useSettings';
 import { shuffle } from '@utils/shuffle';
 
 import { ChallengePrompt } from './ChallengePrompt';
+import { LessonResults } from './LessonResults';
 import { ChallengeView } from './ChallengeView';
 import { LessonFooter } from './LessonFooter';
 import { LessonTopBar } from './LessonTopBar';
@@ -244,25 +243,11 @@ export const LessonView = () => {
                 )}
 
                 {state.lifecycle === 'complete' && (
-                    <>
-                        <Heading size="m" color="default" gutter>
-                            <I18N
-                                textKey="lesson-complete-appraisal"
-                                lang={I18NLangs.RU}
-                            />
-                        </Heading>
-                        <Text type="primary" color="default">
-                            <I18N
-                                textKey="lesson-complete-stats"
-                                values={{
-                                    correct: state.correct,
-                                    total: answered,
-                                    xp: state.correct,
-                                }}
-                                lang={I18NLangs.RU}
-                            />
-                        </Text>
-                    </>
+                    <LessonResults
+                        correct={state.correct}
+                        answered={answered}
+                        total={challenges.length}
+                    />
                 )}
             </Body>
 
