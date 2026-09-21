@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { styled } from 'styled-components';
-import { englishSerbianDictionary } from '@dictionary/serbian-course';
+import { PictureImage } from '@components/Picture/PictureImage';
 
 export interface PictureProps {
     image: string;
@@ -31,13 +31,6 @@ const Container = styled.div`
     }
 `;
 
-const Image = styled.img`
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-`;
-
 export const Picture: FunctionComponent<PictureProps> = ({
     image,
     selected,
@@ -53,15 +46,7 @@ export const Picture: FunctionComponent<PictureProps> = ({
             data-selected={selected}
             onClick={onClick}
         >
-            <picture>
-                <source srcSet={`assets/${image}.webp`} type="image/webp" />
-                <source srcSet={`assets/${image}.jpg`} type="image/jpg" />
-                <Image
-                    src={`assets/${image}.jpg`}
-                    alt={image}
-                    title={englishSerbianDictionary[image.replace(/-/g, ' ')]}
-                />
-            </picture>
+            <PictureImage image={image} />
         </Container>
     );
 };

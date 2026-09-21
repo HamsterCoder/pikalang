@@ -34,7 +34,7 @@ const cabbageChallenges: ChallengeDescription[] = [
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'kupus',
-            images: ['tomato', 'courgette', 'cabbage'],
+            images: ['cabbage', 'tomato', 'courgette', 'carrot'],
         },
     },
     {
@@ -62,7 +62,7 @@ const courgetteChallenges: ChallengeDescription[] = [
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'tikvica',
-            images: ['courgette', 'cucumber', 'potato'],
+            images: ['cucumber', 'courgette', 'potato', 'pumpkin'],
         },
     },
 ];
@@ -82,7 +82,7 @@ const carrotChallenges: ChallengeDescription[] = [
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'šargarepa',
-            images: ['courgette', 'cucumber', 'carrot'],
+            images: ['courgette', 'cucumber', 'carrot', 'potato'],
         },
     },
     {
@@ -110,7 +110,7 @@ const pumpkinChallenges: ChallengeDescription[] = [
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'bundeva',
-            images: ['courgette', 'pumpkin', 'carrot'],
+            images: ['courgette', 'carrot', 'cabbage', 'pumpkin'],
         },
     },
     {

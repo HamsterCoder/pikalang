@@ -32,7 +32,7 @@ const tomatoChallenges: ChallengeDescription[] = [
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'paradajz',
-            images: ['tomato', 'courgette', 'potato'],
+            images: ['tomato', 'courgette', 'potato', 'cucumber'],
         },
     },
 ];
@@ -52,7 +52,7 @@ const cucumberChallenges: ChallengeDescription[] = [
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'krastavac',
-            images: ['tomato', 'cucumber', 'potato'],
+            images: ['tomato', 'cucumber', 'potato', 'sweet-pepper'],
         },
     },
 ];
@@ -72,7 +72,7 @@ const potatoChallenges: ChallengeDescription[] = [
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'krompir',
-            images: ['potato', 'cucumber', 'tomato'],
+            images: ['cucumber', 'tomato', 'potato', 'courgette'],
         },
     },
 ];
@@ -92,7 +92,7 @@ const pepperChallenges: ChallengeDescription[] = [
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'paprika',
-            images: ['sweet-pepper', 'cucumber', 'courgette'],
+            images: ['cucumber', 'courgette', 'tomato', 'sweet-pepper'],
         },
     },
 ];

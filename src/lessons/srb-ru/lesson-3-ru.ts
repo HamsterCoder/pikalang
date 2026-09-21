@@ -21,7 +21,7 @@ const blueberryChallenges: ChallengeDescription[] = [
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'borovnica',
-            images: ['strawberry', 'raspberry', 'blueberry'],
+            images: ['blueberry', 'strawberry', 'raspberry', 'blackberry'],
         },
     },
     {
@@ -62,7 +62,7 @@ const strawberryChallenges: ChallengeDescription[] = [
         type: ChallengeType.WORD_PICTURE,
         data: {
             word: 'jagoda',
-            images: ['raspberry', 'blueberry', 'strawberry'],
+            images: ['raspberry', 'blueberry', 'strawberry', 'blackberry'],
         },
     },
     {
