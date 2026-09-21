@@ -28,6 +28,7 @@ import { ChallengeView } from './ChallengeView';
 import { FeedbackDock } from './FeedbackDock';
 import { evaluateChallenge, isAnswerReady, promptKeys } from './evaluate';
 import { initialLessonViewState, lessonViewReducer } from './lessonState';
+import { LESSON_WIDTH, LessonRow } from './LessonView.styles';
 
 const MAX_CHALLENGES = 10;
 
@@ -47,11 +48,7 @@ const TopBar = styled.header`
     top: 0;
     z-index: 5;
 
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 0;
     border-bottom: 1px solid ${({ theme }) => theme.color.border};
 
     background-color: ${({ theme }) => theme.color.surface};
@@ -79,7 +76,7 @@ const Body = styled.main`
     flex: 1 1 auto;
 
     width: 100%;
-    max-width: 40rem;
+    max-width: ${LESSON_WIDTH};
     margin: 0 auto;
     padding: 1.5rem 1rem 2rem;
 `;
@@ -115,15 +112,9 @@ const Footer = styled.footer`
     background-color: ${({ theme }) => theme.color.surface};
 `;
 
-const Actions = styled.div`
-    display: flex;
-    align-items: center;
+const Actions = styled(LessonRow)`
     justify-content: space-between;
-    gap: 1rem;
-
-    max-width: 40rem;
-    margin: 0 auto;
-    padding: 0.75rem 1rem;
+    padding-block: 0.75rem;
 `;
 
 /**
@@ -271,38 +262,40 @@ export const LessonView = () => {
     return (
         <Screen>
             <TopBar>
-                <Tooltip
-                    title={
-                        <I18N
-                            textKey="lesson-exit-button"
-                            lang={I18NLangs.RU}
-                        />
-                    }
-                    side="bottom"
-                >
-                    <IconButton
-                        tone="default"
+                <LessonRow>
+                    <Tooltip
+                        title={
+                            <I18N
+                                textKey="lesson-exit-button"
+                                lang={I18NLangs.RU}
+                            />
+                        }
+                        side="bottom"
+                    >
+                        <IconButton
+                            tone="default"
+                            aria-label={translate(
+                                I18NLangs.RU,
+                                'lesson-exit-button',
+                            )}
+                            onClick={exitLesson}
+                        >
+                            <CloseIcon aria-hidden />
+                        </IconButton>
+                    </Tooltip>
+                    <Track
+                        tone="muted"
+                        value={(answered / challenges.length) * 100}
                         aria-label={translate(
                             I18NLangs.RU,
-                            'lesson-exit-button',
+                            'lesson-progress-label',
                         )}
-                        onClick={exitLesson}
-                    >
-                        <CloseIcon aria-hidden />
-                    </IconButton>
-                </Tooltip>
-                <Track
-                    tone="muted"
-                    value={(answered / challenges.length) * 100}
-                    aria-label={translate(
-                        I18NLangs.RU,
-                        'lesson-progress-label',
-                    )}
-                />
-                <Counter>
-                    {Math.min(state.challengeNumber + 1, challenges.length)} /{' '}
-                    {challenges.length}
-                </Counter>
+                    />
+                    <Counter>
+                        {Math.min(state.challengeNumber + 1, challenges.length)}{' '}
+                        / {challenges.length}
+                    </Counter>
+                </LessonRow>
             </TopBar>
 
             <Body>

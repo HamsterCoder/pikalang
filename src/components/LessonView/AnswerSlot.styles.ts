@@ -9,10 +9,14 @@ export const AnswerSlot = styled.span<{ $length: number }>`
     display: inline-block;
 
     height: 36px;
-    width: ${({ $length }) => Math.min(Math.max($length, 2), 12) * 0.6}rem;
+    /**
+     * Wide enough to read as a word rather than a dot: at the control radius a
+     * slot narrower than this rounds itself into a circle.
+     */
+    width: max(4rem, ${({ $length }) => Math.min($length, 12) * 0.6}rem);
 
     border: 1px dashed ${({ theme }) => theme.color.borderStrong};
-    border-radius: ${({ theme }) => theme.radius.m};
+    border-radius: ${({ theme }) => theme.radius.xl};
     background-color: ${({ theme }) => theme.color.accentWash};
 
     vertical-align: middle;

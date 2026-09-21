@@ -76,6 +76,8 @@ export const tokens = {
         s: '4px',
         m: '8px',
         l: '16px',
+        /** The control radius: on a 36-44px control this reads as a stadium. */
+        xl: '24px',
         pill: '999px',
         circle: '50%',
     },
