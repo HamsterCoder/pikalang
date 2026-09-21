@@ -44,7 +44,10 @@ export const Feminine: Story = {
     },
 };
 
-/** Words worth a note of their own carry a second panel under the example. */
+/**
+ * Every word carries a note under its example. They are all about stress for
+ * now: the one thing neither the spelling nor the translation gives away.
+ */
 export const WithTip: Story = {
     args: {
         word: 'jagoda',
@@ -53,7 +56,7 @@ export const WithTip: Story = {
         gender: 'f',
         example: 'Jagoda miriše na leto.',
         exampleTranslation: 'Клубника пахнет летом.',
-        tip: 'Ложный друг: jagoda — именно клубника, а ягода вообще — bobica.',
+        tip: 'Ударение на первый слог: JA-go-da.',
     },
 };
 
@@ -66,7 +69,7 @@ export const Narrow: Story = {
         gender: 'f',
         example: 'Kašičica je mala kašika.',
         exampleTranslation: 'Чайная ложка — это маленькая ложка.',
-        tip: 'Суффикс -ica снова делает слово меньше: kašika → kašičica.',
+        tip: 'Ударение на первый слог: KA-ši-či-ca.',
     },
     decorators: [
         (Story) => (
