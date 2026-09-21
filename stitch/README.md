@@ -15,6 +15,7 @@ them in a browser to compare against the real screens.
 | `learn-new-words.html`, `learn-new-word-mobile.html` | The new-word card, built in `src/components/WordLesson/WordCard.tsx`                            |
 | `matching-words.html`, `matching-words-mobile.html`  | The timed matching round, built in `src/components/WordLesson/MatchBoard.tsx`                   |
 | `error-screen.html`                                  | The dead end for a lesson or page that is not there, built in `src/components/ErrorScreen/`     |
+| `error-mascot.png`, `success-mascot.png`             | The two pika illustrations, source for `src/assets/mascot-lost.webp` and `mascot-happy.webp`    |
 
 The lesson designs show a mascot, audio buttons, a hearts counter and a combo
 bonus. Nothing backs those yet, so they are left out; the skip button is real
@@ -27,6 +28,8 @@ streak and the hearts — which says nothing when the lesson it belongs to does
 not exist, so the screen keeps only the mascot, the message and the way back.
 Its mobile export was identical to the desktop one, so only the one file is
 kept.
+
+The mascots ship as PNGs on an opaque white square. The app uses webp cut-outs of them instead: the white was flood-filled from the edges, which the drawing's own dark outline stops, so the cream fur, the map and the confetti keep their pixels while the background goes transparent and the aura behind the art can show through. Re-cut them from these PNGs rather than editing the webp files.
 
 The word designs drop the same unbacked pieces — hearts, the streak flame, the
 combo XP banner and every audio control — and put a star tally and a stopwatch
