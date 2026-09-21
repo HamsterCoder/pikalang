@@ -12,7 +12,6 @@ const meta = {
     args: {
         children: 'paradajz',
         state: 'idle',
-        tone: 'serbian',
         caption: 'мужской род',
         hotkey: '1',
     },
@@ -41,11 +40,10 @@ export const Matched: Story = { args: { state: 'matched' } };
 /** A wrong guess, lit for a moment before the board lets go of it. */
 export const Wrong: Story = { args: { state: 'wrong' } };
 
-/** The Russian column reads at a lighter weight and carries no gender. */
+/** The Russian column reads at the same weight; only the gender line is gone. */
 export const Russian: Story = {
     args: {
         children: 'помидор',
-        tone: 'russian',
         caption: undefined,
         hotkey: 'Q',
     },
@@ -55,7 +53,6 @@ export const Russian: Story = {
 export const LongLabel: Story = {
     args: {
         children: 'чайная ложка',
-        tone: 'russian',
         caption: undefined,
         hotkey: 'W',
     },
