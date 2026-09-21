@@ -44,8 +44,6 @@ export interface WordTopicListItem extends Omit<WordTopicDescription, 'words'> {
     wordCount: number;
     /** Words in the sets that have been played through. */
     learnedCount: number;
-    stars: number;
-    maxStars: number;
     /** Share of the topic played through, 0 to 100. */
     progress: number;
 }
@@ -214,8 +212,6 @@ export async function listWordTopics(
                 sets,
                 wordCount: topic.words.length,
                 learnedCount,
-                stars: sets.reduce((total, set) => total + set.stars, 0),
-                maxStars: sets.reduce((total, set) => total + set.maxStars, 0),
                 progress: topic.words.length
                     ? (learnedCount / topic.words.length) * 100
                     : 0,

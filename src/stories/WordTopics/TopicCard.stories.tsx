@@ -18,8 +18,6 @@ const meta = {
         learnedCount: 0,
         setCount: 2,
         completedSets: 0,
-        stars: 0,
-        maxStars: 16,
         nextSet: 1,
     },
     decorators: [
@@ -49,7 +47,6 @@ export const InProgress: Story = {
     args: {
         learnedCount: 4,
         completedSets: 1,
-        stars: 7,
         nextSet: 2,
     },
 };
@@ -65,15 +62,13 @@ export const Finished: Story = {
         learnedCount: 6,
         setCount: 2,
         completedSets: 2,
-        stars: 11,
-        maxStars: 12,
         nextSet: 1,
     },
 };
 
 /** At phone width the cover moves above the text. */
 export const Narrow: Story = {
-    args: { learnedCount: 4, completedSets: 1, stars: 7, nextSet: 2 },
+    args: { learnedCount: 4, completedSets: 1, nextSet: 2 },
     decorators: [
         (Story) => (
             <div
