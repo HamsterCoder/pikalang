@@ -30,6 +30,7 @@
             "@lessons/*": ["./src/lessons/*"],
             "@conversations-data/*": ["./src/conversations-data/*"],
             "@dictionary/*": ["./src/dictionary/*"],
+            "@words/*": ["./src/words/*"],
             "@themes/*": ["./src/themes/*"]
         }
     },

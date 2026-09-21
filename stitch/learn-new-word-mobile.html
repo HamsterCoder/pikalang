@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lingopop - Learning New Words</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400..900;1,6..12,400..900&family=Quicksand:wght@500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@100..900&family=Quicksand:wght@100..900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary-fixed-dim": "#ffb1c3",
+            "surface-container": "#e2efff",
+            "on-secondary": "#ffffff",
+            "primary-container": "#ff4b8b",
+            "on-primary-fixed": "#3f0019",
+            "background": "#f7f9ff",
+            "surface-container-highest": "#d3e4f7",
+            "outline-variant": "#e1bec4",
+            "surface": "#f7f9ff",
+            "on-error": "#ffffff",
+            "tertiary-fixed-dim": "#f4bf00",
+            "on-tertiary-fixed-variant": "#594400",
+            "on-tertiary": "#ffffff",
+            "tertiary-fixed": "#ffdf92",
+            "surface-dim": "#cbdcef",
+            "on-secondary-fixed": "#082100",
+            "inverse-primary": "#ffb1c3",
+            "surface-container-lowest": "#ffffff",
+            "on-primary-container": "#590027",
+            "surface-container-high": "#d9eafd",
+            "error": "#ba1a1a",
+            "on-surface-variant": "#594046",
+            "on-secondary-fixed-variant": "#1f5100",
+            "secondary-fixed-dim": "#6be026",
+            "secondary-container": "#84fb42",
+            "on-tertiary-fixed": "#241a00",
+            "primary-fixed": "#ffd9e0",
+            "on-surface": "#0c1d2b",
+            "secondary-fixed": "#87fe45",
+            "surface-bright": "#f7f9ff",
+            "on-background": "#0c1d2b",
+            "surface-tint": "#ba0659",
+            "on-primary-fixed-variant": "#8f0043",
+            "outline": "#8d6f76",
+            "surface-variant": "#d3e4f7",
+            "on-error-container": "#93000a",
+            "inverse-surface": "#223240",
+            "tertiary-container": "#907000",
+            "surface-container-low": "#edf4ff",
+            "on-primary": "#ffffff",
+            "secondary": "#2b6c00",
+            "tertiary": "#735800",
+            "inverse-on-surface": "#e7f2ff",
+            "on-tertiary-container": "#fffbff",
+            "error-container": "#ffdad6",
+            "on-secondary-container": "#2d7100",
+            "primary": "#ba0659"
+          },
+          "borderRadius": {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-2xl": "3rem",
+            "space-md": "1rem",
+            "margin": "1rem",
+            "gutter": "1rem",
+            "margin-desktop": "2.5rem",
+            "space-xs": "0.25rem",
+            "margin-tablet": "1.5rem",
+            "space-xl": "2rem",
+            "space-sm": "0.5rem",
+            "gutter-tablet": "1.25rem",
+            "gutter-desktop": "1.5rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "display-hero-mobile": ["Quicksand"],
+            "label-md": ["Nunito Sans"],
+            "body-lg": ["Nunito Sans"],
+            "body-md": ["Nunito Sans"],
+            "headline-sm": ["Quicksand"],
+            "display-hero": ["Quicksand"],
+            "body-sm": ["Nunito Sans"],
+            "label-sm": ["Nunito Sans"],
+            "headline-lg-mobile": ["Quicksand"],
+            "label-lg": ["Nunito Sans"],
+            "headline-md": ["Quicksand"],
+            "label-caps": ["Nunito Sans"],
+            "headline-lg": ["Quicksand"]
+          },
+          "fontSize": {
+            "display-hero-mobile": ["30px", {"lineHeight": "36px", "fontWeight": "700"}],
+            "label-md": ["14px", {"lineHeight": "18px", "fontWeight": "800"}],
+            "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "600"}],
+            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+            "headline-sm": ["20px", {"lineHeight": "26px", "fontWeight": "700"}],
+            "display-hero": ["40px", {"lineHeight": "48px", "fontWeight": "700"}],
+            "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+            "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "800"}],
+            "headline-lg-mobile": ["26px", {"lineHeight": "32px", "fontWeight": "700"}],
+            "label-lg": ["16px", {"lineHeight": "20px", "fontWeight": "800"}],
+            "headline-md": ["24px", {"lineHeight": "30px", "fontWeight": "700"}],
+            "label-caps": ["12px", {"lineHeight": "16px", "fontWeight": "800"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen flex flex-col justify-between selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TOP APP BAR / LESSON HEADER -->
+<header class="sticky top-0 z-30 w-full bg-surface-container-lowest border-b border-outline-variant/40 px-4 py-3">
+<div class="max-w-md mx-auto flex items-center justify-between gap-3">
+<!-- Close Button -->
+<button aria-label="Close lesson" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors active:scale-95">
+<span class="material-symbols-outlined text-headline-sm" data-icon="close">close</span>
+</button>
+<!-- Interactive Progress Bar (35%) -->
+<div class="flex-1 h-3.5 bg-surface-container-highest rounded-full overflow-hidden p-0.5 relative shadow-inner">
+<div class="h-full bg-primary-container rounded-full relative transition-all duration-500 ease-out shadow-[0_2px_0_0_#ba0659]" style="width: 35%;">
+<!-- Glossy highlight strip -->
+<div class="absolute top-0 left-0 right-0 h-1 bg-white/40 rounded-full"></div>
+</div>
+</div>
+<!-- Hearts Badge -->
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container border border-outline-variant/60 shadow-sm">
+<span class="material-symbols-outlined text-primary-container text-body-lg" data-icon="favorite" data-weight="fill" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="font-label-md text-label-md text-on-surface">5</span>
+</div>
+</div>
+</header>
+<!-- MAIN SCROLLABLE CONTENT CANVAS -->
+<main class="flex-1 w-full max-w-md mx-auto px-4 pt-4 pb-28 flex flex-col">
+<!-- Section Title Indicator -->
+<div class="flex items-center gap-2 mb-4">
+<div class="w-1.5 h-5 bg-primary-container rounded-full"></div>
+<span class="font-label-caps text-label-caps tracking-wider text-primary-container uppercase">New Word</span>
+</div>
+<!-- CENTERED WORD PRESENTATION CARD -->
+<div class="bg-surface-container-lowest border border-outline-variant/60 rounded-lg p-5 shadow-[0_4px_0_0_#d3e4f7] flex flex-col items-center text-center relative overflow-hidden">
+<!-- Ambient Decorative Blob -->
+<div class="absolute -top-12 -right-12 w-32 h-32 bg-primary-fixed/30 rounded-full blur-2xl pointer-events-none"></div>
+<!-- Flat Vector Illustration -->
+<div class="w-36 h-36 mb-3 relative flex items-center justify-center p-2 rounded-2xl bg-surface-container-low border border-outline-variant/30">
+<img alt="Illustration of warm coffee in a ceramic cup" class="w-full h-full object-contain drop-shadow-sm transition-transform hover:scale-105 duration-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACqW9XETHRgPrpd1zOf-vWqXwdsYVz3A3DMw1klwaqjsJxSOCGzH1ubFor4E9rWry7YfJZulEraFLhsUmroJd4WvD5pUveMo04dzUGsf9tuB_VFVDp041Mo2nltMZAiiUVmvNQiZkXALCtXUk7hhRi5mH5CMPW6tiRFfsz-uw_bzqrDJTgITK7jBMf4SHMP8kqXhXzfTenKV2s4X8viqySRbbCMzbi1UtEcRMSTYgYwlPRp60ltrPA"/>
+</div>
+<!-- Spanish Term & Pronunciation Audio Controls -->
+<div class="flex items-center justify-center gap-2 mb-1">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight">
+          el café
+        </h1>
+<!-- Audio Playback Button -->
+<button aria-label="Listen to audio" class="w-10 h-10 rounded-full bg-primary-container text-on-secondary flex items-center justify-center shadow-[0_3px_0_0_#ba0659] active:translate-y-0.5 active:shadow-none transition-all ml-1">
+<span class="material-symbols-outlined text-headline-sm" data-icon="volume_up" data-weight="fill" style="font-variation-settings: 'FILL' 1;">volume_up</span>
+</button>
+<!-- Slow Playback Button -->
+<button aria-label="Listen slowly" class="w-9 h-9 rounded-full bg-surface-container border border-outline-variant text-primary-container flex items-center justify-center shadow-[0_2px_0_0_#d3e4f7] active:translate-y-0.5 active:shadow-none transition-all" title="Slow Pronunciation">
+<span class="material-symbols-outlined text-body-lg" data-icon="speed">speed</span>
+</button>
+</div>
+<!-- Grammar Tag / Part of Speech -->
+<div class="inline-flex items-center gap-1.5 px-3 py-0.5 bg-surface-container rounded-full text-on-surface-variant font-label-sm text-label-sm mb-3">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+<span>Noun • Masculine</span>
+</div>
+<!-- English Meaning Translation -->
+<p class="font-headline-sm text-headline-sm text-primary-container font-semibold mb-5">
+        “the coffee”
+      </p>
+<!-- Contextual Example Sentence Block -->
+<div class="w-full bg-surface-container-low border border-outline-variant/40 rounded-xl p-3.5 mb-4 text-left flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-body-md" data-icon="format_quote">format_quote</span>
+</div>
+<div class="flex-1">
+<p class="font-body-lg text-body-lg text-on-surface leading-tight font-bold">
+            Un café, por favor.
+          </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            A coffee, please.
+          </p>
+</div>
+<button aria-label="Play example sentence" class="text-primary-container hover:text-primary p-1">
+<span class="material-symbols-outlined text-body-lg" data-icon="volume_up">volume_up</span>
+</button>
+</div>
+<!-- Quick Learning Memory Tip -->
+<div class="w-full bg-surface-container-lowest border border-tertiary-fixed-dim/40 rounded-xl p-3 flex items-center gap-2.5 bg-tertiary-fixed/10">
+<span class="material-symbols-outlined text-tertiary text-body-lg shrink-0" data-icon="lightbulb" data-weight="fill" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-left leading-tight">
+<span class="font-label-sm text-label-sm text-on-surface font-bold">Tip:</span> Masculine nouns in Spanish typically take the article <span class="font-bold text-primary-container">“el”</span>.
+        </p>
+</div>
+</div>
+</main>
+<!-- BOTTOM STICKY ACTION BAR (DRAWER) -->
+<footer class="fixed bottom-0 left-0 right-0 bg-surface-container-lowest border-t border-outline-variant/40 py-3.5 px-4 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] z-40">
+<div class="max-w-md mx-auto flex flex-col items-center gap-2">
+<!-- Primary CTA Continue Button -->
+<button class="w-full h-13 py-3.5 px-6 rounded-full bg-primary-container text-on-secondary font-label-lg text-label-lg font-extrabold tracking-wider flex items-center justify-center gap-2 shadow-[0_4px_0_0_#ba0659] active:translate-y-1 active:shadow-none transition-all duration-75 uppercase">
+<span>CONTINUE</span>
+<span class="material-symbols-outlined text-headline-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<!-- Secondary Soft Action: Already Know -->
+<button class="font-label-md text-label-md text-on-surface-variant hover:text-primary-container transition-colors py-1 px-3 rounded-lg flex items-center gap-1 active:scale-95">
+<span>Already know this word? Skip</span>
+</button>
+</div>
+</footer>
+</body></html>

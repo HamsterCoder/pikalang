@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lingopop - Introduction: el café</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&amp;family=Quicksand:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary-fixed-dim": "#ffb1c3",
+            "surface-container": "#e2efff",
+            "on-secondary": "#ffffff",
+            "primary-container": "#ff4b8b",
+            "on-primary-fixed": "#3f0019",
+            "background": "#f7f9ff",
+            "surface-container-highest": "#d3e4f7",
+            "outline-variant": "#e1bec4",
+            "surface": "#f7f9ff",
+            "on-error": "#ffffff",
+            "tertiary-fixed-dim": "#f4bf00",
+            "on-tertiary-fixed-variant": "#594400",
+            "on-tertiary": "#ffffff",
+            "tertiary-fixed": "#ffdf92",
+            "surface-dim": "#cbdcef",
+            "on-secondary-fixed": "#082100",
+            "inverse-primary": "#ffb1c3",
+            "surface-container-lowest": "#ffffff",
+            "on-primary-container": "#590027",
+            "surface-container-high": "#d9eafd",
+            "error": "#ba1a1a",
+            "on-surface-variant": "#594046",
+            "on-secondary-fixed-variant": "#1f5100",
+            "secondary-fixed-dim": "#6be026",
+            "secondary-container": "#84fb42",
+            "on-tertiary-fixed": "#241a00",
+            "primary-fixed": "#ffd9e0",
+            "on-surface": "#0c1d2b",
+            "secondary-fixed": "#87fe45",
+            "surface-bright": "#f7f9ff",
+            "on-background": "#0c1d2b",
+            "surface-tint": "#ba0659",
+            "on-primary-fixed-variant": "#8f0043",
+            "outline": "#8d6f76",
+            "surface-variant": "#d3e4f7",
+            "on-error-container": "#93000a",
+            "inverse-surface": "#223240",
+            "tertiary-container": "#907000",
+            "surface-container-low": "#edf4ff",
+            "on-primary": "#ffffff",
+            "secondary": "#2b6c00",
+            "tertiary": "#735800",
+            "inverse-on-surface": "#e7f2ff",
+            "on-tertiary-container": "#fffbff",
+            "error-container": "#ffdad6",
+            "on-secondary-container": "#2d7100",
+            "primary": "#ba0659"
+          },
+          "borderRadius": {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-2xl": "3rem",
+            "space-md": "1rem",
+            "margin": "1rem",
+            "gutter": "1rem",
+            "margin-desktop": "2.5rem",
+            "space-xs": "0.25rem",
+            "margin-tablet": "1.5rem",
+            "space-xl": "2rem",
+            "space-sm": "0.5rem",
+            "gutter-tablet": "1.25rem",
+            "gutter-desktop": "1.5rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "display-hero-mobile": ["Quicksand"],
+            "label-md": ["Nunito Sans"],
+            "body-lg": ["Nunito Sans"],
+            "body-md": ["Nunito Sans"],
+            "headline-sm": ["Quicksand"],
+            "display-hero": ["Quicksand"],
+            "body-sm": ["Nunito Sans"],
+            "label-sm": ["Nunito Sans"],
+            "headline-lg-mobile": ["Quicksand"],
+            "label-lg": ["Nunito Sans"],
+            "headline-md": ["Quicksand"],
+            "label-caps": ["Nunito Sans"],
+            "headline-lg": ["Quicksand"]
+          },
+          "fontSize": {
+            "display-hero-mobile": ["30px", { "lineHeight": "36px", "fontWeight": "700" }],
+            "label-md": ["14px", { "lineHeight": "18px", "fontWeight": "800" }],
+            "body-lg": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "headline-sm": ["20px", { "lineHeight": "26px", "fontWeight": "700" }],
+            "display-hero": ["40px", { "lineHeight": "48px", "fontWeight": "700" }],
+            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "800" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "fontWeight": "700" }],
+            "label-lg": ["16px", { "lineHeight": "20px", "fontWeight": "800" }],
+            "headline-md": ["24px", { "lineHeight": "30px", "fontWeight": "700" }],
+            "label-caps": ["12px", { "lineHeight": "16px", "fontWeight": "800" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+    }
+    .tactile-btn {
+      box-shadow: 0 4px 0 0 #ba0659;
+      transition: all 0.1s ease-in-out;
+    }
+    .tactile-btn:hover {
+      filter: brightness(1.04);
+      transform: translateY(-1px);
+      box-shadow: 0 5px 0 0 #ba0659;
+    }
+    .tactile-btn:active {
+      transform: translateY(4px);
+      box-shadow: 0 0 0 0 #ba0659;
+    }
+    .tactile-ghost {
+      box-shadow: 0 4px 0 0 #e1bec4;
+      transition: all 0.1s ease-in-out;
+    }
+    .tactile-ghost:hover {
+      background-color: #fff5f8;
+      transform: translateY(-1px);
+      box-shadow: 0 5px 0 0 #e1bec4;
+    }
+    .tactile-ghost:active {
+      transform: translateY(4px);
+      box-shadow: 0 0 0 0 #e1bec4;
+    }
+    .tactile-card {
+      box-shadow: 0 4px 0 0 #e1bec4;
+    }
+    .tactile-badge {
+      box-shadow: 0 2px 0 0 #ffd9e0;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col justify-between selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Linear Task Header (Task-Focused: Suppression of Global Rail/Shell) -->
+<header class="w-full bg-surface-container-lowest border-b border-outline-variant/60 py-4 px-6 md:px-12 sticky top-0 z-30 flex items-center justify-between">
+<div class="max-w-5xl mx-auto w-full flex items-center gap-6 md:gap-8">
+<!-- Close Exit Button -->
+<button aria-label="Close Lesson" class="w-10 h-10 rounded-full flex items-center justify-center text-outline hover:text-on-surface hover:bg-surface-container-low transition-colors duration-150" type="button">
+<span class="material-symbols-outlined text-[26px]">close</span>
+</button>
+<!-- Glossy 3D Gamified Progress Bar (30% completed) -->
+<div class="flex-1 max-w-2xl">
+<div class="relative w-full h-4 bg-surface-container-highest rounded-full overflow-hidden p-0.5">
+<div class="h-full bg-primary-container rounded-full relative transition-all duration-500 ease-out" style="width: 30%;">
+<!-- Physical glossy highlight tube line -->
+<div class="absolute top-0.5 left-2 right-2 h-1 bg-white/40 rounded-full pointer-events-none"></div>
+</div>
+</div>
+</div>
+<!-- Health / Hearts Counter -->
+<div class="flex items-center gap-2 bg-primary-fixed/50 px-3.5 py-1.5 rounded-full border border-primary-fixed-dim/60">
+<span class="material-symbols-outlined text-primary-container text-[22px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">5</span>
+</div>
+</div>
+</header>
+<!-- Main Instructional Canvas -->
+<main class="flex-1 flex flex-col items-center justify-center px-4 py-8 md:py-10 max-w-4xl mx-auto w-full">
+<!-- Sub-header Badge / Lesson Category Indicator -->
+<div class="flex items-center gap-2.5 mb-6 self-start md:self-center">
+<span class="w-1.5 h-6 bg-primary-container rounded-full inline-block"></span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-extrabold tracking-tight">Learn New Word</span>
+<span class="bg-primary-fixed text-primary px-2.5 py-0.5 rounded-full font-label-sm text-label-sm tracking-wide">SPANISH 101</span>
+</div>
+<!-- Main Flashcard Presentation Container -->
+<section class="w-full max-w-2xl bg-surface-container-lowest rounded-lg border border-outline-variant/80 tactile-card p-6 md:p-8 flex flex-col items-center text-center relative overflow-hidden">
+<!-- Subtle Decorative Top Corner Accents -->
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-primary-fixed/30 rounded-full blur-xl pointer-events-none"></div>
+<div class="absolute -bottom-10 -left-10 w-28 h-28 bg-surface-container/50 rounded-full blur-xl pointer-events-none"></div>
+<!-- Target High-Res Illustration -->
+<div class="w-48 h-48 md:w-56 md:h-56 bg-surface-container-low rounded-xl border-2 border-primary-fixed flex items-center justify-center p-3 mb-5 group relative overflow-hidden transition-transform hover:scale-[1.02] duration-200">
+<img alt="Clean modern minimalist 2D flat vector icon illustration of a cup of warm coffee cafe con leche with steam swirls and coffee beans, soft gentle pastel pink and warm cream palette, cute educational app style, flat colors with clean outlines" class="w-full h-full object-contain drop-shadow-sm select-none" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACqW9XETHRgPrpd1zOf-vWqXwdsYVz3A3DMw1klwaqjsJxSOCGzH1ubFor4E9rWry7YfJZulEraFLhsUmroJd4WvD5pUveMo04dzUGsf9tuB_VFVDp041Mo2nltMZAiiUVmvNQiZkXALCtXUk7hhRi5mH5CMPW6tiRFfsz-uw_bzqrDJTgITK7jBMf4SHMP8kqXhXzfTenKV2s4X8viqySRbbCMzbi1UtEcRMSTYgYwlPRp60ltrPA"/>
+<div class="absolute bottom-2 right-2 bg-surface-container-lowest/90 backdrop-blur-sm border border-outline-variant/50 rounded-full p-1.5 shadow-sm text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+</div>
+<!-- Target Word in Spanish -->
+<div class="flex items-center justify-center gap-3 mb-2">
+<h1 class="font-display-hero text-display-hero text-on-surface font-extrabold tracking-tight">el café</h1>
+<!-- Audio Pronunciation Button (Tactile click) -->
+<button aria-label="Listen to pronunciation" class="w-11 h-11 rounded-full bg-primary-fixed text-primary flex items-center justify-center tactile-badge hover:bg-primary-fixed-dim transition-all active:translate-y-0.5" type="button">
+<span class="material-symbols-outlined text-[24px]">volume_up</span>
+</button>
+<!-- Slow-Speed Turtle Button -->
+<button aria-label="Listen at slow speed" class="w-9 h-9 rounded-full bg-surface-container-low text-on-surface-variant flex items-center justify-center border border-outline-variant/60 hover:bg-surface-container transition-all active:translate-y-0.5" type="button">
+<span class="material-symbols-outlined text-[20px]">slow_motion_video</span>
+</button>
+</div>
+<!-- Phonetic Pronunciation & Metadata Tag Pills -->
+<div class="flex flex-wrap items-center justify-center gap-2 mb-4">
+<span class="font-label-md text-label-md text-outline font-bold px-3 py-1 bg-surface-container-low rounded-full">
+          [ehl kah-FEH]
+        </span>
+<span class="font-label-md text-label-md text-primary font-bold px-3 py-1 bg-primary-fixed/40 border border-primary-fixed-dim/60 rounded-full flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+          Noun • Masculine
+        </span>
+</div>
+<!-- Clear English Translation -->
+<div class="text-headline-md font-headline-md text-on-surface-variant font-bold mb-6">
+        the coffee
+      </div>
+<!-- Example Context Sentence Card -->
+<div class="w-full bg-surface-container-low/70 border border-outline-variant/60 rounded-DEFAULT p-4 text-left mb-4 transition-colors hover:border-primary-fixed-dim">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm text-outline tracking-wider font-extrabold uppercase">Example Sentence</span>
+<button class="text-primary hover:text-on-primary-container flex items-center gap-1 font-label-sm text-label-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">volume_up</span>
+<span>Listen</span>
+</button>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface mb-1 leading-relaxed">
+          Yo bebo un 
+          <span class="bg-primary-fixed text-on-primary-fixed font-bold px-1.5 py-0.5 rounded cursor-pointer border-b-2 border-primary-container hover:bg-primary-fixed-dim transition-colors" title="Click to view definition">
+            café
+          </span> 
+          con leche por la mañana.
+        </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">
+          "I drink a coffee with milk in the morning."
+        </p>
+</div>
+<!-- Cultural Tip / Translation Note Box -->
+<div class="w-full bg-surface-container-lowest border-2 border-dashed border-primary-fixed-dim rounded-DEFAULT p-3.5 flex items-start gap-3 text-left">
+<div class="w-7 h-7 rounded-full bg-primary-fixed text-primary flex-shrink-0 flex items-center justify-center mt-0.5">
+<span class="material-symbols-outlined text-[18px]">lightbulb</span>
+</div>
+<div>
+<div class="font-label-sm text-label-sm text-primary font-bold tracking-wide">CULTURAL NOTE</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            In Spain and Latin America, <span class="font-bold text-on-surface">"café con leche"</span> is a morning staple, typically made with equal parts strong espresso and steamed whole milk!
+          </p>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Anchored / Dock Action Bar -->
+<footer class="w-full bg-surface-container-lowest border-t border-outline-variant/60 py-4 px-6 md:px-12 sticky bottom-0 z-30">
+<div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+<!-- Skip / Already Know Option -->
+<button class="w-full sm:w-auto px-6 py-3 rounded-full border-2 border-outline-variant font-label-lg text-label-lg text-on-surface-variant tactile-ghost text-center font-bold tracking-wider" type="button">
+        I ALREADY KNOW THIS
+      </button>
+<!-- Primary Action: Continue -->
+<button class="w-full sm:w-auto min-w-[220px] px-8 py-3.5 rounded-full bg-primary-container text-white font-label-lg text-label-lg tactile-btn flex items-center justify-center gap-2 font-extrabold tracking-wider" type="button">
+<span>CONTINUE</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</footer>
+</body></html>

@@ -18,6 +18,8 @@ export type DictionaryKeys =
     | 'kupina'
     | 'jagoda'
     | 'malina'
+    | 'trešnja'
+    | 'višnja'
     | 'kupus'
     | 'tikvica'
     | 'bundeva'
@@ -87,6 +89,14 @@ export const dictionary: Record<DictionaryKeys, Translation> = {
     malina: {
         en: 'raspberry',
         ru: 'малина',
+    },
+    trešnja: {
+        en: 'cherry',
+        ru: 'черешня',
+    },
+    višnja: {
+        en: 'sour cherry',
+        ru: 'вишня',
     },
     kupus: {
         en: 'cabbage',
