@@ -7,7 +7,11 @@
  */
 export const tokens = {
     color: {
-        // Brand
+        /**
+         * Brand. The accent sits at hue 315 and 55% saturation; every other
+         * colour below is placed against those two numbers, which is what
+         * keeps the palette reading as one family.
+         */
         accent: '#9b2d7f',
         accentFaded: '#c953ab',
         accentBorder: 'rgba(155, 45, 127, 0.7)',
@@ -15,45 +19,53 @@ export const tokens = {
         accentSoft: 'rgba(155, 45, 127, 0.12)',
         accentTrack: '#d9afce',
 
-        // Text
+        // Text. The neutrals carry the brand hue at a whisper, so they share a
+        // temperature with the tinted surfaces and lines rather than fighting
+        // them.
         heading: '#7d0a60',
-        text: '#353535',
+        text: '#372f35',
         textInverted: '#ffffff',
-        hint: '#525252',
+        hint: '#5d515a',
 
         // Surfaces
         surface: '#ffffff',
-        surfaceMuted: '#f1f1f1',
+        surfaceMuted: '#f4f0f3',
         /** Page background behind cards, a barely tinted neutral. */
-        surfaceSunken: '#faf7fb',
-        overlay: 'rgba(97, 97, 97, 0.92)',
+        surfaceSunken: '#fbf8fb',
+        overlay: 'rgba(50, 41, 48, 0.92)',
 
         // Lines
         border: 'rgba(125, 10, 96, 0.14)',
         borderStrong: 'rgba(125, 10, 96, 0.3)',
 
-        // Status
-        success: '#99cc00',
-        successHover: '#7aa300',
-        successSurface: '#f6faea',
-        successText: '#455514',
+        /**
+         * Status. Success sits near the brand's complement, which is what makes
+         * the pair read as deliberate; error keeps a red hue so it can never be
+         * mistaken for the brand. Both are held at the accent's saturation, and
+         * both are dark enough to carry white text, so a filled button looks the
+         * same whatever it says.
+         */
+        success: '#1f7a59',
+        successHover: '#165f44',
+        successSurface: '#f1f9f6',
+        successText: '#1a5b43',
         /** Lines carry the status at the weight of `border`, not at full strength. */
-        successBorder: 'rgba(122, 163, 0, 0.35)',
-        error: '#ff4444',
-        errorSurface: '#fff0f0',
-        errorText: '#662a2a',
-        errorBorder: 'rgba(204, 41, 41, 0.3)',
-        warning: '#ffbb33',
+        successBorder: 'rgba(31, 122, 89, 0.32)',
+        error: '#b6392b',
+        errorHover: '#8f2d22',
+        errorSurface: '#fdf3f2',
+        errorText: '#772f28',
+        errorBorder: 'rgba(182, 57, 43, 0.3)',
 
-        // Achievement (completed units, rewards)
-        trophy: '#8a6b00',
-        trophySurface: '#fff8e1',
-        trophyBorder: 'rgba(212, 167, 0, 0.4)',
+        // Warm signals: one family for both the warning and the reward.
+        warning: '#c3861d',
+        trophy: '#7b570f',
+        trophySurface: '#faf5ea',
+        trophyBorder: 'rgba(123, 87, 15, 0.35)',
 
         // States
-        disabledSurface: 'rgba(0, 0, 0, 0.12)',
-        disabledText: 'rgba(0, 0, 0, 0.26)',
-        contrastText: 'rgba(0, 0, 0, 0.87)',
+        disabledSurface: 'rgba(55, 47, 53, 0.12)',
+        disabledText: 'rgba(55, 47, 53, 0.38)',
     },
 
     font: {

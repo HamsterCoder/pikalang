@@ -11,8 +11,9 @@ export interface ButtonStyleProps {
 }
 
 const filled = css<ButtonStyleProps>`
-    color: ${({ theme, $tone }) =>
-        $tone === 'success' ? theme.color.contrastText : theme.color.surface};
+    /* Both tones are dark enough for white, so a filled button reads the same
+       whichever it is. */
+    color: ${({ theme }) => theme.color.textInverted};
     background-color: ${({ theme, $tone }) =>
         $tone === 'success' ? theme.color.success : theme.color.accent};
     box-shadow: ${({ theme }) => theme.shadow.raised};
