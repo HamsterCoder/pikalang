@@ -75,16 +75,16 @@ export const ThreePairs: Story = {
 };
 
 /**
- * With the shortcuts turned on in the settings, every tile advertises its key.
- * The keys themselves work either way — this only decides whether the board
- * says so.
+ * With the shortcuts turned on in the settings, every tile advertises its key
+ * and the keys start answering. With the setting off — every other story here
+ * — neither happens.
  */
 export const WithHotkeys: Story = {
     decorators: [
         (Story) => (
             <SettingsContext.Provider
                 value={{
-                    settings: { showHotkeys: true },
+                    settings: { hotkeys: true },
                     setSetting: () => {},
                 }}
             >

@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
 import { PictureOptions } from '@components/LessonView/PictureOptions';
+import { SettingsContext } from '@routes/SettingsContext';
 
 const meta = {
     title: 'LessonView/PictureOptions',
@@ -37,4 +38,20 @@ export const Chosen: Story = {
 
 export const Locked: Story = {
     args: { selected: 'cup', disabled: true },
+};
+
+/**
+ * With keyboard shortcuts turned on in the settings, each option shows the
+ * digit that picks it. They are off by default, so every story above has none.
+ */
+export const WithShortcuts: Story = {
+    decorators: [
+        (Story) => (
+            <SettingsContext.Provider
+                value={{ settings: { hotkeys: true }, setSetting: () => {} }}
+            >
+                <Story />
+            </SettingsContext.Provider>
+        ),
+    ],
 };

@@ -360,15 +360,6 @@ const dictionary: Record<string, I18NEntry> = {
         en: 'Well done!',
         ru: 'Отличная работа!',
     },
-    'word-complete-xp': ({ xp }) => ({
-        en: `${xp} stars added to your experience.`,
-        ru: `${xp} ${pluralRu(
-            Number(xp),
-            'звездочка добавлена',
-            'звездочки добавлены',
-            'звездочек добавлено',
-        )} к вашему опыту.`,
-    }),
     'word-complete-to-topics': {
         en: 'See other topics',
         ru: 'Посмотреть другие темы',
@@ -407,8 +398,8 @@ const dictionary: Record<string, I18NEntry> = {
         ru: 'Горячие клавиши',
     },
     'settings-hotkeys-description': {
-        en: 'Show the key next to each tile in the matching round. The keys work either way.',
-        ru: 'Показывать клавишу рядом с каждой плиткой в упражнении на пары. Клавиши работают в любом случае.',
+        en: 'Answer with the keyboard while working through a lesson.',
+        ru: 'Добавить возможность отвечать горячими клавишами при прохождении уроков.',
     },
 
     'conversation-list-heading': {

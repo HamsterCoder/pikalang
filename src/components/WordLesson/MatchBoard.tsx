@@ -45,9 +45,9 @@ const WRONG_FLASH_MS = 600;
 
 /**
  * The keys that pick a tile: the digit row for the Serbian column and the row
- * above it for the Russian one. They always work — the `showHotkeys` setting
- * only decides whether the board advertises them on the tiles, since a badge
- * on every tile is clutter to the many learners holding a phone.
+ * above it for the Russian one. Both the keys and the badges that advertise
+ * them wait on the `hotkeys` setting, which is off until a learner on a
+ * keyboard turns it on.
  */
 const SERBIAN_KEYS = ['1', '2', '3', '4', '5', '6'];
 const RUSSIAN_KEYS = ['q', 'w', 'e', 'r', 't', 'y'];
@@ -222,6 +222,10 @@ export const MatchBoard = ({
      * digits pick a picture.
      */
     useEffect(() => {
+        if (!settings.hotkeys) {
+            return;
+        }
+
         function onKeyDown(event: KeyboardEvent) {
             if (event.metaKey || event.ctrlKey || event.altKey) {
                 return;
@@ -247,7 +251,7 @@ export const MatchBoard = ({
         window.addEventListener('keydown', onKeyDown);
 
         return () => window.removeEventListener('keydown', onKeyDown);
-    }, [serbian, russian, pick]);
+    }, [serbian, russian, pick, settings.hotkeys]);
 
     function stateOf(side: Side, id: string) {
         if (matched.includes(id)) {
@@ -281,9 +285,7 @@ export const MatchBoard = ({
                         tone="serbian"
                         caption={caption}
                         hotkey={
-                            settings.showHotkeys
-                                ? SERBIAN_KEYS[index]
-                                : undefined
+                            settings.hotkeys ? SERBIAN_KEYS[index] : undefined
                         }
                         state={stateOf('serbian', id)}
                         onClick={() => pick('serbian', id)}
@@ -302,7 +304,7 @@ export const MatchBoard = ({
                         key={id}
                         tone="russian"
                         hotkey={
-                            settings.showHotkeys
+                            settings.hotkeys
                                 ? RUSSIAN_KEYS[index]?.toUpperCase()
                                 : undefined
                         }

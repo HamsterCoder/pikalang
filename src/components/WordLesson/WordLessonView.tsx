@@ -264,13 +264,6 @@ const WordLessonSet = ({ wordSet }: WordLessonSetProps) => {
                             wordCount={words.length}
                             timeMs={state.timeMs}
                         />
-                        <Text type="secondary" color="default">
-                            <I18N
-                                textKey="word-complete-xp"
-                                lang={I18NLangs.RU}
-                                values={{ xp: stars }}
-                            />
-                        </Text>
                     </>
                 )}
             </Body>

@@ -64,9 +64,9 @@ export const Settings = () => {
                 >
                     {({ labelId, descriptionId }) => (
                         <Switch
-                            checked={settings.showHotkeys}
+                            checked={settings.hotkeys}
                             onCheckedChange={(checked) =>
-                                setSetting('showHotkeys', checked)
+                                setSetting('hotkeys', checked)
                             }
                             aria-labelledby={labelId}
                             aria-describedby={descriptionId}

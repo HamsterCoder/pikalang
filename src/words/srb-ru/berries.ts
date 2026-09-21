@@ -23,8 +23,8 @@ export const topic: WordTopicDescription = {
         {
             id: 'borovnica',
             gender: 'f',
-            example: 'Borovnica je sitna i plava.',
-            exampleTranslation: 'Черника мелкая и синяя.',
+            example: 'Borovnica je plava i slatka.',
+            exampleTranslation: 'Голубика синяя и сладкая.',
             tip: 'Ударение на первый слог: BO-rov-ni-ca.',
         },
         {

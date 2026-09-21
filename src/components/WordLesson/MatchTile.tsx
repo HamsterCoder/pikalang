@@ -11,7 +11,7 @@ export interface MatchTileProps {
     caption?: string;
     /** Serbian tiles carry the language being learned and are set apart. */
     tone?: 'serbian' | 'russian';
-    /** The key that picks this tile, shown on layouts wide enough for one. */
+    /** The key that picks this tile. Left out when shortcuts are off. */
     hotkey?: string;
     onClick?(): void;
     className?: string;
@@ -109,11 +109,10 @@ const Caption = styled.span`
 `;
 
 /**
- * The hotkey badge, which only earns its place where there is a keyboard to
- * press it on. Below that width the tile is tapped instead.
+ * The hotkey badge. Whether it appears at all is the `hotkeys` setting's call,
+ * so there is no width rule here to second-guess it.
  */
 const Hotkey = styled.span`
-    display: none;
     flex-shrink: 0;
 
     padding: 0 0.4rem;
@@ -124,10 +123,6 @@ const Hotkey = styled.span`
     font-size: ${({ theme }) => theme.text.chip.size};
     line-height: 1.5;
     color: ${({ theme }) => theme.color.hint};
-
-    @container lesson (min-width: 32rem) {
-        display: inline-block;
-    }
 `;
 
 const MatchedMark = styled.span`

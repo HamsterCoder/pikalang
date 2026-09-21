@@ -9,14 +9,17 @@ import { emulateLatency } from '@utils/emulateLatency';
  */
 export interface Settings {
     /**
-     * Show the keyboard shortcut badges on the matching tiles. Off by default:
-     * most learners are on a phone, where there is no key to press.
+     * Let the keyboard answer a lesson: digits to pick a picture, the tile
+     * keys in the matching round, Enter to check and move on. Off by default,
+     * and off is a real off — the keys do nothing and the badges that
+     * advertise them are not drawn, since there is no key to press on the
+     * phone most learners are holding.
      */
-    showHotkeys: boolean;
+    hotkeys: boolean;
 }
 
 export const defaultSettings: Settings = {
-    showHotkeys: false,
+    hotkeys: false,
 };
 
 function getLocalStoragePath(username: string) {
