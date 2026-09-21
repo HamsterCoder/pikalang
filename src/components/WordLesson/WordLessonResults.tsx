@@ -1,8 +1,10 @@
 import { BookOpen, Timer, Shuffle } from 'lucide-react';
 import { styled } from 'styled-components';
 
+import mascotHappy from '@assets/mascot-happy.webp';
 import { Heading } from '@components/Heading';
 import { I18N } from '@components/I18N/I18N';
+import { translate } from '@components/I18N/dictionary';
 import { I18NLangs } from '@components/I18N/types';
 import { formatDuration } from '@utils/formatDuration';
 
@@ -33,6 +35,20 @@ const Panel = styled.section`
     background-color: ${({ theme }) => theme.color.surface};
     box-shadow: ${({ theme }) => theme.shadow.subtle};
     text-align: center;
+`;
+
+/**
+ * The pika with the trophy. It is the first thing on the screen because the
+ * run is over and the tone of the screen is the reward; the tally underneath
+ * is what says how well it actually went.
+ */
+const Mascot = styled.img`
+    width: 100%;
+    max-width: 11rem;
+    height: auto;
+    margin-bottom: -0.25rem;
+
+    user-select: none;
 `;
 
 const Rows = styled.dl`
@@ -103,6 +119,12 @@ export const WordLessonResults = ({
 }: WordLessonResultsProps) => {
     return (
         <Panel className={className}>
+            <Mascot
+                src={mascotHappy}
+                alt={translate(I18NLangs.RU, 'word-complete-mascot-alt')}
+                draggable={false}
+            />
+
             <Heading size="m" color="default">
                 <I18N textKey="word-complete-appraisal" lang={I18NLangs.RU} />
             </Heading>

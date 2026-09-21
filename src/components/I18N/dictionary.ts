@@ -402,6 +402,11 @@ const dictionary: Record<string, I18NEntry> = {
         ru: 'Добавить возможность отвечать горячими клавишами при прохождении уроков.',
     },
 
+    'word-complete-mascot-alt': {
+        en: 'A pika holding a trophy overhead, cheering',
+        ru: 'Пика радуется и держит кубок над головой',
+    },
+
     'error-badge-not-found': {
         en: 'Error 404 • Lost path',
         ru: 'Ошибка 404 • Путь потерян',
