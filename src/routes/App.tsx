@@ -8,11 +8,13 @@ import { ConversationList } from '@routes/ConversationList.tsx';
 import { loader as conversationListLoader } from '@routes/ConversationList.loader';
 import { Conversation } from '@routes/Conversation.tsx';
 import { loader as conversationLoader } from '@routes/Conversation.loader';
+import { WordTopics } from '@routes/WordTopics.tsx';
 
 import { AppLayout } from '@routes/AppLayout';
 import { loader as appLayoutLoader } from '@routes/AppLayout.loader';
 
 import { LessonView } from '@components/LessonView/LessonView';
+import { WordLessonView } from '@components/WordLesson/WordLessonView';
 import { ErrorPage } from '@components/ErrorPage/ErrorPage';
 import { LoadingError } from '@components/LoadingError';
 
@@ -47,12 +49,27 @@ const router = createHashRouter([
                 element: <ConversationList />,
                 loader: conversationListLoader,
             },
+            {
+                path: '/words/',
+                element: <WordTopics />,
+            },
         ],
     },
     {
         path: '/lessons/:lessonTopic/:lessonId/',
         element: <LessonView />,
         errorElement: <ErrorPage />,
+    },
+    {
+        path: '/words/:topicName/:setNumber/',
+        element: <WordLessonView />,
+        errorElement: (
+            <LoadingError
+                name={'Word set'}
+                recoveryTo="/words/"
+                recoveryMessage="View available topics"
+            />
+        ),
     },
     {
         path: '/conversations/:conversationId/',

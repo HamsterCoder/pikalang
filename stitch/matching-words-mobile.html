@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lingopop - Match the Pairs Lesson</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400..900;1,6..12,400..900&amp;family=Quicksand:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-background": "#0c1d2b",
+            "on-surface": "#0c1d2b",
+            "surface-container-high": "#d9eafd",
+            "on-primary-container": "#590027",
+            "on-error": "#ffffff",
+            "on-primary-fixed-variant": "#8f0043",
+            "on-tertiary-container": "#fffbff",
+            "background": "#f7f9ff",
+            "surface-container-highest": "#d3e4f7",
+            "inverse-surface": "#223240",
+            "on-secondary-fixed": "#082100",
+            "error": "#ba1a1a",
+            "inverse-primary": "#ffb1c3",
+            "primary-fixed-dim": "#ffb1c3",
+            "tertiary-fixed-dim": "#f4bf00",
+            "secondary": "#2b6c00",
+            "secondary-fixed": "#87fe45",
+            "on-tertiary-fixed": "#241a00",
+            "on-surface-variant": "#594046",
+            "outline-variant": "#e1bec4",
+            "primary": "#ba0659",
+            "error-container": "#ffdad6",
+            "on-tertiary": "#ffffff",
+            "on-secondary-fixed-variant": "#1f5100",
+            "tertiary": "#735800",
+            "on-tertiary-fixed-variant": "#594400",
+            "surface": "#f7f9ff",
+            "surface-tint": "#ba0659",
+            "on-secondary": "#ffffff",
+            "surface-dim": "#cbdcef",
+            "on-error-container": "#93000a",
+            "primary-fixed": "#ffd9e0",
+            "surface-bright": "#f7f9ff",
+            "on-primary-fixed": "#3f0019",
+            "secondary-container": "#84fb42",
+            "tertiary-container": "#907000",
+            "surface-container-lowest": "#ffffff",
+            "secondary-fixed-dim": "#6be026",
+            "surface-variant": "#d3e4f7",
+            "outline": "#8d6f76",
+            "primary-container": "#ff4b8b",
+            "surface-container-low": "#edf4ff",
+            "surface-container": "#e2efff",
+            "inverse-on-surface": "#e7f2ff",
+            "tertiary-fixed": "#ffdf92",
+            "on-secondary-container": "#2d7100",
+            "on-primary": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-tablet": "1.25rem",
+            "space-2xl": "3rem",
+            "margin-desktop": "2.5rem",
+            "margin-tablet": "1.5rem",
+            "space-xs": "0.25rem",
+            "gutter-desktop": "1.5rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "margin": "1rem",
+            "gutter": "1rem",
+            "space-xl": "2rem"
+          },
+          "fontFamily": {
+            "label-lg": ["Nunito Sans"],
+            "label-caps": ["Nunito Sans"],
+            "body-lg": ["Nunito Sans"],
+            "headline-lg-mobile": ["Quicksand"],
+            "body-md": ["Nunito Sans"],
+            "display-hero-mobile": ["Quicksand"],
+            "headline-sm": ["Quicksand"],
+            "body-sm": ["Nunito Sans"],
+            "label-md": ["Nunito Sans"],
+            "label-sm": ["Nunito Sans"],
+            "display-hero": ["Quicksand"],
+            "headline-md": ["Quicksand"],
+            "headline-lg": ["Quicksand"]
+          },
+          "fontSize": {
+            "label-lg": ["16px", { "lineHeight": "20px", "fontWeight": "800" }],
+            "label-caps": ["12px", { "lineHeight": "16px", "fontWeight": "800" }],
+            "body-lg": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "fontWeight": "700" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "display-hero-mobile": ["30px", { "lineHeight": "36px", "fontWeight": "700" }],
+            "headline-sm": ["20px", { "lineHeight": "26px", "fontWeight": "700" }],
+            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+            "label-md": ["14px", { "lineHeight": "18px", "fontWeight": "800" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "800" }],
+            "display-hero": ["40px", { "lineHeight": "48px", "fontWeight": "700" }],
+            "headline-md": ["24px", { "lineHeight": "30px", "fontWeight": "700" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .icon-fill {
+      font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col justify-between selection:bg-primary-fixed selection:text-primary">
+<!-- Main Mobile App Shell Layout (Task-Focused / Linear: Global rail suppressed per Destination UX Filter) -->
+<div class="w-full max-w-md mx-auto min-h-screen flex flex-col justify-between bg-surface-container-lowest shadow-2xl relative">
+<!-- Top Sticky Header -->
+<header class="w-full px-4 pt-4 pb-2 bg-surface-container-lowest sticky top-0 z-30 flex flex-col gap-2">
+<div class="flex items-center justify-between gap-3">
+<!-- Close Task Action Button -->
+<button aria-label="Close Lesson" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors active:scale-95">
+<span class="material-symbols-outlined text-headline-sm" data-icon="close">close</span>
+</button>
+<!-- Glossy 3D Gamified Progress Bar -->
+<div class="flex-1 h-3.5 bg-surface-container rounded-full overflow-hidden relative shadow-inner p-0.5 border border-outline-variant/30">
+<div class="h-full bg-primary-container rounded-full relative w-1/2 transition-all duration-500 flex items-center">
+<!-- Glossy top light bar highlight -->
+<div class="absolute top-0 inset-x-1 h-1 bg-white/40 rounded-full"></div>
+</div>
+</div>
+<!-- Heart Counter Capsule -->
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-low border-2 border-outline-variant/40 text-primary font-label-md text-label-md shadow-[0_2px_0_0_#e1bec4]">
+<span class="material-symbols-outlined icon-fill text-primary-container text-[18px]" data-icon="favorite" data-weight="fill">favorite</span>
+<span class="font-headline-sm text-label-md">5</span>
+</div>
+</div>
+</header>
+<!-- Main Content Area: Matching Pairs -->
+<main class="flex-1 px-4 py-2 flex flex-col justify-start">
+<!-- Subheader Instructions -->
+<section class="mt-1 mb-4 text-left">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary-fixed text-primary font-label-caps text-label-caps tracking-wider uppercase mb-1.5">
+<span class="material-symbols-outlined text-[14px]" data-icon="extension">extension</span>
+<span>MATCHING PAIRS</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface leading-tight">
+          Tap the matching pairs
+        </h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+          Match Spanish terms with their English translations
+        </p>
+</section>
+<!-- Combo Streak Toast / Badge -->
+<div class="mb-4 px-3.5 py-2.5 rounded-2xl bg-tertiary-fixed/30 border-2 border-tertiary-fixed-dim/40 flex items-center justify-between shadow-[0_3px_0_0_#f4bf00]">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-xl bg-tertiary-fixed-dim flex items-center justify-center text-on-tertiary-fixed shadow-sm">
+<span class="material-symbols-outlined icon-fill text-[18px]" data-icon="bolt" data-weight="fill">bolt</span>
+</div>
+<span class="font-label-md text-label-md text-on-tertiary-fixed">Combo Streak: 4 pairs matched!</span>
+</div>
+<span class="font-label-caps text-label-caps bg-tertiary-container text-on-tertiary-container px-2 py-0.5 rounded-full">+10 XP</span>
+</div>
+<!-- 2-Column Word Grid/Cards Container -->
+<div class="grid grid-cols-2 gap-3 w-full my-auto">
+<!-- Spanish Column -->
+<div class="flex flex-col gap-2.5">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider pl-1 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Spanish (ES)
+          </span>
+<!-- 1. 'el pan' (Active Selected Pink State) -->
+<button class="w-full text-left p-3.5 rounded-2xl border-2 border-primary-container bg-primary-fixed/20 shadow-[0_4px_0_0_#ba0659] translate-y-[-2px] transition-all flex items-center justify-between group active:translate-y-1 active:shadow-none">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary">el pan</span>
+<span class="font-label-caps text-[11px] text-primary/80">Selected</span>
+</div>
+<span class="material-symbols-outlined text-primary-container text-headline-sm group-hover:scale-110 transition-transform" data-icon="volume_up">volume_up</span>
+</button>
+<!-- 2. 'la manzana' (Default Normal State) -->
+<button class="w-full text-left p-3.5 rounded-2xl border-2 border-outline-variant/60 bg-surface-container-lowest shadow-[0_4px_0_0_#e1bec4] hover:border-primary-fixed-dim hover:bg-surface-container-low transition-all flex items-center justify-between group active:translate-y-1 active:shadow-none">
+<span class="font-headline-sm text-headline-sm text-on-surface">la manzana</span>
+<span class="material-symbols-outlined text-on-surface-variant/60 text-headline-sm group-hover:text-primary transition-colors" data-icon="volume_up">volume_up</span>
+</button>
+<!-- 3. 'el café' (Solved / Matched Mint Green State) -->
+<button class="w-full text-left p-3.5 rounded-2xl border-2 border-secondary-container bg-secondary-fixed/20 opacity-80 shadow-[0_2px_0_0_#6be026] cursor-default flex items-center justify-between" disabled="">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary font-bold text-[18px]" data-icon="check_circle" data-weight="fill">check_circle</span>
+<span class="font-headline-sm text-headline-sm text-secondary line-through decoration-2">el café</span>
+</div>
+<span class="material-symbols-outlined text-secondary/60 text-headline-sm" data-icon="volume_up">volume_up</span>
+</button>
+<!-- 4. 'el agua' (Default Normal State) -->
+<button class="w-full text-left p-3.5 rounded-2xl border-2 border-outline-variant/60 bg-surface-container-lowest shadow-[0_4px_0_0_#e1bec4] hover:border-primary-fixed-dim hover:bg-surface-container-low transition-all flex items-center justify-between group active:translate-y-1 active:shadow-none">
+<span class="font-headline-sm text-headline-sm text-on-surface">el agua</span>
+<span class="material-symbols-outlined text-on-surface-variant/60 text-headline-sm group-hover:text-primary transition-colors" data-icon="volume_up">volume_up</span>
+</button>
+<!-- 5. 'la leche' (Default Normal State) -->
+<button class="w-full text-left p-3.5 rounded-2xl border-2 border-outline-variant/60 bg-surface-container-lowest shadow-[0_4px_0_0_#e1bec4] hover:border-primary-fixed-dim hover:bg-surface-container-low transition-all flex items-center justify-between group active:translate-y-1 active:shadow-none">
+<span class="font-headline-sm text-headline-sm text-on-surface">la leche</span>
+<span class="material-symbols-outlined text-on-surface-variant/60 text-headline-sm group-hover:text-primary transition-colors" data-icon="volume_up">volume_up</span>
+</button>
+</div>
+<!-- English Column -->
+<div class="flex flex-col gap-2.5">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider pl-1 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-surface-dim"></span> English (EN)
+          </span>
+<!-- 1. 'the bread' (Target / Highlighted Partner State) -->
+<button class="w-full text-left p-3.5 rounded-2xl border-2 border-dashed border-primary-container bg-primary-fixed/10 shadow-[0_4px_0_0_#ba0659] transition-all flex items-center justify-between active:translate-y-1 active:shadow-none">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary">the bread</span>
+<span class="font-label-caps text-[11px] text-primary/70">Tap to pair</span>
+</div>
+<span class="material-symbols-outlined text-primary-container text-headline-sm animate-pulse" data-icon="touch_app">touch_app</span>
+</button>
+<!-- 2. 'the coffee' (Solved / Matched Mint Green State) -->
+<button class="w-full text-left p-3.5 rounded-2xl border-2 border-secondary-container bg-secondary-fixed/20 opacity-80 shadow-[0_2px_0_0_#6be026] cursor-default flex items-center justify-between" disabled="">
+<span class="font-headline-sm text-headline-sm text-secondary line-through decoration-2">the coffee</span>
+<span class="material-symbols-outlined text-secondary font-bold text-[18px]" data-icon="done" data-weight="fill">done</span>
+</button>
+<!-- 3. 'the water' (Default Normal State) -->
+<button class="w-full text-left p-3.5 rounded-2xl border-2 border-outline-variant/60 bg-surface-container-lowest shadow-[0_4px_0_0_#e1bec4] hover:border-primary-fixed-dim hover:bg-surface-container-low transition-all flex items-center justify-between active:translate-y-1 active:shadow-none">
+<span class="font-headline-sm text-headline-sm text-on-surface">the water</span>
+</button>
+<!-- 4. 'the apple' (Default Normal State) -->
+<button class="w-full text-left p-3.5 rounded-2xl border-2 border-outline-variant/60 bg-surface-container-lowest shadow-[0_4px_0_0_#e1bec4] hover:border-primary-fixed-dim hover:bg-surface-container-low transition-all flex items-center justify-between active:translate-y-1 active:shadow-none">
+<span class="font-headline-sm text-headline-sm text-on-surface">the apple</span>
+</button>
+<!-- 5. 'the milk' (Default Normal State) -->
+<button class="w-full text-left p-3.5 rounded-2xl border-2 border-outline-variant/60 bg-surface-container-lowest shadow-[0_4px_0_0_#e1bec4] hover:border-primary-fixed-dim hover:bg-surface-container-low transition-all flex items-center justify-between active:translate-y-1 active:shadow-none">
+<span class="font-headline-sm text-headline-sm text-on-surface">the milk</span>
+</button>
+</div>
+</div>
+<!-- Quick Helpful Tip -->
+<div class="mt-4 mb-2 flex items-center gap-2 justify-center text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="lightbulb">lightbulb</span>
+<span>Tap any Spanish word first, then match its English meaning</span>
+</div>
+</main>
+<!-- Persistent Tactile Bottom Action Drawer / Dock -->
+<footer class="w-full p-4 bg-surface-container-lowest border-t-2 border-outline-variant/30 flex items-center gap-3">
+<!-- Clean Rounded SKIP Button -->
+<button class="px-5 py-3.5 rounded-full border-2 border-outline-variant bg-surface-container-lowest text-on-surface-variant font-label-lg text-label-lg shadow-[0_4px_0_0_#e1bec4] hover:bg-surface-container-low active:translate-y-1 active:shadow-none transition-all">
+        SKIP
+      </button>
+<!-- CHECK ANSWER / CONTINUE Candy Pink Primary CTA Button -->
+<button class="flex-1 py-3.5 px-6 rounded-full bg-primary-container text-white font-label-lg text-label-lg shadow-[0_4px_0_0_#ba0659] hover:brightness-105 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-2">
+<span>CHECK ANSWER</span>
+<span class="material-symbols-outlined text-headline-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</footer>
+</div>
+</body></html>

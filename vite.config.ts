@@ -56,6 +56,10 @@ export default defineConfig({
                 ),
             },
             {
+                find: '@words',
+                replacement: path.resolve(import.meta.dirname, 'src/words'),
+            },
+            {
                 find: '@themes',
                 replacement: path.resolve(import.meta.dirname, 'src/themes'),
             },

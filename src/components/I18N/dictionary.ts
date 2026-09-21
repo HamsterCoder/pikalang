@@ -240,6 +240,152 @@ const dictionary: Record<string, I18NEntry> = {
         ru: 'Новые разделы уже в пути. А пока можно повторить пройденное.',
     },
 
+    'word-list-intro': {
+        en: 'Pick a topic and meet its words a few at a time.',
+        ru: 'Выберите тему и знакомьтесь с её словами по несколько за раз.',
+    },
+    'word-topic-words': ({ learned, total }) => ({
+        en: `${learned} of ${total} words`,
+        ru: `${learned} из ${total} ${pluralRu(
+            Number(total),
+            'слова',
+            'слов',
+            'слов',
+        )}`,
+    }),
+    'word-topic-sets': ({ completed, total }) => ({
+        en: `${completed}/${total} sets`,
+        ru: `${completed}/${total} ${pluralRu(
+            Number(total),
+            'подход',
+            'подхода',
+            'подходов',
+        )}`,
+    }),
+    'word-topic-sets-label': {
+        en: 'Sets completed',
+        ru: 'Пройдено подходов',
+    },
+    'word-topic-action-start': {
+        en: 'Start',
+        ru: 'Начать',
+    },
+    'word-topic-action-continue': {
+        en: 'Continue',
+        ru: 'Продолжить',
+    },
+    'word-topic-action-review': {
+        en: 'Review',
+        ru: 'Повторить',
+    },
+
+    'word-new-prompt': ({ index, total }) => ({
+        en: `New word ${index} of ${total}`,
+        ru: `Новое слово ${index} из ${total}`,
+    }),
+    'word-match-prompt': {
+        en: 'Match the words to their translations',
+        ru: 'Соедините слова с переводом',
+    },
+    'word-match-column-serbian': {
+        en: 'Serbian',
+        ru: 'Сербский',
+    },
+    'word-match-column-russian': {
+        en: 'Russian',
+        ru: 'Русский',
+    },
+    'word-match-remaining': ({ count }) => ({
+        en: `${count} pairs left`,
+        ru: `Осталось ${count} ${pluralRu(
+            Number(count),
+            'пара',
+            'пары',
+            'пар',
+        )}`,
+    }),
+    'word-gender-masculine': {
+        en: 'Noun, masculine',
+        ru: 'Существительное, мужской род',
+    },
+    'word-gender-feminine': {
+        en: 'Noun, feminine',
+        ru: 'Существительное, женский род',
+    },
+    'word-gender-neuter': {
+        en: 'Noun, neuter',
+        ru: 'Существительное, средний род',
+    },
+    'word-gender-short-m': {
+        en: 'masculine',
+        ru: 'мужской род',
+    },
+    'word-gender-short-f': {
+        en: 'feminine',
+        ru: 'женский род',
+    },
+    'word-gender-short-n': {
+        en: 'neuter',
+        ru: 'средний род',
+    },
+    'word-match-hint': {
+        en: 'Tap a Serbian word first, then its translation.',
+        ru: 'Нажмите сербское слово, затем его перевод.',
+    },
+    'word-tip-label': {
+        en: 'Tip',
+        ru: 'Подсказка',
+    },
+    'word-known-button': {
+        en: 'I already know this',
+        ru: 'Уже знаю',
+    },
+    'word-continue-button': {
+        en: 'Continue',
+        ru: 'Продолжить',
+    },
+    'word-exit-button': {
+        en: 'Finish the set',
+        ru: 'Завершить подход',
+    },
+    'word-progress-label': {
+        en: 'Set progress',
+        ru: 'Прогресс подхода',
+    },
+    'word-time-label': {
+        en: 'Time',
+        ru: 'Время',
+    },
+    'word-complete-appraisal': {
+        en: 'Well done!',
+        ru: 'Отличная работа!',
+    },
+    'word-complete-xp': ({ xp }) => ({
+        en: `${xp} stars added to your experience.`,
+        ru: `${xp} ${pluralRu(
+            Number(xp),
+            'звездочка добавлена',
+            'звездочки добавлены',
+            'звездочек добавлено',
+        )} к вашему опыту.`,
+    }),
+    'word-complete-to-topics': {
+        en: 'See other topics',
+        ru: 'Посмотреть другие темы',
+    },
+    'word-result-learned': {
+        en: 'New words learned',
+        ru: 'Новых слов выучено',
+    },
+    'word-result-matched': {
+        en: 'Pairs matched first time',
+        ru: 'Пар угадано с первого раза',
+    },
+    'word-result-time': {
+        en: 'Matching time',
+        ru: 'Время на пары',
+    },
+
     'conversation-list-heading': {
         en: 'Conversations',
         ru: 'Разговоры',
