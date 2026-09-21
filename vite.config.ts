@@ -60,6 +60,10 @@ export default defineConfig({
                 replacement: path.resolve(import.meta.dirname, 'src/words'),
             },
             {
+                find: '@assets',
+                replacement: path.resolve(import.meta.dirname, 'src/assets'),
+            },
+            {
                 find: '@themes',
                 replacement: path.resolve(import.meta.dirname, 'src/themes'),
             },
