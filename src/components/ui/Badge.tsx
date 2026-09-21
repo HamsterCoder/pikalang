@@ -20,7 +20,7 @@ const tones: Record<BadgeTone, ReturnType<typeof css>> = {
     success: css`
         color: ${({ theme }) => theme.color.successText};
         background-color: ${({ theme }) => theme.color.successSurface};
-        border-color: ${({ theme }) => theme.color.success};
+        border-color: ${({ theme }) => theme.color.successBorder};
     `,
     muted: css`
         color: ${({ theme }) => theme.color.hint};

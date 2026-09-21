@@ -37,9 +37,12 @@ export const tokens = {
         successHover: '#7aa300',
         successSurface: '#f6faea',
         successText: '#455514',
+        /** Lines carry the status at the weight of `border`, not at full strength. */
+        successBorder: 'rgba(122, 163, 0, 0.35)',
         error: '#ff4444',
         errorSurface: '#fff0f0',
         errorText: '#662a2a',
+        errorBorder: 'rgba(204, 41, 41, 0.3)',
         warning: '#ffbb33',
 
         // Achievement (completed units, rewards)
