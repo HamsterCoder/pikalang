@@ -42,7 +42,7 @@ const variants: Record<ChipVariant, ReturnType<typeof css>> = {
         height: 44px;
         padding: 0 0.75rem;
         border: 1px solid ${({ theme }) => theme.color.border};
-        border-radius: ${({ theme }) => theme.radius.l};
+        border-radius: ${({ theme }) => theme.radius.xl};
 
         color: ${({ theme }) => theme.color.text};
         background-color: ${({ theme }) => theme.color.surface};
@@ -68,7 +68,7 @@ const variants: Record<ChipVariant, ReturnType<typeof css>> = {
         height: 36px;
         padding: 0 0.75rem;
         border: 1px solid transparent;
-        border-radius: ${({ theme }) => theme.radius.m};
+        border-radius: ${({ theme }) => theme.radius.xl};
 
         color: ${({ theme }) => theme.color.textInverted};
         background-color: ${({ theme }) => theme.color.accent};

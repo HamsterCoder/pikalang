@@ -48,7 +48,7 @@ export const buttonStyles = css<ButtonStyleProps>`
     min-width: 64px;
     padding: ${({ $size }) => ($size === 'small' ? '4px 5px' : '6px 16px')};
     border: none;
-    border-radius: ${({ theme }) => theme.radius.m};
+    border-radius: ${({ theme }) => theme.radius.xl};
 
     font-family: ${({ theme }) => theme.font.base};
     font-size: ${({ theme, $size }) =>

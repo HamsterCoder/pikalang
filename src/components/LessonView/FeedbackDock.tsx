@@ -5,6 +5,8 @@ import { Button } from '@components/ui/Button';
 import { I18N } from '@components/I18N/I18N';
 import { I18NLangs } from '@components/I18N/types';
 
+import { LessonRow } from './LessonView.styles';
+
 import type { ChallengeVerdict } from './types';
 
 export interface FeedbackDockProps {
@@ -13,13 +15,7 @@ export interface FeedbackDockProps {
 }
 
 const Dock = styled.div<{ $solved: boolean }>`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-
-    padding: 1rem 1.5rem;
+    padding: 1rem 0;
     border-top: 1px solid
         ${({ theme, $solved }) =>
             $solved ? theme.color.success : theme.color.error};
@@ -28,6 +24,11 @@ const Dock = styled.div<{ $solved: boolean }>`
         $solved ? theme.color.successSurface : theme.color.errorSurface};
     color: ${({ theme, $solved }) =>
         $solved ? theme.color.successText : theme.color.errorText};
+`;
+
+const Row = styled(LessonRow)`
+    justify-content: space-between;
+    flex-wrap: wrap;
 `;
 
 const Message = styled.div`
@@ -77,61 +78,63 @@ export const FeedbackDock = ({ verdict, onContinue }: FeedbackDockProps) => {
 
     return (
         <Dock role="status" $solved={solved}>
-            <Message>
-                <Icon $solved={solved}>
-                    {solved ? (
-                        <Check size={20} aria-hidden="true" />
-                    ) : (
-                        <CrossIcon size={20} aria-hidden="true" />
-                    )}
-                </Icon>
-                <div>
-                    <Title>
-                        <I18N
-                            textKey={
-                                solved
-                                    ? 'lesson-submit-correct-message'
-                                    : 'lesson-submit-error-message'
-                            }
-                            lang={I18NLangs.RU}
-                        />
-                    </Title>
-                    {!solved && (
-                        <Detail>
+            <Row>
+                <Message>
+                    <Icon $solved={solved}>
+                        {solved ? (
+                            <Check size={20} aria-hidden="true" />
+                        ) : (
+                            <CrossIcon size={20} aria-hidden="true" />
+                        )}
+                    </Icon>
+                    <div>
+                        <Title>
                             <I18N
-                                textKey="lesson-submit-expected-message"
+                                textKey={
+                                    solved
+                                        ? 'lesson-submit-correct-message'
+                                        : 'lesson-submit-error-message'
+                                }
                                 lang={I18NLangs.RU}
                             />
-                            {expected}
-                        </Detail>
-                    )}
-                    {solved && translation && (
-                        <Detail>
-                            <I18N
-                                textKey="lesson-submit-translation-message"
-                                lang={I18NLangs.RU}
-                            />
-                            {translation}
-                        </Detail>
-                    )}
-                    {solved && alternative && (
-                        <Detail>
-                            <I18N
-                                textKey="lesson-submit-another-message"
-                                lang={I18NLangs.RU}
-                            />
-                            {alternative}
-                        </Detail>
-                    )}
-                </div>
-            </Message>
-            <Button
-                tone={solved ? 'success' : 'accent'}
-                onClick={onContinue}
-                autoFocus
-            >
-                <I18N textKey="lesson-next-button" lang={I18NLangs.RU} />
-            </Button>
+                        </Title>
+                        {!solved && (
+                            <Detail>
+                                <I18N
+                                    textKey="lesson-submit-expected-message"
+                                    lang={I18NLangs.RU}
+                                />
+                                {expected}
+                            </Detail>
+                        )}
+                        {solved && translation && (
+                            <Detail>
+                                <I18N
+                                    textKey="lesson-submit-translation-message"
+                                    lang={I18NLangs.RU}
+                                />
+                                {translation}
+                            </Detail>
+                        )}
+                        {solved && alternative && (
+                            <Detail>
+                                <I18N
+                                    textKey="lesson-submit-another-message"
+                                    lang={I18NLangs.RU}
+                                />
+                                {alternative}
+                            </Detail>
+                        )}
+                    </div>
+                </Message>
+                <Button
+                    tone={solved ? 'success' : 'accent'}
+                    onClick={onContinue}
+                    autoFocus
+                >
+                    <I18N textKey="lesson-next-button" lang={I18NLangs.RU} />
+                </Button>
+            </Row>
         </Dock>
     );
 };

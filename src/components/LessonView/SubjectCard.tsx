@@ -24,14 +24,10 @@ const Card = styled.div`
     box-shadow: ${({ theme }) => theme.shadow.subtle};
 `;
 
-/** The accent rule that marks the subject as the thing being asked about. */
 const Subject = styled.div`
     display: flex;
     align-items: center;
     gap: 0.75rem;
-
-    padding-left: 0.75rem;
-    border-left: 3px solid ${({ theme }) => theme.color.accent};
 
     font-family: ${({ theme }) => theme.font.base};
     font-size: ${({ theme }) => theme.text.heading_s.size};
