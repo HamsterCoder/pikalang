@@ -1,8 +1,8 @@
 import {
     ChallengeDescription,
     ChallengeType,
-} from '@components/Challenge/types';
-import { LessonDescription } from '@components/Lesson/Lesson';
+    LessonDescription,
+} from '@lessons/types';
 
 // NEW WORDS: razumeti
 // NEW PHRASES:

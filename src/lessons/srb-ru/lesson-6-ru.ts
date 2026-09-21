@@ -1,8 +1,8 @@
 import {
     ChallengeDescription,
     ChallengeType,
-} from '@components/Challenge/types';
-import { LessonDescription } from '@components/Lesson/Lesson';
+    LessonDescription,
+} from '@lessons/types';
 
 // TARGET WORDS: Dobro jutro, Dobar dan, Dobro veće, Laku noć, Ćao, Zdravo, Vidimo se, Prijatno, Doviđenja
 // SECONDARY WORDS: ...

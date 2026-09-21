@@ -1,7 +1,4 @@
-import {
-    ChallengeDescription,
-    ChallengeType,
-} from '@components/Challenge/types';
+import { ChallengeDescription, ChallengeType } from '@lessons/types';
 
 // TARGET WORDS: apple, pear, apricot, peach
 // SECONDARY WORDS: crvena, zelena, mala, velika

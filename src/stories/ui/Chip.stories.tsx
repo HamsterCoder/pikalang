@@ -12,6 +12,7 @@ const meta = {
     tags: ['autodocs'],
     args: {
         label: 'Dobar',
+        variant: 'bank',
         onClick: fn(),
     },
 } satisfies Meta<typeof Chip>;
@@ -20,27 +21,18 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** A word the learner can pick while composing an answer. */
-export const Default: Story = {};
-
-export const LongLabel: Story = {
-    args: { label: 'Doviđenja!' },
-};
-
-export const Disabled: Story = {
-    args: { disabled: true },
-};
-
 /** The word bank keeps every tile in place, so a used one greys out here. */
-export const Bank: Story = {
-    args: { variant: 'bank' },
-};
+export const Bank: Story = {};
 
 export const BankUsed: Story = {
-    args: { variant: 'bank', disabled: true },
+    args: { disabled: true },
 };
 
 /** A word the learner has placed into their answer, and can take back. */
 export const Solid: Story = {
     args: { variant: 'solid' },
+};
+
+export const LongLabel: Story = {
+    args: { label: 'Doviđenja!' },
 };

@@ -15,4 +15,6 @@ them in a browser to compare against the real screens.
 
 The lesson designs show a mascot, audio buttons, a hearts counter and a combo
 bonus. Nothing backs those yet, so they are left out; the skip button is real
-and counts as a wrong answer.
+and counts as a wrong answer. The picture options carry no captions either:
+the learner is matching a Serbian word to a picture, so naming the pictures
+would answer the challenge for them.

@@ -1,7 +1,4 @@
-import {
-    ChallengeDescription,
-    ChallengeType,
-} from '@components/Challenge/types';
+import { ChallengeDescription, ChallengeType } from '@lessons/types';
 
 import { InsertChipsView } from './InsertChipsView';
 import { QuestionChipsView } from './QuestionChipsView';

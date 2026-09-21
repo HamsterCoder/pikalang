@@ -9,7 +9,7 @@ import {
     saveLessonProgress,
 } from '@api/lessons';
 import { userDataApi } from '@api/user-data';
-import { ChallengeType } from '@components/Challenge/types';
+import { ChallengeType } from '@lessons/types';
 import { ConjugationTable } from '@components/ConjugationTable';
 import { Heading } from '@components/Heading';
 import { I18N } from '@components/I18N/I18N';

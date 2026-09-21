@@ -1,7 +1,7 @@
 import { PictureOptions } from './PictureOptions';
 import { SubjectCard } from './SubjectCard';
 
-import type { WordPictureData } from '@components/Challenge/WordPicture';
+import type { WordPictureData } from '@lessons/types';
 import type { ChallengeViewProps } from './types';
 
 export const WordPictureView = ({

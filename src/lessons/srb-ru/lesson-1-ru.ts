@@ -1,8 +1,8 @@
 import {
     ChallengeDescription,
     ChallengeType,
-} from '@components/Challenge/types';
-import { LessonDescription } from '@components/Lesson/Lesson';
+    LessonDescription,
+} from '@lessons/types';
 
 // NEW WORDS: tomato, cucumber, potato, pepper
 // NEW PHRASES: Šta je ovo?, Ovo je..., Ovo su...
