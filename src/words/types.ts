@@ -24,7 +24,11 @@ export interface WordEntry {
     example: string;
     /** The Russian rendering of `example`. */
     exampleTranslation: string;
-    /** Shown under the example when the word is worth a note of its own. */
+    /**
+     * A note shown under the example. Every word currently carries where the
+     * stress falls, which is the one thing neither the spelling nor the
+     * translation tells a Russian speaker.
+     */
     tip?: string;
 }
 

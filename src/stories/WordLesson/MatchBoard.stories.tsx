@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
 import { MatchBoard } from '@components/WordLesson/MatchBoard';
+import { SettingsContext } from '@routes/SettingsContext';
 
 const vegetables = [
     {
@@ -73,7 +74,27 @@ export const ThreePairs: Story = {
     args: { words: vegetables.slice(0, 3) },
 };
 
-/** At phone width the columns tighten instead of stacking, and the hotkeys go. */
+/**
+ * With the shortcuts turned on in the settings, every tile advertises its key.
+ * The keys themselves work either way — this only decides whether the board
+ * says so.
+ */
+export const WithHotkeys: Story = {
+    decorators: [
+        (Story) => (
+            <SettingsContext.Provider
+                value={{
+                    settings: { showHotkeys: true },
+                    setSetting: () => {},
+                }}
+            >
+                <Story />
+            </SettingsContext.Provider>
+        ),
+    ],
+};
+
+/** At phone width the columns tighten instead of stacking. */
 export const Narrow: Story = {
     decorators: [
         (Story) => (

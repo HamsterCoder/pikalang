@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 
 import { translate } from '@components/I18N/dictionary';
 import { I18NLangs } from '@components/I18N/types';
+import { useSettings } from '@hooks/useSettings';
 import { shuffle } from '@utils/shuffle';
 
 import { MatchTile } from './MatchTile';
@@ -43,9 +44,10 @@ export interface MatchBoardProps {
 const WRONG_FLASH_MS = 600;
 
 /**
- * The keys that pick a tile, matching the badges on them: the digit row for
- * the Serbian column and the row above it for the Russian one. A set never
- * runs past these, and any extra tile simply goes without a badge.
+ * The keys that pick a tile: the digit row for the Serbian column and the row
+ * above it for the Russian one. They always work — the `showHotkeys` setting
+ * only decides whether the board advertises them on the tiles, since a badge
+ * on every tile is clutter to the many learners holding a phone.
  */
 const SERBIAN_KEYS = ['1', '2', '3', '4', '5', '6'];
 const RUSSIAN_KEYS = ['q', 'w', 'e', 'r', 't', 'y'];
@@ -125,6 +127,8 @@ export const MatchBoard = ({
     /** `shuffle` works in place, so each column churns its own copy. */
     const serbian = useMemo(() => shuffle([...words]), [words]);
     const russian = useMemo(() => derange(words, serbian), [words, serbian]);
+
+    const { settings } = useSettings();
 
     const [selected, setSelected] = useState<Selection | null>(null);
     const [matched, setMatched] = useState<string[]>([]);
@@ -276,7 +280,11 @@ export const MatchBoard = ({
                         key={id}
                         tone="serbian"
                         caption={caption}
-                        hotkey={SERBIAN_KEYS[index]}
+                        hotkey={
+                            settings.showHotkeys
+                                ? SERBIAN_KEYS[index]
+                                : undefined
+                        }
                         state={stateOf('serbian', id)}
                         onClick={() => pick('serbian', id)}
                     >
@@ -293,7 +301,11 @@ export const MatchBoard = ({
                     <MatchTile
                         key={id}
                         tone="russian"
-                        hotkey={RUSSIAN_KEYS[index]?.toUpperCase()}
+                        hotkey={
+                            settings.showHotkeys
+                                ? RUSSIAN_KEYS[index]?.toUpperCase()
+                                : undefined
+                        }
                         state={stateOf('russian', id)}
                         onClick={() => pick('russian', id)}
                     >

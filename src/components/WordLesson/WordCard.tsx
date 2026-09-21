@@ -19,7 +19,7 @@ export interface WordCardProps {
     /** A short Serbian sentence putting the word to work. */
     example: string;
     exampleTranslation: string;
-    /** An optional note: a false friend, a suffix, a stress pattern. */
+    /** An optional note under the example, such as where the stress falls. */
     tip?: string;
     className?: string;
 }

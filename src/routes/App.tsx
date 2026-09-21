@@ -9,6 +9,7 @@ import { loader as conversationListLoader } from '@routes/ConversationList.loade
 import { Conversation } from '@routes/Conversation.tsx';
 import { loader as conversationLoader } from '@routes/Conversation.loader';
 import { WordTopics } from '@routes/WordTopics.tsx';
+import { Settings } from '@routes/Settings.tsx';
 
 import { AppLayout } from '@routes/AppLayout';
 import { loader as appLayoutLoader } from '@routes/AppLayout.loader';
@@ -22,6 +23,8 @@ import { tokens } from '@themes/tokens';
 import { GlobalStyle } from '@themes/GlobalStyle';
 import { TooltipProvider } from '@components/ui/Tooltip';
 import { EnvContext } from '@routes/EnvContext';
+import { SettingsContext } from '@routes/SettingsContext';
+import { useSettingsState } from '@hooks/useSettingsState';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
@@ -52,6 +55,10 @@ const router = createHashRouter([
             {
                 path: '/words/',
                 element: <WordTopics />,
+            },
+            {
+                path: '/settings/',
+                element: <Settings />,
             },
         ],
     },
@@ -88,6 +95,7 @@ const router = createHashRouter([
 // TODO App itself is not a route, move it to a different folder
 export const App = () => {
     const [envContext, setEnvContext] = useState({ mobile: false });
+    const settings = useSettingsState();
 
     useEffect(() => {
         console.log('LOG::App.effect run');
@@ -124,7 +132,9 @@ export const App = () => {
                 <GlobalStyle />
                 <TooltipProvider delayDuration={100}>
                     <EnvContext.Provider value={envContext}>
-                        <RouterProvider router={router} />
+                        <SettingsContext.Provider value={settings}>
+                            <RouterProvider router={router} />
+                        </SettingsContext.Provider>
                     </EnvContext.Provider>
                 </TooltipProvider>
             </ThemeProvider>
