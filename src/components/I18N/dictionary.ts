@@ -386,6 +386,31 @@ const dictionary: Record<string, I18NEntry> = {
         ru: 'Время на пары',
     },
 
+    'settings-heading': {
+        en: 'Settings',
+        ru: 'Настройки',
+    },
+    'settings-intro': {
+        en: 'How the app behaves while you learn.',
+        ru: 'Как приложение ведёт себя во время занятий.',
+    },
+    'settings-learning-heading': {
+        en: 'Learning process',
+        ru: 'Процесс обучения',
+    },
+    'settings-learning-description': {
+        en: 'What the lessons offer you while you work through them.',
+        ru: 'Что уроки предлагают вам во время прохождения.',
+    },
+    'settings-hotkeys-label': {
+        en: 'Keyboard shortcuts',
+        ru: 'Горячие клавиши',
+    },
+    'settings-hotkeys-description': {
+        en: 'Show the key next to each tile in the matching round. The keys work either way.',
+        ru: 'Показывать клавишу рядом с каждой плиткой в упражнении на пары. Клавиши работают в любом случае.',
+    },
+
     'conversation-list-heading': {
         en: 'Conversations',
         ru: 'Разговоры',

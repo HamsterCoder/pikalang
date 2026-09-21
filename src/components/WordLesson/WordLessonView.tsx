@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router';
 import { styled } from 'styled-components';
 
 import { getWordSet, isWordSetValid, saveWordSetProgress } from '@api/words';
+import type { WordSet } from '@api/words';
 import { userDataApi } from '@api/user-data';
 import { Heading } from '@components/Heading';
 import { I18N } from '@components/I18N/I18N';
@@ -55,28 +56,22 @@ const Body = styled.main`
     padding: 1.5rem 1rem 2rem;
 `;
 
+interface WordLessonSetProps {
+    wordSet: WordSet;
+}
+
 /**
  * A set of new words: each one read in turn, then a timed round matching them
  * to their translations. A star for every word read and every pair matched at
  * the first attempt; the clock is there to beat, never to fail.
+ *
+ * `WordLessonView` keys this on the set, so moving from one set to the next
+ * starts a genuinely new lesson rather than carrying the last one's progress,
+ * clock and saved flag across.
  */
-export const WordLessonView = () => {
-    const { topicName, setNumber } = useParams();
-    const parsedSetNumber = Number(setNumber);
-
-    if (
-        typeof topicName === 'undefined' ||
-        !isWordSetValid(topicName, parsedSetNumber)
-    ) {
-        throw new Error(
-            `Word set ${topicName}/${setNumber} could not be found.`,
-        );
-    }
-
-    const wordSet = useMemo(
-        () => getWordSet(topicName, parsedSetNumber)!,
-        [topicName, parsedSetNumber],
-    );
+const WordLessonSet = ({ wordSet }: WordLessonSetProps) => {
+    const topicName = wordSet.topicName;
+    const parsedSetNumber = wordSet.number;
 
     const words = wordSet.words;
 
@@ -287,5 +282,30 @@ export const WordLessonView = () => {
                 onContinue={() => dispatch({ type: 'word-read' })}
             />
         </Screen>
+    );
+};
+
+/**
+ * Resolves the set in the URL and hands it to the lesson, keyed so that each
+ * set gets its own instance.
+ */
+export const WordLessonView = () => {
+    const { topicName, setNumber } = useParams();
+    const parsedSetNumber = Number(setNumber);
+
+    if (
+        typeof topicName === 'undefined' ||
+        !isWordSetValid(topicName, parsedSetNumber)
+    ) {
+        throw new Error(
+            `Word set ${topicName}/${setNumber} could not be found.`,
+        );
+    }
+
+    return (
+        <WordLessonSet
+            key={`${topicName}/${parsedSetNumber}`}
+            wordSet={getWordSet(topicName, parsedSetNumber)!}
+        />
     );
 };

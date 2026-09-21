@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { MemoryRouter } from 'react-router';
 
 import { TopicCard } from '@components/WordTopics/TopicCard';
 
@@ -25,17 +24,15 @@ const meta = {
     },
     decorators: [
         (Story) => (
-            <MemoryRouter>
-                <div
-                    style={{
-                        containerType: 'inline-size',
-                        containerName: 'topics',
-                        maxWidth: '44rem',
-                    }}
-                >
-                    <Story />
-                </div>
-            </MemoryRouter>
+            <div
+                style={{
+                    containerType: 'inline-size',
+                    containerName: 'topics',
+                    maxWidth: '44rem',
+                }}
+            >
+                <Story />
+            </div>
         ),
     ],
 } satisfies Meta<typeof TopicCard>;
@@ -79,17 +76,15 @@ export const Narrow: Story = {
     args: { learnedCount: 4, completedSets: 1, stars: 7, nextSet: 2 },
     decorators: [
         (Story) => (
-            <MemoryRouter>
-                <div
-                    style={{
-                        containerType: 'inline-size',
-                        containerName: 'topics',
-                        maxWidth: '22rem',
-                    }}
-                >
-                    <Story />
-                </div>
-            </MemoryRouter>
+            <div
+                style={{
+                    containerType: 'inline-size',
+                    containerName: 'topics',
+                    maxWidth: '22rem',
+                }}
+            >
+                <Story />
+            </div>
         ),
     ],
 };

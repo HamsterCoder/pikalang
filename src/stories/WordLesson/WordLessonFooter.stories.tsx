@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
-import { MemoryRouter } from 'react-router';
 
 import { WordLessonFooter } from '@components/WordLesson/WordLessonFooter';
 
@@ -16,13 +15,6 @@ const meta = {
         onKnown: fn(),
         onContinue: fn(),
     },
-    decorators: [
-        (Story) => (
-            <MemoryRouter>
-                <Story />
-            </MemoryRouter>
-        ),
-    ],
 } satisfies Meta<typeof WordLessonFooter>;
 
 export default meta;
