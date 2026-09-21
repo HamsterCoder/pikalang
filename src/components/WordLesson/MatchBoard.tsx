@@ -282,7 +282,6 @@ export const MatchBoard = ({
                 {serbian.map(({ id, word, caption }, index) => (
                     <MatchTile
                         key={id}
-                        tone="serbian"
                         caption={caption}
                         hotkey={
                             settings.hotkeys ? SERBIAN_KEYS[index] : undefined
@@ -302,7 +301,6 @@ export const MatchBoard = ({
                 {russian.map(({ id, translation }, index) => (
                     <MatchTile
                         key={id}
-                        tone="russian"
                         hotkey={
                             settings.hotkeys
                                 ? RUSSIAN_KEYS[index]?.toUpperCase()

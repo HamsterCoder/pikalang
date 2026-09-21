@@ -9,8 +9,6 @@ export interface MatchTileProps {
     state: MatchTileState;
     /** A small line under the word, such as its gender. */
     caption?: string;
-    /** Serbian tiles carry the language being learned and are set apart. */
-    tone?: 'serbian' | 'russian';
     /** The key that picks this tile. Left out when shortcuts are off. */
     hotkey?: string;
     onClick?(): void;
@@ -93,10 +91,15 @@ const Body = styled.span`
     min-width: 0;
 `;
 
-const Label = styled.span<{ $tone: 'serbian' | 'russian'; $struck: boolean }>`
+/**
+ * Both columns read at the same weight. The pair is what the round is about,
+ * and setting the Serbian apart would make the translation look like the
+ * lesser half of it.
+ */
+const Label = styled.span<{ $struck: boolean }>`
     font-family: ${({ theme }) => theme.font.base};
     font-size: ${({ theme }) => theme.text.control.size};
-    font-weight: ${({ $tone }) => ($tone === 'serbian' ? 600 : 400)};
+    font-weight: 600;
     line-height: 1.3;
     text-decoration: ${({ $struck }) => ($struck ? 'line-through' : 'none')};
 `;
@@ -139,7 +142,6 @@ export const MatchTile = ({
     children,
     state,
     caption,
-    tone = 'serbian',
     hotkey,
     onClick,
     className,
@@ -156,9 +158,7 @@ export const MatchTile = ({
             onClick={onClick}
         >
             <Body>
-                <Label $tone={tone} $struck={matched}>
-                    {children}
-                </Label>
+                <Label $struck={matched}>{children}</Label>
                 {caption && <Caption>{caption}</Caption>}
             </Body>
 
