@@ -108,6 +108,10 @@ export const tokens = {
     transition: {
         fast: '0.2s ease-in',
         medium: '0.3s ease-in',
+        /** A screen arriving: it decelerates into place. */
+        enter: '0.28s ease-out',
+        /** A screen leaving: quicker than it came, so the next one is not kept waiting. */
+        leave: '0.18s ease-in',
     },
 } as const;
 

@@ -1,4 +1,11 @@
-import { useCallback, useEffect, useMemo, useReducer } from 'react';
+import {
+    useCallback,
+    useEffect,
+    useMemo,
+    useReducer,
+    useRef,
+    useState,
+} from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { styled } from 'styled-components';
 
@@ -18,6 +25,7 @@ import { useSettings } from '@hooks/useSettings';
 import { shuffle } from '@utils/shuffle';
 
 import { ChallengePrompt } from './ChallengePrompt';
+import { ChallengeStage } from './ChallengeStage';
 import { LessonResults } from './LessonResults';
 import { ChallengeView } from './ChallengeView';
 import { LessonFooter } from './LessonFooter';
@@ -36,6 +44,8 @@ const Screen = styled.div`
     flex-direction: column;
 
     min-height: 100vh;
+    /* A challenge sliding in must not push out a horizontal scrollbar. */
+    overflow-x: clip;
     background-color: ${({ theme }) => theme.color.surfaceSunken};
 `;
 
@@ -88,6 +98,43 @@ export const LessonView = () => {
     const { settings } = useSettings();
 
     /**
+     * Which screen is up — the help, a challenge or the results. Moving on
+     * first plays the current one out, and only then takes the step that
+     * brings the next one in; the stage is keyed by this, so a new screen
+     * mounts fresh and plays its way in.
+     */
+    const stage =
+        state.lifecycle === 'challenge'
+            ? `challenge-${state.challengeNumber}`
+            : state.lifecycle;
+    const [leavingStage, setLeavingStage] = useState<string | null>(null);
+    const leaving = leavingStage === stage;
+    /**
+     * The step waiting for the current screen to leave. It is held until the
+     * next screen is up, and is what guards against moving on twice: a second
+     * click can land before React re-renders with `leaving`.
+     */
+    const nextStep = useRef<(() => void) | null>(null);
+
+    useEffect(() => {
+        nextStep.current = null;
+    }, [stage]);
+
+    const leaveThen = useCallback(
+        (step: () => void) => {
+            if (nextStep.current) {
+                return;
+            }
+
+            nextStep.current = step;
+            setLeavingStage(stage);
+        },
+        [stage],
+    );
+
+    const onStageLeft = useCallback(() => nextStep.current?.(), []);
+
+    /**
      * Ends the lesson and shows the results. Only a lesson played to the end
      * counts as a try towards the lesson progress, but the XP for the solved
      * challenges is kept either way.
@@ -109,24 +156,30 @@ export const LessonView = () => {
 
     const advance = useCallback(
         (skipped: boolean) => {
+            if (nextStep.current) {
+                return;
+            }
+
             if (skipped) {
                 dispatch({ type: 'challenge-skipped' });
             }
 
-            if (lastChallenge) {
-                void finishLesson(true);
-                return;
-            }
+            leaveThen(() => {
+                if (lastChallenge) {
+                    void finishLesson(true);
+                    return;
+                }
 
-            dispatch({ type: 'challenge-next' });
+                dispatch({ type: 'challenge-next' });
+            });
         },
-        [lastChallenge, finishLesson],
+        [leaveThen, lastChallenge, finishLesson],
     );
 
     const ready = Boolean(challenge) && isAnswerReady(challenge, state.answer);
 
     const check = useCallback(() => {
-        if (!ready || state.verdict) {
+        if (!ready || state.verdict || nextStep.current) {
             return;
         }
 
@@ -153,7 +206,7 @@ export const LessonView = () => {
      * so nothing here is the only way in.
      */
     useEffect(() => {
-        if (state.lifecycle !== 'challenge' || !settings.hotkeys) {
+        if (state.lifecycle !== 'challenge' || leaving || !settings.hotkeys) {
             return;
         }
 
@@ -192,6 +245,7 @@ export const LessonView = () => {
         return () => window.removeEventListener('keydown', onKeyDown);
     }, [
         state.lifecycle,
+        leaving,
         state.verdict,
         challenge,
         check,
@@ -209,53 +263,59 @@ export const LessonView = () => {
             />
 
             <Body>
-                {state.lifecycle === 'help' && description.help && (
-                    <>
-                        <ChallengePrompt>
-                            <I18N
-                                textKey="lesson-help-title"
-                                lang={I18NLangs.RU}
+                <ChallengeStage
+                    key={stage}
+                    leaving={leaving}
+                    onLeft={onStageLeft}
+                >
+                    {state.lifecycle === 'help' && description.help && (
+                        <>
+                            <ChallengePrompt>
+                                <I18N
+                                    textKey="lesson-help-title"
+                                    lang={I18NLangs.RU}
+                                />
+                            </ChallengePrompt>
+                            <ConjugationTable
+                                verb={description.help.data.verb}
                             />
-                        </ChallengePrompt>
-                        <ConjugationTable verb={description.help.data.verb} />
-                    </>
-                )}
+                        </>
+                    )}
 
-                {state.lifecycle === 'challenge' && (
-                    <>
-                        <ChallengePrompt>
-                            <I18N
-                                textKey={promptKeys[challenge.type]}
-                                lang={I18NLangs.RU}
+                    {state.lifecycle === 'challenge' && (
+                        <>
+                            <ChallengePrompt>
+                                <I18N
+                                    textKey={promptKeys[challenge.type]}
+                                    lang={I18NLangs.RU}
+                                />
+                            </ChallengePrompt>
+                            <ChallengeView
+                                challenge={challenge}
+                                answer={state.answer}
+                                locked={state.verdict !== null || leaving}
+                                onAnswerChange={(answer) =>
+                                    dispatch({ type: 'answer-change', answer })
+                                }
                             />
-                        </ChallengePrompt>
-                        <ChallengeView
-                            // A fresh challenge starts from a clean slate.
-                            key={state.challengeNumber}
-                            challenge={challenge}
-                            answer={state.answer}
-                            locked={state.verdict !== null}
-                            onAnswerChange={(answer) =>
-                                dispatch({ type: 'answer-change', answer })
-                            }
+                        </>
+                    )}
+
+                    {state.lifecycle === 'complete' && (
+                        <LessonResults
+                            correct={state.correct}
+                            answered={answered}
+                            total={challenges.length}
                         />
-                    </>
-                )}
-
-                {state.lifecycle === 'complete' && (
-                    <LessonResults
-                        correct={state.correct}
-                        answered={answered}
-                        total={challenges.length}
-                    />
-                )}
+                    )}
+                </ChallengeStage>
             </Body>
 
             <LessonFooter
                 lifecycle={state.lifecycle}
                 verdict={state.verdict}
                 canCheck={ready}
-                onStart={() => dispatch({ type: 'help-read' })}
+                onStart={() => leaveThen(() => dispatch({ type: 'help-read' }))}
                 onSkip={() => advance(true)}
                 onCheck={check}
                 onContinue={() => advance(false)}
